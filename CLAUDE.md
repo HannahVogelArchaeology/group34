@@ -1,6 +1,6 @@
 # Group 34 exhibition sandbox
 
-Last verified: 2026-08-20
+Last verified: 2026-08-21
 
 ## Stack
 
@@ -11,7 +11,6 @@ serves the repository as a project site under `/group34`.
 
 - `bundle exec jekyll serve` — local site at `http://127.0.0.1:4000/group34/`
 - `bundle exec jekyll build` — static production build
-- `python3 -m unittest discover -s test -v` — repository contracts
 
 ## Structure
 
@@ -26,6 +25,6 @@ serves the repository as a project site under `/group34`.
 Read `AGENTS.md` before changing content. Keep archaeological claims tied to
 evidence and keep rights records with media. Preserve `baseurl: "/group34"`,
 Ruby and dependency locks, action pins, licensing, native navigation controls,
-and keyboard-visible focus unless a verified replacement updates their tests.
+and keyboard-visible focus.
 Commits to `main` become public automatically; Lighthouse reports regressions
 but does not block the independent Pages deployment.

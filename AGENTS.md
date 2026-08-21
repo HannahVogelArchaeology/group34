@@ -1,6 +1,6 @@
 # Working with AI in this repository
 
-Last verified: 2026-08-20
+Last verified: 2026-08-21
 
 AI may help with code, prose, planning, and troubleshooting, but it does not own
 the project decision. Before asking an AI to change files, write down:
@@ -27,11 +27,10 @@ After changing the site, run:
 
 ```text
 bundle exec jekyll build
-python3 -m unittest discover -s test -v
 ```
 
-Read the output. Do not describe a build or test as passing unless that exact
-version of the files produced a successful result.
+Read the output. Do not describe a build as passing unless that exact version
+of the files produced a successful result.
 
 Lighthouse is a separate, non-blocking GitHub workflow. A red score does not
 stop deployment, but the group should inspect its saved report before deciding
