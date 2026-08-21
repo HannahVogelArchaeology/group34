@@ -1,0 +1,52 @@
+name: Lighthouse
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: "4.0.6"
+          bundler-cache: true
+      - name: Build local audit target
+        run: bundle exec jekyll build --destination "${RUNNER_TEMP}/site/group34"
+      - name: Serve local audit target
+        run: |
+          mkdir -p "${RUNNER_TEMP}/lighthouse"
+          python3 -m http.server 4173 --directory "${RUNNER_TEMP}/site" >"${RUNNER_TEMP}/jekyll-server.log" 2>&1 &
+          curl --fail --silent --show-error --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:4173/group34/ >/dev/null
+      - name: Run Lighthouse
+        id: lighthouse
+        uses: foo-software/lighthouse-check-action@a80267da2e0244b8a2e457a8575fc47590615852 # v12.0.1
+        with:
+          device: desktop
+          outputDirectory: ${{ runner.temp }}/lighthouse
+          urls: http://127.0.0.1:4173/group34/
+      - name: Check shipped Lighthouse baseline
+        uses: foo-software/lighthouse-check-status-action@2b9d5101f7a0de86ddb153a0d77ad7046aac1052 # v3.0.1
+        with:
+          lighthouseCheckResults: ${{ steps.lighthouse.outputs.lighthouseCheckResults }}
+          minAccessibilityScore: "100"
+          minBestPracticesScore: "100"
+          minPerformanceScore: "100"
+          minSeoScore: "100"
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: lighthouse-reports
+          path: ${{ runner.temp }}/lighthouse
+          if-no-files-found: error
