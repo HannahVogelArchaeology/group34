@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div class="main-container page-padding">
+  <div class="object-detail-container">
+    <h1>{{ page.title }}</h1>
+    <p class="shelf-origin">Location: {{ page.shelf }}</p>
+    
+    {% if page.image %}
+    <div class="object-image">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+    </div>
+    {% endif %}
+
+    <div class="object-body">
+      {{ content }}
+    </div>
+
+    <div class="back-navigation">
+      <a href="javascript:history.back()" class="btn-back">&larr; Back to Shelf</a>
+    </div>
+  </div>
+</div>

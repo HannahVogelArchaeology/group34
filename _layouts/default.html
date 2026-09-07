@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="en">
+{% include head.html %}
+<body>
+  {% include header.html %}
+  {% include navigation.html %}
+  {% include menu.html %}
 
-  {%- include head.html -%}
+  <main class="main-content" id="main-content">
+    {{ content }}
+  </main>
 
-  <body>
+  {% include cookie-banner.html %}
+  {% include footer.html %}
 
-    <a class="skip-link" href="#content">Skip to main content</a>
-
-    {%- include header.html -%}
-
-    <main class="page-content" id="content" aria-label="Content" tabindex="-1">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </main>
-
-    {%- include footer.html -%}
-
-  </body>
-
+  <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
 </html>

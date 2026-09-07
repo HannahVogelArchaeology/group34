@@ -1,34 +1,50 @@
 ---
 layout: default
 ---
+<section class="hero-section" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ page.hero_image | relative_url }}');">
+  <div class="hero-content">
+    <h1>{{ page.hero_title }}</h1>
+    <p>{{ page.hero_text }}</p>
+  </div>
+</section>
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<section class="shelves-explorer">
+  <h2>Explore the exhibition</h2>
+  <div class="shelf-cards-container">
+    <div class="shelf-card">
+      <h3>First Shelf</h3>
+      <div class="card-img"><img src="{{ '/assets/images/shelf1-main.jpg' | relative_url }}" alt="First Shelf"></div>
+      <p class="caption">Single highlight artifact display</p>
+      <a href="{{ '/shelves/first-shelf/' | relative_url }}" class="btn-view">View</a>
+    </div>
+    
+    <div class="shelf-card">
+      <h3>Second Shelf</h3>
+      <div class="card-img"><img src="{{ '/assets/images/shelf2-main.jpg' | relative_url }}" alt="Second Shelf"></div>
+      <p class="caption">Collection of 5 distinct artifacts</p>
+      <a href="{{ '/shelves/second-shelf/' | relative_url }}" class="btn-view">View</a>
+    </div>
 
-  {{ content }}
+    <div class="shelf-card">
+      <h3>Third Shelf</h3>
+      <div class="card-img"><img src="{{ '/assets/images/shelf3-main.jpg' | relative_url }}" alt="Third Shelf"></div>
+      <p class="caption">Collection of 3 distinct artifacts</p>
+      <a href="{{ '/shelves/third-shelf/' | relative_url }}" class="btn-view">View</a>
+    </div>
+  </div>
+</section>
 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+<section class="quote-section">
+  <div class="quote-left">
+    <blockquote class="quote-text">"{{ page.quote_text }}"</blockquote>
+    <p class="quote-author">- {{ page.quote_author }}</p>
+  </div>
+  <div class="quote-right">
+    <button class="btn-author-bio" onclick="alert('{{ page.quote_bio | escape }}')">Author's Bio</button>
+  </div>
+</section>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
-
-</div>
+<section class="acknowledgement-section">
+  <h2>Acknowledgement</h2>
+  <p>{{ page.acknowledgement_text }}</p>
+</section>
