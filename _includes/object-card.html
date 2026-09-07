@@ -1,0 +1,10 @@
+<a class="object-card" href="{{ '/objects/' | append: include.object.slug | append: '/' | relative_url }}">
+  <div class="object-card-image">
+    <img src="{{ include.object.image | relative_url }}" alt="{{ include.object.alt }}">
+  </div>
+  <div class="object-card-body">
+    <h3>{{ include.object.title }}</h3>
+    <p>{{ include.object.description }}</p>
+    <span class="text-button">Explore object <span aria-hidden="true">→</span></span>
+  </div>
+</a>
