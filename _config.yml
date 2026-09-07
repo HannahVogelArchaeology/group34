@@ -1,39 +1,28 @@
-title: "Digital Exhibition"
-email: "info@exhibition.org"
-description: "A digital archaeology exhibition showcasing historical artifacts in interactive shelves and 3D views."
-baseurl: ""
+title: Group 34 exhibition sandbox
+description: >-
+  A public student sandbox for an accessible archaeology exhibition website.
+lang: en-AU
 url: "https://hannahvogelarchaeology.github.io"
+baseurl: "/group34"
+repository: HannahVogelArchaeology/group34
 
-# Build settings
-markdown: kramdown
-theme: minima
+author: Group 34
+
+header_pages:
+  - index.md
+  - about.md
+  - team.md
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
-sass:
-  style: compressed
-
-collections:
-  shelves:
-    output: true
-    permalink: /shelves/:path/
-  objects:
-    output: true
-    permalink: /objects/:path/
-
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: "default"
-  - scope:
-      path: ""
-      type: "shelves"
-    values:
-      layout: "shelf"
-  - scope:
-      path: ""
-      type: "objects"
-    values:
-      layout: "object"
+exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - CITATION.cff
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - NOTICE.md
+  - README.md
