@@ -37,3 +37,48 @@ names to `team.md` and `CITATION.cff` rather than inferring them from accounts.
 The code is derived from the MIT-licensed Minima theme. See `LICENSE` and
 `NOTICE.md`. Content and media added by the team may have different terms; record
 those terms and the required credit beside each asset.
+
+```
+group34
+├─ .ruby-version
+├─ 404.html
+├─ about.md
+├─ AGENTS.md
+├─ assets
+│  ├─ favicon.svg
+│  ├─ main.scss
+│  └─ minima-social-icons.svg
+├─ CITATION.cff
+├─ CLAUDE.md
+├─ Gemfile
+├─ Gemfile.lock
+├─ index.md
+├─ LICENSE
+├─ NOTICE.md
+├─ README.md
+├─ team.md
+├─ _config.yml
+├─ _includes
+│  ├─ disqus_comments.html
+│  ├─ footer.html
+│  ├─ google-analytics.html
+│  ├─ head.html
+│  ├─ header.html
+│  ├─ icon-github.html
+│  ├─ icon-github.svg
+│  ├─ icon-twitter.html
+│  ├─ icon-twitter.svg
+│  └─ social.html
+├─ _layouts
+│  ├─ default.html
+│  ├─ home.html
+│  ├─ page.html
+│  └─ post.html
+└─ _sass
+   ├─ minima
+   │  ├─ _base.scss
+   │  ├─ _layout.scss
+   │  └─ _syntax-highlighting.scss
+   └─ minima.scss
+
+```

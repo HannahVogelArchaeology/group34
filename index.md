@@ -1,17 +1,11 @@
 ---
-layout: page
+layout: home
 title: Home
-permalink: /
+hero_title: "Archaeological Treasures"
+hero_text: "Explore curated ancient artifacts and detailed 3D historical representations."
+hero_image: "/assets/images/hero-bg.jpg"
+quote_text: "Preserving the past gives clarity to our future, bridging millennia through material culture."
+quote_author: "John Doe, Lead Curator"
+quote_bio: "John Doe has dedicated over 20 years to Mediterranean archaeology and digital conservation."
+acknowledgement_text: "We acknowledge the Traditional Custodians of the land on which this digital exhibition was developed and pay our respects to Elders past, present, and emerging. We extend that respect to Aboriginal and Torres Strait Islander peoples viewing this collection."
 ---
-
-Group 34 is developing an accessible website in response to an archaeology
-exhibition brief. This public site records the project as it develops.
-
-## Start here
-
-- Read the [project context]({{ '/about/' | relative_url }}).
-- Record each contributor's preferred public name and links on the
-  [team page]({{ '/team/' | relative_url }}).
-- Before adding media, record who owns it, the licence or permission that permits
-  publication, and the wording of its credit.
-- Check accessibility throughout design and review.
