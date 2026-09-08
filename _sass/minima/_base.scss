@@ -114,8 +114,25 @@ li {
 /**
  * Headings
  */
-h1, h2, h3, h4, h5, h6 {
+// h1, h2, h3, h4, h5, h6 {
+//   font-weight: $base-font-weight;
+h1 {
+  font-size: 32pt;
   font-weight: $base-font-weight;
+}
+
+h2 {
+  font-size: 24pt;
+  font-weight: $base-font-weight;
+}
+
+h3 {
+  font-size: 20pt;
+  font-weight: $base-font-weight;
+}
+
+p {
+  font-size: 16pt;
 }
 
 
