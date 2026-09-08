@@ -88,8 +88,10 @@
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid $grey-color-light;
+  border-top: none;
   padding: $spacing-unit 0;
+  background-color: $footer-color;
+  color: #ffff
 }
 
 .footer-heading {
