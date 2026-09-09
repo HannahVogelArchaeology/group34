@@ -1,28 +1,24 @@
-title: Group 34 exhibition sandbox
-description: >-
-  A public student sandbox for an accessible archaeology exhibition website.
-lang: en-AU
-url: "https://hannahvogelarchaeology.github.io"
+title: "Digital Exhibition"
+description: "Digital Exhibition"
+
 baseurl: "/group34"
-repository: HannahVogelArchaeology/group34
+url: ""
 
-author: Group 34
+markdown: kramdown
 
-header_pages:
-  - index.md
-  - about.md
-  - team.md
+sass:
+  sass_dir: _sass
+  style: compressed
 
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
+collections:
+  objects:
+    output: true
+  shelves:
+    output: true
 
-exclude:
-  - AGENTS.md
-  - CLAUDE.md
-  - CITATION.cff
-  - Gemfile
-  - Gemfile.lock
-  - LICENSE
-  - NOTICE.md
-  - README.md
+defaults:
+  - scope:
+      path: ""
+      type: "objects"
+    values:
+      layout: object

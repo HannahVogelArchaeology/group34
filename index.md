@@ -1,17 +1,12 @@
 ---
-layout: page
+layout: home
 title: Home
-permalink: /
+hero_title: "Exhibition Title"
+hero_text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac."
+hero_image: "/assets/images/hero-bg.jpg"
+quote_text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales."
+quote_curator: "John Doe, Lead Curator"
+quote_bio: "John Doe has dedicated over 20 years to Mediterranean archaeology and digital conservation."
+acknowledgement_text: "We acknowledge the Traditional Custodians of the land on which this digital exhibition was developed and pay our respects to Elders past, present, and future. We extend that respect to Aboriginal and Torres Strait Islander peoples viewing this collection. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac."
+is_main_page: true
 ---
-
-Group 34 is developing an accessible website in response to an archaeology
-exhibition brief. This public site records the project as it develops.
-
-## Start here
-
-- Read the [project context]({{ '/about/' | relative_url }}).
-- Record each contributor's preferred public name and links on the
-  [team page]({{ '/team/' | relative_url }}).
-- Before adding media, record who owns it, the licence or permission that permits
-  publication, and the wording of its credit.
-- Check accessibility throughout design and review.
