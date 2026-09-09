@@ -1,0 +1,21 @@
+@media (max-width: 768px) {
+  .shelves-explorer .shelf-cards-container {
+    flex-direction: column;
+  }
+
+  .quote-section {
+    flex-direction: column;
+    gap: 20px;
+    
+    .quote-left { max-width: 100%; }
+  }
+
+  .footer-top {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .individual-object-container .object-content {
+    grid-template-columns: 1fr;
+  }
+}

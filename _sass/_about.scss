@@ -1,0 +1,225 @@
+/* About Page Styling */
+.about-page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 3em 1.5em;
+  color: #333;
+
+  .page-title {
+    text-align: center;
+    font-size: 2.6em;
+    font-weight: 400;
+    margin-bottom: 2em;
+  }
+
+  /* Navigation Tabs */
+  .tab-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1.5em;
+    margin-bottom: 2.5em;
+
+    .tab-btn {
+      padding: 1em 2.2em;
+      border: none;
+      text-align: center;
+      min-width: 260px;
+      background-color: #e2dcd2;
+      color: #b08d57;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.active {
+        background-color: #b08d57;
+        color: #ffffff;
+      }
+
+      &:hover {
+      opacity: 0.9;
+    }
+    }
+  }
+
+  /* Quote Banner */
+  .quote-banner {
+    background: linear-gradient(90deg, #785a30 0%, #c39c5e 100%);
+    color: #fff;
+    text-align: center;
+    padding: 2.5em 1.5em;
+    margin-bottom: 3.5em;
+
+    h2 {
+      font-size: 1.4em;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 0.5em;
+    }
+
+    p {
+      font-size: 0.8em;
+      opacity: 0.85;
+      margin: 0;
+    }
+  }
+
+  /* Tab Content Visibility */
+  .tab-content {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .main-tab-title {
+    font-size: 1.8em;
+    color: #b08d57;
+    font-weight: 400;
+    margin-bottom: 2em;
+  }
+
+  /* Content Sections */
+  .content-section {
+    margin-bottom: 3em;
+
+    .gold-heading {
+      color: #b08d57;
+      font-size: 1.5em;
+      font-weight: 400;
+      margin-bottom: 1.2em;
+    }
+
+    .author-sub {
+      font-weight: 400;
+      font-size: 1.3em;
+      margin-bottom: 0.8em;
+    }
+
+    .sub-block {
+      margin-bottom: 2em;
+
+      .sub-title {
+        font-size: 1.3em;
+        font-weight: 400;
+        color: #444;
+        margin-bottom: 0.8em;
+      }
+
+      .section-desc {
+        margin-top: 1.2em;
+        line-height: 1.65;
+        color: #555;
+        font-size: 0.9em;
+      }
+    }
+
+    p {
+      line-height: 1.65;
+      color: #555;
+      font-size: 0.9em;
+    }
+  }
+
+  /* Data Tables */
+  .info-table {
+    width: 100%;
+    margin-top: 1em;
+    border-collapse: collapse;
+    background-color: transparent;
+
+    td {
+      padding: 0.85em 1.2em;
+      font-size: 1em;
+      border-bottom: 1px solid #eae5dc;
+    }
+
+    .label-col {
+      color: #b08d57;
+      width: 30%;
+      font-weight: 400;
+      vertical-align: top;
+    }
+
+    .value-col {
+      color: #333;
+
+      &.hours-row {
+        display: flex;
+        justify-content: space-between;
+        padding-right: 2em;
+      }
+    }
+
+    .inline-link {
+      color: #333;
+      text-decoration: underline;
+
+      &:hover {
+        color: #b08d57;
+      }
+    }
+  }
+
+  /* Team Avatars & Dynamic Progress Indicator */
+  .team-avatars {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5em;
+    position: relative;
+
+    .avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background-color: #eae5dc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85em;
+      color: #555;
+      border: 1px solid #d8d0c2;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+
+      &:hover {
+        border-color: #b08d57;
+        background-color: #f1ebd8;
+      }
+
+      &.active {
+        border-color: #b08d57;
+        background-color: #e2d7c5;
+        color: #111;
+        font-weight: 600;
+        box-shadow: 0 0 0 2px rgba(176, 141, 87, 0.2);
+      }
+    }
+  }
+
+  .gold-divider-line {
+    width: 100%;
+    height: 4px;
+    background-color: #b08d57;
+    margin: 1.2em 0 2em 0;
+    position: relative;
+
+    .pointer-arrow {
+      position: absolute;
+      top: -8px;
+      left: 18px; /* Initial position aligned with 1st avatar */
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #b08d57;
+      transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+  }
+}
+
+// linkedin icon size up
+.value-col .inline-link i.fa-linkedin {
+  font-size: 2rem;
+}

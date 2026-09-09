@@ -1,0 +1,289 @@
+// Header
+.pinned-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color:  $header-bg;
+  color: $header-text;
+  padding: 12px 40px;
+  z-index: 1000;
+  border-bottom: 1px solid #e0ded6;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-sizing: border-box; // Ensures padding doesn't cause overflow
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 12px; // Prevents children from overlapping
+  }
+
+  .exhibition-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #111;
+    text-decoration: none;
+  }
+
+  .active-object-name {
+    font-size: 1.1em;
+    color: #333333;
+    font-weight: 400;
+  }
+
+  .header-left {
+    flex-shrink: 0; // Keeps the title visible
+  }
+
+  .header-center {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; // Prevents long object titles from pushing the right section out
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0; // Prevents the right controls and menu icon from being squeezed out
+    gap: 24px;
+  }
+
+  .text-resizers {
+    display: flex;
+    gap: 6px;
+
+    .font-btn {
+      background-color: #e8e3d5;
+      border: 1px solid #d0cbbd;
+      color: #333;
+      padding: 4px 10px;
+      font-size: 0.9em;
+      border-radius: 2px;
+      cursor: pointer;
+      font-weight: 600;
+    
+
+    &.text-reset {
+        font-size: 0.85em;
+        padding: 6px 8px;
+      }
+
+      &:hover {
+        background-color: #e0dabf;
+      }
+    }
+    @media (max-width: 600px) {
+        display: none;
+      }
+  }
+  .font-btn, .menu-icon-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #FFF;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    flex-shrink: 0; // Ensures the hamburger button retains its size
+
+    &:hover {
+      background: rgba(255,255,255,0.2);
+    }
+  }
+  .menu-icon-btn {
+    flex-shrink: none;
+    background: transparent;
+    border: none;
+    font-size: 1.2em;
+    color: #333;
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    cursor: pointer;
+
+    .menu-bars {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: #c08d43;
+    }
+  }
+  // Mobile optimization: Hide text resizers on narrow screens to keep space clean
+  @media (max-width: 600px) {
+    .text-resizers {
+      display: none;
+    }
+  }
+}
+
+// Sub-navigation area
+.sub-navigation {
+  margin-top: 60px; // Pushes it directly below the 60px fixed header
+  padding: 10px 40px;
+  background: #EDE9DE;
+  border-bottom: 1px solid #e0ded6;
+  position: relative;
+  z-index: 1;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: flex;
+    gap: 16px;
+  }
+}
+
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1050;
+
+  &.active {
+    display: block;
+  }
+}
+
+/* Sidebar Container */
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100vh;
+  background-color: #53391b; // Matching warm dark brown
+  color: #ffffff;
+  z-index: 1100;
+  transition: right 0.3s ease-in-out;
+  padding: 30px 24px;
+  box-sizing: border-box;
+  overflow-y: auto;
+
+  &.active {
+    right: 0;
+  }
+
+  /* Close Icon (Top Hamburger) */
+  .close-sidebar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    .hamburger-icon {
+      position: relative;
+      width: 26px;
+      height: 2px;
+      background-color: #ffffff;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 26px;
+        height: 2px;
+        background-color: #ffffff;
+      }
+
+      &::before { top: -7px; }
+      &::after { top: 7px; }
+    }
+  }
+
+  /* Navigation Links */
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+
+    a {
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .icon-folder {
+      font-size: 1.1em;
+      color: #ffffff;
+      margin-right: 14px;
+    }
+
+    /* Main Section Top Links (HOME / ABOUT) */
+    .main-link {
+      display: flex;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      font-weight: 500;
+      font-size: 1em;
+      letter-spacing: 0.5px;
+    }
+
+    /* Group Container for Shelves */
+    .shelf-group {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 6px 0;
+    }
+
+    /* Object Items */
+    .object-link {
+      display: flex;
+      align-items: flex-end;
+      padding: 10px 0;
+
+      &.has-folder {
+        align-items: flex-start;
+      }
+
+      &.indent {
+        padding-left: 33px; // Aligns text under the first object title
+      }
+
+      .object-info {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        .shelf-label {
+          font-size: 0.75em;
+          color: rgba(255, 255, 255, 0.85);
+          font-weight: 500;
+          margin-bottom: 2px;
+        }
+
+        .object-title {
+          font-size: 1.05em;
+          font-weight: 400;
+        }
+      }
+
+      .object-title {
+        font-size: 1.05em;
+        font-weight: 400;
+        flex-grow: 1;
+      }
+
+      .icon-arrow {
+        font-size: 0.9em;
+        color: #ffffff;
+        margin-left: auto;
+      }
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+  }
+}

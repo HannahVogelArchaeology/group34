@@ -1,0 +1,228 @@
+// Left-Aligned Dark Brown Hero Section
+.hero-section {
+  background-color: #382713; // Dark warm brown background
+  color: #ffffff;
+  padding: 80px 40px; // Left offset positioning
+  padding-top: 100px; // 60px (header) + ~40px (sub-nav)
+  display: block;
+  text-align: left;
+  min-height: 65vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 40px 80px 40px; // Increased top padding to accommodate the fixed header
+  box-sizing: border-box;
+
+  @media (max-width: 1024px) {
+    min-height: 65vh;
+    padding: 60px 30px;
+  }
+
+    .hero-container {
+    max-width: 1000px; // Matches .shelf-cards-container and .explorer-title max-width
+    margin: 0 auto;    // Centers the container grid
+  }
+
+  .hero-content {
+    max-width: 800px; // Keeps the paragraph width readable
+    margin: 0;
+
+    .hero-main-title {
+      font-size: 4.2em;
+      font-weight: 400;
+      line-height: 1.05;
+      margin: 0 0 36px 0;
+      color: #ffffff;
+    }
+
+    .narratives-label {
+      font-size: 1em;
+      margin-bottom: 8px;
+      color: #e0dcd3;
+    }
+
+    .hero-description {
+      font-size: 0.95em;
+      line-height: 1.65;
+      color: #e0dcd3;
+      margin: 0;
+    }
+  }
+}
+
+// Light Background Content Section
+.shelves-explorer {
+  background-color: #f6f3eb;
+  padding: 50px 40px 80px 40px;
+
+  .explorer-title {
+    max-width: 1000px;
+    margin: 0 auto 36px auto;
+    font-size: 2.2em;
+    font-weight: 400;
+    color: #222222;
+  }
+
+  .shelf-cards-container {
+    display: flex;
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    .shelf-card {
+      background-color: #eae5d9;
+      border-radius: 2px;
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        width: 100%;
+
+        .bookmark-icon {
+          display: inline-block;
+          width: 8px;
+          height: 12px;
+          background-color: #b5833f;
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+        }
+
+        .shelf-label {
+          font-size: 0.85em;
+          letter-spacing: 1px;
+          font-weight: 600;
+          color: #444444;
+        }
+      }
+
+      .card-img {
+        width: 100%;
+        height: 220px;
+        margin-bottom: 16px;
+        overflow: hidden;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .caption {
+        font-size: 0.85em;
+        color: #555555;
+        margin: 0 0 16px 0;
+        text-align: center;
+      }
+
+      .view-button {
+        background-color: #b5833f;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 6px 20px;
+        font-size: 0.75em;
+        letter-spacing: 1px;
+        border-radius: 2px;
+        font-weight: 600;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background-color: #543b19;
+        }
+      }
+    }
+  }
+}
+
+// Quote Banner Section
+.quote-section {
+  background: linear-gradient(90deg, #785a30 30%, #c39c5e 100%);
+  padding: 50px 40px;
+  color: #ffffff;
+
+  .quote-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .quote-left {
+    max-width: 65%;
+
+    .quote-text {
+      font-size: 1.5em;
+      font-style: normal;
+      margin: 0 0 10px 0;
+      color: #ffffff;
+    }
+
+    .quote-curator {
+      font-size: 0.9em;
+      color: #f0e6d2;
+      margin: 0;
+    }
+  }
+
+  .quote-right {
+    .btn-curator-bio {
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      border-radius: 16px;
+      padding: 8px 20px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.85em;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: background 0.2s ease;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+      }
+    }
+  }
+}
+
+// Acknowledgement Section
+.acknowledgement-section {
+  background-color: #f6f3eb;
+  padding: 80px 40px;
+
+  .acknowledgement-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+  }
+
+  .ack-left {
+    width: 250px;
+    flex-shrink: 0;
+
+    h2 {
+      font-size: 0.9em;
+      letter-spacing: 1.5px;
+      color: #666666;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .ack-right {
+    flex-grow: 1;
+
+    p {
+      font-size: 0.95em;
+      line-height: 1.7;
+      color: #444444;
+      margin: 0;
+    }
+  }
+}
