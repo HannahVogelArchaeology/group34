@@ -1,34 +1,83 @@
 ---
 layout: default
 ---
+<section class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-main-title">{{ page.hero_title }}</h1>
+      <p class="narratives-label">Narratives Here:</p>
+      <p class="hero-description">{{ page.hero_text }}</p>
+    </div>
+  </div>
+</section>
 
-<div class="home">
-  {%- if page.title -%}
-    <h1 class="page-heading">{{ page.title }}</h1>
-  {%- endif -%}
+<section class="shelves-explorer">
+  <h2 class="explorer-title">Explore the exhibition</h2>
+  <div class="shelf-cards-container">
+    
+    <!-- First Shelf -->
+    <div class="shelf-card">
+      <div class="card-header">
+        <span class="bookmark-icon"></span>
+        <span class="shelf-label">FIRST SHELF</span>
+      </div>
+      <div class="card-img">
+        <img src="{{ '/assets/images/shelf1-main.jpg' | relative_url }}" alt="First Shelf">
+      </div>
+      <p class="caption">Caption of the photo</p>
+      <a href="{{ '/shelves/first-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
+    </div>
+    
+    <!-- Second Shelf -->
+    <div class="shelf-card">
+      <div class="card-header">
+        <span class="bookmark-icon"></span>
+        <span class="shelf-label">SECOND SHELF</span>
+      </div>
+      <div class="card-img">
+        <img src="{{ '/assets/images/shelf2-main.jpg' | relative_url }}" alt="Second Shelf">
+      </div>
+      <p class="caption">Caption of the photo</p>
+      <a href="{{ '/shelves/second-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
+    </div>
 
-  {{ content }}
+    <!-- Third Shelf -->
+    <div class="shelf-card">
+      <div class="card-header">
+        <span class="bookmark-icon"></span>
+        <span class="shelf-label">THIRD SHELF</span>
+      </div>
+      <div class="card-img">
+        <img src="{{ '/assets/images/shelf3-main.jpg' | relative_url }}" alt="Third Shelf">
+      </div>
+      <p class="caption">Caption of the photo</p>
+      <a href="{{ '/shelves/third-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
+    </div>
 
-  {%- if site.posts.size > 0 -%}
-    <h2 class="post-list-heading">{{ page.list_title | default: "Posts" }}</h2>
-    <ul class="post-list">
-      {%- for post in site.posts -%}
-      <li>
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        <span class="post-meta">{{ post.date | date: date_format }}</span>
-        <h3>
-          <a class="post-link" href="{{ post.url | relative_url }}">
-            {{ post.title | escape }}
-          </a>
-        </h3>
-        {%- if site.show_excerpts -%}
-          {{ post.excerpt }}
-        {%- endif -%}
-      </li>
-      {%- endfor -%}
-    </ul>
+  </div>
+</section>
 
-    <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
-  {%- endif -%}
+<!-- Quote Banner Section -->
+<section class="quote-section">
+  <div class="quote-container">
+    <div class="quote-left">
+      <blockquote class="quote-text">" {{ page.quote_text | default: 'Quote here if needed' }} "</blockquote>
+      <p class="quote-curator">- {{ page.quote_curator | default: 'John Doe, Someone of Business Enterprise' }}</p>
+    </div>
+    <div class="quote-right">
+      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">&gt; Curator's Bio</a>
+    </div>
+  </div>
+</section>
 
-</div>
+<!-- Acknowledgement Section -->
+<section class="acknowledgement-section">
+  <div class="acknowledgement-container">
+    <div class="ack-left">
+      <h2>ACKNOWLEDGEMENT</h2>
+    </div>
+    <div class="ack-right">
+      <p>{{ page.acknowledgement_text }}</p>
+    </div>
+  </div>
+</section>

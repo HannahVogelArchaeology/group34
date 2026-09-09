@@ -1,0 +1,75 @@
+---
+layout: default
+---
+
+<div class="shelf-v2-container">
+  <h1 class="shelf-v2-title">{{ page.shelf_title | default: "THIRD SHELF" }}</h1>
+
+  <!-- Hero Grid Layout -->
+  <div class="shelf-hero-grid">
+    <div class="hero-image-wrapper">
+      <img src="{{ page.hero_image | default: '/assets/images/flowers.jpg' | relative_url }}" alt="Third Shelf Hero Object" />
+      <button class="expand-btn" aria-label="Expand Image">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M10 21v-2H6.41l4.50-4.50l-1.41-1.41L5 17.59V14H3v7h7zm11-11V3h-7v2h3.59l-4.50 4.50l1.41 1.41L19 6.41V10h2z"/></svg>
+      </button>
+    </div>
+
+    <!-- Numbered Object Links List with Divider Lines -->
+    <ul class="numbered-object-list">
+      <li class="object-item">
+        <span class="num">7</span>
+        <a href="{{ '/objects/shelf3-object7/' | relative_url }}" class="name">Object Name 7</a>
+      </li>
+      <li class="object-item">
+        <span class="num">8</span>
+        <a href="{{ '/objects/shelf3-object8/' | relative_url }}" class="name">Object Name 8</a>
+      </li>
+      <li class="object-item">
+        <span class="num">9</span>
+        <a href="{{ '/objects/shelf3-object9/' | relative_url }}" class="name">Object Name 9</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Overview Text Section -->
+  <section class="shelf-overview-section">
+    <h3>Overview Text</h3>
+    <p>
+      {{ page.overview | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque." }}
+    </p>
+  </section>
+
+  <!-- The Objects Grid -->
+  <section class="shelf-objects-section">
+    <h3>The Objects</h3>
+    <div class="objects-grid">
+      
+      <div class="object-card">
+        <div class="card-header">
+          <span class="item-title">Item Name</span>
+          <a href="{{ '/objects/shelf3-object7/' | relative_url }}" class="btn-view">View &rarr;</a>
+        </div>
+        <div class="card-media"></div>
+      </div>
+
+      <div class="object-card">
+        <div class="card-header">
+          <span class="item-title">Item Name</span>
+          <a href="{{ '/objects/shelf3-object8/' | relative_url }}" class="btn-view">View &rarr;</a>
+        </div>
+        <div class="card-media"></div>
+      </div>
+
+      <div class="object-card">
+        <div class="card-header">
+          <span class="item-title">Item Name</span>
+          <a href="{{ '/objects/shelf3-object9/' | relative_url }}" class="btn-view">View &rarr;</a>
+        </div>
+        <div class="card-media"></div>
+      </div>
+
+    </div>
+  </section>
+
+  {% include pagination.html %}
+</div>
