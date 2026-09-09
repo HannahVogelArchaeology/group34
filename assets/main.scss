@@ -1,5 +1,15 @@
 ---
-# Only the main Sass file needs front matter (the dashes are enough)
 ---
 
-@import "minima";
+@import "variables";
+@import "base";
+@import "header";
+@import "home";
+@import "about";
+@import "shelf1";
+@import "shelf2";
+@import "shelf3";
+@import "object";
+@import "privacy";
+@import "footer";
+@import "responsive";
