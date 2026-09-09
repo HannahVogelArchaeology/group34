@@ -1,0 +1,17 @@
+<nav class="shelf-pagination">
+  <a href="{{ page.prev_url | default: '/' | relative_url }}" class="nav-box nav-back">
+    <span class="arrow">&larr;</span>
+    <div class="nav-text">
+      <span class="sub-label">BACK</span>
+      <span class="main-label">{{ page.prev_label | default: 'MAIN PAGE' }}</span>
+    </div>
+  </a>
+
+  <a href="{{ page.next_url | default: '/' | relative_url }}" class="nav-box nav-next">
+    <div class="nav-text">
+      <span class="sub-label">NEXT</span>
+      <span class="main-label">{{ page.next_label | default: 'MAIN PAGE' }}</span>
+    </div>
+    <span class="arrow">&rarr;</span>
+  </a>
+</nav>

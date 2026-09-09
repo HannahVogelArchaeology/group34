@@ -1,0 +1,32 @@
+<div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  <div class="audio-left">
+    <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">
+      0.5x
+    </button>
+
+    <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
+      <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
+    </button>
+
+    <button type="button" onclick="changeAudioSpeed(2)" aria-label="Play audio at double speed">
+      2x
+    </button>
+  </div>
+
+  <div class="audio-center">
+    <span class="audio-obj-name">
+      {{ page.object_title | default: page.title }}
+    </span>
+    <span class="audio-shelf-label">
+      {{ page.shelf_title | default: page.title }}
+    </span>
+  </div>
+
+  <div class="audio-right">
+    <button type="button" onclick="toggleMute()" aria-label="Mute or unmute audio">
+      <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <audio id="exhibitionAudio" src="{{ page.audio_src | relative_url }}" preload="metadata"></audio>
+</div>
