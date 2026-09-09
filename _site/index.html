@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Home | Digital Exhibition</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons & Alpine JS for UI state management -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Avoid flashy changes when refreshing -->
+  <script>
+  (function() {
+    var savedSize = localStorage.getItem('userFontSize');
+    if (savedSize) {
+      document.documentElement.style.fontSize = savedSize + '%';
+    }
+  })();
+  </script>
+  <link rel="stylesheet" href="/group34/assets/main.css">
+</head>
+<body>
+  <header class="pinned-header">
+  <div class="header-content">
+    <div class="header-left">
+      <a href="/group34/" class="exhibition-title">Digital Exhibition</a>
+    </div>
+    
+    <div class="header-center">
+      
+    </div>
+
+    <div class="header-right">
+      <div class="text-resizers">
+        <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
+        <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
+        <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
+      </div>
+      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+  
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
+<aside class="sidebar-menu" id="sidebarMenu">
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
+    <span class="hamburger-icon"></span>
+  </button>
+  
+  <nav class="sidebar-nav">
+    <!-- Top Direct Links -->
+    <a href="/group34/" class="nav-item main-link">
+      <i class="fas fa-folder icon-folder"></i>
+      <span>HOME</span>
+    </a>
+    
+    <a href="/group34/about/" class="nav-item main-link">
+      <i class="fas fa-folder icon-folder"></i>
+      <span>ABOUT</span>
+    </a>
+
+    <!-- 1st Shelf Group -->
+    <div class="shelf-group">
+      <a href="/group34/shelves/first-shelf/" class="nav-item object-link has-folder">
+        <i class="far fa-folder icon-folder"></i>
+        <div class="object-info">
+          <span class="shelf-label">1st Shelf</span>
+          <span class="object-title">1 Object Name</span>
+        </div>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+    </div>
+
+    <!-- 2nd Shelf Group -->
+    <div class="shelf-group">
+      <a href="/group34/objects/shelf2-object2/" class="nav-item object-link has-folder">
+        <i class="far fa-folder icon-folder"></i>
+        <div class="object-info">
+          <span class="shelf-label">2nd Shelf</span>
+          <span class="object-title">2 Object Name</span>
+        </div>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+      <a href="/group34/objects/shelf2-object3/" class="nav-item object-link indent">
+        <span class="object-title">3 Object Name</span>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+      <a href="/group34/objects/shelf2-object4/" class="nav-item object-link indent">
+        <span class="object-title">4 Object Name</span>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+      <a href="/group34/objects/shelf2-object5/" class="nav-item object-link indent">
+        <span class="object-title">5 Object Name</span>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+      <a href="/group34/objects/shelf2-object6/" class="nav-item object-link indent">
+        <span class="object-title">6 Object Name</span>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+    </div>
+
+    <!-- 3rd Shelf Group -->
+    <div class="shelf-group">
+      <a href="/group34/objects/shelf3-object7/" class="nav-item object-link has-folder">
+        <i class="far fa-folder icon-folder"></i>
+        <div class="object-info">
+          <span class="shelf-label">3rd Shelf</span>
+          <span class="object-title">7 Object Name</span>
+        </div>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+      <a href="/group34/objects/shelf3-object8/" class="nav-item object-link indent">
+        <span class="object-title">8 Object Name</span>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+      <a href="/group34/objects/shelf3-object9/" class="nav-item object-link indent">
+        <span class="object-title">9 Object Name</span>
+        <i class="fas fa-arrow-right icon-arrow"></i>
+      </a>
+    </div>
+  </nav>
+</aside>
+
+  <main class="main-content" id="main-content">
+    <section class="hero-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1 class="hero-main-title">Exhibition Title</h1>
+      <p class="narratives-label">Narratives Here:</p>
+      <p class="hero-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
+    </div>
+  </div>
+</section>
+
+<section class="shelves-explorer">
+  <h2 class="explorer-title">Explore the exhibition</h2>
+  <div class="shelf-cards-container">
+    
+    <!-- First Shelf -->
+    <div class="shelf-card">
+      <div class="card-header">
+        <span class="bookmark-icon"></span>
+        <span class="shelf-label">FIRST SHELF</span>
+      </div>
+      <div class="card-img">
+        <img src="/group34/assets/images/shelf1-main.jpg" alt="First Shelf">
+      </div>
+      <p class="caption">Caption of the photo</p>
+      <a href="/group34/shelves/first-shelf/" class="view-button">VIEW &rarr;</a>
+    </div>
+    
+    <!-- Second Shelf -->
+    <div class="shelf-card">
+      <div class="card-header">
+        <span class="bookmark-icon"></span>
+        <span class="shelf-label">SECOND SHELF</span>
+      </div>
+      <div class="card-img">
+        <img src="/group34/assets/images/shelf2-main.jpg" alt="Second Shelf">
+      </div>
+      <p class="caption">Caption of the photo</p>
+      <a href="/group34/shelves/second-shelf/" class="view-button">VIEW &rarr;</a>
+    </div>
+
+    <!-- Third Shelf -->
+    <div class="shelf-card">
+      <div class="card-header">
+        <span class="bookmark-icon"></span>
+        <span class="shelf-label">THIRD SHELF</span>
+      </div>
+      <div class="card-img">
+        <img src="/group34/assets/images/shelf3-main.jpg" alt="Third Shelf">
+      </div>
+      <p class="caption">Caption of the photo</p>
+      <a href="/group34/shelves/third-shelf/" class="view-button">VIEW &rarr;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Quote Banner Section -->
+<section class="quote-section">
+  <div class="quote-container">
+    <div class="quote-left">
+      <blockquote class="quote-text">" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales. "</blockquote>
+      <p class="quote-curator">- John Doe, Lead Curator</p>
+    </div>
+    <div class="quote-right">
+      <a href="/group34/about/#curation-tab" class="btn-curator-bio">&gt; Curator's Bio</a>
+    </div>
+  </div>
+</section>
+
+<!-- Acknowledgement Section -->
+<section class="acknowledgement-section">
+  <div class="acknowledgement-container">
+    <div class="ack-left">
+      <h2>ACKNOWLEDGEMENT</h2>
+    </div>
+    <div class="ack-right">
+      <p>We acknowledge the Traditional Custodians of the land on which this digital exhibition was developed and pay our respects to Elders past, present, and future. We extend that respect to Aboriginal and Torres Strait Islander peoples viewing this collection. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
+    </div>
+  </div>
+</section>
+  </main>
+
+  <div class="cookie-banner" id="cookieBanner">
+  <div class="cookie-content">
+    <p>We use cookies to improve your experience.</p>
+    <div class="cookie-buttons">
+      <button onclick="acceptCookies()" class="btn-cookie-accept">Accept</button>
+      <button onclick="declineCookies()" class="btn-cookie-decline">Decline</button>
+      <button onclick="closeCookieBanner()" class="cookie-close-icon">&times;</button>
+    </div>
+  </div>
+</div><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  <div class="audio-left">
+    <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">
+      0.5x
+    </button>
+
+    <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
+      <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
+    </button>
+
+    <button type="button" onclick="changeAudioSpeed(2)" aria-label="Play audio at double speed">
+      2x
+    </button>
+  </div>
+
+  <div class="audio-center">
+    <span class="audio-obj-name">
+      Home
+    </span>
+    <span class="audio-shelf-label">
+      Home
+    </span>
+  </div>
+
+  <div class="audio-right">
+    <button type="button" onclick="toggleMute()" aria-label="Mute or unmute audio">
+      <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
+    </button>
+  </div>
+
+  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+</div><footer class="site-footer">
+  
+  <div class="footer-top">
+    <div class="footer-left">
+      <h4>Connect with us</h4>
+      <p>Stay updated with our latest archaeological discoveries and virtual exhibits. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, justo ac lacinia maximus, sed neque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla amc ligula, ultrices ut amet magna nec, efficitur porta purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque.</p>
+      <div class="social-icons">
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    
+    <div class="footer-right">
+      <form class="enquiry-box" onsubmit="event.preventDefault(); window.open('mailto:abcde1234@gmail.com?subject=' + encodeURIComponent('Enquiry about the digital museum') + '&body=' + encodeURIComponent('What to Enquire:'), '_blank');">
+        <i class="fas fa-envelope message-icon"></i>
+        <span class="enquiry-text">Enquiries</span>
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <hr class="footer-line">
+  
+
+  <div class="footer-bottom">
+    <div class="copyright-area">
+      <p class="footer-copyright">&copy; 2026 Digital Exhibition. All rights reserved.</p>
+    </div>
+    <div class="legal-links">
+      <a href="/group34/privacy/">Privacy</a>
+      <a href="/group34/terms/">Terms & Conditions</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="/group34/assets/js/main.js"></script>
+</body>
+</html>
