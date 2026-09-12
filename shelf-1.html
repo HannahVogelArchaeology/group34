@@ -1,0 +1,142 @@
+---
+layout: default
+title: Object Name
+---
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="wrapper" id="main-content">
+  
+  <!-- Utility Header (Matches the top of the mockup) -->
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color, #BA8645); padding-bottom: 15px; margin-bottom: 30px; margin-top: 15px;">
+    <span style="font-size: 0.8rem; text-transform: uppercase; font-weight: bold; color: #555;">Collection Title</span>
+    
+    <!-- Text Resize Accessibility Tools -->
+    <div style="display: flex; gap: 15px; align-items: center;" aria-label="Accessibility controls">
+       <button aria-label="Decrease text size" style="background: none; border: none; font-size: 1rem; cursor: pointer; color: #111;">A</button>
+       <button aria-label="Increase text size" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: #111; font-weight: bold;">A+</button>
+       <button aria-label="Open Navigation Menu" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #BA8645;">☰</button>
+    </div>
+  </div>
+
+  <!-- Shelf Subtitle -->
+  <header class="post-header" style="text-align: center; margin-bottom: 30px;">
+    <p class="post-meta" style="text-transform: uppercase; letter-spacing: 1.5px;">FIRST SHELF</p>
+  </header>
+
+  <div class="post-content">
+    
+    <!-- Main Object Image & Interactive Media -->
+    <section aria-label="Object images and interactive media">
+      <figure style="margin: 0;">
+        
+        <!-- Main Image with Expand Icon Overlay -->
+        <div style="position: relative; display: block; width: 100%;">
+          <img src="{{ site.baseurl }}/assets/images/placeholder-gem.png" alt="A sparkling diamond-like stone resting on a rough rock surface" style="width: 100%; display: block;">
+          
+          <!-- Expand to Fullscreen Button -->
+          <button aria-label="Expand image in full screen" style="position: absolute; top: 15px; left: 15px; background: rgba(17, 17, 17, 0.7); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+          </button>
+        </div>
+        
+        <!-- Thumbnail Grid & 3D Button -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px; flex-wrap: wrap; gap: 15px;">
+          
+          <!-- 4 Square Thumbnails --> 
+          <div style="display: flex; gap: 10px;" role="group" aria-label="Alternative views of the object">
+            <img src="{{ site.baseurl }}/assets/images/placeholder-gem.png" alt="Top view of the stone" width="55" height="55" style="object-fit: cover; border: 2px solid #BA8645;">
+            <img src="{{ site.baseurl }}/assets/images/placeholder-gem.png" alt="Side view of the stone" width="55" height="55" style="object-fit: cover; border: 1px solid #E2DCD0; background: #EBE5D9; opacity: 0.6;">
+            <img src="{{ site.baseurl }}/assets/images/placeholder-gem.png" alt="Bottom view of the stone" width="55" height="55" style="object-fit: cover; border: 1px solid #E2DCD0; background: #EBE5D9; opacity: 0.6;">
+            <img src="{{ site.baseurl }}/assets/images/placeholder-gem.png" alt="Close up view of the stone's texture" width="55" height="55" style="object-fit: cover; border: 1px solid #E2DCD0; background: #EBE5D9; opacity: 0.6;">
+          </div>
+          
+          <!-- Neera 3D Model Integration Link -->
+          <a href="#neera-3d-viewer" style="display: inline-flex; align-items: center; gap: 8px; color: #111; font-weight: 500; text-decoration: none;" aria-label="Explore the interactive 3D object model via Neera">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span style="border-bottom: 1px solid #111;">Explore in 3D</span>
+          </a>
+        </div>
+      </figure>
+    </section>
+
+    <!-- Overview Text -->
+    <section aria-labelledby="overview-heading" style="margin-top: 50px;">
+      <h2 id="overview-heading" style="font-size: 1.25rem; font-weight: normal; margin-bottom: 20px;">Overview Text</h2>
+      <h3 style="font-size: 1rem; margin-bottom: 10px; font-weight: bold;">Consectetur</h3>
+      <p style="font-size: 0.95rem; line-height: 1.7; color: #333;">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo eu risus auctor dapibus. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Cras ultricies ligula sed magna dictum porta. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
+      </p>
+    </section>
+
+    <!-- Audio Description -->
+    <section aria-labelledby="audio-heading" style="margin-top: 50px;">
+      <h2 id="audio-heading" style="font-size: 1.25rem; font-weight: normal; margin-bottom: 15px;">Listen to this story</h2>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <!-- Audio Play Button -->
+        <button aria-label="Play Audio Description" style="display: flex; align-items: center; gap: 10px; background: none; border: none; font-size: 0.95rem; cursor: pointer; font-family: inherit; padding: 0;">
+           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+           Audio Description
+        </button>
+        <!-- Transcript Link for WCAG Compliance -->
+        <a href="{{ site.baseurl }}/transcripts/shelf-1-transcript" style="font-size: 0.85rem; text-decoration: none; color: #111; letter-spacing: 0.5px;">[READ TRANSCRIPT]</a>
+      </div>
+    </section>
+
+    <!-- Object Information Table -->
+    <section aria-labelledby="info-heading" style="margin-top: 50px;">
+      <h2 id="info-heading" style="font-size: 1.25rem; font-weight: normal; margin-bottom: 20px;">Object Information</h2>
+      <!-- Inline styles added to override the default zebra-striping in your SCSS table rules to match the clean mockup -->
+      <table style="width: 100%; border-top: 1px solid #E2DCD0; border-left: none; border-right: none; border-bottom: none; margin: 0;">
+        <tbody>
+          <tr style="background: transparent;">
+            <th scope="row" style="padding: 15px 0; text-align: left; font-weight: normal; color: #BA8645; border: none; border-bottom: 1px dashed #E2DCD0; background: transparent;">Material</th>
+            <td style="padding: 15px 0; text-align: right; border: none; border-bottom: 1px dashed #E2DCD0; font-size: 0.9rem;">Lorem ipsum</td>
+          </tr>
+          <tr style="background: transparent;">
+            <th scope="row" style="padding: 15px 0; text-align: left; font-weight: normal; color: #BA8645; border: none; border-bottom: 1px dashed #E2DCD0; background: transparent;">Volume</th>
+            <td style="padding: 15px 0; text-align: right; border: none; border-bottom: 1px dashed #E2DCD0; font-size: 0.9rem;">Lorem ipsum</td>
+          </tr>
+          <tr style="background: transparent;">
+            <th scope="row" style="padding: 15px 0; text-align: left; font-weight: normal; color: #BA8645; border: none; border-bottom: 1px dashed #E2DCD0; background: transparent;">Provenance</th>
+            <td style="padding: 15px 0; text-align: right; border: none; border-bottom: 1px dashed #E2DCD0; font-size: 0.9rem;">Lorem ipsum</td>
+          </tr>
+          <tr style="background: transparent;">
+            <td colspan="2" style="padding: 15px 0; border: none; border-bottom: 1px dashed #E2DCD0;">
+              <!-- Semantic details/summary tag to handle the dropdown without requiring custom JavaScript -->
+              <details style="width: 100%; cursor: pointer;">
+                <summary style="display: flex; justify-content: space-between; font-weight: normal; color: #BA8645; list-style: none;">
+                  Period <span style="color: #111;">⌄</span>
+                </summary>
+                <p style="margin-top: 15px; text-align: right; font-size: 0.9rem; color: #333;">Additional period metadata provided by the curator goes here.</p>
+              </details>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Auslan Video Placeholder -->
+    <section aria-labelledby="auslan-heading" style="margin-top: 50px;">
+      <h2 id="auslan-heading" style="font-size: 1.25rem; font-weight: normal; margin-bottom: 20px;">Auslan Video</h2>
+      <!-- The project scope mandates Auslan video integration with accessible playback controls -->
+      <div class="video-placeholder" aria-label="Auslan video player placeholder" style="background-color: #CFCBC1; width: 100%; padding-bottom: 56.25%; position: relative; border-radius: 2px;">
+         <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #555; font-style: italic; font-size: 0.9rem;">[Auslan Video Embed Here]</span>
+      </div>
+    </section>
+
+    <!-- Navigation between shelves -->
+    <nav aria-label="Shelf navigation" style="display: flex; justify-content: space-between; margin-top: 60px; padding-bottom: 40px;">
+      <a href="{{ site.baseurl }}/" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background-color: #F0EBE1; border: 1px solid #BA8645; text-decoration: none; color: #BA8645; font-size: 0.85rem; text-transform: uppercase; font-weight: bold; border-radius: 2px;">
+        <span style="font-size: 1.2rem; margin-top: -2px;">&larr;</span> 
+        <div style="text-align: left; line-height: 1.2;">Back<br><span style="font-weight: normal; font-size: 0.75rem;">to Overview</span></div>
+      </a>
+      
+      <a href="{{ site.baseurl }}/shelf-2" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; background-color: #F0EBE1; border: 1px solid #BA8645; text-decoration: none; color: #BA8645; font-size: 0.85rem; text-transform: uppercase; font-weight: bold; border-radius: 2px;">
+        <div style="text-align: right; line-height: 1.2;">Next<br><span style="font-weight: normal; font-size: 0.75rem;">Shelf 2</span></div>
+        <span style="font-size: 1.2rem; margin-top: -2px;">&rarr;</span>
+      </a>
+    </nav>
+
+  </div>
+</div>
