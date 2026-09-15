@@ -13,14 +13,24 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-  <!-- Avoid flashy changes when refreshing -->
+  <!-- Prevent visual flashing on page load -->
   <script>
   (function() {
-    var savedSize = localStorage.getItem('userFontSize');
-    if (savedSize) {
-      document.documentElement.style.fontSize = savedSize + '%';
-    }
+    try {
+      var savedSize = localStorage.getItem('userFontSize');
+
+      if (savedSize) {
+        document.documentElement.style.fontSize = savedSize + '%';
+      }
+
+      if (!localStorage.getItem('cookieConsent')) {
+        document.documentElement.classList.add('show-cookie-banner');
+      }
+    } catch (error) {
+    // If localStorage is unavailable, show the banner normally
+    document.documentElement.classList.add('show-cookie-banner');
+  }
   })();
-  </script>
+</script>
   <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
 </head>
