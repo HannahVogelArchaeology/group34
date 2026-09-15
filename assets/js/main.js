@@ -55,6 +55,8 @@ function closeCookieBanner() {
   if (banner) {
     banner.style.display = "none";
   }
+
+  document.documentElement.classList.remove("show-cookie-banner");
 }
 
 
@@ -260,10 +262,6 @@ function initialiseImageExpand() {
 /* Page Initialisation*/
 document.addEventListener("DOMContentLoaded", () => {
   applyFontSize(currentFontSize);
-
-  if (localStorage.getItem("cookieConsent")) {
-    closeCookieBanner();
-  }
 
   initialiseThumbnails();
   initialiseImageExpand();
