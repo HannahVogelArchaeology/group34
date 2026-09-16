@@ -120,24 +120,6 @@
   }
 }
 
-// Sub-navigation area
-.sub-navigation {
-  margin-top: 60px; // Pushes it directly below the 60px fixed header
-  padding: 10px 40px;
-  background: #EDE9DE;
-  border-bottom: 1px solid #e0ded6;
-  position: relative;
-  z-index: 1;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    max-width: 1200px;
-    display: flex;
-    gap: 16px;
-  }
-}
 
 
 /* Sidebar Overlay */
@@ -160,7 +142,7 @@
   right: -320px;
   width: 320px;
   height: 100vh;
-  background-color: #53391b; // Matching warm dark brown
+  background-color: #53391b; /* Matching warm dark brown */
   color: #ffffff;
   z-index: 1100;
   transition: right 0.3s ease-in-out;
@@ -212,12 +194,17 @@
     a {
       text-decoration: none;
       color: #ffffff;
-    }
+      transition: color 0.2s ease-in-out;
 
-    .icon-folder {
-      font-size: 1.1em;
-      color: #ffffff;
-      margin-right: 14px;
+      /* Change text color to #c08d43 on hover */
+      &:hover {
+        color: #c08d43;
+
+        .shelf-label,
+        .object-title {
+          color: #c08d43;
+        }
+      }
     }
 
     /* Main Section Top Links (HOME / ABOUT) */
@@ -229,61 +216,79 @@
       font-weight: 500;
       font-size: 1em;
       letter-spacing: 0.5px;
+
+      i {
+        font-size: 1.1em;
+        width: 1.1em;
+        text-align: center;
+        margin-right: 14px;
+      }
     }
 
     /* Group Container for Shelves */
     .shelf-group {
       border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      padding: 6px 0;
+      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Object Items */
-    .object-link {
+    /* Combined Block Link for 1st Shelf */
+    .shelf-block-link {
       display: flex;
-      align-items: flex-end;
-      padding: 10px 0;
+      flex-direction: column;
+      padding: 4px 0;
+    }
 
-      &.has-folder {
-        align-items: flex-start;
-      }
+    /* Standalone Shelf Label Link for 2nd and 3rd Shelf */
+    .shelf-label-link {
+      display: block;
+      padding: 4px 0;
+    }
 
-      &.indent {
-        padding-left: 33px; // Aligns text under the first object title
-      }
+    /* Primary Heading: Shelf Titles */
+    .shelf-label {
+      display: block;
+      font-size: 1.05em;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+      text-align: left;
+      margin-bottom: 6px;
+    }
 
-      .object-info {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+    /* Indented Navigation Object Items */
+    .object-item {
+      display: flex;
+      align-items: center;
+      padding: 6px 0;
+      padding-left: 60px; /* Indentation to match design spacing */
+    }
 
-        .shelf-label {
-          font-size: 0.75em;
-          color: rgba(255, 255, 255, 0.85);
-          font-weight: 500;
-          margin-bottom: 2px;
-        }
+    /* Sub Heading: Object Title */
+    .object-title {
+      font-size: 1em;
+      font-weight: 400;
+      color: #ffffff;
+    }
 
-        .object-title {
-          font-size: 1.05em;
-          font-weight: 400;
-        }
-      }
-
-      .object-title {
-        font-size: 1.05em;
-        font-weight: 400;
-        flex-grow: 1;
-      }
-
-      .icon-arrow {
-        font-size: 0.9em;
-        color: #ffffff;
-        margin-left: auto;
-      }
-
-      &:hover {
-        opacity: 0.85;
-      }
+    /* Filled Square Badge for Numbers */
+    .num-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background-color: #f6f3eb;
+      color: #53391b;
+      border-radius: 3px;
+      font-size: 0.9em;
+      font-weight: 800;
+      margin-right: 8px;
+      line-height: 1;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      -webkit-font-smoothing: antialiased;
     }
   }
 }
