@@ -61,74 +61,108 @@ function closeCookieBanner() {
 
 
 /* Audio Player */
+document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById("exhibitionAudio");
+  const progressBar = document.getElementById("audioProgress");
+  const currentTimeEl = document.getElementById("currentTime");
+  const durationTimeEl = document.getElementById("durationTime");
+
+  if (!audio) return;
+
+  // If Metadata is loaded set the duration
+  audio.addEventListener("loadedmetadata", () => {
+    durationTimeEl.textContent = formatTime(audio.duration);
+  });
+
+  // Update the time
+  audio.addEventListener("timeupdate", () => {
+    if (!isNaN(audio.duration)) {
+      const progress = (audio.currentTime / audio.duration) * 100;
+      progressBar.value = progress;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    }
+  });
+
+  // If the audio is finished, change the icon
+  audio.addEventListener("ended", () => {
+    const playIcon = document.getElementById("playIcon");
+    if (playIcon) playIcon.className = "fas fa-play";
+  });
+});
+
+function formatTime(seconds) {
+  if (isNaN(seconds)) return "0:00";
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+}
+
+function seekAudio(value) {
+  const audio = document.getElementById("exhibitionAudio");
+  if (audio && !isNaN(audio.duration)) {
+    audio.currentTime = (value / 100) * audio.duration;
+  }
+}
+
 function toggleAudioPlayer() {
   const bar = document.getElementById("bottomAudioBar");
+  if (!bar) return;
 
-  if (!bar) {
-    return;
-  }
-
-  const isHidden =
-    bar.style.display === "none" ||
-    bar.style.display === "";
-
+  const isHidden = bar.style.display === "none" || bar.style.display === "";
   bar.style.display = isHidden ? "flex" : "none";
 
-  if (isHidden) {
-    toggleAudioPlay();
-  }
+  if (isHidden) toggleAudioPlay();
 }
 
 function toggleAudioPlay() {
   const audio = document.getElementById("exhibitionAudio");
   const playIcon = document.getElementById("playIcon");
-
-  if (!audio) {
-    return;
-  }
+  if (!audio) return;
 
   if (audio.paused) {
     audio.play()
-      .then(() => {
-        if (playIcon) {
-          playIcon.className = "fas fa-pause";
-        }
-      })
-      .catch((error) => {
-        console.error("Audio playback failed:", error);
-      });
+      .then(() => { if (playIcon) playIcon.className = "fas fa-pause"; })
+      .catch((error) => console.error("Audio playback failed:", error));
   } else {
     audio.pause();
-
-    if (playIcon) {
-      playIcon.className = "fas fa-play";
-    }
+    if (playIcon) playIcon.className = "fas fa-play";
   }
 }
 
 function changeAudioSpeed(speed) {
   const audio = document.getElementById("exhibitionAudio");
+  if (audio) audio.playbackRate = speed;
+}
 
-  if (audio) {
-    audio.playbackRate = speed;
+function toggleVolumePopup() {
+  const popup = document.getElementById("volumePopup");
+  if (popup) {
+    popup.style.display = (popup.style.display === "flex" || popup.style.display === "block") ? "none" : "block";
   }
 }
 
-function toggleMute() {
+function setVolume(value) {
   const audio = document.getElementById("exhibitionAudio");
   const volumeIcon = document.getElementById("volumeIcon");
+  if (!audio) return;
 
-  if (!audio) {
-    return;
-  }
-
-  audio.muted = !audio.muted;
+  audio.volume = value;
+  audio.muted = (value == 0);
 
   if (volumeIcon) {
-    volumeIcon.className = audio.muted
-      ? "fas fa-volume-mute"
-      : "fas fa-volume-up";
+    if (value == 0) {
+      volumeIcon.className = "fas fa-volume-mute";
+    } else if (value < 0.5) {
+      volumeIcon.className = "fas fa-volume-down";
+    } else {
+      volumeIcon.className = "fas fa-volume-up";
+    }
   }
+}
+
+function toggleTranscript() {
+  // Script modal or toggle call here...
+  // alert("Transcript button clicked");
 }
 
 
