@@ -75,24 +75,17 @@
 
 
 /* Audio Player */
-
 .bottom-audio-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  min-height: 60px;
-
   background: $footer-bg;
   color: $footer-text;
-
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 10px 20px;
+  flex-direction: column;
+  padding: 8px 20px 12px;
   box-sizing: border-box;
-
   z-index: 1000;
 
   button {
@@ -101,6 +94,39 @@
     color: $footer-text;
     cursor: pointer;
     padding: 5px 10px;
+  }
+
+  .audio-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 6px;
+
+    span {
+      font-size: 0.8em;
+      min-width: 35px;
+      text-align: center;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      cursor: pointer;
+      accent-color: #fff;
+    }
+  }
+
+  .audio-controls-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .audio-left, .audio-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .audio-center {
@@ -117,6 +143,33 @@
   .audio-shelf-label {
     font-size: 0.75em;
     opacity: 0.75;
+  }
+
+  /* Vertical Volume Popup */
+  .volume-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .volume-popup {
+      display: none;
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $footer-bg;
+      padding: 12px 6px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+      input[type="range"] {
+        writing-mode: bt-lr; /* IE/Edge */
+        appearance: slider-vertical; /* Standard */
+        width: 8px;
+        height: 80px;
+        accent-color: #fff;
+      }
+    }
   }
 }
 
