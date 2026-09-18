@@ -120,25 +120,6 @@
   }
 }
 
-// Sub-navigation area
-.sub-navigation {
-  margin-top: 60px; // Pushes it directly below the 60px fixed header
-  padding: 10px 40px;
-  background: #EDE9DE;
-  border-bottom: 1px solid #e0ded6;
-  position: relative;
-  z-index: 1;
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 auto;
-    max-width: 1200px;
-    display: flex;
-    gap: 16px;
-  }
-}
-
 
 /* Sidebar Overlay */
 .sidebar-overlay {
