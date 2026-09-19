@@ -1,15 +1,12 @@
 ---
-layout: default
+layout: page
 title: About Us
 ---
-
 <div class="about-page-container">
-  <h1 class="page-title">About Us</h1>
-
   <!-- Navigation Buttons -->
   <div class="tab-navigation">
-    <button class="tab-btn active" onclick="switchTab('visitor-tab', this)">Visitor Information and Accessibility</button>
-    <button class="tab-btn" onclick="switchTab('curation-tab', this)">Curation and Acknowledgement</button>
+    <button class="tab-btn active" onclick="switchTab('visitor-tab', this)">Visitor Information And Accessibility</button>
+    <button class="tab-btn" onclick="switchTab('curation-tab', this)">Curation And Acknowledgements</button>
   </div>
 
   <!-- Quote Banner -->
@@ -20,7 +17,7 @@ title: About Us
 
   <!-- Visitor Information and Accessibility -->
   <div id="visitor-tab" class="tab-content active">
-    <h2 class="main-tab-title">Visitor Information and Accessibility</h2>
+    <h2 class="main-tab-title">Visitor Information And Accessibility</h2>
 
     <section class="content-section">
       <h3 class="gold-heading">Visitor Information</h3>
@@ -28,7 +25,7 @@ title: About Us
       <!-- For Website Subsection -->
       <div class="sub-block">
         <h4 class="sub-title">For Website</h4>
-        <table class="info-table">
+        <table class="info-table visitor-info-table">
           <tr>
             <td class="label-col">Location</td>
             <td class="value-col"><a href="https://www.google.com" class="inline-link">https://www.google.com</a></td>
@@ -44,20 +41,20 @@ title: About Us
       <!-- On Campus Subsection -->
       <div class="sub-block">
         <h4 class="sub-title">On Campus</h4>
-        <table class="info-table">
+        <table class="info-table visitor-info-table">
           <tr>
             <td class="label-col">Location</td>
             <td class="value-col">Wallys Walk 999, Somewhere, Building B201</td>
           </tr>
           <tr>
             <td class="label-col" rowspan="6">Opening hours</td>
-            <td class="value-col hours-row"><span>Monday</span><span>9:00 AM - 5:00 PM</span></td>
+            <td class="value-col hours-row"><span>Monday</span><span>10:00 AM - 4:00 PM</span></td>
           </tr>
-          <tr><td class="value-col hours-row"><span>Tuesday</span><span>9:00 AM - 5:00 PM</span></td></tr>
-          <tr><td class="value-col hours-row"><span>Wednesday</span><span>9:00 AM - 5:00 PM</span></td></tr>
-          <tr><td class="value-col hours-row"><span>Thursday</span><span>9:00 AM - 5:00 PM</span></td></tr>
-          <tr><td class="value-col hours-row"><span>Friday</span><span>9:00 AM - 5:00 PM</span></td></tr>
-          <tr><td class="value-col hours-row"><span>Saturday</span><span>9:00 AM - 5:00 PM</span></td></tr>
+          <tr><td class="value-col hours-row"><span>Tuesday</span><span>10:00 AM - 4:00 PM</span></td></tr>
+          <tr><td class="value-col hours-row"><span>Wednesday</span><span>10:00 AM - 4:00 PM</span></td></tr>
+          <tr><td class="value-col hours-row"><span>Thursday</span><span>10:00 AM - 4:00 PM</span></td></tr>
+          <tr><td class="value-col hours-row"><span>Friday</span><span>10:00 AM - 4:00 PM</span></td></tr>
+          <tr><td class="value-col hours-row"><span>Saturday</span><span>10:00 AM - 4:00 PM</span></td></tr>
         </table>
         <p class="section-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
       </div>
@@ -67,7 +64,7 @@ title: About Us
 
   <!-- Curation and Acknowledgement -->
   <div id="curation-tab" class="tab-content">
-    <h2 class="main-tab-title">Curation and acknowledgements</h2>
+    <h2 class="main-tab-title">Curation And Acknowledgements</h2>
 
     <!-- Curation Section -->
     <section class="content-section">
@@ -75,17 +72,22 @@ title: About Us
       <p class="author-sub">by Hannah Vogel</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
 
-      <table class="info-table">
+      <table class="info-table curation-info-table">
         <tr>
           <td class="label-col">Credentials</td>
           <td class="value-col">Lorem Ipsum</td>
         </tr>
         <tr>
-          <td class="label-col" rowspan="2">Contact</td>
-          <td class="value-col">Email: abcde12345@gmail.com</td>
+          <td class="label-col contact-label-main" rowspan="2">Contact</td>
+          <td class="value-col contact-row">
+          <span class="contact-label">Email</span>
+          <span>abcde12345@gmail.com</span>
+          </td>
         </tr>
         <tr>
-          <td class="value-col">Social: <a href="#" aria-label="LinkedIn" class="inline-link"><i class="fab fa-linkedin"></i></a></td>
+          <td class="value-col contact-row">
+          <span class="contact-label">Social</span>
+          <a href="#" aria-label="LinkedIn" class="inline-link"><i class="fab fa-linkedin"></i></a></td>
         </tr>
       </table>
     </section>
@@ -130,7 +132,7 @@ title: About Us
   </div>
 
   <!-- Member Information Table -->
-  <table class="info-table">
+  <table class="info-table team-member-table">
     <tr>
       <td class="label-col">Name</td>
       <td class="value-col" id="member-name">ABCDEF GHIJKL</td>
@@ -242,10 +244,14 @@ title: About Us
     element.classList.add('active');
 
     // 2. Reposition the triangle pointer beneath selected circle
-    const avatarWidth = element.offsetWidth;
-    const avatarOffsetLeft = element.offsetLeft;
     const pointer = document.getElementById('pointer-arrow');
-    pointer.style.left = `${avatarOffsetLeft + (avatarWidth / 2) - 8}px`;
+    const divider = document.querySelector('.gold-divider-line');
+    const avatarRect = element.getBoundingClientRect(); //getBoundingClientRect gives actual position on screen
+    const dividerRect = divider.getBoundingClientRect();
+    const avatarCenter = avatarRect.left - dividerRect.left + (avatarRect.width / 2); 
+        //avatarRect.left - dividerRect.left tells us how far avatar is from left edge of divider
+        //avatarRect.width/2 gives centre of avatar
+    pointer.style.left = `${avatarCenter - 8}px`;
 
     // 3. Populate member details into the table
     const data = teamMembers[index];
