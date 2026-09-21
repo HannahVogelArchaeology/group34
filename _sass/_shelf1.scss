@@ -271,16 +271,18 @@
       flex-direction: column;
 
       .sub-label {
-        font-size: 0.7em;
-        letter-spacing: 0.1em;
+        font-size: 1rem;
+        line-height: 1.4;
+        letter-spacing: 0.08em;
         color: #777;
         text-transform: uppercase;
       }
 
       .main-label {
-        font-size: 0.95em;
+        font-size: 1.4rem;
+        line-height: 1.4;
         font-weight: 500;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.03em;
         margin-top: 0.2em;
         color: #111;
       }
