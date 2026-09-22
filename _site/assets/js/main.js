@@ -38,26 +38,6 @@ function toggleSidebarMenu() {
 }
 
 
-/* Cookie Banner */
-function acceptCookies() {
-  localStorage.setItem("cookieConsent", "accepted");
-  closeCookieBanner();
-}
-
-function declineCookies() {
-  localStorage.setItem("cookieConsent", "declined");
-  closeCookieBanner();
-}
-
-function closeCookieBanner() {
-  const banner = document.getElementById("cookieBanner");
-
-  if (banner) {
-    banner.style.display = "none";
-  }
-
-  document.documentElement.classList.remove("show-cookie-banner");
-}
 
 
 /* Audio Player */
@@ -291,6 +271,29 @@ function initialiseImageExpand() {
     });
   });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // aria-controls, find expand button
+  const expandButtons = document.querySelectorAll('.expand-btn[aria-controls]');
+
+  expandButtons.forEach(button => {
+    const dialogId = button.getAttribute('aria-controls');
+    const dialog = document.getElementById(dialogId);
+
+    if (dialog) {
+      // Open modal when clicked
+      button.addEventListener('click', () => {
+        dialog.showModal();
+      });
+
+      // Recover focus when modal is closed
+      dialog.addEventListener('close', () => {
+        button.focus();
+      });
+    }
+  });
+});
+
 
 
 /* Page Initialisation*/
