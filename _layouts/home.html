@@ -1,16 +1,36 @@
 ---
 layout: default
 ---
-<section class="hero-section">
+
+<!-- 1. Exhibition Title Section -->
+<section class="hero-title-section">
+  <div class="hero-container">
+    <h1 class="hero-main-title">{{ page.hero_title }}</h1>
+  </div>
+</section>
+
+<!-- 2. Hero Image / Placeholder Section -->
+<section class="hero-media-section">
+  <div class="hero-media-placeholder">
+    {% if page.hero_image %}
+      <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_title }}">
+    {% else %}
+      <span class="placeholder-text">Main page</span>
+    {% endif %}
+  </div>
+</section>
+
+<!-- 3. Narratives Section -->
+<section class="hero-narrative-section">
   <div class="hero-container">
     <div class="hero-content">
-      <h1 class="hero-main-title">{{ page.hero_title }}</h1>
       <p class="narratives-label">Narratives Here:</p>
       <p class="hero-description">{{ page.hero_text }}</p>
     </div>
   </div>
 </section>
 
+<!-- Shelves Explorer Section -->
 <section class="shelves-explorer">
   <h2 class="explorer-title">Explore the exhibition</h2>
   <div class="shelf-cards-container">
@@ -62,8 +82,23 @@ layout: default
       <p class="quote-curator">- {{ page.quote_curator | default: 'John Doe, Someone of Business Enterprise' }}</p>
     </div>
     <div class="quote-right">
-      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">&gt; Curator's Bio</a>
+      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">&gt; About Us</a>
     </div>
+  </div>
+</section>
+
+<!-- Auslan Video Section -->
+<section class="auslan-section">
+  <div class="auslan-container">
+    <h2 class="auslan-title">Auslan Video</h2>
+    
+    <div class="video-card">
+      <div class="video-placeholder">
+          <iframe src="https://www.youtube.com/embed/{{ page.video_id }}" title="Auslan Video" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+      <p class="auslan-description">{{ page.auslan_text }}</p>
   </div>
 </section>
 
@@ -71,7 +106,7 @@ layout: default
 <section class="acknowledgement-section">
   <div class="acknowledgement-container">
     <div class="ack-left">
-      <h2>ACKNOWLEDGEMENT</h2>
+      <h2>ACKNOWLEDGEMENTS</h2>
     </div>
     <div class="ack-right">
       <p>{{ page.acknowledgement_text }}</p>
