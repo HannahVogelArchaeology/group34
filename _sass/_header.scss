@@ -5,13 +5,13 @@
   left: 0;
   width: 100%;
   height: 60px;
-  background-color:  $header-bg;
+  background-color: $header-bg;
   color: $header-text;
   padding: 12px 40px;
   z-index: 1000;
   border-bottom: 1px solid #e0ded6;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  box-sizing: border-box; // Ensures padding doesn't cause overflow
+  box-sizing: border-box;
 
   .header-content {
     display: flex;
@@ -20,7 +20,7 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    gap: 12px; // Prevents children from overlapping
+    gap: 12px;
   }
 
   .exhibition-title {
@@ -37,19 +37,19 @@
   }
 
   .header-left {
-    flex-shrink: 0; // Keeps the title visible
+    flex-shrink: 0;
   }
 
   .header-center {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap; // Prevents long object titles from pushing the right section out
+    white-space: nowrap;
   }
   
   .header-right {
     display: flex;
     align-items: center;
-    flex-shrink: 0; // Prevents the right controls and menu icon from being squeezed out
+    flex-shrink: 0;
     gap: 24px;
   }
 
@@ -66,9 +66,8 @@
       border-radius: 2px;
       cursor: pointer;
       font-weight: 600;
-    
 
-    &.text-reset {
+      &.text-reset {
         font-size: 0.85em;
         padding: 6px 8px;
       }
@@ -78,9 +77,10 @@
       }
     }
     @media (max-width: 600px) {
-        display: none;
-      }
+      display: none;
+    }
   }
+
   .font-btn, .menu-icon-btn {
     background: transparent;
     border: 1px solid rgba(255,255,255,0.4);
@@ -88,14 +88,15 @@
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 4px;
-    flex-shrink: 0; // Ensures the hamburger button retains its size
+    flex-shrink: 0;
 
     &:hover {
       background: rgba(255,255,255,0.2);
     }
   }
+
   .menu-icon-btn {
-    flex-shrink: none;
+    flex-shrink: 0;
     background: transparent;
     border: none;
     font-size: 1.2em;
@@ -112,14 +113,13 @@
       background-color: #c08d43;
     }
   }
-  // Mobile optimization: Hide text resizers on narrow screens to keep space clean
+
   @media (max-width: 600px) {
     .text-resizers {
       display: none;
     }
   }
 }
-
 
 /* Sidebar Overlay */
 .sidebar-overlay {
@@ -138,14 +138,14 @@
 .sidebar-menu {
   position: fixed;
   top: 0;
-  right: -320px;
-  width: 320px;
+  right: -380px;
+  width: 380px;
   height: 100vh;
-  background-color: #53391b; // Matching warm dark brown
+  background-color: #53391b; /* Warm dark brown */
   color: #ffffff;
   z-index: 1100;
   transition: right 0.3s ease-in-out;
-  padding: 30px 24px;
+  padding: 36px 28px;
   box-sizing: border-box;
   overflow-y: auto;
 
@@ -158,16 +158,16 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    margin: 0 auto 30px auto;
+    margin: 0 0 28px 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 5px;
+    align-items: flex-start;
+    gap: 6px;
 
     .hamburger-icon {
       position: relative;
-      width: 26px;
-      height: 2px;
+      width: 30px;
+      height: 3px;
       background-color: #ffffff;
 
       &::before,
@@ -175,95 +175,143 @@
         content: '';
         position: absolute;
         left: 0;
-        width: 26px;
-        height: 2px;
+        width: 30px;
+        height: 3px;
         background-color: #ffffff;
       }
 
-      &::before { top: -7px; }
-      &::after { top: 7px; }
+      &::before { top: -8px; }
+      &::after { top: 8px; }
     }
   }
 
-  /* Navigation Links */
+  /* Navigation Main Layout */
   .sidebar-nav {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
-    a {
-      text-decoration: none;
-      color: #ffffff;
-    }
-
-    .icon-folder {
-      font-size: 1.1em;
-      color: #ffffff;
-      margin-right: 14px;
-    }
-
-    /* Main Section Top Links (HOME / ABOUT) */
+    /* 1. Main Navigation Links (HOME, ABOUT) - Spacious padding & dividers */
     .main-link {
-      display: flex;
-      align-items: center;
-      padding: 14px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      font-weight: 500;
-      font-size: 1em;
-      letter-spacing: 0.5px;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      width: 100% !important;
+      padding: 16px 8px !important; /* Increased padding for spacious look */
+      margin-bottom: 4px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      color: #ffffff !important;
+      text-decoration: none !important;
+      box-sizing: border-box;
+
+      i, svg, img {
+        font-size: 1.4rem !important;
+        width: 24px !important;
+        height: 24px !important;
+        margin-right: 14px !important;
+        flex-shrink: 0;
+      }
     }
 
-    /* Group Container for Shelves */
-    .shelf-group {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-      padding: 6px 0;
+    /* 2. Group Wrappers for Shelves */
+    .shelf-group,
+    .nav-group {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
+      padding: 16px 0 !important; /* Spacious shelf group padding */
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      width: 100% !important;
+      box-sizing: border-box;
     }
 
-    /* Object Items */
+    /* 3. Shelf Headings (Aligned strictly to the left matching icon positions) */
+    .shelf-label,
+    .shelf-header,
+    .section-title {
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.05em;
+      text-align: left !important;
+      color: #ffffff !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      padding: 6px 8px !important; /* Left alignment set to 8px (matches icons) */
+      margin: 0 0 8px 0 !important;
+      width: 100% !important;
+      box-sizing: border-box;
+    }
+
+    /* Block Container Overrides */
+    .shelf-block-link,
+    .shelf-label-link {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      width: 100% !important;
+      text-decoration: none !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    /* 4. Sub-item Objects (Forced uniform indentation across 1st, 2nd, and 3rd shelves) */
+    .object-item,
     .object-link {
-      display: flex;
-      align-items: flex-end;
-      padding: 10px 0;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start !important;
+      padding: 6px 8px 6px 48px !important; /* Unified 48px left indentation for all objects */
+      margin: 2px 0 !important;
+      width: 100% !important;
+      box-sizing: border-box;
+    }
 
-      &.has-folder {
-        align-items: flex-start;
-      }
+    .object-title {
+      font-size: 1.15rem !important;
+      font-weight: 400 !important;
+      color: #ffffff !important;
+    }
 
-      &.indent {
-        padding-left: 33px; // Aligns text under the first object title
-      }
+    /* Number Box Badge */
+    .num-box {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 22px !important;
+      height: 22px !important;
+      background-color: #f6f3eb !important;
+      color: #53391b !important;
+      border-radius: 4px !important;
+      font-size: 0.95em !important;
+      font-weight: 800 !important;
+      margin-right: 12px !important;
+      flex-shrink: 0 !important;
+    }
 
-      .object-info {
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
+    /* 5. Common Hover & Focus Styles (High Contrast Cream) */
+    a {
+      text-decoration: none !important;
+      color: #ffffff !important;
+      border-radius: 6px;
+      transition: all 0.2s ease-in-out;
 
-        .shelf-label {
-          font-size: 0.75em;
-          color: rgba(255, 255, 255, 0.85);
-          font-weight: 500;
-          margin-bottom: 2px;
-        }
+      &:hover,
+      &:focus-visible {
+        color: #f5e6ca !important;
+        background-color: rgba(255, 255, 255, 0.12) !important;
 
+        .shelf-label,
         .object-title {
-          font-size: 1.05em;
-          font-weight: 400;
+          color: #f5e6ca !important;
         }
       }
 
-      .object-title {
-        font-size: 1.05em;
-        font-weight: 400;
-        flex-grow: 1;
-      }
-
-      .icon-arrow {
-        font-size: 0.9em;
-        color: #ffffff;
-        margin-left: auto;
-      }
-
-      &:hover {
-        opacity: 0.85;
+      &:focus-visible {
+        outline: 2px solid #f5e6ca;
+        outline-offset: 2px;
       }
     }
   }

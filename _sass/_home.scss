@@ -1,48 +1,82 @@
-// Left-Aligned Dark Brown Hero Section
-.hero-section {
-  background-color: #382713; // Dark warm brown background
-  color: #ffffff;
-  padding: 80px 40px; // Left offset positioning
-  padding-top: 100px; // 60px (header) + ~40px (sub-nav)
-  display: block;
-  text-align: left;
-  min-height: 65vh;
-  display: flex;
-  align-items: center;
-  padding: 120px 40px 80px 40px; // Increased top padding to accommodate the fixed header
-  box-sizing: border-box;
+// Shared Container Settings
+.hero-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 40px;
 
   @media (max-width: 1024px) {
-    min-height: 65vh;
-    padding: 60px 30px;
+    padding: 0 30px;
   }
+}
 
-    .hero-container {
-    max-width: 1000px; // Matches .shelf-cards-container and .explorer-title max-width
-    margin: 0 auto;    // Centers the container grid
-  }
+// 1. Top Hero Title Section (Dark Brown)
+.hero-title-section {
+  background-color: #382713;
+  color: #ffffff;
+  padding-top: 140px;
+  padding-bottom: 60px;
 
-  .hero-content {
-    max-width: 800px; // Keeps the paragraph width readable
+  .hero-main-title {
+    font-size: 4.2em;
+    font-weight: 400;
+    line-height: 1.05;
     margin: 0;
+    color: #ffffff;
+  }
+}
 
-    .hero-main-title {
-      font-size: 4.2em;
-      font-weight: 400;
-      line-height: 1.05;
-      margin: 0 0 36px 0;
-      color: #ffffff;
+// 2. Middle Image / Placeholder Section (Light Grey/Off-white)
+.hero-media-section {
+  width: 100%;
+  background-color: #f4f1ea;
+  min-height: 450px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+
+  .hero-media-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+    box-sizing: border-box;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
+    .placeholder-text {
+      color: rgba(255, 255, 255, 0.35);
+      font-size: 2.5em;
+      font-weight: 500;
+    }
+  }
+}
+
+// 3. Bottom Narrative Section (Dark Brown)
+.hero-narrative-section {
+  background-color: #382713;
+  color: #ffffff;
+  padding: 60px 0 80px 0;
+
+  .hero-content {
+    max-width: 800px;
+
     .narratives-label {
-      font-size: 1em;
-      margin-bottom: 8px;
+      font-size: 1.05em;
+      margin: 0 0 12px 0;
       color: #e0dcd3;
     }
 
     .hero-description {
       font-size: 0.95em;
-      line-height: 1.65;
+      line-height: 1.7;
       color: #e0dcd3;
       margin: 0;
     }
@@ -179,6 +213,53 @@
         background-color: rgba(255, 255, 255, 0.25);
       }
     }
+  }
+}
+
+// Auslan Video Section
+.auslan-section {
+  background-color: #f6f3eb;
+  padding: 60px 40px 20px 40px;
+
+  .auslan-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .auslan-title {
+    font-size: 2.2em;
+    font-weight: 400;
+    color: #222222;
+    margin: 0 0 32px 0;
+  }
+
+  .video-card {
+    background-color: #eae5d9;
+    border-radius: 2px;
+    padding: 24px;
+    margin-bottom: 32px;
+    box-sizing: border-box;
+  }
+
+  .video-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-color: #b0ad9e;
+    overflow: hidden;
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+  }
+
+  .auslan-description {
+    font-size: 0.95em;
+    line-height: 1.7;
+    color: #444444;
+    margin: 0;
   }
 }
 

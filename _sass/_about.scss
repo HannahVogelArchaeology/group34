@@ -1,41 +1,38 @@
-.page-wrapper > .page-title {
-  text-align: center;
-  color: $accent-dark-bronze;
-  font-family: $font-family-base;
-  font-size: 2.6em;
-  font-weight: 400;
-  margin: 85px 0 45px;
-}
+/* About Page Styling */
 .about-page-container {
-  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 40px 40px 80px;
-  box-sizing: border-box;
+  padding: 3em 1.5em;
+  color: #333;
 
+  .page-title {
+    text-align: center;
+    font-size: 2.6em;
+    font-weight: 400;
+    margin-bottom: 2em;
+  }
 
   /* Navigation Tabs */
   .tab-navigation {
     display: flex;
     justify-content: center;
-    gap: 0;
-    margin: 0 auto 70px;
+    gap: 1.5em;
+    margin-bottom: 2.5em;
 
     .tab-btn {
-      padding: 12px 22px;
+      padding: 1em 2.2em;
       border: none;
       text-align: center;
-      background-color: $card-bg;
       min-width: 260px;
-      color: #b5833f;
-      font-family: $font-family-base;
+      background-color: #e2dcd2;
+      color: #b08d57;
       font-size: 1.1em;
       cursor: pointer;
       transition: all 0.2s ease;
 
       &.active {
-        background-color: #b5833f;
-        color: white;
+        background-color: #b08d57;
+        color: #ffffff;
       }
 
       &:hover {
@@ -46,23 +43,22 @@
 
   /* Quote Banner */
   .quote-banner {
-    background: linear-gradient(90deg, $accent-bronze 0%, #c39c5e 100%);
-    color: white;
+    background: linear-gradient(90deg, #785a30 0%, #c39c5e 100%);
+    color: #fff;
     text-align: center;
-    padding: 32px 25px;
-    margin-bottom: 0 -40px 60px;
+    padding: 2.5em 1.5em;
+    margin-bottom: 3.5em;
 
     h2 {
       font-size: 1.4em;
       font-weight: 400;
       font-style: italic;
-      margin: 0 0 4px;
-      color: white;
+      margin-bottom: 0.5em;
     }
 
     p {
       font-size: 0.8em;
-      color: white;
+      opacity: 0.85;
       margin: 0;
     }
   }
@@ -78,23 +74,19 @@
 
   .main-tab-title {
     font-size: 1.8em;
-    color:#b5833f;
+    color: #b08d57;
     font-weight: 400;
-    font-family: $font-family-base;
     margin-bottom: 2em;
-    margin: 10 0 45px;
   }
 
   /* Content Sections */
   .content-section {
-    margin-bottom: 90px;
+    margin-bottom: 3em;
 
     .gold-heading {
-      margin: 0 0 40px;
-      color: #b5833f;
+      color: #b08d57;
       font-size: 1.5em;
       font-weight: 400;
-      font-family: $font-family-base;
       margin-bottom: 1.2em;
     }
 
@@ -105,17 +97,17 @@
     }
 
     .sub-block {
-      margin-bottom: 45px;
+      margin-bottom: 2em;
 
       .sub-title {
-        font-size: 1.4em;
+        font-size: 1.3em;
         font-weight: 400;
-        color:$text-color-primary;
-        margin: 0 0 20px;
+        color: #444;
+        margin-bottom: 0.8em;
       }
 
       .section-desc {
-        margin-top: 28px;
+        margin-top: 1.2em;
         line-height: 1.65;
         color: #555;
         font-size: 0.9em;
@@ -124,76 +116,69 @@
 
     p {
       line-height: 1.65;
-      color:$text-color-primary;
+      color: #555;
       font-size: 0.9em;
-      font-family: $font-family-base;
     }
   }
 
   /* Data Tables */
   .info-table {
     width: 100%;
-    margin: 1em;
+    margin-top: 1em;
     border-collapse: collapse;
     background-color: transparent;
 
     td {
-      padding: 12px 8px;
+      padding: 0.85em 1.2em;
       font-size: 1em;
-      font-family: $font-family-base;
-      line-height: 1.5;
-      border-bottom: 1px solid $border-color;
-      vertical-align: top;
+      border-bottom: 1px solid #eae5dc;
     }
 
     .label-col {
-      color:#b5833f;
+      color: #b08d57;
       width: 30%;
       font-weight: 400;
       vertical-align: top;
     }
 
     .value-col {
-      color:$text-color-primary;
+      color: #333;
 
       &.hours-row {
         display: flex;
         justify-content: space-between;
-        padding-right: 2em; //gap: 30px;
+        padding-right: 2em;
       }
     }
 
     .inline-link {
-      color:$text-color-primary;
+      color: #333;
       text-decoration: underline;
 
       &:hover {
-        color: $accent-bronze;
+        color: #b08d57;
       }
     }
   }
-
 
   /* Team Avatars & Dynamic Progress Indicator */
   .team-avatars {
     display: flex;
     justify-content: space-between;
-    margin: 30px auto 15px;
-    align-items: center;
+    margin-top: 1.5em;
+    position: relative;
 
     .avatar {
       width: 52px;
       height: 52px;
-      padding: 0;
       border-radius: 50%;
-      background-color: transparent;
+      background-color: #eae5dc;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.85em;
-      font-family: $font-family-base;
-      color:$text-color-primary;
-      border: 1px solid $accent-bronze;
+      color: #555;
+      border: 1px solid #d8d0c2;
       cursor: pointer;
       user-select: none;
       transition: all 0.2s ease;
@@ -205,7 +190,7 @@
 
       &.active {
         border-color: #b08d57;
-        background-color: $card-bg;
+        background-color: #e2d7c5;
         color: #111;
         font-weight: 600;
         box-shadow: 0 0 0 2px rgba(176, 141, 87, 0.2);
