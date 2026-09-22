@@ -1,12 +1,15 @@
 ---
-layout: page
+layout: default
 title: About Us
 ---
+
 <div class="about-page-container">
+  <h1 class="page-title">About Us</h1>
+
   <!-- Navigation Buttons -->
   <div class="tab-navigation">
-    <button class="tab-btn active" onclick="switchTab('visitor-tab', this)">Visitor Information And Accessibility</button>
-    <button class="tab-btn" onclick="switchTab('curation-tab', this)">Curation And Acknowledgements</button>
+    <button class="tab-btn active" onclick="switchTab('visitor-tab', this)">Visitor Information and Accessibility</button>
+    <button class="tab-btn" onclick="switchTab('curation-tab', this)">Curation and Acknowledgements</button>
   </div>
 
   <!-- Quote Banner -->
@@ -17,7 +20,7 @@ title: About Us
 
   <!-- Visitor Information and Accessibility -->
   <div id="visitor-tab" class="tab-content active">
-    <h2 class="main-tab-title">Visitor Information And Accessibility</h2>
+    <h2 class="main-tab-title">Visitor Information and Accessibility</h2>
 
     <section class="content-section">
       <h3 class="gold-heading">Visitor Information</h3>
@@ -54,7 +57,6 @@ title: About Us
           <tr><td class="value-col hours-row"><span>Wednesday</span><span>10:00 AM - 4:00 PM</span></td></tr>
           <tr><td class="value-col hours-row"><span>Thursday</span><span>10:00 AM - 4:00 PM</span></td></tr>
           <tr><td class="value-col hours-row"><span>Friday</span><span>10:00 AM - 4:00 PM</span></td></tr>
-          <tr><td class="value-col hours-row"><span>Saturday</span><span>10:00 AM - 4:00 PM</span></td></tr>
         </table>
         <p class="section-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
       </div>
@@ -64,7 +66,7 @@ title: About Us
 
   <!-- Curation and Acknowledgement -->
   <div id="curation-tab" class="tab-content">
-    <h2 class="main-tab-title">Curation And Acknowledgements</h2>
+    <h2 class="main-tab-title">Curation and Acknowledgements</h2>
 
     <!-- Curation Section -->
     <section class="content-section">
@@ -245,7 +247,7 @@ title: About Us
 
     // 2. Reposition the triangle pointer beneath selected circle
     const pointer = document.getElementById('pointer-arrow');
-    const divider = document.querySelector('.gold-divider-line');
+const divider = document.querySelector('.gold-divider-line');
     const avatarRect = element.getBoundingClientRect(); //getBoundingClientRect gives actual position on screen
     const dividerRect = divider.getBoundingClientRect();
     const avatarCenter = avatarRect.left - dividerRect.left + (avatarRect.width / 2); 
