@@ -4,34 +4,16 @@ layout: default
 
 <div class="shelf3-container" data-shelf3-version="interface-enhancement">
 
-  <h1 class="shelf-v2-title">{{ page.shelf_title | default: page.title }}</h1>
+  <h1 class="shelf-v2-title">{{ page.shelf_title | default: "THIRD SHELF" }}</h1>
 
   <!-- Hero Image + Numbered Object List -->
   <div class="shelf-hero-grid">
 
     <div class="hero-image-wrapper">
-      {% if page.show_hero_image %}
-        <img
-          src="{{ page.hero_image | relative_url }}"
-          alt="{{ page.hero_alt | escape }}"
-          loading="eager"
-        >
-      {% else %}
-        <p class="image-placeholder">
-          {{ page.shelf_title }} photograph<br>
-          <small>Image to be added</small>
-        </p>
-      {% endif %}
+        <img src="{{ page.hero_image | relative_url }}" alt="Third Shelf Hero Object" loading="eager">
 
       <!-- Kept visible for both the final image and the current placeholder. -->
-      <button
-        class="expand-btn"
-        id="shelf3-expand"
-        type="button"
-        aria-label="Expand photograph of {{ page.shelf_title }}"
-        aria-haspopup="dialog"
-        aria-controls="shelf3-image-dialog"
-      >
+      <button class="expand-btn" id="shelf3-expand" aria-label="Expand Image" aria-haspopup="dialog" aria-controls="shelf3-image-dialog">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"></path>
         </svg>
@@ -41,10 +23,7 @@ layout: default
     <ul class="numbered-object-list">
       {% for obj in page.objects %}
       <li class="object-item">
-        <a
-          href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}"
-          class="name"
-        >
+        <a href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" class="name">
           <span class="num" aria-hidden="true">{{ obj.num }}</span>
           <span>{{ obj.name }}</span>
           <span class="object-link-arrow" aria-hidden="true">
@@ -73,12 +52,7 @@ layout: default
       <article class="object-card">
         <div class="card-header">
           <span class="item-title">{{ obj.num }} Item Name</span>
-
-          <a
-            href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}"
-            class="btn-view"
-            aria-label="View {{ obj.name }}"
-          >
+          <a href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" class="btn-view" aria-label="View {{ obj.name }}">
             <span>View</span>
             <svg class="view-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
@@ -88,15 +62,9 @@ layout: default
 
         <div class="card-media">
           {% if page.show_object_images %}
-          <img
-            src="{{ obj.image | relative_url }}"
-            alt="{{ obj.alt | escape }}"
-            loading="lazy"
-          >
+          <img src="{{ obj.image | relative_url }}" alt="{{ obj.alt | escape }}" loading="eager">
           {% else %}
           <p class="card-image-placeholder" aria-label="Image placeholder for {{ obj.name }}">
-            <span aria-hidden="true">{{ obj.num }}</span>
-            <small>Image to be added</small>
           </p>
           {% endif %}
         </div>
@@ -106,34 +74,17 @@ layout: default
     </div>
   </section>
 
-  {% include pagination.html %}
+{% include pagination.html %}
 
-  <!-- Native dialog: Escape closes it and keyboard focus stays inside. -->
-  <dialog id="shelf3-image-dialog" aria-labelledby="shelf3-dialog-title">
+  <!-- Image Dialog Modal -->
+  <dialog id="shelf3-image-dialog">
     <div class="dialog-header">
-      <h2 id="shelf3-dialog-title">{{ page.shelf_title }} photograph</h2>
+      <h2>Third Shelf</h2>
       <form method="dialog">
         <button class="dialog-close" type="submit">Close</button>
       </form>
     </div>
-
-    {% if page.show_hero_image %}
-      <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt | escape }}">
-    {% else %}
-      <div class="dialog-placeholder">Image to be added</div>
-    {% endif %}
+    <img src="{{ page.hero_image | relative_url }}" alt="Third Shelf Hero Expanded View">
   </dialog>
 
 </div>
-
-<script>
-  (() => {
-    const expandButton = document.getElementById("shelf3-expand");
-    const imageDialog = document.getElementById("shelf3-image-dialog");
-
-    if (!expandButton || !imageDialog) return;
-
-    expandButton.addEventListener("click", () => imageDialog.showModal());
-    imageDialog.addEventListener("close", () => expandButton.focus());
-  })();
-</script>

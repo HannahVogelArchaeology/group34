@@ -5,10 +5,10 @@ layout: default
 <div class="object-detail-container">
   <!-- Back Link -->
   <div class="back-navigation">
-  <a href="{{ page.shelf_url | default: '/shelves/second-shelf/' | relative_url }}" class="back-link">
-    &lt; BACK TO {{ page.shelf_title | default: 'SECOND SHELF' | upcase }}
-  </a>
-</div>
+    <a href="{{ page.shelf_url | default: '/shelves/second-shelf/' | relative_url }}" class="back-link">
+      &lt; BACK TO {{ page.shelf_title | default: 'SECOND SHELF' | upcase }}
+    </a>
+  </div>
 
   <!-- Top Hero Layout (Grid on Desktop, Stacked on Mobile) -->
   <div class="object-hero-grid">
@@ -46,27 +46,33 @@ layout: default
         </p>
       </div>
 
-      <!-- Listen to this story -->
+      <!-- Listen to this story (Audio Section with Dropdown Transcript) -->
       <div class="audio-section">
         <h3>Listen to this story</h3>
         <div class="audio-actions">
-          <!-- Added onclick event here -->
-            <button class="audio-play-btn" onclick="toggleAudioPlayer()">
+          <button class="audio-play-btn" onclick="toggleAudioPlayer()">
             <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
             <span>Audio Description</span>
           </button>
-          <a href="{{ page.transcript_url | default: '#' }}" class="transcript-btn">[ READ TRANSCRIPT ]</a>
         </div>
-      </div>
 
+        <details class="transcript-accordion">
+          <summary class="btn-transcript-toggle">[ READ TRANSCRIPT ]</summary>
+          <div class="transcript-box">
+            <p class="transcript-text">
+              {{ page.transcript_text | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.' }}
+            </p>
+          </div>
+        </details>
+      </div>
 
       <!-- Object Information Table -->
       <div class="metadata-section">
         <h3>Object Information</h3>
         <table class="object-meta-table">
           <tr>
-            <td class="meta-label">Time period</td>
-            <td class="meta-value">{{ page.time_period | default: '363 - 340 BCE' }}</td>
+            <td class="meta-label">Acc. No</td>
+            <td class="meta-value">{{ page.time_period | default: 'MU0523' }}</td>
           </tr>
           <tr>
             <td class="meta-label">Material</td>
@@ -78,25 +84,12 @@ layout: default
           </tr>
           <tr>
             <td class="meta-label">Culture</td>
-            <td class="meta-value">
-              <span class="dropdown-icon">&#8221;</span>
-            </td>
+            <td class="meta-value">{{ page.culture | default: 'Lorem Ipsum' }}</td>
           </tr>
         </table>
       </div>
     </div>
   </div>
-
-  <!-- Auslan Video Section -->
-  <section class="auslan-section">
-    <h2>Auslan Video</h2>
-    <div class="video-placeholder">
-      {% if page.video_id %}
-        <iframe src="https://www.youtube.com/embed/{{ page.video_id }}" title="Auslan Video" frameborder="0" allowfullscreen></iframe>
-      {% endif %}
-    </div>
-  </section>
-
   
   {% include pagination.html %}
 </div>
