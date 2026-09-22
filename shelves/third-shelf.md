@@ -2,120 +2,51 @@
 layout: shelf3
 title: "Third Shelf"
 permalink: /shelves/third-shelf/
+
 shelf_number: "THIRD SHELF"
 shelf_title: "Third Shelf"
+
 hero_image: "/assets/images/shelf3-main.jpg"
+# No new image is required for this prototype. Set true only when ready.
+show_hero_image: false
+hero_alt: "Photograph of the Third Shelf display case"
+
+# Keep placeholders until the approved object photographs are supplied.
+show_object_images: false
+
+overview: >-
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo
+  ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus
+  libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante
+  felis, ultrices sit amet magna nec, efficitur porta purus.
+
+# Each object below feeds both the numbered list and the card grid in
+# _layouts/shelf3.html. Edit values here — no HTML/CSS editing needed
+# to update names, images, or descriptions.
+objects:
+  - num: 7
+    name: "Object 7"
+    slug: "shelf3-object7"
+    image: "/assets/images/obj7.jpg"
+    alt: "Placeholder photograph of Object 7"
+    description: "Short description of Object 7."
+
+  - num: 8
+    name: "Object 8"
+    slug: "shelf3-object8"
+    image: "/assets/images/obj8.jpg"
+    alt: "Placeholder photograph of Object 8"
+    description: "Short description of Object 8."
+
+  - num: 9
+    name: "Object 9"
+    slug: "shelf3-object9"
+    image: "/assets/images/obj9.jpg"
+    alt: "Placeholder photograph of Object 9"
+    description: "Short description of Object 9."
+
 prev_url: "/shelves/second-shelf/"
 prev_label: "SECOND SHELF"
 next_url: "/"
 next_label: "MAIN PAGE"
 ---
-
-<section class="shelf-page third-shelf-page">
-
-  <div class="shelf-page-header">
-    <p class="shelf-eyebrow">THIRD SHELF</p>
-    <h1>Third Shelf</h1>
-  </div>
-
-  <div class="object-card-grid">
-
-    <article class="object-card">
-      <img
-        src="{{ '/assets/images/obj7.jpg' | relative_url }}"
-        alt="Object 7"
-      >
-
-      <div class="object-card-content">
-        <h2>Object 7</h2>
-
-        <p>
-          Short description of Object 7.
-        </p>
-
-        <a
-          href="{{ '/objects/shelf3-object7/' | relative_url }}"
-          class="view-button"
-        >
-          View
-        </a>
-      </div>
-    </article>
-
-
-    <article class="object-card">
-      <img
-        src="{{ '/assets/images/obj8.jpg' | relative_url }}"
-        alt="Object 8"
-      >
-
-      <div class="object-card-content">
-        <h2>Object 8</h2>
-
-        <p>
-          Short description of Object 8.
-        </p>
-
-        <a
-          href="{{ '/objects/shelf3-object8/' | relative_url }}"
-          class="view-button"
-        >
-          View
-        </a>
-      </div>
-    </article>
-
-
-    <article class="object-card">
-      <img
-        src="{{ '/assets/images/obj9.jpg' | relative_url }}"
-        alt="Object 9"
-      >
-
-      <div class="object-card-content">
-        <h2>Object 9</h2>
-
-        <p>
-          Short description of Object 9.
-        </p>
-
-        <a
-          href="{{ '/objects/shelf3-object9/' | relative_url }}"
-          class="view-button"
-        >
-          View
-        </a>
-      </div>
-    </article>
-
-  </div>
-
-  <nav class="shelf-pagination" aria-label="Shelf navigation">
-
-    <a
-      class="shelf-pagination-button shelf-pagination-back"
-      href="{{ '/shelves/second-shelf/' | relative_url }}"
-    >
-      <span class="pagination-arrow">←</span>
-
-      <span class="pagination-text">
-        <small>BACK</small>
-        <strong>SECOND SHELF</strong>
-      </span>
-    </a>
-
-    <a
-      class="shelf-pagination-button shelf-pagination-next"
-      href="{{ '/' | relative_url }}"
-    >
-      <span class="pagination-text">
-        <small>NEXT</small>
-        <strong>MAIN PAGE</strong>
-      </span>
-
-      <span class="pagination-arrow">→</span>
-    </a>
-
-  </nav>
-
-</section>
