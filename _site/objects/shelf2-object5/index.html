@@ -15,17 +15,37 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-  <!-- Avoid flashy changes when refreshing -->
+  <!-- Material Icons CDN -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Prevent visual flashing on page load -->
   <script>
   (function() {
-    var savedSize = localStorage.getItem('userFontSize');
-    if (savedSize) {
-      document.documentElement.style.fontSize = savedSize + '%';
-    }
+    try {
+      var savedSize = localStorage.getItem('userFontSize');
+
+      if (savedSize) {
+        document.documentElement.style.fontSize = savedSize + '%';
+      }
+
+      if (!localStorage.getItem('cookieConsent')) {
+        document.documentElement.classList.add('show-cookie-banner');
+      }
+    } catch (error) {
+    // If localStorage is unavailable, show the banner normally
+    document.documentElement.classList.add('show-cookie-banner');
+  }
   })();
-  </script>
-  <link rel="stylesheet" href="/group34/assets/main.css">
+</script>
+
+<!-- SVG Favicon -->
+<link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
+
+<!-- Style sheet -->
+<link rel="stylesheet" href="/group34/assets/main.css">
+
 </head>
+
 <body>
   <header class="pinned-header">
   <div class="header-content">
@@ -73,72 +93,69 @@
   <nav class="sidebar-nav">
     <!-- Top Direct Links -->
     <a href="/group34/" class="nav-item main-link">
-      <i class="fas fa-folder icon-folder"></i>
+      <i class="fa-solid fa-landmark"></i>
       <span>HOME</span>
     </a>
     
     <a href="/group34/about/" class="nav-item main-link">
-      <i class="fas fa-folder icon-folder"></i>
+      <i class="fa fa-search" aria-hidden="true"></i>
       <span>ABOUT</span>
     </a>
 
-    <!-- 1st Shelf Group -->
+    <!-- 1st Shelf Group (Same Link for Shelf Label & Object) -->
     <div class="shelf-group">
-      <a href="/group34/shelves/first-shelf/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">1st Shelf</span>
-          <span class="object-title">1 Object Name</span>
+      <a href="/group34/shelves/first-shelf/" class="nav-item shelf-block-link">
+        <span class="shelf-label">FIRST SHELF</span>
+        <div class="object-item">
+          <span class="num-box">1</span>
+          <span class="object-title">Object Name</span>
         </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
       </a>
     </div>
 
-    <!-- 2nd Shelf Group -->
+    <!-- 2nd Shelf Group (Separate Links for Shelf Label & Objects) -->
     <div class="shelf-group">
-      <a href="/group34/objects/shelf2-object2/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">2nd Shelf</span>
-          <span class="object-title">2 Object Name</span>
-        </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/shelves/second-shelf/" class="shelf-label-link">
+        <span class="shelf-label">SECOND SHELF</span>
       </a>
-      <a href="/group34/objects/shelf2-object3/" class="nav-item object-link indent">
-        <span class="object-title">3 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf2-object2/" class="nav-item object-item">
+        <span class="num-box">2</span>
+        <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object4/" class="nav-item object-link indent">
-        <span class="object-title">4 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf2-object3/" class="nav-item object-item">
+        <span class="num-box">3</span>
+        <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object5/" class="nav-item object-link indent">
-        <span class="object-title">5 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf2-object4/" class="nav-item object-item">
+        <span class="num-box">4</span>
+        <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object6/" class="nav-item object-link indent">
-        <span class="object-title">6 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf2-object5/" class="nav-item object-item">
+        <span class="num-box">5</span>
+        <span class="object-title">Object Name</span>
+      </a>
+      <a href="/group34/objects/shelf2-object6/" class="nav-item object-item">
+        <span class="num-box">6</span>
+        <span class="object-title">Object Name</span>
       </a>
     </div>
 
-    <!-- 3rd Shelf Group -->
+    <!-- 3rd Shelf Group (Separate Links for Shelf Label & Objects) -->
     <div class="shelf-group">
-      <a href="/group34/objects/shelf3-object7/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">3rd Shelf</span>
-          <span class="object-title">7 Object Name</span>
-        </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/shelves/third-shelf/" class="shelf-label-link">
+        <span class="shelf-label">THIRD SHELF</span>
       </a>
-      <a href="/group34/objects/shelf3-object8/" class="nav-item object-link indent">
-        <span class="object-title">8 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf3-object7/" class="nav-item object-item">
+        <span class="num-box">7</span>
+        <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf3-object9/" class="nav-item object-link indent">
-        <span class="object-title">9 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf3-object8/" class="nav-item object-item">
+        <span class="num-box">8</span>
+        <span class="object-title">Object Name</span>
+      </a>
+      <a href="/group34/objects/shelf3-object9/" class="nav-item object-item">
+        <span class="num-box">9</span>
+        <span class="object-title">Object Name</span>
       </a>
     </div>
   </nav>
@@ -148,10 +165,10 @@
     <div class="object-detail-container">
   <!-- Back Link -->
   <div class="back-navigation">
-  <a href="/group34/shelves/second-shelf/" class="back-link">
-    &lt; BACK TO SECOND SHELF
-  </a>
-</div>
+    <a href="/group34/shelves/second-shelf/" class="back-link">
+      &lt; BACK TO SECOND SHELF
+    </a>
+  </div>
 
   <!-- Top Hero Layout (Grid on Desktop, Stacked on Mobile) -->
   <div class="object-hero-grid">
@@ -189,27 +206,33 @@
         </p>
       </div>
 
-      <!-- Listen to this story -->
+      <!-- Listen to this story (Audio Section with Dropdown Transcript) -->
       <div class="audio-section">
         <h3>Listen to this story</h3>
         <div class="audio-actions">
-          <!-- Added onclick event here -->
-            <button class="audio-play-btn" onclick="toggleAudioPlayer()">
+          <button class="audio-play-btn" onclick="toggleAudioPlayer()">
             <svg width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
             <span>Audio Description</span>
           </button>
-          <a href="#" class="transcript-btn">[ READ TRANSCRIPT ]</a>
         </div>
-      </div>
 
+        <details class="transcript-accordion">
+          <summary class="btn-transcript-toggle">[ READ TRANSCRIPT ]</summary>
+          <div class="transcript-box">
+            <p class="transcript-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.
+            </p>
+          </div>
+        </details>
+      </div>
 
       <!-- Object Information Table -->
       <div class="metadata-section">
         <h3>Object Information</h3>
         <table class="object-meta-table">
           <tr>
-            <td class="meta-label">Time period</td>
-            <td class="meta-value">363 - 340 BCE</td>
+            <td class="meta-label">Acc. No</td>
+            <td class="meta-value">MU0523</td>
           </tr>
           <tr>
             <td class="meta-label">Material</td>
@@ -221,23 +244,12 @@
           </tr>
           <tr>
             <td class="meta-label">Culture</td>
-            <td class="meta-value">
-              <span class="dropdown-icon">&#8221;</span>
-            </td>
+            <td class="meta-value">Lorem Ipsum</td>
           </tr>
         </table>
       </div>
     </div>
   </div>
-
-  <!-- Auslan Video Section -->
-  <section class="auslan-section">
-    <h2>Auslan Video</h2>
-    <div class="video-placeholder">
-      
-    </div>
-  </section>
-
   
   <nav class="shelf-pagination">
   <a href="/group34/objects/shelf2-object4/" class="nav-box nav-back">
@@ -257,45 +269,45 @@
   </a>
 </nav>
 </div>
-  </main>
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  <!-- Bar with the time -->
+  <div class="audio-progress-container">
+    <span id="currentTime">0:00</span>
+    <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
+    <span id="durationTime">0:00</span>
+  </div>
 
-  <div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-content">
-    <p>We use cookies to improve your experience.</p>
-    <div class="cookie-buttons">
-      <button onclick="acceptCookies()" class="btn-cookie-accept">Accept</button>
-      <button onclick="declineCookies()" class="btn-cookie-decline">Decline</button>
-      <button onclick="closeCookieBanner()" class="cookie-close-icon">&times;</button>
+  <div class="audio-controls-wrapper">
+    <!-- Left control, speed and play button -->
+    <div class="audio-left">
+      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">0.5x</button>
+      <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
+        <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
+      </button>
+      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at 1.5 speed">1.5x</button>
     </div>
-  </div>
-</div><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
-  <div class="audio-left">
-    <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">
-      0.5x
-    </button>
 
-    <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
-      <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
-    </button>
+    <!-- Center info -->
+    <div class="audio-center">
+      <span class="audio-obj-name">Object 5</span>
+      <span class="audio-shelf-label">Second Shelf</span>
+    </div>
 
-    <button type="button" onclick="changeAudioSpeed(2)" aria-label="Play audio at double speed">
-      2x
-    </button>
-  </div>
+    <!-- Volume and transcript -->
+    <div class="audio-right">
+      <div class="volume-container">
+        <div class="volume-popup" id="volumePopup">
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)" aria-label="Volume Slider">
+        </div>
+        <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
+          <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
+        </button>
+      </div>
 
-  <div class="audio-center">
-    <span class="audio-obj-name">
-      Object 5
-    </span>
-    <span class="audio-shelf-label">
-      Second Shelf
-    </span>
-  </div>
-
-  <div class="audio-right">
-    <button type="button" onclick="toggleMute()" aria-label="Mute or unmute audio">
-      <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
-    </button>
+      <button type="button" onclick="toggleTranscript()" aria-label="Toggle transcript">
+        <i class="fas fa-list-alt" aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
 
   <audio id="exhibitionAudio" src="" preload="metadata"></audio>

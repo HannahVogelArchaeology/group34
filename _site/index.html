@@ -15,17 +15,37 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-  <!-- Avoid flashy changes when refreshing -->
+  <!-- Material Icons CDN -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Prevent visual flashing on page load -->
   <script>
   (function() {
-    var savedSize = localStorage.getItem('userFontSize');
-    if (savedSize) {
-      document.documentElement.style.fontSize = savedSize + '%';
-    }
+    try {
+      var savedSize = localStorage.getItem('userFontSize');
+
+      if (savedSize) {
+        document.documentElement.style.fontSize = savedSize + '%';
+      }
+
+      if (!localStorage.getItem('cookieConsent')) {
+        document.documentElement.classList.add('show-cookie-banner');
+      }
+    } catch (error) {
+    // If localStorage is unavailable, show the banner normally
+    document.documentElement.classList.add('show-cookie-banner');
+  }
   })();
-  </script>
-  <link rel="stylesheet" href="/group34/assets/main.css">
+</script>
+
+<!-- SVG Favicon -->
+<link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
+
+<!-- Style sheet -->
+<link rel="stylesheet" href="/group34/assets/main.css">
+
 </head>
+
 <body>
   <header class="pinned-header">
   <div class="header-content">
@@ -61,88 +81,102 @@
   <nav class="sidebar-nav">
     <!-- Top Direct Links -->
     <a href="/group34/" class="nav-item main-link">
-      <i class="fas fa-folder icon-folder"></i>
+      <i class="fa-solid fa-landmark"></i>
       <span>HOME</span>
     </a>
     
     <a href="/group34/about/" class="nav-item main-link">
-      <i class="fas fa-folder icon-folder"></i>
+      <i class="fa fa-search" aria-hidden="true"></i>
       <span>ABOUT</span>
     </a>
 
-    <!-- 1st Shelf Group -->
+    <!-- 1st Shelf Group (Same Link for Shelf Label & Object) -->
     <div class="shelf-group">
-      <a href="/group34/shelves/first-shelf/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">1st Shelf</span>
-          <span class="object-title">1 Object Name</span>
+      <a href="/group34/shelves/first-shelf/" class="nav-item shelf-block-link">
+        <span class="shelf-label">FIRST SHELF</span>
+        <div class="object-item">
+          <span class="num-box">1</span>
+          <span class="object-title">Object Name</span>
         </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
       </a>
     </div>
 
-    <!-- 2nd Shelf Group -->
+    <!-- 2nd Shelf Group (Separate Links for Shelf Label & Objects) -->
     <div class="shelf-group">
-      <a href="/group34/objects/shelf2-object2/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">2nd Shelf</span>
-          <span class="object-title">2 Object Name</span>
-        </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/shelves/second-shelf/" class="shelf-label-link">
+        <span class="shelf-label">SECOND SHELF</span>
       </a>
-      <a href="/group34/objects/shelf2-object3/" class="nav-item object-link indent">
-        <span class="object-title">3 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf2-object2/" class="nav-item object-item">
+        <span class="num-box">2</span>
+        <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object4/" class="nav-item object-link indent">
-        <span class="object-title">4 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf2-object3/" class="nav-item object-item">
+        <span class="num-box">3</span>
+        <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object5/" class="nav-item object-link indent">
-        <span class="object-title">5 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf2-object4/" class="nav-item object-item">
+        <span class="num-box">4</span>
+        <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object6/" class="nav-item object-link indent">
-        <span class="object-title">6 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf2-object5/" class="nav-item object-item">
+        <span class="num-box">5</span>
+        <span class="object-title">Object Name</span>
+      </a>
+      <a href="/group34/objects/shelf2-object6/" class="nav-item object-item">
+        <span class="num-box">6</span>
+        <span class="object-title">Object Name</span>
       </a>
     </div>
 
-    <!-- 3rd Shelf Group -->
+    <!-- 3rd Shelf Group (Separate Links for Shelf Label & Objects) -->
     <div class="shelf-group">
-      <a href="/group34/objects/shelf3-object7/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">3rd Shelf</span>
-          <span class="object-title">7 Object Name</span>
-        </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/shelves/third-shelf/" class="shelf-label-link">
+        <span class="shelf-label">THIRD SHELF</span>
       </a>
-      <a href="/group34/objects/shelf3-object8/" class="nav-item object-link indent">
-        <span class="object-title">8 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf3-object7/" class="nav-item object-item">
+        <span class="num-box">7</span>
+        <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf3-object9/" class="nav-item object-link indent">
-        <span class="object-title">9 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/shelf3-object8/" class="nav-item object-item">
+        <span class="num-box">8</span>
+        <span class="object-title">Object Name</span>
+      </a>
+      <a href="/group34/objects/shelf3-object9/" class="nav-item object-item">
+        <span class="num-box">9</span>
+        <span class="object-title">Object Name</span>
       </a>
     </div>
   </nav>
 </aside>
 
   <main class="main-content" id="main-content">
-    <section class="hero-section">
+    <!-- 1. Exhibition Title Section -->
+<section class="hero-title-section">
+  <div class="hero-container">
+    <h1 class="hero-main-title">Exhibition Title</h1>
+  </div>
+</section>
+
+<!-- 2. Hero Image / Placeholder Section -->
+<section class="hero-media-section">
+  <div class="hero-media-placeholder">
+    
+      <img src="/group34/assets/images/hero-bg.jpg" alt="Exhibition Title">
+    
+  </div>
+</section>
+
+<!-- 3. Narratives Section -->
+<section class="hero-narrative-section">
   <div class="hero-container">
     <div class="hero-content">
-      <h1 class="hero-main-title">Exhibition Title</h1>
       <p class="narratives-label">Narratives Here:</p>
       <p class="hero-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
     </div>
   </div>
 </section>
 
+<!-- Shelves Explorer Section -->
 <section class="shelves-explorer">
   <h2 class="explorer-title">Explore the exhibition</h2>
   <div class="shelf-cards-container">
@@ -150,7 +184,6 @@
     <!-- First Shelf -->
     <div class="shelf-card">
       <div class="card-header">
-        <span class="bookmark-icon"></span>
         <span class="shelf-label">FIRST SHELF</span>
       </div>
       <div class="card-img">
@@ -163,7 +196,6 @@
     <!-- Second Shelf -->
     <div class="shelf-card">
       <div class="card-header">
-        <span class="bookmark-icon"></span>
         <span class="shelf-label">SECOND SHELF</span>
       </div>
       <div class="card-img">
@@ -176,7 +208,6 @@
     <!-- Third Shelf -->
     <div class="shelf-card">
       <div class="card-header">
-        <span class="bookmark-icon"></span>
         <span class="shelf-label">THIRD SHELF</span>
       </div>
       <div class="card-img">
@@ -197,8 +228,23 @@
       <p class="quote-curator">- John Doe, Lead Curator</p>
     </div>
     <div class="quote-right">
-      <a href="/group34/about/#curation-tab" class="btn-curator-bio">&gt; Curator's Bio</a>
+      <a href="/group34/about/#curation-tab" class="btn-curator-bio">&gt; About Us</a>
     </div>
+  </div>
+</section>
+
+<!-- Auslan Video Section -->
+<section class="auslan-section">
+  <div class="auslan-container">
+    <h2 class="auslan-title">Auslan Video</h2>
+    
+    <div class="video-card">
+      <div class="video-placeholder">
+          <iframe src="https://www.youtube.com/embed/" title="Auslan Video" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+      <p class="auslan-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
   </div>
 </section>
 
@@ -206,52 +252,52 @@
 <section class="acknowledgement-section">
   <div class="acknowledgement-container">
     <div class="ack-left">
-      <h2>ACKNOWLEDGEMENT</h2>
+      <h2>ACKNOWLEDGEMENTS</h2>
     </div>
     <div class="ack-right">
-      <p>We acknowledge the Traditional Custodians of the land on which this digital exhibition was developed and pay our respects to Elders past, present, and future. We extend that respect to Aboriginal and Torres Strait Islander peoples viewing this collection. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
+      <p>We acknowledge the traditional custodians of the land and pay our respects to elders past, present, and future. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
     </div>
   </div>
 </section>
-  </main>
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  <!-- Bar with the time -->
+  <div class="audio-progress-container">
+    <span id="currentTime">0:00</span>
+    <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
+    <span id="durationTime">0:00</span>
+  </div>
 
-  <div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-content">
-    <p>We use cookies to improve your experience.</p>
-    <div class="cookie-buttons">
-      <button onclick="acceptCookies()" class="btn-cookie-accept">Accept</button>
-      <button onclick="declineCookies()" class="btn-cookie-decline">Decline</button>
-      <button onclick="closeCookieBanner()" class="cookie-close-icon">&times;</button>
+  <div class="audio-controls-wrapper">
+    <!-- Left control, speed and play button -->
+    <div class="audio-left">
+      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">0.5x</button>
+      <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
+        <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
+      </button>
+      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at 1.5 speed">1.5x</button>
     </div>
-  </div>
-</div><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
-  <div class="audio-left">
-    <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">
-      0.5x
-    </button>
 
-    <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
-      <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
-    </button>
+    <!-- Center info -->
+    <div class="audio-center">
+      <span class="audio-obj-name">Home</span>
+      <span class="audio-shelf-label">Home</span>
+    </div>
 
-    <button type="button" onclick="changeAudioSpeed(2)" aria-label="Play audio at double speed">
-      2x
-    </button>
-  </div>
+    <!-- Volume and transcript -->
+    <div class="audio-right">
+      <div class="volume-container">
+        <div class="volume-popup" id="volumePopup">
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)" aria-label="Volume Slider">
+        </div>
+        <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
+          <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
+        </button>
+      </div>
 
-  <div class="audio-center">
-    <span class="audio-obj-name">
-      Home
-    </span>
-    <span class="audio-shelf-label">
-      Home
-    </span>
-  </div>
-
-  <div class="audio-right">
-    <button type="button" onclick="toggleMute()" aria-label="Mute or unmute audio">
-      <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
-    </button>
+      <button type="button" onclick="toggleTranscript()" aria-label="Toggle transcript">
+        <i class="fas fa-list-alt" aria-hidden="true"></i>
+      </button>
+    </div>
   </div>
 
   <audio id="exhibitionAudio" src="" preload="metadata"></audio>
