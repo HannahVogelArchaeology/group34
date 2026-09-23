@@ -2,14 +2,14 @@
 layout: default
 ---
 
-<!-- 1. Exhibition Title Section -->
+<!-- Exhibition Title Section -->
 <section class="hero-title-section">
   <div class="hero-container">
     <h1 class="hero-main-title">{{ page.hero_title }}</h1>
   </div>
 </section>
 
-<!-- 2. Hero Image / Placeholder Section -->
+<!-- Hero Image / Placeholder Section -->
 <section class="hero-media-section">
   <div class="hero-media-placeholder">
     {% if page.hero_image %}
@@ -20,7 +20,7 @@ layout: default
   </div>
 </section>
 
-<!-- 3. Narratives Section -->
+<!-- Narratives Section -->
 <section class="hero-narrative-section">
   <div class="hero-container">
     <div class="hero-content">
@@ -33,56 +33,80 @@ layout: default
 <!-- Shelves Explorer Section -->
 <section class="shelves-explorer">
   <h2 class="explorer-title">Explore the exhibition</h2>
+
   <div class="shelf-cards-container">
-    
+
     <!-- First Shelf -->
-    <div class="shelf-card">
+    <a href="{{ '/shelves/first-shelf/' | relative_url }}" class="shelf-card" aria-label="View First Shelf">
       <div class="card-header">
         <span class="shelf-label">FIRST SHELF</span>
       </div>
+
       <div class="card-img">
         <img src="{{ '/assets/images/shelf1-main.jpg' | relative_url }}" alt="First Shelf">
       </div>
+
       <p class="caption">Caption of the photo</p>
-      <a href="{{ '/shelves/first-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
-    </div>
-    
+
+      <span class="view-button" aria-hidden="true">
+        VIEW &rarr;
+      </span>
+    </a>
+
     <!-- Second Shelf -->
-    <div class="shelf-card">
+    <a href="{{ '/shelves/second-shelf/' | relative_url }}" class="shelf-card" aria-label="View Second Shelf">
       <div class="card-header">
         <span class="shelf-label">SECOND SHELF</span>
       </div>
+
       <div class="card-img">
         <img src="{{ '/assets/images/shelf2-main.jpg' | relative_url }}" alt="Second Shelf">
       </div>
+
       <p class="caption">Caption of the photo</p>
-      <a href="{{ '/shelves/second-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
-    </div>
+
+      <span class="view-button" aria-hidden="true">
+        VIEW &rarr;
+      </span>
+    </a>
 
     <!-- Third Shelf -->
-    <div class="shelf-card">
+    <a href="{{ '/shelves/third-shelf/' | relative_url }}" class="shelf-card" aria-label="View Third Shelf">
       <div class="card-header">
         <span class="shelf-label">THIRD SHELF</span>
       </div>
+
       <div class="card-img">
         <img src="{{ '/assets/images/shelf3-main.jpg' | relative_url }}" alt="Third Shelf">
       </div>
-      <p class="caption">Caption of the photo</p>
-      <a href="{{ '/shelves/third-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
-    </div>
 
+      <p class="caption">Caption of the photo</p>
+
+      <span class="view-button" aria-hidden="true">
+        VIEW &rarr;
+      </span>
+    </a>
   </div>
 </section>
 
 <!-- Quote Banner Section -->
 <section class="quote-section">
   <div class="quote-container">
+
     <div class="quote-left">
-      <blockquote class="quote-text">" {{ page.quote_text | default: 'Quote here if needed' }} "</blockquote>
-      <p class="quote-curator">- {{ page.quote_curator | default: 'John Doe, Someone of Business Enterprise' }}</p>
+      <blockquote class="quote-text">
+        "{{ page.quote_text | default: 'Quote here if needed' }}"
+      </blockquote>
+
+      <p class="quote-curator">
+        - {{ page.quote_curator | default: 'John Doe, Someone of Business Enterprise' }}
+      </p>
     </div>
+
     <div class="quote-right">
-      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">&gt; About Us</a>
+      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">
+        &gt; About Us
+      </a>
     </div>
   </div>
 </section>
@@ -90,26 +114,33 @@ layout: default
 <!-- Auslan Video Section -->
 <section class="auslan-section">
   <div class="auslan-container">
+
     <h2 class="auslan-title">Auslan Video</h2>
-    
+
     <div class="video-card">
       <div class="video-placeholder">
-          <iframe src="https://www.youtube.com/embed/{{ page.video_id }}" title="Auslan Video" frameborder="0" allowfullscreen></iframe>
+
+        <iframe src="https://www.youtube.com/embed/{{ page.video_id }}" title="Auslan Video" frameborder="0" allowfullscreen></iframe>
       </div>
     </div>
 
-      <p class="auslan-description">{{ page.auslan_text }}</p>
+    <p class="auslan-description">
+      {{ page.auslan_text }}
+    </p>
   </div>
 </section>
 
 <!-- Acknowledgement Section -->
 <section class="acknowledgement-section">
+
   <div class="acknowledgement-container">
     <div class="ack-left">
       <h2>ACKNOWLEDGEMENTS</h2>
     </div>
+
     <div class="ack-right">
       <p>{{ page.acknowledgement_text }}</p>
     </div>
   </div>
+
 </section>

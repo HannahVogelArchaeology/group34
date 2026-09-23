@@ -4,15 +4,17 @@ layout: default
 
 <div class="shelf3-container" data-shelf3-version="interface-enhancement">
 
-  <h1 class="shelf-v2-title">{{ page.shelf_title | default: "THIRD SHELF" }}</h1>
+  <h1 class="shelf-v2-title">
+    {{ page.shelf_title | default: "THIRD SHELF" }}
+  </h1>
 
   <!-- Hero Image + Numbered Object List -->
   <div class="shelf-hero-grid">
 
     <div class="hero-image-wrapper">
-        <img src="{{ page.hero_image | relative_url }}" alt="Third Shelf Hero Object" loading="eager">
 
-      <!-- Kept visible for both the final image and the current placeholder. -->
+      <img src="{{ page.hero_image | relative_url }}" alt="Third Shelf Hero Object" loading="eager">
+
       <button class="expand-btn" id="shelf3-expand" aria-label="Expand Image" aria-haspopup="dialog" aria-controls="shelf3-image-dialog">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"></path>
@@ -24,8 +26,15 @@ layout: default
       {% for obj in page.objects %}
       <li class="object-item">
         <a href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" class="name">
-          <span class="num" aria-hidden="true">{{ obj.num }}</span>
-          <span>{{ obj.name }}</span>
+
+          <span class="num" aria-hidden="true">
+            {{ obj.num }}
+          </span>
+
+          <span>
+            {{ obj.name }}
+          </span>
+
           <span class="object-link-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
@@ -35,56 +44,69 @@ layout: default
       </li>
       {% endfor %}
     </ul>
-
   </div>
 
   <!-- Overview Text -->
   <section class="shelf-overview-section">
     <h2>Overview</h2>
-    <p>{{ page.overview }}</p>
+    <p> {{ page.overview }} </p>
   </section>
 
   <!-- Object Cards -->
   <section class="shelf-objects-section">
+
     <h2>The Objects</h2>
+
     <div class="objects-grid">
       {% for obj in page.objects %}
-      <article class="object-card">
+
+      <!-- Entire object card is clickable -->
+      <a href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" class="object-card" aria-label="View {{ obj.name }}">
+
         <div class="card-header">
-          <span class="item-title">{{ obj.num }} Item Name</span>
-          <a href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" class="btn-view" aria-label="View {{ obj.name }}">
+          <span class="item-title">
+            {{ obj.num }} Item Name
+          </span>
+
+          <!-- Keep View button visually in the existing position -->
+          <span class="btn-view" aria-hidden="true">
+
             <span>View</span>
+
             <svg class="view-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
             </svg>
-          </a>
+          </span>
         </div>
 
         <div class="card-media">
           {% if page.show_object_images %}
           <img src="{{ obj.image | relative_url }}" alt="{{ obj.alt | escape }}" loading="eager">
+
           {% else %}
-          <p class="card-image-placeholder" aria-label="Image placeholder for {{ obj.name }}">
-          </p>
+          <p class="card-image-placeholder" aria-label="Image placeholder for {{ obj.name }}"></p>
+          
           {% endif %}
         </div>
-
-      </article>
+      </a>
       {% endfor %}
     </div>
   </section>
 
-{% include pagination.html %}
+  {% include pagination.html %}
 
   <!-- Image Dialog Modal -->
   <dialog id="shelf3-image-dialog">
+
     <div class="dialog-header">
+
       <h2>Third Shelf</h2>
+
       <form method="dialog">
         <button class="dialog-close" type="submit">Close</button>
       </form>
     </div>
+
     <img src="{{ page.hero_image | relative_url }}" alt="Third Shelf Hero Expanded View">
   </dialog>
-
 </div>
