@@ -9,7 +9,7 @@
   }
 }
 
-// 1. Top Hero Title Section (Dark Brown)
+// Top Hero Title Section (Dark Brown)
 .hero-title-section {
   background-color: #382713;
   color: #ffffff;
@@ -25,7 +25,7 @@
   }
 }
 
-// 2. Middle Image / Placeholder Section (Light Grey/Off-white)
+// Middle Image / Placeholder Section (Light Grey/Off-white)
 .hero-media-section {
   width: 100%;
   background-color: #f4f1ea;
@@ -59,7 +59,7 @@
   }
 }
 
-// 3. Bottom Narrative Section (Dark Brown)
+// Bottom Narrative Section (Dark Brown)
 .hero-narrative-section {
   background-color: #382713;
   color: #ffffff;
@@ -97,73 +97,94 @@
   }
 
   .shelf-cards-container {
+  display: flex;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+
+  .shelf-card {
+    background-color: #eae5d9;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+
+    border-radius: 2px;
+    padding: 16px;
+
+    flex: 1;
+
     display: flex;
-    gap: 24px;
-    max-width: 1000px;
-    margin: 0 auto;
+    flex-direction: column;
+    align-items: center;
 
-    .shelf-card {
-      background-color: #eae5d9;
-      border-radius: 2px;
-      padding: 16px;
-      flex: 1;
+    .card-header {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: center;
+      gap: 8px;
 
-      .card-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 16px;
-        width: 100%;
+      margin-bottom: 16px;
+      width: 100%;
 
-        .shelf-label {
-          font-size: 0.85em;
-          letter-spacing: 1px;
-          font-weight: 600;
-          color: #444444;
-        }
-      }
-
-      .card-img {
-        width: 100%;
-        height: 220px;
-        margin-bottom: 16px;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      .caption {
+      .shelf-label {
         font-size: 0.85em;
-        color: #555555;
-        margin: 0 0 16px 0;
-        text-align: center;
-      }
-
-      .view-button {
-        background-color: #b5833f;
-        color: #ffffff;
-        text-decoration: none;
-        padding: 6px 20px;
-        font-size: 0.75em;
         letter-spacing: 1px;
-        border-radius: 2px;
         font-weight: 600;
-        transition: background 0.2s ease;
-
-        &:hover {
-          background-color: #543b19;
-        }
+        color: #444444;
       }
     }
+
+    .card-img {
+      width: 100%;
+      height: 220px;
+      margin-bottom: 16px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .caption {
+      font-size: 0.85em;
+      color: #555555;
+      margin: 0 0 16px 0;
+      text-align: center;
+    }
+
+    // The entire shelf card is now the actual link
+    .view-button {
+      background-color: #b5833f;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 6px 20px;
+      font-size: 0.75em;
+      letter-spacing: 1px;
+      border-radius: 2px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background-color: #543b19;
+      }
+    }
+
+    &:hover {
+      text-decoration: none;
+
+      .view-button {
+        background-color: #543b19;
+      }
+    }
+
+    &:focus-visible {
+      outline: 3px solid #382713;
+      outline-offset: 3px;
+    }
   }
+}
 }
 
 // Quote Banner Section
@@ -296,6 +317,40 @@
       line-height: 1.7;
       color: #444444;
       margin: 0;
+    }
+  }
+}
+
+// Full shelf card link
+.shelves-explorer {
+  .shelf-cards-container {
+    .shelf-card {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background-color .2s ease;
+
+      &:hover,
+      &:focus-visible {
+
+        color: inherit;
+        text-decoration: none;
+        background-color: #e3ddcf;
+        box-shadow: 0 8px 20px rgba(81, 52, 9, .12);
+        transform: translateY(-2px);
+      }
+
+      &:focus-visible {
+        outline: 3px solid #174e77;
+        outline-offset: 4px;
+      }
+
+      .view-button {
+        pointer-events: none;
+      }
     }
   }
 }

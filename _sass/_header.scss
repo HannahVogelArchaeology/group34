@@ -191,7 +191,7 @@
     flex-direction: column;
     width: 100%;
 
-    /* 1. Main Navigation Links (HOME, ABOUT) - Spacious padding & dividers */
+    /* Main Navigation Links (HOME, ABOUT) - Spacious padding & dividers */
     .main-link {
       display: flex !important;
       align-items: center !important;
@@ -215,7 +215,7 @@
       }
     }
 
-    /* 2. Group Wrappers for Shelves */
+    /* Group Wrappers for Shelves */
     .shelf-group,
     .nav-group {
       border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
@@ -227,7 +227,7 @@
       box-sizing: border-box;
     }
 
-    /* 3. Shelf Headings (Aligned strictly to the left matching icon positions) */
+    /* Shelf Headings (Aligned strictly to the left matching icon positions) */
     .shelf-label,
     .shelf-header,
     .section-title {
@@ -257,7 +257,7 @@
       margin: 0 !important;
     }
 
-    /* 4. Sub-item Objects (Forced uniform indentation across 1st, 2nd, and 3rd shelves) */
+    /* Sub-item Objects (Forced uniform indentation across 1st, 2nd, and 3rd shelves) */
     .object-item,
     .object-link {
       display: flex !important;
@@ -291,7 +291,7 @@
       flex-shrink: 0 !important;
     }
 
-    /* 5. Common Hover & Focus Styles (High Contrast Cream) */
+    /* Common Hover & Focus Styles (High Contrast Cream) */
     a {
       text-decoration: none !important;
       color: #ffffff !important;
