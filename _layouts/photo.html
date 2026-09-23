@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
+
+<!-- TOP BAR -->
+<div class="photo-viewer-header">
+    <a id="photoBackLink" class="photo-back-link" href="#" > &lt; BACK</a>
+    <span class="photo-counter" id="photoCounter"> 1 / 1 </span>
+    <button class="photo-close" id="photoClose" type="button" aria-label="Close photo viewer">×</button>
+</div>
+
+<!-- STAGE (MAIN DISPLAY) -->
+<div class="photo-viewer-stage">
+    <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">‹</button>
+    <figure class="photo-viewer-figure">
+        <img id="photoMainImage" src="" alt="">
+        <figcaption>
+            <span id="photoObjectName">Object Name</span>
+            <span aria-hidden="true"> • </span>
+            <span id="photoViewLabel">[Front View]</span>
+        </figcaption>
+    </figure>
+    <button class="photo-arrow photo-arrow-right" id="photoNext" type="button" aria-label="Next photo">›</button>
+</div>
+
+<!-- THUMBNAIL PANEL -->
+<div class="photo-thumbnail-panel">
+    <div class="photo-thumbnail-handle"></div>
+    <nav class="photo-thumbnails" id="photoThumbnails" aria-label="Photo views">
+    <!-- Thumbnails generated dynamically by JS -->
+    </nav>
+</div>
+
+</main>
