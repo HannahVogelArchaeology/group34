@@ -164,12 +164,15 @@
   <main class="main-content" id="main-content">
     <div class="shelf2-container">
 
-  <h1 class="shelf-v2-title">Second Shelf</h1>
+  <h1 class="shelf-v2-title">
+    Second Shelf
+  </h1>
 
   <!-- Hero Image + Numbered Object List -->
   <div class="shelf-hero-grid">
 
     <div class="hero-image-wrapper">
+
       <img src="/group34/assets/images/shelf2-main.jpg" alt="Second Shelf Hero Object" loading="eager">
 
       <button class="expand-btn" id="shelf2-expand" aria-label="Expand Image" aria-haspopup="dialog" aria-controls="shelf2-image-dialog">
@@ -179,13 +182,22 @@
       </button>
     </div>
 
-    <!-- Dynamic list loop driven by markdown front matter -->
+    <!-- Numbered Object List -->
     <ul class="numbered-object-list">
+
       
+
       <li class="object-item">
         <a href="/group34/objects/shelf2-object2/" class="name">
-          <span class="num" aria-hidden="true">2</span>
-          <span>Object 2</span>
+
+          <span class="num" aria-hidden="true">
+            2
+          </span>
+
+          <span>
+            Object 2
+          </span>
+
           <span class="object-link-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
@@ -194,10 +206,18 @@
         </a>
       </li>
       
+
       <li class="object-item">
         <a href="/group34/objects/shelf2-object3/" class="name">
-          <span class="num" aria-hidden="true">3</span>
-          <span>Object 3</span>
+
+          <span class="num" aria-hidden="true">
+            3
+          </span>
+
+          <span>
+            Object 3
+          </span>
+
           <span class="object-link-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
@@ -206,10 +226,18 @@
         </a>
       </li>
       
+
       <li class="object-item">
         <a href="/group34/objects/shelf2-object4/" class="name">
-          <span class="num" aria-hidden="true">4</span>
-          <span>Object 4</span>
+
+          <span class="num" aria-hidden="true">
+            4
+          </span>
+
+          <span>
+            Object 4
+          </span>
+
           <span class="object-link-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
@@ -218,10 +246,18 @@
         </a>
       </li>
       
+
       <li class="object-item">
         <a href="/group34/objects/shelf2-object5/" class="name">
-          <span class="num" aria-hidden="true">5</span>
-          <span>Object 5</span>
+
+          <span class="num" aria-hidden="true">
+            5
+          </span>
+
+          <span>
+            Object 5
+          </span>
+
           <span class="object-link-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
@@ -230,10 +266,18 @@
         </a>
       </li>
       
+
       <li class="object-item">
         <a href="/group34/objects/shelf2-object6/" class="name">
-          <span class="num" aria-hidden="true">6</span>
-          <span>Object 6</span>
+
+          <span class="num" aria-hidden="true">
+            6
+          </span>
+
+          <span>
+            Object 6
+          </span>
+
           <span class="object-link-arrow" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
@@ -243,109 +287,163 @@
       </li>
       
     </ul>
-
   </div>
 
   <!-- Overview Section -->
   <section class="shelf-overview-section">
+
     <h2>Overview</h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus.</p>
+
   </section>
 
   <!-- Objects Cards Grid -->
   <section class="shelf-objects-section">
+
     <h2>The Objects</h2>
+
     <div class="objects-grid">
+
       
-      <article class="object-card">
+
+      <!-- Entire card is now the accessible link -->
+      <a href="/group34/objects/shelf2-object2/" class="object-card" aria-label="View Object 2">
+
         <div class="card-header">
-          <span class="item-title">2 Object 2</span>
-          <a href="/group34/objects/shelf2-object2/" class="btn-view" aria-label="View Object 2">
+
+          <span class="item-title">
+            2 Object 2
+          </span>
+
+          <!--  VIEW button -->
+          <span class="btn-view" aria-hidden="true">
             <span>View</span>
             <svg class="view-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
             </svg>
-          </a>
+          </span>
         </div>
 
         <div class="card-media">
+
           
           <p class="card-image-placeholder" aria-label="Image placeholder for Object 2"></p>
+
           
         </div>
-      </article>
+      </a>
       
-      <article class="object-card">
+
+      <!-- Entire card is now the accessible link -->
+      <a href="/group34/objects/shelf2-object3/" class="object-card" aria-label="View Object 3">
+
         <div class="card-header">
-          <span class="item-title">3 Object 3</span>
-          <a href="/group34/objects/shelf2-object3/" class="btn-view" aria-label="View Object 3">
+
+          <span class="item-title">
+            3 Object 3
+          </span>
+
+          <!--  VIEW button -->
+          <span class="btn-view" aria-hidden="true">
             <span>View</span>
             <svg class="view-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
             </svg>
-          </a>
+          </span>
         </div>
 
         <div class="card-media">
+
           
           <p class="card-image-placeholder" aria-label="Image placeholder for Object 3"></p>
+
           
         </div>
-      </article>
+      </a>
       
-      <article class="object-card">
+
+      <!-- Entire card is now the accessible link -->
+      <a href="/group34/objects/shelf2-object4/" class="object-card" aria-label="View Object 4">
+
         <div class="card-header">
-          <span class="item-title">4 Object 4</span>
-          <a href="/group34/objects/shelf2-object4/" class="btn-view" aria-label="View Object 4">
+
+          <span class="item-title">
+            4 Object 4
+          </span>
+
+          <!--  VIEW button -->
+          <span class="btn-view" aria-hidden="true">
             <span>View</span>
             <svg class="view-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
             </svg>
-          </a>
+          </span>
         </div>
 
         <div class="card-media">
+
           
           <p class="card-image-placeholder" aria-label="Image placeholder for Object 4"></p>
+
           
         </div>
-      </article>
+      </a>
       
-      <article class="object-card">
+
+      <!-- Entire card is now the accessible link -->
+      <a href="/group34/objects/shelf2-object5/" class="object-card" aria-label="View Object 5">
+
         <div class="card-header">
-          <span class="item-title">5 Object 5</span>
-          <a href="/group34/objects/shelf2-object5/" class="btn-view" aria-label="View Object 5">
+
+          <span class="item-title">
+            5 Object 5
+          </span>
+
+          <!--  VIEW button -->
+          <span class="btn-view" aria-hidden="true">
             <span>View</span>
             <svg class="view-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
             </svg>
-          </a>
+          </span>
         </div>
 
         <div class="card-media">
+
           
           <p class="card-image-placeholder" aria-label="Image placeholder for Object 5"></p>
+
           
         </div>
-      </article>
+      </a>
       
-      <article class="object-card">
+
+      <!-- Entire card is now the accessible link -->
+      <a href="/group34/objects/shelf2-object6/" class="object-card" aria-label="View Object 6">
+
         <div class="card-header">
-          <span class="item-title">6 Object 6</span>
-          <a href="/group34/objects/shelf2-object6/" class="btn-view" aria-label="View Object 6">
+
+          <span class="item-title">
+            6 Object 6
+          </span>
+
+          <!--  VIEW button -->
+          <span class="btn-view" aria-hidden="true">
             <span>View</span>
             <svg class="view-arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path d="M4 12h16M14 6l6 6-6 6"></path>
             </svg>
-          </a>
+          </span>
         </div>
 
         <div class="card-media">
+
           
           <p class="card-image-placeholder" aria-label="Image placeholder for Object 6"></p>
+
           
         </div>
-      </article>
+      </a>
       
     </div>
   </section>
@@ -370,17 +468,19 @@
 
   <!-- Image Dialog Modal -->
   <dialog id="shelf2-image-dialog">
+
     <div class="dialog-header">
+
       <h2>Second Shelf</h2>
+
       <form method="dialog">
         <button class="dialog-close" type="submit">Close</button>
       </form>
     </div>
+
     <img src="/group34/assets/images/shelf2-main.jpg" alt="Second Shelf Hero Expanded View">
   </dialog>
-
 </div>
-
   </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
   <!-- Bar with the time -->
   <div class="audio-progress-container">
