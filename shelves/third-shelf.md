@@ -7,7 +7,6 @@ shelf_number: "THIRD SHELF"
 shelf_title: "Third Shelf"
 
 hero_image: "/assets/images/shelf3-main.jpg"
-# No new image is required for this prototype. Set true only when ready.
 show_hero_image: false
 hero_alt: "Photograph of the Third Shelf display case"
 
@@ -15,14 +14,9 @@ hero_alt: "Photograph of the Third Shelf display case"
 show_object_images: false
 
 overview: >-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo
-  ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus
-  libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante
-  felis, ultrices sit amet magna nec, efficitur porta purus.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus.
 
-# Each object below feeds both the numbered list and the card grid in
-# _layouts/shelf3.html. Edit values here — no HTML/CSS editing needed
-# to update names, images, or descriptions.
+# Front matter data loop for the 3 objects on Shelf 3
 objects:
   - num: 7
     name: "Object 7"
