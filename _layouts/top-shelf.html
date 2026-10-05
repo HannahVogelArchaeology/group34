@@ -1,0 +1,82 @@
+---
+layout: default
+---
+
+<div class="top-shelf-container">
+  <h1 class="shelf-title">{{ page.shelf_title | default: "TOP SHELF" }}</h1>
+
+  <div class="media-section">
+    <div class="hero-image-wrapper">
+      {% assign top_gallery = page.gallery_images %}
+      {% capture top_gallery_urls %}{% for image in top_gallery %}{{ image.src | relative_url }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+      <a
+        class="shelf-photo-link"
+        href="{{ '/photo/' | relative_url }}?image={{ top_gallery[0].src | relative_url | uri_escape }}&object={{ page.object_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ top_gallery_urls | uri_escape }}&labels={% for image in top_gallery %}{{ image.label | uri_escape }}{% unless forloop.last %},{% endunless %}{% endfor %}&captions={% for image in top_gallery %}{{ image.caption | uri_escape }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+        aria-label="Open Object 1 front image in the photo viewer"
+      >
+        <img src="{{ top_gallery[0].src | relative_url }}" alt="Object 1 front image" class="hero-image" />
+      </a>
+      <a
+        class="expand-btn"
+        href="{{ '/photo/' | relative_url }}?image={{ top_gallery[0].src | relative_url | uri_escape }}&object={{ page.object_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ top_gallery_urls | uri_escape }}&labels={% for image in top_gallery %}{{ image.label | uri_escape }}{% unless forloop.last %},{% endunless %}{% endfor %}&captions={% for image in top_gallery %}{{ image.caption | uri_escape }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+        aria-label="Open Object 1 front image in the photo viewer"
+      >
+        <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+      </a>
+    </div>
+
+    <p class="image-caption">{{ top_gallery[0].caption }}</p>
+
+    <div class="media-controls-bar">
+      <div class="thumbnail-list" aria-label="Object 1 additional photos">
+        {% for image in top_gallery offset:1 %}
+          {% assign image_index = forloop.index %}
+          <a
+            class="thumb-box"
+            href="{{ '/photo/' | relative_url }}?image={{ image.src | relative_url | uri_escape }}&object={{ page.object_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ top_gallery_urls | uri_escape }}&labels={% for item in top_gallery %}{{ item.label | uri_escape }}{% unless forloop.last %},{% endunless %}{% endfor %}&captions={% for item in top_gallery %}{{ item.caption | uri_escape }}{% unless forloop.last %},{% endunless %}{% endfor %}"
+            aria-label="Open {{ image.label }} image of Object 1"
+          >
+            <img src="{{ image.src | relative_url }}" alt="{{ image.caption | escape }}" />
+          </a>
+        {% endfor %}
+      </div>
+      <button class="explore-3d-btn" type="button">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        Explore in 3D
+      </button>
+    </div>
+  </div>
+
+  <h3 class="object-heading">{{ page.object_title | default: "Object 1" }}</h3>
+
+  <section class="shelf-section">
+    <h3>Overview Text</h3>
+    <p class="body-text">{{ page.overview | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, justo ac lacinia maximus, sed neque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula." }}</p>
+  </section>
+
+  <section class="shelf-section">
+    <h3>Listen to this story</h3>
+    <div class="audio-controls">
+      <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        <span>Audio Description</span>
+      </button>
+    </div>
+    <details class="transcript-accordion">
+      <summary class="btn-transcript-toggle">[ READ TRANSCRIPT ]</summary>
+      <div class="transcript-box"><p class="body-text">{{ page.transcript_text | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }}</p></div>
+    </details>
+  </section>
+
+  <section class="shelf-section">
+    <h3>Object Information</h3>
+    <table class="metadata-table">
+      <tr><td class="label">Acc. No</td><td class="value">MU0523</td></tr>
+      <tr><td class="label">Material</td><td class="value">Lorem Ipsum</td></tr>
+      <tr><td class="label">Dimensions</td><td class="value">15mm x 15mm</td></tr>
+      <tr><td class="label">Details</td><td class="value">Lorem Ipsum</td></tr>
+    </table>
+  </section>
+
+  {% include pagination.html %}
+</div>
