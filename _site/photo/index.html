@@ -4,6 +4,15 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data:; media-src 'self' https:; connect-src 'self'; frame-src 'none';
+    object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+  >
   <title>Photo View | Digital Exhibition</title>
   
   <!-- Fonts -->
@@ -11,9 +20,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Icons & Alpine JS for UI state management -->
+  <!-- Font Awesome icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
   <!-- Material Icons CDN -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -27,13 +35,8 @@
       if (savedSize) {
         document.documentElement.style.fontSize = savedSize + '%';
       }
-
-      if (!localStorage.getItem('cookieConsent')) {
-        document.documentElement.classList.add('show-cookie-banner');
-      }
     } catch (error) {
-    // If localStorage is unavailable, show the banner normally
-    document.documentElement.classList.add('show-cookie-banner');
+    // If localStorage is unavailable...
   }
   })();
 </script>
@@ -102,10 +105,10 @@
       <span>ABOUT</span>
     </a>
 
-    <!-- 1st Shelf Group (Same Link for Shelf Label & Object) -->
+    <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
     <div class="shelf-group">
-      <a href="/group34/shelves/first-shelf/" class="nav-item shelf-block-link">
-        <span class="shelf-label">FIRST SHELF</span>
+      <a href="/group34/shelves/top-shelf/" class="nav-item shelf-block-link">
+        <span class="shelf-label">TOP SHELF</span>
         <div class="object-item">
           <span class="num-box">1</span>
           <span class="object-title">Object Name</span>
@@ -113,48 +116,56 @@
       </a>
     </div>
 
-    <!-- 2nd Shelf Group (Separate Links for Shelf Label & Objects) -->
+    <!-- Middle Shelf Group -->
     <div class="shelf-group">
-      <a href="/group34/shelves/second-shelf/" class="shelf-label-link">
-        <span class="shelf-label">SECOND SHELF</span>
+      <a href="/group34/shelves/middle-shelf/" class="shelf-label-link">
+        <span class="shelf-label">MIDDLE SHELF</span>
       </a>
-      <a href="/group34/objects/shelf2-object2/" class="nav-item object-item">
+      <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item">
         <span class="num-box">2</span>
         <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object3/" class="nav-item object-item">
+      <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item">
         <span class="num-box">3</span>
         <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object4/" class="nav-item object-item">
+      <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item">
         <span class="num-box">4</span>
         <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object5/" class="nav-item object-item">
+      <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item">
         <span class="num-box">5</span>
         <span class="object-title">Object Name</span>
       </a>
-      <a href="/group34/objects/shelf2-object6/" class="nav-item object-item">
+      <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item">
         <span class="num-box">6</span>
+        <span class="object-title">Object Name</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item">
+        <span class="num-box">7</span>
+        <span class="object-title">Object Name</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item">
+        <span class="num-box">8</span>
         <span class="object-title">Object Name</span>
       </a>
     </div>
 
-    <!-- 3rd Shelf Group (Separate Links for Shelf Label & Objects) -->
+    <!-- Bottom Shelf Group -->
     <div class="shelf-group">
-      <a href="/group34/shelves/third-shelf/" class="shelf-label-link">
-        <span class="shelf-label">THIRD SHELF</span>
+      <a href="/group34/shelves/bottom-shelf/" class="shelf-label-link">
+        <span class="shelf-label">BOTTOM SHELF</span>
       </a>
-      <a href="/group34/objects/shelf3-object7/" class="nav-item object-item">
-        <span class="num-box">7</span>
-        <span class="object-title">Object Name</span>
-      </a>
-      <a href="/group34/objects/shelf3-object8/" class="nav-item object-item">
-        <span class="num-box">8</span>
-        <span class="object-title">Object Name</span>
-      </a>
-      <a href="/group34/objects/shelf3-object9/" class="nav-item object-item">
+      <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item">
         <span class="num-box">9</span>
+        <span class="object-title">Object Name</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item">
+        <span class="num-box">10</span>
+        <span class="object-title">Object Name</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item">
+        <span class="num-box">11</span>
         <span class="object-title">Object Name</span>
       </a>
     </div>
@@ -175,6 +186,9 @@
 <div class="photo-viewer-stage">
     <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">‹</button>
     <figure class="photo-viewer-figure">
+        <div class="photo-caption-section" id="photoCaptionSection">
+            <span id="photoImageCaption">Image caption</span>
+        </div>
         <img id="photoMainImage" src="" alt="">
         <figcaption>
             <span id="photoObjectName">Object Name</span>
@@ -228,11 +242,10 @@
         <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
           <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
         </button>
+        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
       </div>
-
-      <button type="button" onclick="toggleTranscript()" aria-label="Toggle transcript">
-        <i class="fas fa-list-alt" aria-hidden="true"></i>
-      </button>
     </div>
   </div>
 

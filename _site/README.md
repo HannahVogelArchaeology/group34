@@ -39,7 +39,7 @@ The code is derived from the MIT-licensed Minima theme. See `LICENSE` and
 those terms and the required credit beside each asset.
 
 ```bash
-group34
+v2_fixed
 ├─ .ruby-lsp
 │  ├─ freshness_hash
 │  ├─ Gemfile
@@ -51,10 +51,24 @@ group34
 ├─ AGENTS.md
 ├─ assets
 │  ├─ audio
-│  │  └─ shelf1-description.mp3
+│  │  ├─ object02-audio-description.mp3
+│  │  ├─ object03-audio-description.mp3
+│  │  ├─ object04-audio-description.mp3
+│  │  ├─ object05-audio-description.mp3
+│  │  ├─ object06-audio-description.mp3
+│  │  ├─ object07-audio-description.mp3
+│  │  ├─ object08-audio-description.mp3
+│  │  ├─ object09-audio-description.mp3
+│  │  ├─ object10-audio-description.mp3
+│  │  ├─ object11-audio-description.mp3
+│  │  └─ top-shelf-description.mp3
 │  ├─ favicon.svg
 │  ├─ images
+│  │  ├─ bottom-shelf-main.jpg
 │  │  ├─ hero-bg.jpg
+│  │  ├─ middle-shelf-main.jpg
+│  │  ├─ obj10.jpg
+│  │  ├─ obj11.jpg
 │  │  ├─ obj2.jpg
 │  │  ├─ obj3.jpg
 │  │  ├─ obj4.jpg
@@ -63,17 +77,18 @@ group34
 │  │  ├─ obj7.jpg
 │  │  ├─ obj8.jpg
 │  │  ├─ obj9.jpg
-│  │  ├─ shelf1-main.jpg
-│  │  ├─ shelf1-thumb1.jpg
-│  │  ├─ shelf1-thumb2.jpg
-│  │  ├─ shelf1-thumb3.jpg
-│  │  ├─ shelf1-thumb4.jpg
-│  │  ├─ shelf2-main.jpg
-│  │  └─ shelf3-main.jpg
+│  │  ├─ Placeholder1_HomePageFullDisplay.jpeg
+│  │  ├─ top-shelf-main.jpg
+│  │  ├─ top-shelf-thumb1.jpg
+│  │  ├─ top-shelf-thumb2.jpg
+│  │  ├─ top-shelf-thumb3.jpg
+│  │  └─ top-shelf-thumb4.jpg
 │  ├─ js
 │  │  └─ main.js
 │  ├─ main.scss
-│  └─ minima-social-icons.svg
+│  ├─ minima-social-icons.svg
+│  └─ video
+│     └─ auslan.mp4
 ├─ CITATION.cff
 ├─ CLAUDE.md
 ├─ Gemfile
@@ -82,29 +97,29 @@ group34
 ├─ LICENSE
 ├─ NOTICE.md
 ├─ objects
-│  ├─ shelf2-object2.md
-│  ├─ shelf2-object3.md
-│  ├─ shelf2-object4.md
-│  ├─ shelf2-object5.md
-│  ├─ shelf2-object6.md
-│  ├─ shelf3-object7.md
-│  ├─ shelf3-object8.md
-│  └─ shelf3-object9.md
+│  ├─ bottom-shelf-object10.md
+│  ├─ bottom-shelf-object11.md
+│  ├─ bottom-shelf-object9.md
+│  ├─ middle-shelf-object2.md
+│  ├─ middle-shelf-object3.md
+│  ├─ middle-shelf-object4.md
+│  ├─ middle-shelf-object5.md
+│  ├─ middle-shelf-object6.md
+│  ├─ middle-shelf-object7.md
+│  └─ middle-shelf-object8.md
+├─ photo.md
 ├─ privacy.md
 ├─ README.md
 ├─ shelves
-│  ├─ first-shelf.md
-│  ├─ second-shelf.md
-│  └─ third-shelf.md
+│  ├─ bottom-shelf.md
+│  ├─ middle-shelf.md
+│  └─ top-shelf.md
 ├─ team.md
 ├─ terms.md
 ├─ _config.yml
 ├─ _includes
 │  ├─ audio-player.html
-│  ├─ cookie-banner.html
-│  ├─ disqus_comments.html
 │  ├─ footer.html
-│  ├─ google-analytics.html
 │  ├─ head.html
 │  ├─ header.html
 │  ├─ icon-github.html
@@ -116,14 +131,14 @@ group34
 │  ├─ pagination.html
 │  └─ social.html
 ├─ _layouts
+│  ├─ bottom-shelf.html
 │  ├─ default.html
 │  ├─ home.html
+│  ├─ middle-shelf.html
 │  ├─ object.html
 │  ├─ page.html
-│  ├─ post.html
-│  ├─ shelf1.html
-│  ├─ shelf2.html
-│  └─ shelf3.html
+│  ├─ photo.html
+│  └─ top-shelf.html
 └─ _sass
    ├─ minima
    │  ├─ _base.scss
@@ -132,14 +147,16 @@ group34
    ├─ minima.scss
    ├─ _about.scss
    ├─ _base.scss
+   ├─ _bottom-shelf.scss
    ├─ _footer.scss
    ├─ _header.scss
    ├─ _home.scss
+   ├─ _middle-shelf.scss
    ├─ _object.scss
+   ├─ _photo.scss
    ├─ _privacy.scss
    ├─ _responsive.scss
-   ├─ _shelf1.scss
-   ├─ _shelf2.scss
-   ├─ _shelf3.scss
+   ├─ _top-shelf.scss
    └─ _variables.scss
+
 ```
