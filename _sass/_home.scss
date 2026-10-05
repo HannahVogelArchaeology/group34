@@ -36,16 +36,23 @@
   position: relative;
   overflow: hidden;
 
+  .hero-media-container {
+    width: 100%;
+  }
+
   .hero-media-placeholder {
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
     padding: 40px;
     box-sizing: border-box;
 
     img {
-      width: 100%;
+      max-width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
@@ -55,6 +62,7 @@
       color: rgba(255, 255, 255, 0.35);
       font-size: 2.5em;
       font-weight: 500;
+      text-align: center;
     }
   }
 }
@@ -237,52 +245,50 @@
   }
 }
 
+
 // Auslan Video Section
 .auslan-section {
   background-color: #f6f3eb;
-  padding: 60px 40px 20px 40px;
-
-  .auslan-container {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .auslan-title {
-    font-size: 2.2em;
-    font-weight: 400;
-    color: #222222;
-    margin: 0 0 32px 0;
-  }
-
-  .video-card {
-    background-color: #eae5d9;
-    border-radius: 2px;
-    padding: 24px;
-    margin-bottom: 32px;
-    box-sizing: border-box;
-  }
-
-  .video-placeholder {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background-color: #b0ad9e;
-    overflow: hidden;
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-      display: block;
-    }
-  }
-
-  .auslan-description {
-    font-size: 0.95em;
-    line-height: 1.7;
-    color: #444444;
-    margin: 0;
-  }
+  padding: 60px 40px 40px;
 }
+
+.auslan-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.auslan-title {
+  font-size: 2.2em;
+  font-weight: 400;
+  color: #222222;
+  margin: 0 0 32px;
+}
+
+.video-card {
+  width: 100%;
+  background-color: #eae5d9;
+  padding: 12px;
+  box-sizing: border-box;
+  margin-bottom: 28px;
+}
+
+.auslan-video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background-color: #000000;
+}
+
+.auslan-description {
+  max-width: 900px;
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.7;
+  color: #444444;
+}
+
 
 // Acknowledgement Section
 .acknowledgement-section {
@@ -353,4 +359,12 @@
       }
     }
   }
+}
+
+/* Main page image captions */
+.hero-media-placeholder .image-caption {
+  margin: 0.65rem 0 0;
+  color: #555;
+  font-size: 0.85rem;
+  line-height: 1.45;
 }

@@ -201,3 +201,29 @@
     font-size: 2.8rem;
   }
 }
+
+/* Caption section displayed above the existing object/view line */
+.photo-caption-section {
+  width: min(100%, 900px);
+  margin: 0 auto;
+  padding: 0 0 0.6rem;
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.photo-viewer-figure figcaption {
+  min-height: 1.5em;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #fff;
+}
+
+.photo-thumb-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.7rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
