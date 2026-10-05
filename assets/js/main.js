@@ -326,245 +326,177 @@ document.addEventListener(
 /* Photo viewer page */
 
 function initialisePhotoViewer() {
-  const root = document.querySelector("[data-photo-viewer]");
-
-  if (!root) {
+  const viewer = document.getElementById("photo-viewer");
+  if (!viewer) {
     return;
   }
 
   const params = new URLSearchParams(window.location.search);
-  const objectName = params.get("object") || "Object";
-  const returnUrl = params.get("return") || root.dataset.siteRoot || "/";
-  const mainImage = root.querySelector("[data-photo-main]");
-  const caption = root.querySelector("[data-photo-caption]");
-  const counter = root.querySelector("[data-photo-counter]");
-  const thumbnails = root.querySelector("[data-photo-thumbnails]");
-  const previous = root.querySelector("[data-photo-prev]");
-  const next = root.querySelector("[data-photo-next]");
-  const returnLinks = root.querySelectorAll("[data-photo-return]");
+  const objectTitle = params.get("object") || "Object";
+  const returnUrl = params.get("return") || "/";
+  const currentImage = params.get("image") || "";
 
-  let images = (params.get("gallery") || params.get("image") || "")
-      .split(",")
-      .filter(Boolean);
+  const galleryImages = (params.get("gallery") || currentImage)
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
 
-  if (!images.length) {
-    images = [root.dataset.fallbackImage || ""];
+  const labels = (params.get("labels") || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  const captions = (params.get("captions") || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  const images = galleryImages.length ? galleryImages : [currentImage];
+  let currentIndex = Math.max(0, images.indexOf(currentImage));
+
+  const mainImage = document.getElementById("photoMainImage");
+  const counter = document.getElementById("photoCounter");
+  const objectName = document.getElementById("photoObjectName");
+  const viewLabel = document.getElementById("photoViewLabel");
+  const imageCaption = document.getElementById("photoImageCaption");
+  const thumbnails = document.getElementById("photoThumbnails");
+  const backLink = document.getElementById("photoBackLink");
+  const closeButton = document.getElementById("photoClose");
+  const previousButton = document.getElementById("photoPrev");
+  const nextButton = document.getElementById("photoNext");
+
+  const defaultLabel = (index) => {
+    if (index === 0) {
+      return "FRONT";
+    }
+    return `VIEW ${index + 1}`;
+  };
+
+  const getLabel = (index) => labels[index] || defaultLabel(index);
+  const getCaption = (index) => captions[index] || `${objectTitle} — ${getLabel(index)} image`;
+
+  if (backLink) {
+    backLink.href = returnUrl;
   }
 
-  let current = 0;
-
-
-  /* Return to object page */
-  returnLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
+  if (closeButton) {
+    closeButton.addEventListener("click", () => {
       window.location.href = returnUrl;
     });
-  });
-
-
-  /* Render selected image */
-  function renderPhoto(index) {
-    current = (index + images.length) % images.length;
-    mainImage.src = images[current];
-    mainImage.alt = `${objectName} photo view ${current + 1}`;
-
-    caption.textContent = `${objectName} • [` + `${current === 0 ? "Front View" : `Photo View ${current + 1}`}` + `]`;
-    counter.textContent = `${current + 1}/${images.length}`;
-
-    thumbnails
-      .querySelectorAll(".photo-thumbnail")
-      .forEach((thumb, thumbIndex) => {
-        thumb.classList.toggle("is-active", thumbIndex === current);
-      });
   }
 
+  function renderPhoto(index) {
+    currentIndex = (index + images.length) % images.length;
 
-  /* Create thumbnail buttons */
-  images.forEach((src, index) => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "photo-thumbnail";
-    button.setAttribute("aria-label", `View photo ${index + 1}`);
+    const label = getLabel(currentIndex);
+    const caption = getCaption(currentIndex);
 
-    const image = document.createElement("img");
-    image.src = src;
-    image.alt = "";
+    if (mainImage) {
+      mainImage.src = images[currentIndex];
+      mainImage.alt = caption;
+    }
 
-    button.appendChild(image);
-    button.addEventListener("click", () => renderPhoto(index));
+    if (counter) {
+      counter.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
 
-    thumbnails.appendChild(button);
+    if (objectName) {
+      objectName.textContent = objectTitle;
+    }
+
+    if (viewLabel) {
+      viewLabel.textContent = `[${label}]`;
+    }
+
+    if (imageCaption) {
+      imageCaption.textContent = caption;
+    }
+
+    if (thumbnails) {
+      thumbnails.querySelectorAll(".photo-thumbnail").forEach((thumbnail, indexInGallery) => {
+        thumbnail.classList.toggle("is-active", indexInGallery === currentIndex);
+      });
+    }
+  }
+
+  if (thumbnails) {
+    thumbnails.innerHTML = "";
+
+    images.forEach((src, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "photo-thumbnail";
+      button.setAttribute("aria-label", `View ${getLabel(index)}`);
+
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = getCaption(index);
+
+      const label = document.createElement("span");
+      label.className = "photo-thumb-label";
+      label.textContent = getLabel(index);
+
+      button.appendChild(label);
+      button.appendChild(image);
+      button.addEventListener("click", () => renderPhoto(index));
+
+      thumbnails.appendChild(button);
+    });
+  }
+
+  if (previousButton) {
+    previousButton.addEventListener("click", () => renderPhoto(currentIndex - 1));
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => renderPhoto(currentIndex + 1));
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      renderPhoto(currentIndex - 1);
+    } else if (event.key === "ArrowRight") {
+      renderPhoto(currentIndex + 1);
+    } else if (event.key === "Escape") {
+      window.location.href = returnUrl;
+    }
   });
 
-
-  /* Previous */
-  previous.addEventListener("click", () => renderPhoto(current - 1));
-
-  /* Next */
-  next.addEventListener("click", () => renderPhoto(current + 1));
-
-  /* Keyboard navigation */
-  document.addEventListener("keydown", (event) => {
-      if (event.key === "ArrowLeft") {
-        renderPhoto(current - 1);
-      }
-
-      if (event.key === "ArrowRight") {
-        renderPhoto(current + 1);
-      }
-
-      if (event.key === "Escape") {
-        window.location.href =
-          returnUrl;
-      }
-    }
-  );
-  renderPhoto(0);
+  renderPhoto(currentIndex);
 }
 
 
-/* Page initialisation */
-document.addEventListener(
-  "DOMContentLoaded",() => {
-    applyFontSize(currentFontSize);
-    initialiseThumbnails();
-    initialiseImageExpand();
-    initialisePhotoViewer();
+document.addEventListener("DOMContentLoaded", () => {
+  applyFontSize(currentFontSize);
+  initialiseThumbnails();
+  initialiseImageExpand();
+  initialisePhotoViewer();
 
-    const audio = document.getElementById("exhibitionAudio");
-    const playIcon = document.getElementById("playIcon");
+  const audio = document.getElementById("exhibitionAudio");
+  const playIcon = document.getElementById("playIcon");
 
-    if (audio && playIcon) {
-      audio.addEventListener("play",() => {
-          playIcon.className = "fas fa-pause";
-        }
-      );
+  if (audio && playIcon) {
+    audio.addEventListener("play", () => {
+      playIcon.className = "fas fa-pause";
+    });
 
-      audio.addEventListener("pause", () => {
-          playIcon.className = "fas fa-play";
-        }
-      );
+    audio.addEventListener("pause", () => {
+      playIcon.className = "fas fa-play";
+    });
 
-      audio.addEventListener("ended", () => {
-          playIcon.className = "fas fa-play";
-        }
-      );
-    }
-  }
-);
-
-/* Photo viewer page */
-document.addEventListener("DOMContentLoaded", function() {
-
-  // Check if we are on the Photo Viewer page
-  const photoViewer = document.getElementById('photo-viewer');
-  if (!photoViewer) return;
-
-  // Parse URL search parameters
-  const params = new URLSearchParams(window.location.search);
-  const currentImage = params.get('image') || '';
-  const objectTitle = params.get('object') || 'Object';
-  const returnUrl = params.get('return') || 'javascript:history.back()';
-  
-  // Split gallery param into an array or fallback to current image
-  const galleryRaw = params.get('gallery');
-  let galleryImages = galleryRaw ? galleryRaw.split(',') : [currentImage];
-  galleryImages = galleryImages.filter(url => url.trim() !== '');
-
-  if (galleryImages.length === 0 && currentImage) {
-    galleryImages = [currentImage];
-  }
-
-  const defaultViews = ["FRONT", "LEFT SIDE", "RIGHT SIDE", "BACK"];
-
-  let currentIndex = galleryImages.indexOf(currentImage);
-  if (currentIndex === -1) currentIndex = 0;
-
-  // DOM elements
-  const mainImg = document.getElementById('photoMainImage');
-  const counterEl = document.getElementById('photoCounter');
-  const nameEl = document.getElementById('photoObjectName');
-  const viewLabelEl = document.getElementById('photoViewLabel');
-  const backLink = document.getElementById('photoBackLink');
-  const closeBtn = document.getElementById('photoClose');
-  const prevBtn = document.getElementById('photoPrev');
-  const nextBtn = document.getElementById('photoNext');
-  const thumbsContainer = document.getElementById('photoThumbnails');
-
-  // Setup top links
-  if (backLink) backLink.href = returnUrl;
-  if (closeBtn) {
-    closeBtn.addEventListener('click', function() {
-      window.location.href = returnUrl;
+    audio.addEventListener("ended", () => {
+      playIcon.className = "fas fa-play";
     });
   }
+});
 
-  // Function to update display
-  function updateViewer(index) {
-    if (galleryImages.length === 0) return;
-    
-    currentIndex = index;
-    const activeUrl = galleryImages[currentIndex];
-    const viewName = defaultViews[currentIndex] || `VIEW ${currentIndex + 1}`;
+// Auslan video download option disable
+document.addEventListener("DOMContentLoaded", function () {
+  const videos = document.querySelectorAll(".auslan-video");
 
-    if (mainImg) {
-      mainImg.src = activeUrl;
-      mainImg.alt = `${objectTitle} - ${viewName}`;
-    }
-    if (nameEl) nameEl.textContent = objectTitle;
-    if (viewLabelEl) viewLabelEl.textContent = `[${viewName}]`;
-    if (counterEl) counterEl.textContent = `${currentIndex + 1} / ${galleryImages.length}`;
-
-    // Update thumbnails selection 
-    if (thumbsContainer) {
-      const thumbs = thumbsContainer.querySelectorAll('.photo-thumbnail');
-      thumbs.forEach((thumb, idx) => {
-        thumb.classList.toggle('is-active', idx === currentIndex);
-      });
-    }
-  }
-
-  // Render thumbnails
-  if (thumbsContainer) {
-    thumbsContainer.innerHTML = '';
-    galleryImages.forEach((url, idx) => {
-      const viewName = defaultViews[idx] || `VIEW ${idx + 1}`;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = `photo-thumbnail ${idx === currentIndex ? 'is-active' : ''}`;
-      btn.setAttribute('aria-label', viewName);
-
-      btn.innerHTML = `
-        <span class="photo-thumb-label" style="display:block; font-size:0.7rem; margin-bottom:2px; text-transform:uppercase;">${viewName}</span>
-        <img src="${url}" alt="${viewName}">
-      `;
-
-      btn.addEventListener('click', function() {
-        updateViewer(idx);
-      });
-
-      thumbsContainer.appendChild(btn);
+  videos.forEach(function (video) {
+    video.addEventListener("contextmenu", function (event) {
+      event.preventDefault();
     });
-  }
-
-  // Arrow navigation controls
-  if (prevBtn) {
-    prevBtn.addEventListener('click', function() {
-      let newIndex = currentIndex - 1;
-      if (newIndex < 0) newIndex = galleryImages.length - 1;
-      updateViewer(newIndex);
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener('click', function() {
-      let newIndex = currentIndex + 1;
-      if (newIndex >= galleryImages.length) newIndex = 0;
-      updateViewer(newIndex);
-    });
-  }
-
-  // Initialize page view
-  updateViewer(currentIndex);
+  });
 });
