@@ -5,7 +5,7 @@ layout: default
 <!-- Exhibition Title Section -->
 <section class="hero-title-section">
   <div class="hero-container">
-    <h1 class="hero-main-title">{{ page.hero_title }}</h1>
+    <h1 class="hero-main-title">{{ page.hero_title | markdownify}}</h1>
   </div>
 </section>
 
@@ -14,7 +14,7 @@ layout: default
   <div class="hero-container hero-media-container">
     <div class="hero-media-placeholder">
       {% if page.hero_image %}
-        <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_title }}">
+        <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt }}">
         <p class="image-caption">{{ page.hero_image_caption | default: "Main page exhibition hero image" }}</p>
       {% else %}
         <span class="placeholder-text">Main page</span>
@@ -28,7 +28,7 @@ layout: default
   <div class="hero-container">
     <div class="hero-content">
       <p class="narratives-label">Narratives Here:</p>
-      <p class="hero-description">{{ page.hero_text }}</p>
+      <p class="hero-description">{{ page.hero_text | markdownify}}</p>
     </div>
   </div>
 </section>
@@ -143,7 +143,7 @@ layout: default
     </div>
 
     <div class="ack-right">
-      <p>{{ page.acknowledgement_text }}</p>
+      <p>{{ page.acknowledgement_text | markdownify }}</p>
     </div>
   </div>
 
