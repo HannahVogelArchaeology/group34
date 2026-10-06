@@ -2,10 +2,10 @@
 layout: home
 title: Home
 hero_title: |
-  Diability Heritage:
+  Disability Heritage:
 
   Archaeology with Difference
-hero_alt: "A photograph of the Disability Heritage: Archaeology with Difference display. There is a tall glass cabinet with three shelves and a panel to the left. The panel features the overview text, an iPad with this website, a QR code to this website and several tactile models of the objects in the glass case. "
+hero_alt: "A photograph of the Disability Heritage: Archaeology with Difference display. There is a tall glass cabinet with three shelves and a panel to the left. The panel features the overview text, an iPad with this website, a QR code to this website and several tactile models of the objects in the glass case."
 hero_text: |
   Disability is part of our history. However, archaeology is often ableist, overlooking, or worse, devaluing disabled experiences.
 
