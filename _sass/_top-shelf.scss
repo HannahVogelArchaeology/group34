@@ -6,9 +6,9 @@
 
   .shelf-title {
     text-align: center;
-    font-size: 2em;
+    font-size: clamp(1.8rem, 4vw, 2.35rem);
     font-weight: 400;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     margin-bottom: 2.5em;
   }
 

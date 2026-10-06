@@ -441,6 +441,12 @@
     .shelf-overview-section {
       margin-bottom: 3em;
     }
+    .image-caption {
+    margin: 0.65rem 0 0;
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
   }
 
   @media (max-width: 580px) {
@@ -478,7 +484,6 @@
 }
 
 /* Keep the shelf image caption under the image while the object list stays on the right */
-.middle-shelf-container {
   .shelf-hero-media {
     min-width: 0;
   }
@@ -495,4 +500,4 @@
     font-size: 0.85rem;
     line-height: 1.45;
   }
-}
+
