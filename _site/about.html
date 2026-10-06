@@ -13,7 +13,7 @@
     img-src 'self' data:; media-src 'self' https:; connect-src 'self'; frame-src 'none';
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
-  <title>About Us | Digital Exhibition</title>
+  <title>About Us | Disability Heritage: Archaeology with Difference</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,7 +53,7 @@
   <header class="pinned-header">
   <div class="header-content">
     <div class="header-left">
-      <a href="/group34/" class="exhibition-title">Digital Exhibition</a>
+      <a href="/group34/" class="exhibition-title">Disability Heritage: Archaeology with Difference</a>
     </div>
     
     <div class="header-center">
@@ -111,7 +111,7 @@
         <span class="shelf-label">TOP SHELF</span>
         <div class="object-item">
           <span class="num-box">1</span>
-          <span class="object-title">Object Name</span>
+          <span class="object-title">Pelike</span>
         </div>
       </a>
     </div>
@@ -123,31 +123,31 @@
       </a>
       <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item">
         <span class="num-box">2</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Reclining Figure</span>
       </a>
       <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item">
         <span class="num-box">3</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Bronze dancer (replica)</span>
       </a>
       <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item">
         <span class="num-box">4</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Figure of a musician</span>
       </a>
       <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item">
         <span class="num-box">5</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Seated statuette</span>
       </a>
       <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item">
         <span class="num-box">6</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Bronze figure of Priapus</span>
       </a>
       <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item">
         <span class="num-box">7</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Terracotta figurine</span>
       </a>
       <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item">
         <span class="num-box">8</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Amulet of Pataikos</span>
       </a>
     </div>
 
@@ -158,15 +158,15 @@
       </a>
       <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item">
         <span class="num-box">9</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Feeding cup</span>
       </a>
       <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item">
         <span class="num-box">10</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Spouted Vessel</span>
       </a>
       <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item">
         <span class="num-box">11</span>
-        <span class="object-title">Object Name</span>
+        <span class="object-title">Feeding Vessel</span>
       </a>
     </div>
   </nav>
@@ -174,267 +174,494 @@
 
   <main class="main-content" id="main-content">
     <div class="about-page-container">
-  <h1 class="page-title">About Us</h1>
+<h1 class="page-title">About Us</h1>
 
-  <!-- Navigation Buttons -->
-  <div class="tab-navigation">
-    <button class="tab-btn active" onclick="switchTab('visitor-tab', this)">Visitor Information and Accessibility</button>
-    <button class="tab-btn" onclick="switchTab('curation-tab', this)">Curation and Acknowledgements</button>
-  </div>
+<!-- Tab navigation -->
+<div class="tab-navigation" role="tablist" aria-label="About Us sections">
+    <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="visitor-tab" onclick="switchTab('visitor-tab', this)">
+        Visitor Information and Accessibility
+    </button>
 
-  <!-- Quote Banner -->
-  <div id="quote-banner" class="quote-banner" style="display: none;">
-    <h2>" Quote here if needed "</h2>
+    <button class="tab-btn"  type="button" role="tab" aria-selected="false" aria-controls="curation-tab" onclick="switchTab('curation-tab', this)">
+        Curation and Acknowledgements
+    </button>
+</div>
+
+<!-- OPTIONAL QUOTE BANNER: Hidden until needed -->
+<div id="quote-banner" class="quote-banner" style="display: none;" hidden>
+    <h2>"Quote here if needed"</h2>
     <p>- John Doe, Someone of Business Enterprise</p>
-  </div>
+</div>
 
-  <!-- Visitor Information and Accessibility -->
-  <div id="visitor-tab" class="tab-content active">
-    <h2 class="main-tab-title">Visitor Information and Accessibility</h2>
+<!-- VISITOR INFORMATION AND ACCESSIBILITY -->
+<section id="visitor-tab" class="tab-content active" role="tabpanel">
+<h2 class="main-tab-title">Visitor Information and Accessibility</h2>
 
-    <section class="content-section">
-      <h3 class="gold-heading">Visitor Information</h3>
 
-      <!-- For Website Subsection -->
-      <div class="sub-block">
-        <h4 class="sub-title">For Website</h4>
-        <table class="info-table visitor-info-table">
-          <tr>
+<!-- Visitor Information -->
+<section class="content-section">
+    <h3 class="gold-heading">Visitor Information</h3>
+
+
+<!-- For Website -->
+    <div class="sub-block">
+    <h4 class="sub-title">For Website</h4>
+
+    <table class="info-table visitor-info-table">
+    <tbody>
+        <tr>
             <td class="label-col">Location</td>
-            <td class="value-col"><a href="https://www.google.com" class="inline-link">https://www.google.com</a></td>
-          </tr>
-          <tr>
+            <td class="value-col">
+                <a href="https://www.google.com" class="inline-link">https://www.google.com</a>
+            </td>
+        </tr>
+
+        <tr>
             <td class="label-col">Lorem Ipsum</td>
             <td class="value-col">Lorem Ipsum</td>
-          </tr>
-        </table>
-        <p class="section-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
-      </div>
+        </tr>
+    </tbody>
+    </table>
 
-      <!-- On Campus Subsection -->
-      <div class="sub-block">
-        <h4 class="sub-title">On Campus</h4>
-        <table class="info-table visitor-info-table">
-          <tr>
+    <p class="section-desc">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Proin eget justo ac tortor maximus scelerisque.
+        Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis,
+        ac laoreet turpis est sed ligula.
+        Nulla ante felis, ultrices sit amet magna nec,
+        efficitur porta purus.
+        Nulla posuere posuere tellus, dictum dictum diam pharetra ac.
+    </p>
+</div>
+
+
+<!-- On Campus -->
+<div class="sub-block">
+    <h4 class="sub-title">On Campus</h4>
+
+    <table class="info-table visitor-info-table">
+        <tbody>
+        <tr>
             <td class="label-col">Location</td>
             <td class="value-col">Wallys Walk 999, Somewhere, Building B201</td>
-          </tr>
-          <tr>
-            <td class="label-col" rowspan="6">Opening hours</td>
-            <td class="value-col hours-row"><span>Monday</span><span>10:00 AM - 4:00 PM</span></td>
-          </tr>
-          <tr><td class="value-col hours-row"><span>Tuesday</span><span>10:00 AM - 4:00 PM</span></td></tr>
-          <tr><td class="value-col hours-row"><span>Wednesday</span><span>10:00 AM - 4:00 PM</span></td></tr>
-          <tr><td class="value-col hours-row"><span>Thursday</span><span>10:00 AM - 4:00 PM</span></td></tr>
-          <tr><td class="value-col hours-row"><span>Friday</span><span>10:00 AM - 4:00 PM</span></td></tr>
-        </table>
-        <p class="section-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac.</p>
-      </div>
-    </section>
-
-  </div>
-
-  <!-- Curation and Acknowledgement -->
-  <div id="curation-tab" class="tab-content">
-    <h2 class="main-tab-title">Curation and Acknowledgements</h2>
-
-    <!-- Curation Section -->
-    <section class="content-section">
-      <h3 class="gold-heading">Curation</h3>
-      <p class="author-sub">by Hannah Vogel</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-
-      <table class="info-table curation-info-table">
-        <tr>
-          <td class="label-col">Credentials</td>
-          <td class="value-col">Lorem Ipsum</td>
         </tr>
+
         <tr>
-          <td class="label-col contact-label-main" rowspan="2">Contact</td>
-          <td class="value-col contact-row">
-          <span class="contact-label">Email</span>
-          <span>abcde12345@gmail.com</span>
-          </td>
+            <td class="label-col" rowspan="5">Opening hours</td>
+            <td class="value-col hours-row">
+                <span>Monday</span>
+                <span>10:00 AM - 4:00 PM</span>
+            </td>
         </tr>
+
         <tr>
-          <td class="value-col contact-row">
-          <span class="contact-label">Social</span>
-          <a href="#" aria-label="LinkedIn" class="inline-link"><i class="fab fa-linkedin"></i></a></td>
+            <td class="value-col hours-row">
+                <span>Tuesday</span>
+                <span>10:00 AM - 4:00 PM</span>
+            </td>
         </tr>
-      </table>
-    </section>
 
-    <!-- Funding Section -->
-    <section class="content-section">
-      <h3 class="gold-heading">Funding</h3>
-      <div class="sub-block">
-        <h4 class="sub-title">Lorem ipsum dolor sit amet</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus.</p>
-      </div>
-      <div class="sub-block">
-        <h4 class="sub-title">Lorem ipsum dolor sit amet</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus.</p>
-      </div>
-    </section>
+        <tr>
+            <td class="value-col hours-row">
+                <span>Wednesday</span>
+                <span>10:00 AM - 4:00 PM</span>
+            </td>
+        </tr>
 
-    <!-- Acknowledgements Section -->
-    <section class="content-section">
-      <h3 class="gold-heading">Acknowledgements</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus.</p>
-    </section>
+        <tr>
+            <td class="value-col hours-row">
+                <span>Thursday</span>
+                <span>10:00 AM - 4:00 PM</span>
+            </td>
+        </tr>
 
-    <!-- Website Development Team Section -->
+        <tr>
+            <td class="value-col hours-row">
+                <span>Friday</span>
+                <span>10:00 AM - 4:00 PM</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 
-<section class="content-section">
-  <h3 class="gold-heading">Website Development Team</h3>
+    <p class="section-desc">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Proin eget justo ac tortor maximus scelerisque.
+        Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis,
+        ac laoreet turpis est sed ligula.
+        Nulla ante felis, ultrices sit amet magna nec,
+        efficitur porta purus.
+        Nulla posuere posuere tellus, dictum dictum diam pharetra ac.
+    </p>
 
-  <!-- Interactive Avatars -->
-  <div class="team-avatars" id="avatar-container">
-    <div class="avatar active" onclick="selectMember(0, this)">AB</div>
-    <div class="avatar" onclick="selectMember(1, this)">CD</div>
-    <div class="avatar" onclick="selectMember(2, this)">EF</div>
-    <div class="avatar" onclick="selectMember(3, this)">GH</div>
-    <div class="avatar" onclick="selectMember(4, this)">IJ</div>
-    <div class="avatar" onclick="selectMember(5, this)">KL</div>
-  </div>
-
-  <!-- Dynamic Pointer Line -->
-  <div class="gold-divider-line">
-    <div class="pointer-arrow" id="pointer-arrow"></div>
-  </div>
-
-  <!-- Member Information Table -->
-  <table class="info-table team-member-table">
-    <tr>
-      <td class="label-col">Name</td>
-      <td class="value-col" id="member-name">ABCDEF GHIJKL</td>
-    </tr>
-    <tr>
-      <td class="label-col">Macquarie University</td>
-      <td class="value-col" id="member-degree">Bachelor of Information Technology<br />Software Technology</td>
-    </tr>
-    <tr>
-      <td class="label-col">Role</td>
-      <td class="value-col" id="member-role">Lorem Ipsum</td>
-    </tr>
-    <tr>
-      <td class="label-col" rowspan="2">Contact</td>
-      <td class="value-col" id="member-email">Email: abcde12345@gmail.com</td>
-    </tr>
-    <tr>
-      <td class="value-col" id="member-social">Social: <a href="#" aria-label="LinkedIn" id="member-link" class="inline-link"><i class="fab fa-linkedin"></i></a></td>
-    </tr>
-  </table>
+</div>
+</section>
 </section>
 
-<script>
-  // Team Data Store
-  const teamMembers = [
-    {
-      name: "ABCDEF GHIJKL",
-      degree: "Bachelor of Information Technology<br>Software Technology",
-      role: "Lorem Ipsum",
-      email: "Email: abcde12345@gmail.com",
-      link: "#"
-    },
-    {
-      name: "MNOPQ RSTUVW",
-      degree: "Bachelor of Cyber Security<br>Information Systems",
-      role: "Lorem Ipsum",
-      email: "Email: abcde12345@gmail.com",
-      link: "#"
-    },
-    {
-      name: "AaBbCc DeEeFf",
-      degree: "Bachelor of Game Design<br>Interactive Media",
-      role: "Lorem Ipsum",
-      email: "Email: abcde12345@gmail.com",
-      link: "#"
-    },
-    {
-      name: "GgHhIi JjKkLl",
-      degree: "Bachelor of Information Technology<br>Data Science",
-      role: "Lorem Ipsum",
-      email: "Email: abcde12345@gmail.com",
-      link: "#"
-    },
-    {
-      name: "MmNnOo PpQqRr",
-      degree: "Bachelor of Computer Science<br>Software Engineering",
-      role: "Lorem Ipsum",
-      email: "Email: abcde12345@gmail.com",
-      link: "#"
-    },
-    {
-      name: "SsTtUu VvWwXxYyZz",
-      degree: "Bachelor of Information Technology<br>Web Design",
-      role: "Lorem Ipsum",
-      email: "Email: abcde12345@gmail.com",
-      link: "#"
-    }
-  ];
+<!-- CURATION AND ACKNOWLEDGEMENTS -->
+<section id="curation-tab" class="tab-content" role="tabpanel">
+<h2 class="main-tab-title"> Curation and Acknowledgements </h2>
 
-  // Tab switching between top level tabs
-  function switchTab(tabId, btn) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+<!-- CURATION -->
+<section class="content-section">
+    <h3 class="gold-heading">Curation</h3>
+    <div class="curator-profile">
+
+    <!-- PROFILE IMAGE to be added later...
+    -----------------------------------------------------
+    1. Put the image in assets/images/
+    2. Change the front matter at the top:
+        curator_image: "/assets/images/curator-profile.jpg" -->
+
     
+
+
+    <div class="curator-bio">
+        <p class="author-sub">
+        by Hannah Vogel
+        </p>
+
+        <p>
+            <strong>Hannah Vogel</strong> is an archaeologist researching ableism and disability.
+            She is an advocate for accessibility, with experience in museums, outreach and inclusive pedagogies.
+            Hannah is a teaching academic and PhD candidate in the School of Humanities (Macquarie University) and was awarded emerging leader of disability by the National Disability Research Partnership.
+        </p>
+    </div>
+    </div>
+
+
+<!-- Curator Details -->
+    <table class="info-table curation-info-table">
+    <tbody>
+        <tr>
+            <td class="label-col">Credentials</td>
+            <td class="value-col">Lorem Ipsum</td>
+        </tr>
+
+        <tr>
+            <td class="label-col contact-label-main" rowspan="2">Contact</td>
+            <td class="value-col contact-row">
+                <span class="contact-label">Email</span>
+                <span>abcde12345@gmail.com</span>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="value-col contact-row">
+                <span class="contact-label">Social</span>
+                <a href="#" aria-label="LinkedIn" class="inline-link">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+    </table>
+</section>
+
+
+<!-- PUBLICATIONS later...
+    -------------------------------------------------------
+    This section is controlled by: publications_enabled: false
+    Change it to true when publications are required. -->
+
+
+
+<!-- Funding -->
+<section class="content-section">
+
+    <h3 class="gold-heading">Funding</h3>
+    <div class="sub-block">
+
+    <h4 class="sub-title">Lorem ipsum dolor sit amet</h4>
+
+    <p> This exhibition is funded by the National Disability Research Partnership’s Disability Research Leadership Program (2026). It is part of Hannah Vogel’s PhD project supported by the Commonwealth through an Australian Government Research Training Program Scholarship DOI: <a href="https://doi.org/10.82133/C42F-K220" class="inline-link">https://doi.org/10.82133/C42F-K220</a>.
+    </p>
+    </div>
+</section>
+
+
+<!-- ACKNOWLEDGEMENTS -->
+<section class="content-section">
+
+    <h3 class="gold-heading">Acknowledgements</h3>
+
+    <p>This research was undertaken on the lands of the Wallumattagal clan of the Dharug Nation, whose cultures and customs have nurtured and continue to nurture this land, since the Dreaming. Their sovereignty was never ceded.</p>
+    <p>Thanks to the Gale History Museum, Macquarie University for providing access to the materials for this exhibition, with special thanks to Leila Wallace, Dr Yvonne Inall and Sarah Judd. Thanks also to:</p>
+    <ul>
+        <li>
+            Dr Brian Ballsun-Stanton (website accessibility, development and support)
+        </li>
+        <li>
+            Mike Baber (3D models and prints)
+        </li>
+        <li>
+            Dave Frame (Signage and installation)
+        </li>
+        <li>
+            Vision Australia (Tactile fabrication, large-print and braille guides)
+        </li>
+    </ul>
+    <p>I acknowledge [disability] community consultation, was provided by the <a href="https://www.ndrp.org.au/" target="_blank">National Disability Research Partnership</a> staff (especially, Catherine Raffaele and Jess Rosenthal), and the Disability Research Leaders Community of Practise members (especially, Matthew Jackson and Samantha Lilly). Acknowledgments for feedback and consultation also from Dr Alexandra F. Morris, Amy Cripps, Cecily Bateman, Chaya Kasif, Damian Gilbert, Dr David Chapman, Dr Ewan Coopey, Gessika Crowe, Hannah Newman, Jackie Tang, Dr Julia Hamilton, Dr Katie Shead, Louise Pryke, Marianne Strauss, Narges Safari, Nicole Leong, Penelope Blake, Prof Ronika Power, Sarah Massingham, Taylah Evans and many other community members who have elected to remain anonymous.</p>
+    <p>Special thanks to Hannah Newman and Dr Brian Ballsun-Stanton for their work supporting the administrative and technical development of this exhibition and associated website.</p>
+    <p>In most instances, I have chosen to use identity-first disability language as a personal preference. Acknowledge that preferences vary amongst the diverse disability community and respect the choices of each person to express their experiences and embodiments. </p>
+</section>
+
+
+<!-- WEBSITE DEVELOPMENT TEAM -->
+<section class="content-section">
+<h3 class="gold-heading">Website Development Team</h3>
+
+<!-- Interactive Avatars -->
+    <div class="team-avatars" id="avatar-container" role="tablist" aria-label="Website development team members">
+
+    <button class="avatar active" type="button" onclick="selectMember(0, this)" aria-label="Team member 1">
+    AB
+    </button>
+
+    <button class="avatar" type="button" onclick="selectMember(1, this)" aria-label="Team member 2">
+    CD
+    </button>
+
+    <button class="avatar" type="button" onclick="selectMember(2, this)" aria-label="Team member 3">
+    EF
+    </button>
+
+    <button class="avatar" type="button" onclick="selectMember(3, this)" aria-label="Team member 4">
+    GH
+    </button>
+
+    <button class="avatar" type="button" onclick="selectMember(4, this)" aria-label="Team member 5">
+    IJ
+    </button>
+
+    <button class="avatar" type="button" onclick="selectMember(5, this)" aria-label="Team member 6">
+    KL
+    </button>
+</div>
+
+
+<!-- Dynamic Pointer Line -->
+<div class="gold-divider-line">
+    <div class="pointer-arrow" id="pointer-arrow" aria-hidden="true"></div>
+</div>
+
+
+<!-- Member Information -->
+<table class="info-table team-member-table">
+    <tbody>
+
+    <tr>
+        <td class="label-col">Name</td>
+        <td class="value-col" id="member-name">
+            ABCDEF GHIJKL
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label-col">Macquarie University</td>
+        <td class="value-col" id="member-degree">
+            Bachelor of Information Technology<br>
+            Software Technology
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label-col">Role</td>
+        <td class="value-col" id="member-role">
+            Lorem Ipsum
+        </td>
+    </tr>
+
+    <tr>
+        <td class="label-col" rowspan="2">
+            Contact
+        </td>
+
+        <td class="value-col" id="member-email">
+            Email: abcde12345@gmail.com
+        </td>
+    </tr>
+
+    <tr>
+        <td class="value-col" id="member-social">
+        Social:
+        <a href="#" aria-label="LinkedIn" id="member-link" class="inline-link">
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</section>
+
+</section>
+</div>
+
+
+
+<!-- SCRIPT: About page interaction -->
+<script>
+
+  /* Team Data */
+const teamMembers = [
+    {
+        name: "ABCDEF GHIJKL",
+        degree: "Bachelor of Information Technology<br>Software Technology",
+        role: "Lorem Ipsum",
+        email: "Email: abcde12345@gmail.com",
+        link: "#"
+    },
+    {
+        name: "MNOPQ RSTUVW",
+        degree: "Bachelor of Cyber Security<br>Information Systems",
+        role: "Lorem Ipsum",
+        email: "Email: abcde12345@gmail.com",
+        link: "#"
+    },
+    {
+        name: "AaBbCc DeEeFf",
+        degree: "Bachelor of Game Design<br>Interactive Media",
+        role: "Lorem Ipsum",
+        email: "Email: abcde12345@gmail.com",
+        link: "#"
+    },
+    {
+        name: "GgHhIi JjKkLl",
+        degree: "Bachelor of Information Technology<br>Data Science",
+        role: "Lorem Ipsum",
+        email: "Email: abcde12345@gmail.com",
+        link: "#"
+    },
+    {
+        name: "MmNnOo PpQqRr",
+        degree: "Bachelor of Computer Science<br>Software Engineering",
+        role: "Lorem Ipsum",
+        email: "Email: abcde12345@gmail.com",
+        link: "#"
+    },
+    {
+        name: "SsTtUu VvWwXxYyZz",
+        degree: "Bachelor of Information Technology<br>Web Design",
+        role: "Lorem Ipsum",
+        email: "Email: abcde12345@gmail.com",
+        link: "#"
+    }
+    ];
+
+
+  /* Tab Switching */
+function switchTab(tabId, btn) {
+
+    document
+        .querySelectorAll('.tab-content')
+        .forEach(function (element) {
+            element.classList.remove('active');
+        });
+
+    document
+        .querySelectorAll('.tab-btn')
+        .forEach(function (element) {
+            element.classList.remove('active');
+            element.setAttribute('aria-selected', 'false');
+        });
+
     const targetContent = document.getElementById(tabId);
+
     if (targetContent) {
-      targetContent.classList.add('active');
+        targetContent.classList.add('active');
+    }
+
+    if (!btn) {
+        btn = document.querySelector(
+        '.tab-btn[onclick*="' + tabId + '"]'
+        );
     }
 
     if (btn) {
-      btn.classList.add('active');
-    } else {
-      // Find and activate matching button if triggered by URL hash
-      const matchingBtn = document.querySelector(`.tab-btn[onclick*="${tabId}"]`);
-      if (matchingBtn) matchingBtn.classList.add('active');
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected', 'true');
     }
 
     const banner = document.getElementById('quote-banner');
+
     if (banner) {
-      banner.style.display = (tabId === 'curation-tab') ? 'block' : 'none';
+        banner.hidden = tabId !== 'curation-tab';
     }
-  }
-
-  // Check URL hash on page load and open the corresponding tab
-  window.addEventListener('DOMContentLoaded', () => {
-    if (window.location.hash === '#curation-tab') {
-      switchTab('curation-tab');
     }
-  });
 
 
+  /* Team Member Selection */
+function selectMember(index, element) {
 
-  // Member selection logic
-  function selectMember(index, element) {
-    // 1. Update active styling on avatar circles
-    document.querySelectorAll('#avatar-container .avatar').forEach(avatar => {
-      avatar.classList.remove('active');
-    });
+    document
+        .querySelectorAll('#avatar-container .avatar')
+        .forEach(function (avatar) {
+        avatar.classList.remove('active');
+        });
+
+
     element.classList.add('active');
 
-    // 2. Reposition the triangle pointer beneath selected circle
-    const pointer = document.getElementById('pointer-arrow');
-const divider = document.querySelector('.gold-divider-line');
-    const avatarRect = element.getBoundingClientRect(); //getBoundingClientRect gives actual position on screen
-    const dividerRect = divider.getBoundingClientRect();
-    const avatarCenter = avatarRect.left - dividerRect.left + (avatarRect.width / 2); 
-        //avatarRect.left - dividerRect.left tells us how far avatar is from left edge of divider
-        //avatarRect.width/2 gives centre of avatar
-    pointer.style.left = `${avatarCenter - 8}px`;
 
-    // 3. Populate member details into the table
+    /* Move pointer under selected avatar */
+    const pointer = document.getElementById('pointer-arrow');
+    const divider = document.querySelector('.gold-divider-line');
+
+
+    if (pointer && divider) {
+        const avatarRect = element.getBoundingClientRect();
+        const dividerRect = divider.getBoundingClientRect();
+
+        const avatarCenter =
+            avatarRect.left - dividerRect.left + (avatarRect.width / 2);
+        pointer.style.left = (avatarCenter - 8) + 'px';
+    }
+
+
+    /* Populate member information */
     const data = teamMembers[index];
-    document.getElementById('member-name').innerHTML = data.name;
-    document.getElementById('member-degree').innerHTML = data.degree;
-    document.getElementById('member-role').innerHTML = data.role;
-    document.getElementById('member-email').innerHTML = data.email;
-    document.getElementById('member-link').href = data.link;
-  }
+    if (!data) {
+        return;
+    }
+
+    document.getElementById('member-name').innerHTML =
+        data.name;
+
+    document.getElementById('member-degree').innerHTML =
+        data.degree;
+
+    document.getElementById('member-role').innerHTML =
+        data.role;
+
+    document.getElementById('member-email').innerHTML =
+        data.email;
+
+    document.getElementById('member-link').href =
+        data.link;
+    }
+
+
+  /* Page Initialisation */
+window.addEventListener('DOMContentLoaded', function () {
+
+    /* Open curation tab when linked with #curation-tab */
+    if (window.location.hash === '#curation-tab') {
+        switchTab('curation-tab');
+    }
+
+
+    /* Initialise first team member and pointer */
+    const firstAvatar =
+        document.querySelector('#avatar-container .avatar');
+
+    if (firstAvatar) {
+        selectMember(0, firstAvatar);
+    }
+    });
+
 </script>
-</div></div>
 
   </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
   <!-- Bar with the time -->
@@ -482,7 +709,7 @@ const divider = document.querySelector('.gold-divider-line');
 
   <div class="footer-bottom">
     <div class="copyright-area">
-      <p class="footer-copyright">&copy; 2026 Digital Exhibition. All rights reserved.</p>
+      <p class="footer-copyright">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
     </div>
     <div class="legal-links">
       <a href="/group34/privacy/">Privacy</a>

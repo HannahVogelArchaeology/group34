@@ -39,7 +39,7 @@ The code is derived from the MIT-licensed Minima theme. See `LICENSE` and
 those terms and the required credit beside each asset.
 
 ```bash
-v2_fixed
+v2
 ├─ .ruby-lsp
 │  ├─ freshness_hash
 │  ├─ Gemfile
@@ -139,6 +139,8 @@ v2_fixed
 │  ├─ page.html
 │  ├─ photo.html
 │  └─ top-shelf.html
+├─ _plugins
+│  └─ webrick_range_fallback.rb
 └─ _sass
    ├─ minima
    │  ├─ _base.scss
