@@ -7,38 +7,38 @@ shelf_number: "BOTTOM SHELF"
 shelf_title: "Bottom Shelf"
 
 hero_image: "/assets/images/bottom-shelf-main.jpg"
-show_hero_image: false
-hero_alt: "Photograph of the Bottom Shelf display case"
-hero_caption: "Shelf display hero image"
+show_hero_image: true
+hero_alt: "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top featuring several incised holes, a narrow handle, a thin pouring spout and a flat base."
+hero_caption: "11. Feeding vessel, MU3368, front angled view © Gale History Museum"
 
 # Keep placeholders until the approved object photographs are supplied.
 show_object_images: false
 
 overview: >-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus.
+  These feeding vessels, despite differences in design over time, were made to support the needs of people. They represent difference, creating change in [material] culture.
 
 # Front matter data loop for the 3 objects on the Bottom Shelf
 objects:
   - num: 9
-    name: "Object 9"
+    name: "Feeding cup"
     slug: "bottom-shelf-object9"
     image: "/assets/images/obj9.jpg"
-    alt: "Placeholder photograph of Object 9"
-    description: "Short description of Object 9."
+    alt: "9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle."
+    caption: "Feeding cup, AHM/1985/053, front view angled © Gale History"
 
   - num: 10
-    name: "Object 10"
+    name: "Spouted Vessel"
     slug: "bottom-shelf-object10"
     image: "/assets/images/obj10.jpg"
-    alt: "Placeholder photograph of Object 10"
-    description: "Short description of Object 10."
+    alt: "Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines can be seen around the handle, neck, and body."
+    caption: "10. Spouted vessel, MU0091, front-angled view © Gale History Museum"
 
   - num: 11
-    name: "Object 11"
+    name: "Feeding Vessel"
     slug: "bottom-shelf-object11"
     image: "/assets/images/obj11.jpg"
-    alt: "Placeholder photograph of Object 11"
-    description: "Short description of Object 11."
+    alt: "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base."
+    caption: "11. Feeding vessel, MU3368, front angled view © Gale History Museum"
 
 prev_url: "/shelves/middle-shelf/"
 prev_label: "MIDDLE SHELF"
