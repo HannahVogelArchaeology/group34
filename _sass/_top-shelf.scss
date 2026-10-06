@@ -239,6 +239,8 @@
           &.value {
             text-align: right;
             color: #333;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
           }
         }
       }

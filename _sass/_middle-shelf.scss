@@ -267,18 +267,20 @@
     }
 
     .card-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.65em;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      column-gap: 0.65em;
       min-height: 2.3em;
       margin-bottom: 0.75em;
 
       .item-title {
+        min-width: 0;
         color: var(--shelf-text);
         font-size: 0.95em;
         font-weight: 600;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
         transition: color 160ms ease;
       }
     }
@@ -306,6 +308,33 @@
         margin: 0;
         color: var(--shelf-muted);
       }
+    }
+
+    .card-caption,
+    .card-alt-text {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .card-caption {
+      margin-top: 0.75em;
+      color: #555;
+      font-size: 0.82em;
+      line-height: 1.45;
+    }
+
+    .card-alt-text {
+      margin-top: 0.55em;
+      color: var(--shelf-muted);
+      font-size: 0.75em;
+      line-height: 1.45;
+    }
+
+    .card-alt-label {
+      font-weight: 600;
+      color: var(--shelf-text);
     }
 
     .btn-view {
@@ -501,3 +530,40 @@
     line-height: 1.45;
   }
 
+
+
+/* Keep hero captions inside the same width as the image on narrow screens. */
+.shelf-hero-media {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.shelf-hero-media .image-caption {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0.65rem 0 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #555;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (max-width: 700px) {
+  .shelf-hero-media {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .shelf-hero-media .image-caption {
+    width: 100%;
+    max-width: 100%;
+  }
+}
