@@ -341,15 +341,44 @@ function initialisePhotoViewer() {
     .map((value) => value.trim())
     .filter(Boolean);
 
-  const labels = (params.get("labels") || "")
-    .split(",")
-    .map((value) => value.trim())
-    .filter(Boolean);
+  /* Read gallery metadata by index so each caption remains paired with its image. */
+  const indexedValues = (prefix) => {
+    const values = [];
 
-  const captions = (params.get("captions") || "")
-    .split(",")
-    .map((value) => value.trim())
-    .filter(Boolean);
+    for (let index = 0; ; index += 1) {
+      const value = params.get(`${prefix}${index}`);
+
+      if (value === null) {
+        break;
+      }
+
+      values.push(value);
+    }
+
+    return values;
+  };
+
+  const labels = indexedValues("label");
+  const captions = indexedValues("caption");
+
+  /* Keep compatibility with older photo links that used pipe-separated metadata. */
+  if (!labels.length) {
+    labels.push(
+      ...(params.get("labels") || "")
+        .split("|")
+        .map((value) => value.trim())
+        .filter(Boolean)
+    );
+  }
+
+  if (!captions.length) {
+    captions.push(
+      ...(params.get("captions") || "")
+        .split("|")
+        .map((value) => value.trim())
+        .filter(Boolean)
+    );
+  }
 
   const images = galleryImages.length ? galleryImages : [currentImage];
   let currentIndex = Math.max(0, images.indexOf(currentImage));
