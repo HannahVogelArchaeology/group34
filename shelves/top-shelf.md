@@ -5,21 +5,21 @@ permalink: /shelves/top-shelf/
 shelf_number: "TOP SHELF"
 shelf_title: "Top Shelf"
 object_title: "1. Pelike"
-hero_image: "/assets/images/top-shelf-main.jpg"
+hero_image: "/assets/images/1 Pelike_MU4759_front_Image1.jpeg"
 prev_url: "/"
 prev_label: "MAIN PAGE"
 next_url: "/shelves/middle-shelf/"
 next_label: "MIDDLE SHELF"
 gallery_images:
-  - src: "/assets/images/top-shelf-main.jpg"
+  - src: "/assets/images/1 Pelike_MU4759_front_Image1.jpeg"
     label: "FRONT"
     alt: "Object 1. A Pelike. A large Greek-style vase. The scene depicts two men facing each other. One appears to use a staff, possibly as a mobility aid."
     caption: "Pelike, MU4759, front view © Gale History Museum"
-  - src: "/assets/images/top-shelf-thumb1.jpg"
+  - src: "/assets/images/1 Pelike_MU4759_front scene_Image2.jpeg"
     label: "FRONT SCENE"
     alt: "Object 1. Close-up of the scene on a pelike. A large Greek-style vase. The scene depicts two men facing each other. One appears to use a staff, possibly as a mobility aid."
     caption: "Pelike, MU4759, front close-up of scene © Gale History Museum"
-  - src: "/assets/images/top-shelf-thumb2.jpg"
+  - src: "/assets/images/1 Pelike_MU4759_back_Image3.jpeg"
     label: "BACK"
     alt: "Object 1. A Pelike. A large Greek-style vase. The scene depicts one seated man and one standing woman facing each other. The woman holds a fan and the man a dish of some sort. Flower-like shapes border the top, scrolls and swirls line the sides, and a Greek key runs along the bottom."
     caption: "Pelike, MU4759, back view © Gale History Museum"
@@ -43,16 +43,16 @@ overview: "This pelike depicts the use of a mobility aid: a staff or cane. In an
       </button>
 
       <img
-        src="{{ '/assets/images/top-shelf-main.jpg' | relative_url }}"
+        src="{{ '/assets/images/top-shelf-main.jpeg' | relative_url }}"
         alt="Top shelf main object"
       >
     </div>
 
     <div class="shelf-thumbnails">
-      <img src="{{ '/assets/images/top-shelf-thumb1.jpg' | relative_url }}" alt="Top shelf thumbnail 1">
-      <img src="{{ '/assets/images/top-shelf-thumb2.jpg' | relative_url }}" alt="Top shelf thumbnail 2">
-      <img src="{{ '/assets/images/top-shelf-thumb3.jpg' | relative_url }}" alt="Top shelf thumbnail 3">
-      <img src="{{ '/assets/images/top-shelf-thumb4.jpg' | relative_url }}" alt="Top shelf thumbnail 4">
+      <img src="{{ '/assets/images/top-shelf-thumb1.jpeg' | relative_url }}" alt="Top shelf thumbnail 1">
+      <img src="{{ '/assets/images/top-shelf-thumb2.jpeg' | relative_url }}" alt="Top shelf thumbnail 2">
+      <img src="{{ '/assets/images/top-shelf-thumb3.jpeg' | relative_url }}" alt="Top shelf thumbnail 3">
+      <img src="{{ '/assets/images/top-shelf-thumb4.jpeg' | relative_url }}" alt="Top shelf thumbnail 4">
     </div>
 
     <div class="shelf-actions">
