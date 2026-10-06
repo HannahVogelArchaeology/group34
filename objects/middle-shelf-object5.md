@@ -3,25 +3,25 @@ layout: object
 title: "5. Seated statuette"
 permalink: /objects/middle-shelf-object5/
 object_number: "OBJECT 5"
-image: "/assets/images/obj5.jpg"
+image: "/assets/images/5 Seated Statuette_MU3735_front_Image1.jpeg"
 gallery_images:
-  - src: "/assets/images/obj5-front.jpg"
+  - src: "/assets/images/5 Seated Statuette_MU3735_front_Image1.jpeg"
     label: "FRONT"
     alt: "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright."
     caption: "5. Seated statuette, MU3735, front view © Gale History Museum"
-  - src: "/assets/images/obj5-front-left-side.jpg"
+  - src: "/assets/images/5 Seated Statuette_MU3735_front left side_Image2.jpeg"
     label: "FRONT LEFT SIDE"
     alt: "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright. The figure is angled so its front-left side is visible."
     caption: "5. Seated statuette, MU3735, front left side view © Gale History Museum"
-  - src: "/assets/images/obj5-left-side.jpg"
+  - src: "/assets/images/5 Seated Statuette_MU3735_left side_Image3.jpeg"
     label: "LEFT SIDE"
     alt: "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright. The figure is angled so left side is visible."
     caption: "5. Seated statuette, MU3735, left side view © Gale History Museum"
-  - src: "/assets/images/obj5-right-side.jpg"
+  - src: "/assets/images/5 Seated Statuette_MU3735_right side_Image4.jpeg"
     label: "RIGHT SIDE"
     alt: "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright. The figure is angled so its right side is visible."
     caption: "5. Seated statuette, MU3735, right side view © Gale History Museum"
-  - src: "/assets/images/obj5-back.jpg"
+  - src: "/assets/images/5 Seated Statuette_MU3735_back_Image5.jpeg"
     label: "BACK"
     alt: "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright. The figure is angled so its back is visible."
     caption: "5. Seated statuette, MU3735, back view © Gale History Museum"
@@ -29,7 +29,10 @@ gallery_images:
 acq_no: "MU3735"
 material: "Ceramic"
 dimensions: "Lorem Ipsum"
-details: "Mesopotamia, Greek seated figurine, c.3000 B.C.E. Purchased in 2003."
+details: >-
+  Mesopotamia, Greek seated figurine, c.3000 B.C.E.
+
+  Purchased in 2003.
 overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula."
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
