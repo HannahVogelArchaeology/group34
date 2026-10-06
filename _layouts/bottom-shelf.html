@@ -2,6 +2,7 @@
 layout: default
 ---
 
+{% capture hero_meta_query %}label0=HERO%20IMAGE&caption0={{ page.hero_caption | uri_escape }}{% endcapture %}
 <div class="bottom-shelf-container" data-bottom-shelf-version="interface-enhancement">
 
   <h1 class="shelf-v2-title">
@@ -16,7 +17,7 @@ layout: default
       <div class="hero-image-wrapper">
         <a
           class="shelf-photo-link"
-          href="{{ '/photo/' | relative_url }}?image={{ page.hero_image | relative_url | uri_escape }}&object={{ page.shelf_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ page.hero_image | relative_url | uri_escape }}&labels=HERO%20IMAGE&captions={{ page.hero_caption | uri_escape }}"
+          href="{{ '/photo/' | relative_url }}?image={{ page.hero_image | relative_url | uri_escape }}&object={{ page.shelf_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ page.hero_image | relative_url | uri_escape }}&{{ hero_meta_query }}"
           aria-label="Open Bottom Shelf hero image in the photo viewer"
         >
           <img src="{{ page.hero_image | relative_url }}" alt="Bottom Shelf hero image" loading="eager">
@@ -24,7 +25,7 @@ layout: default
 
         <a
           class="expand-btn"
-          href="{{ '/photo/' | relative_url }}?image={{ page.hero_image | relative_url | uri_escape }}&object={{ page.shelf_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ page.hero_image | relative_url | uri_escape }}&labels=HERO%20IMAGE&captions={{ page.hero_caption | uri_escape }}"
+          href="{{ '/photo/' | relative_url }}?image={{ page.hero_image | relative_url | uri_escape }}&object={{ page.shelf_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ page.hero_image | relative_url | uri_escape }}&{{ hero_meta_query }}"
           aria-label="Open Bottom Shelf hero image in the photo viewer"
         >
           <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
@@ -107,25 +108,15 @@ layout: default
         </div>
 
         <div class="card-media">
-
-          {% if page.show_object_images %}
-
           <img
             src="{{ obj.image | relative_url }}"
             alt="{{ obj.alt | escape }}"
             loading="eager"
           >
-
-          {% else %}
-
-          <p
-            class="card-image-placeholder"
-            aria-label="Image placeholder for {{ obj.name }}"
-          ></p>
-
-          {% endif %}
-
         </div>
+
+        <p class="card-caption">{{ obj.caption }}</p>
+        <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> {{ obj.alt }}</p>
 
       </a>
 

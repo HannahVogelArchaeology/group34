@@ -5,7 +5,8 @@ layout: default
 <!-- Exhibition Title Section -->
 <section class="hero-title-section">
   <div class="hero-container">
-    <h1 class="hero-main-title">{{ page.hero_title | markdownify}}</h1>
+    <h1 class="hero-main-title">{{ page.hero_title | strip | newline_to_br }}</h1>
+    <p class="hero-curator">Curated by Hannah Vogel</p>
   </div>
 </section>
 
@@ -46,7 +47,7 @@ layout: default
       </div>
 
       <div class="card-img">
-        <img src="{{ '/assets/images/top-shelf-main.jpg' | relative_url }}" alt="Top Shelf">
+        <img src="{{ '/assets/images/1 Pelike_MU4759_front_Image1.jpeg' | relative_url }}" alt="Object 1. A Pelike. A large Greek-style vase. The scene depicts two men facing each other. One appears to use a staff, possibly as a mobility aid.">
       </div>
 
       <p class="caption">Pelike, MU4759, front view © Gale History Museum</p>
@@ -63,7 +64,7 @@ layout: default
       </div>
 
       <div class="card-img">
-        <img src="{{ '/assets/images/middle-shelf-main.jpg' | relative_url }}" alt="Middle Shelf">
+        <img src="{{ '/assets/images/middle-shelf-main.jpeg' | relative_url }}" alt="Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so the drummer’s front-right side is visible.">
       </div>
 
       <p class="caption">4. Figure of a Musician, MU0086, front-right side view © Gale History Museum</p>
@@ -80,7 +81,7 @@ layout: default
       </div>
 
       <div class="card-img">
-        <img src="{{ '/assets/images/bottom-shelf-main.jpg' | relative_url }}" alt="Bottom Shelf">
+        <img src="{{ '/assets/images/bottom-shelf-main.jpeg' | relative_url }}" alt="Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base.">
       </div>
 
       <p class="caption">11. Feeding vessel, MU3368, front angled view © Gale History Museum</p>
@@ -127,6 +128,10 @@ layout: default
         Your browser does not support HTML5 video.
       </video>
     </div>
+
+    <p class="auslan-caption">
+      {{ page.auslan_caption }}
+    </p>
 
     <p id="auslan-video-description" class="auslan-description">
       {{ page.auslan_text }}

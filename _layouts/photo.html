@@ -4,6 +4,61 @@ layout: default
 
 <main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
 
+<!-- Photo gallery data is generated at build time to keep photo URLs short. -->
+  <script type="application/json" id="photoGalleryData">
+  [
+    {% for object in site.objects %}
+    {
+      "key": {{ object.url | relative_url | jsonify }},
+      "object": {{ object.title | jsonify }},
+      "return": {{ object.url | relative_url | jsonify }},
+      "images": [
+        {% for gallery_image in object.gallery_images %}
+          {% assign image_exists = false %}
+          {% for static_file in site.static_files %}
+            {% if static_file.path == gallery_image.src %}
+              {% assign image_exists = true %}
+            {% endif %}
+          {% endfor %}
+          {
+            "src": {% if image_exists %}{{ gallery_image.src | relative_url | jsonify }}{% else %}{{ object.image | relative_url | jsonify }}{% endif %},
+            "label": {{ gallery_image.label | jsonify }},
+            "caption": {{ gallery_image.caption | jsonify }},
+            "alt": {{ gallery_image.alt | default: gallery_image.caption | jsonify }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    },
+    {% endfor %}
+    {% for shelf in site.shelves %}
+    {
+      "key": {{ shelf.url | relative_url | jsonify }},
+      "object": {{ shelf.object_title | default: shelf.shelf_title | jsonify }},
+      "return": {{ shelf.url | relative_url | jsonify }},
+      "images": [
+        {% if shelf.gallery_images %}
+          {% for image in shelf.gallery_images %}
+          {
+            "src": {{ image.src | relative_url | jsonify }},
+            "label": {{ image.label | jsonify }},
+            "caption": {{ image.caption | jsonify }},
+            "alt": {{ image.alt | default: image.caption | jsonify }}
+          }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        {% else %}
+          {
+            "src": {{ shelf.hero_image | relative_url | jsonify }},
+            "label": "HERO IMAGE",
+            "caption": {{ shelf.hero_caption | jsonify }},
+            "alt": {{ shelf.hero_alt | default: shelf.hero_caption | jsonify }}
+          }
+        {% endif %}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+  </script>
+
 <!-- TOP BAR -->
 <div class="photo-viewer-header">
     <a id="photoBackLink" class="photo-back-link" href="#" > &lt; BACK</a>

@@ -2,15 +2,9 @@
 layout: default
 ---
 
-{% capture gallery_urls %}{% for image in page.gallery_images %}{% assign image_exists = false %}{% for static_file in
-site.static_files %}{% if static_file.path == image.src %}{% assign image_exists = true %}{% endif %}{% endfor %}{% if
-image_exists %}{{ image.src | relative_url }}{% else %}{{ page.image | relative_url }}{% endif %}{% unless forloop.last
-%},{% endunless %}{% endfor %}{% endcapture %}
+{% capture gallery_urls %}{% for image in page.gallery_images %}{% assign image_exists = false %}{% for static_file in site.static_files %}{% if static_file.path == image.src %}{% assign image_exists = true %}{% endif %}{% endfor %}{% if image_exists %}{{ image.src | relative_url }}{% else %}{{ page.image | relative_url }}{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign gallery_urls = gallery_urls | strip | strip_newlines %}
-{% capture gallery_labels %}{% for image in page.gallery_images %}{{ image.label | uri_escape }}{% unless forloop.last
-%},{% endunless %}{% endfor %}{% endcapture %}
-{% capture gallery_captions %}{% for image in page.gallery_images %}{{ image.caption | uri_escape }}{% unless
-forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+{% capture gallery_meta_query %}{% for image in page.gallery_images %}label{{ forloop.index0 }}={{ image.label | uri_escape }}&caption{{ forloop.index0 }}={{ image.caption | uri_escape }}{% unless forloop.last %}&{% endunless %}{% endfor %}{% endcapture %}
 {% assign first_gallery_src = page.image %}
 {% if page.gallery_images and page.gallery_images[0].src %}
 {% for static_file in site.static_files %}
@@ -18,6 +12,7 @@ forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 endif %}
 {% endfor %}
 {% endif %}
+{% assign three_d_link = page['3d_link'] %}
 
 <div class="object-detail-container">
 
@@ -33,14 +28,14 @@ endif %}
 
       <div class="main-image-wrapper">
         <a class="main-image-link"
-          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&labels={{ gallery_labels }}&captions={{ gallery_captions }}"
+          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
           aria-label="Open {{ page.title }} front image in the photo viewer">
           <img src="{{ first_gallery_src | relative_url }}"
             alt="{{ page.gallery_images[0].caption | default: page.title | escape }}" class="main-img">
         </a>
 
         <a class="expand-btn"
-          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&labels={{ gallery_labels }}&captions={{ gallery_captions }}"
+          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
           aria-label="Open {{ page.title }} front image in the photo viewer">
           <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </a>
@@ -59,7 +54,7 @@ endif %}
           {% if static_file.path == gallery_image.src %}{% assign gallery_image_exists = true %}{% endif %}
           {% endfor %}
           <a class="thumb-box"
-            href="{{ '/photo/' | relative_url }}?image={% if gallery_image_exists %}{{ gallery_image.src | relative_url | uri_escape }}{% else %}{{ page.image | relative_url | uri_escape }}{% endif %}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&labels={{ gallery_labels }}&captions={{ gallery_captions }}"
+            href="{{ '/photo/' | relative_url }}?image={% if gallery_image_exists %}{{ gallery_image.src | relative_url | uri_escape }}{% else %}{{ page.image | relative_url | uri_escape }}{% endif %}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
             aria-label="Open {{ gallery_image.label }} of {{ page.title }}">
             <img
               src="{% if gallery_image_exists %}{{ gallery_image.src | relative_url }}{% else %}{{ page.image | relative_url }}{% endif %}"
@@ -68,12 +63,12 @@ endif %}
           {% endfor %}
         </div>
         
-        <a href="{{ page.3d_link }}" target="_blank">
-          <button class="explore-3d-btn" type="button">
+        {% if three_d_link %}
+          <a href="{{ three_d_link | escape }}" target="_blank" rel="noopener noreferrer" class="explore-3d-btn">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
             Explore in 3D
-          </button>
-        </a>
+          </a>
+        {% endif %}
       </div>
 
     </div>
@@ -130,7 +125,7 @@ endif %}
           </tr>
           <tr>
             <td class="meta-label">Details</td>
-            <td class="meta-value">{{ page.details | default: 'Lorem Ipsum' }}</td>
+            <td class="meta-value">{{ page.details | default: 'Lorem Ipsum' | escape | newline_to_br }}</td>
           </tr>
         </table>
       </div>
