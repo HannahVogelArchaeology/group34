@@ -3,16 +3,12 @@
 {% include head.html %}
 <body>
   {% include header.html %}
-  {% unless page.layout == 'home' %}
-    {% include navigation.html %}
-  {% endunless %}
   {% include menu.html %}
 
   <main class="main-content" id="main-content">
     {{ content }}
   </main>
 
-  {% include cookie-banner.html %}
   {%- include audio-player.html -%}
   {% include footer.html %}
 

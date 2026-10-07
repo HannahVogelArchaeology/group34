@@ -1,80 +1,155 @@
 ---
 layout: default
 ---
-<section class="hero-section">
+
+<!-- Exhibition Title Section -->
+<section class="hero-title-section">
   <div class="hero-container">
-    <div class="hero-content">
-      <h1 class="hero-main-title">{{ page.hero_title }}</h1>
-      <p class="narratives-label">Narratives Here:</p>
-      <p class="hero-description">{{ page.hero_text }}</p>
+    <h1 class="hero-main-title">{{ page.hero_title | strip | newline_to_br }}</h1>
+    <p class="hero-curator">Curated by Hannah Vogel</p>
+  </div>
+</section>
+
+<!-- Hero Image / Placeholder Section -->
+<section class="hero-media-section">
+  <div class="hero-container hero-media-container">
+    <div class="hero-media-placeholder">
+      {% if page.hero_image %}
+        <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt }}">
+        <p class="image-caption">{{ page.hero_image_caption | default: "Main page exhibition hero image" }}</p>
+      {% else %}
+        <span class="placeholder-text">Main page</span>
+      {% endif %}
     </div>
   </div>
 </section>
 
+<!-- Narratives Section -->
+<section class="hero-narrative-section">
+  <div class="hero-container">
+    <div class="hero-content">
+      <p class="narratives-label">Narratives Here:</p>
+      <p class="hero-description">{{ page.hero_text | markdownify}}</p>
+    </div>
+  </div>
+</section>
+
+<!-- Shelves Explorer Section -->
 <section class="shelves-explorer">
   <h2 class="explorer-title">Explore the exhibition</h2>
+
   <div class="shelf-cards-container">
-    
-    <!-- First Shelf -->
-    <div class="shelf-card">
-      <div class="card-header">
-        <span class="shelf-label">FIRST SHELF</span>
-      </div>
-      <div class="card-img">
-        <img src="{{ '/assets/images/shelf1-main.jpg' | relative_url }}" alt="First Shelf">
-      </div>
-      <p class="caption">Caption of the photo</p>
-      <a href="{{ '/shelves/first-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
-    </div>
-    
-    <!-- Second Shelf -->
-    <div class="shelf-card">
-      <div class="card-header">
-        <span class="shelf-label">SECOND SHELF</span>
-      </div>
-      <div class="card-img">
-        <img src="{{ '/assets/images/shelf2-main.jpg' | relative_url }}" alt="Second Shelf">
-      </div>
-      <p class="caption">Caption of the photo</p>
-      <a href="{{ '/shelves/second-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
-    </div>
 
-    <!-- Third Shelf -->
-    <div class="shelf-card">
+    <!-- Top Shelf -->
+    <a href="{{ '/shelves/top-shelf/' | relative_url }}" class="shelf-card" aria-label="View Top Shelf">
       <div class="card-header">
-        <span class="shelf-label">THIRD SHELF</span>
+        <span class="shelf-label">TOP SHELF</span>
       </div>
-      <div class="card-img">
-        <img src="{{ '/assets/images/shelf3-main.jpg' | relative_url }}" alt="Third Shelf">
-      </div>
-      <p class="caption">Caption of the photo</p>
-      <a href="{{ '/shelves/third-shelf/' | relative_url }}" class="view-button">VIEW &rarr;</a>
-    </div>
 
+      <div class="card-img">
+        <img src="{{ '/assets/images/1 Pelike_MU4759_front_Image1.jpeg' | relative_url }}" alt="Object 1. A Pelike. A large Greek-style vase. The scene depicts two men facing each other. One appears to use a staff, possibly as a mobility aid.">
+      </div>
+
+      <p class="caption">Pelike, MU4759, front view © Gale History Museum</p>
+
+      <span class="view-button" aria-hidden="true">
+        VIEW &rarr;
+      </span>
+    </a>
+
+    <!-- Middle Shelf -->
+    <a href="{{ '/shelves/middle-shelf/' | relative_url }}" class="shelf-card" aria-label="View Middle Shelf">
+      <div class="card-header">
+        <span class="shelf-label">MIDDLE SHELF</span>
+      </div>
+
+      <div class="card-img">
+        <img src="{{ '/assets/images/4 Figure of a Musician_MU0086_hero shot_Image2.jpeg' | relative_url }}" alt="Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so the drummer’s front-right side is visible.">
+      </div>
+
+      <p class="caption">4. Figure of a Musician, MU0086, front-right side view © Gale History Museum</p>
+
+      <span class="view-button" aria-hidden="true">
+        VIEW &rarr;
+      </span>
+    </a>
+
+    <!-- Bottom Shelf -->
+    <a href="{{ '/shelves/bottom-shelf/' | relative_url }}" class="shelf-card" aria-label="View Bottom Shelf">
+      <div class="card-header">
+        <span class="shelf-label">BOTTOM SHELF</span>
+      </div>
+
+      <div class="card-img">
+        <img src="{{ '/assets/images/11 Feeding Vessel_MU3368_hero shot_Image1.jpeg' | relative_url }}" alt="Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base.">
+      </div>
+
+      <p class="caption">11. Feeding vessel, MU3368, front angled view © Gale History Museum</p>
+
+      <span class="view-button" aria-hidden="true">
+        VIEW &rarr;
+      </span>
+    </a>
   </div>
 </section>
 
 <!-- Quote Banner Section -->
 <section class="quote-section">
   <div class="quote-container">
+
     <div class="quote-left">
-      <blockquote class="quote-text">" {{ page.quote_text | default: 'Quote here if needed' }} "</blockquote>
-      <p class="quote-curator">- {{ page.quote_curator | default: 'John Doe, Someone of Business Enterprise' }}</p>
+      <blockquote class="quote-text">
+        "{{ page.quote_text | default: 'Quote here if needed' }}"
+      </blockquote>
+
+      <p class="quote-curator">
+        - {{ page.quote_curator | default: 'John Doe, Someone of Business Enterprise' }}
+      </p>
     </div>
+
     <div class="quote-right">
-      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">&gt; Curator's Bio</a>
+      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">
+        &gt; About Us
+      </a>
     </div>
+  </div>
+</section>
+
+<!-- Auslan Video Section -->
+<section class="auslan-section" aria-labelledby="auslan-video-heading">
+
+  <div class="auslan-container">
+
+    <h2 id="auslan-video-heading" class="auslan-title">Auslan Video</h2>
+
+    <div class="video-card">
+      <video class="auslan-video" controls controlsList="nodownload" disablePictureInPicture preload="metadata" playsinline oncontextmenu="return false;" aria-describedby="auslan-video-description">
+        <source src="{{ page.auslan_video | relative_url }}" type="video/mp4">
+        Your browser does not support HTML5 video.
+      </video>
+    </div>
+
+    <p class="auslan-caption">
+      {{ page.auslan_caption }}
+    </p>
+
+    <p id="auslan-video-description" class="auslan-description">
+      {{ page.auslan_text }}
+    </p>
   </div>
 </section>
 
 <!-- Acknowledgement Section -->
 <section class="acknowledgement-section">
+
   <div class="acknowledgement-container">
     <div class="ack-left">
-      <h2>ACKNOWLEDGEMENT</h2>
+      <h2>ACKNOWLEDGEMENTS</h2>
     </div>
+
     <div class="ack-right">
-      <p>{{ page.acknowledgement_text }}</p>
+      <p>{{ page.acknowledgement_text | markdownify }}</p>
     </div>
   </div>
+
 </section>

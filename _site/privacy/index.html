@@ -4,33 +4,56 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy | Digital Exhibition</title>
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data:; media-src 'self' https:; connect-src 'self'; frame-src 'none';
+    object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+  >
+  <title>Privacy Policy | Disability Heritage: Archaeology with Difference</title>
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Icons & Alpine JS for UI state management -->
+  <!-- Font Awesome icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-  <!-- Avoid flashy changes when refreshing -->
+  <!-- Material Icons CDN -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Prevent visual flashing on page load -->
   <script>
   (function() {
-    var savedSize = localStorage.getItem('userFontSize');
-    if (savedSize) {
-      document.documentElement.style.fontSize = savedSize + '%';
-    }
+    try {
+      var savedSize = localStorage.getItem('userFontSize');
+
+      if (savedSize) {
+        document.documentElement.style.fontSize = savedSize + '%';
+      }
+    } catch (error) {
+    // If localStorage is unavailable...
+  }
   })();
-  </script>
-  <link rel="stylesheet" href="/group34/assets/main.css">
+</script>
+
+<!-- SVG Favicon -->
+<link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
+
+<!-- Style sheet -->
+<link rel="stylesheet" href="/group34/assets/main.css">
+
 </head>
+
 <body>
   <header class="pinned-header">
   <div class="header-content">
     <div class="header-left">
-      <a href="/group34/" class="exhibition-title">Digital Exhibition</a>
+      <a href="/group34/" class="exhibition-title">Disability Heritage: Archaeology with Difference</a>
     </div>
     
     <div class="header-center">
@@ -53,17 +76,6 @@
 </header>
 
 
-  
-    <!-- Context Header Navigation -->
-<nav class="sub-navigation" aria-label="Breadcrumb">
-  <ul>
-    <li><a href="/group34/">Home</a></li>
-    
-      <li>/ Privacy Policy</li>
-    
-  </ul>
-</nav>
-  
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
   <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
@@ -73,72 +85,77 @@
   <nav class="sidebar-nav">
     <!-- Top Direct Links -->
     <a href="/group34/" class="nav-item main-link">
-      <i class="fas fa-folder icon-folder"></i>
+      <i class="fa-solid fa-landmark"></i>
       <span>HOME</span>
     </a>
     
     <a href="/group34/about/" class="nav-item main-link">
-      <i class="fas fa-folder icon-folder"></i>
+      <i class="fa fa-search" aria-hidden="true"></i>
       <span>ABOUT</span>
     </a>
 
-    <!-- 1st Shelf Group -->
+    <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
     <div class="shelf-group">
-      <a href="/group34/shelves/first-shelf/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">1st Shelf</span>
-          <span class="object-title">1 Object Name</span>
+      <a href="/group34/shelves/top-shelf/" class="nav-item shelf-block-link">
+        <span class="shelf-label">TOP SHELF</span>
+        <div class="object-item">
+          <span class="num-box">1</span>
+          <span class="object-title">Pelike</span>
         </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
       </a>
     </div>
 
-    <!-- 2nd Shelf Group -->
+    <!-- Middle Shelf Group -->
     <div class="shelf-group">
-      <a href="/group34/objects/shelf2-object2/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">2nd Shelf</span>
-          <span class="object-title">2 Object Name</span>
-        </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/shelves/middle-shelf/" class="shelf-label-link">
+        <span class="shelf-label">MIDDLE SHELF</span>
       </a>
-      <a href="/group34/objects/shelf2-object3/" class="nav-item object-link indent">
-        <span class="object-title">3 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item">
+        <span class="num-box">2</span>
+        <span class="object-title">Reclining Figure</span>
       </a>
-      <a href="/group34/objects/shelf2-object4/" class="nav-item object-link indent">
-        <span class="object-title">4 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item">
+        <span class="num-box">3</span>
+        <span class="object-title">Bronze dancer (replica)</span>
       </a>
-      <a href="/group34/objects/shelf2-object5/" class="nav-item object-link indent">
-        <span class="object-title">5 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item">
+        <span class="num-box">4</span>
+        <span class="object-title">Figure of a musician</span>
       </a>
-      <a href="/group34/objects/shelf2-object6/" class="nav-item object-link indent">
-        <span class="object-title">6 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item">
+        <span class="num-box">5</span>
+        <span class="object-title">Seated statuette</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item">
+        <span class="num-box">6</span>
+        <span class="object-title">Bronze figure of Priapus</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item">
+        <span class="num-box">7</span>
+        <span class="object-title">Terracotta figurine</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item">
+        <span class="num-box">8</span>
+        <span class="object-title">Amulet of Pataikos</span>
       </a>
     </div>
 
-    <!-- 3rd Shelf Group -->
+    <!-- Bottom Shelf Group -->
     <div class="shelf-group">
-      <a href="/group34/objects/shelf3-object7/" class="nav-item object-link has-folder">
-        <i class="far fa-folder icon-folder"></i>
-        <div class="object-info">
-          <span class="shelf-label">3rd Shelf</span>
-          <span class="object-title">7 Object Name</span>
-        </div>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/shelves/bottom-shelf/" class="shelf-label-link">
+        <span class="shelf-label">BOTTOM SHELF</span>
       </a>
-      <a href="/group34/objects/shelf3-object8/" class="nav-item object-link indent">
-        <span class="object-title">8 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item">
+        <span class="num-box">9</span>
+        <span class="object-title">Feeding cup</span>
       </a>
-      <a href="/group34/objects/shelf3-object9/" class="nav-item object-link indent">
-        <span class="object-title">9 Object Name</span>
-        <i class="fas fa-arrow-right icon-arrow"></i>
+      <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item">
+        <span class="num-box">10</span>
+        <span class="object-title">Spouted Vessel</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item">
+        <span class="num-box">11</span>
+        <span class="object-title">Feeding Vessel</span>
       </a>
     </div>
   </nav>
@@ -167,116 +184,133 @@
     <!-- Introduction Section -->
     <section class="policy-section">
       <h2 class="section-title">Introduction</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla ante felis, ultrices sit amet magna nec, efficitur porta purus. Nulla posuere posuere tellus, dictum dictum diam pharetra ac. Nam eget eros quis ex vehicula consectetur. Mauris commodo risus eros, id feugiat purus maximus vel.</p>
+      <p>This Privacy Policy explains how Digital Exhibition collects, uses, stores and protects information when visitors use our website. We are committed to respecting the privacy of our visitors and handling personal information responsibly. This policy also explains the choices available to users regarding their personal information.</p>
     </section>
 
     <!-- 1. Data We Collect -->
-    <section id="data-we-collect" class="policy-section">
-      <h2 class="section-title">1. Data We Collect</h2>
 
-      <div class="subsection">
-        <h3 class="subsection-title">1.1 Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-      </div>
+<section id="data-we-collect" class="policy-section">
+  <h2 class="section-title">1. Data We Collect</h2>
 
-      <div class="subsection">
-        <h3 class="subsection-title">1.2 Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-      </div>
-    </section>
+  <div class="subsection">
+    <h3 class="subsection-title">1.1 Information You Provide</h3>
+    <p>We may collect personal information that you voluntarily provide when interacting with the Digital Exhibition, such as your name, email address and any information submitted through enquiry or contact forms.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 class="subsection-title">1.2 Information Collected Automatically</h3>
+    <p>When you access the Digital Exhibition, certain technical information may be collected automatically, such as your browser type, device type, IP address and general website usage information. This information may be used to maintain, secure and improve the website.</p>
+  </div>
+</section>
 
     <!-- 2. How We Use Your Data -->
-    <section id="how-we-use-your-data" class="policy-section">
-      <h2 class="section-title">2. How We Use Your Data</h2>
 
-      <div class="subsection">
-        <h3 class="subsection-title">2.1 Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-      </div>
+<section id="how-we-use-your-data" class="policy-section">
+  <h2 class="section-title">2. How We Use Your Data</h2>
 
-      <div class="subsection">
-        <h3 class="subsection-title">2.2 Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-      </div>
-    </section>
+  <div class="subsection">
+    <h3 class="subsection-title">2.1 Providing and Maintaining the Website</h3>
+    <p>We may use collected information to operate, maintain and improve the Digital Exhibition, provide access to exhibition content, respond to enquiries and ensure that website features function correctly.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 class="subsection-title">2.2 Improving User Experience and Security</h3>
+    <p>We may use technical and usage information to understand how visitors interact with the Digital Exhibition, improve accessibility and user experience, identify technical problems and help protect the website from misuse or security threats.</p>
+  </div>
+</section>
 
     <!-- 3. How We Share Information -->
-    <section id="how-we-share-information" class="policy-section">
-      <h2 class="section-title">3. How We Share Information</h2>
 
-      <div class="subsection">
-        <h3 class="subsection-title">3.1 Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-      </div>
+<section id="how-we-share-information" class="policy-section">
+  <h2 class="section-title">3. How We Share Information</h2>
 
-      <div class="subsection">
-        <h3 class="subsection-title">3.2 Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-      </div>
-    </section>
+  <div class="subsection">
+    <h3 class="subsection-title">3.1 Service Providers</h3>
+    <p>We may share limited information with trusted service providers that support the operation, hosting, maintenance or security of the Digital Exhibition. These providers should only use information as necessary to provide their services.</p>
+  </div>
 
-    <!-- 4. Your Choices and Obligations -->
-    <section id="your-choices-and-obligations" class="policy-section">
-      <h2 class="section-title">4. Your Choices and Obligations</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">3.2 Legal Requirements</h3>
+    <p>We may disclose information when required by law or when reasonably necessary to protect the rights, safety and security of the Digital Exhibition, its users or others. We do not sell visitors' personal information.</p>
+  </div>
+</section>
 
-      <div class="subsection">
-        <h3 class="subsection-title">4.1 Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-      </div>
-    </section>
+<!-- 4. Your Choices and Obligations -->
+<section id="your-choices-and-obligations" class="policy-section">
+  <h2 class="section-title">4. Your Choices and Obligations</h2>
 
-    <!-- 5. Other Important Information -->
-    <section id="other-important-information" class="policy-section">
-      <h2 class="section-title">5. Other Important Information</h2>
+  <div class="subsection">
+    <h3 class="subsection-title">4.1 Your Privacy Choices</h3>
+    <p>You may choose not to provide personal information unless it is required for a particular website feature. You may also contact us to ask about personal information you have provided and request that inaccurate information be corrected where appropriate.</p>
+  </div>
 
-      <div class="subsection">
-        <h3 class="subsection-title">5.1 Lorem Ipsum</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula.</p>
-      </div>
-    </section>
+  <div class="subsection">
+    <h3 class="subsection-title">4.2 Responsible Use</h3>
+    <p>Visitors are expected to use the Digital Exhibition responsibly and must not attempt to misuse the website, interfere with its operation or access information or systems without authorisation.</p>
+  </div>
+</section>
+
+<!-- 5. Other Important Information -->
+<section id="other-important-information" class="policy-section">
+  <h2 class="section-title">5. Other Important Information</h2>
+
+  <div class="subsection">
+    <h3 class="subsection-title">5.1 Data Security</h3>
+    <p>We take reasonable measures to protect information associated with the Digital Exhibition from unauthorised access, alteration, disclosure or loss. However, no method of transmitting or storing information online can guarantee complete security.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 class="subsection-title">5.2 Changes to This Privacy Policy</h3>
+    <p>We may update this Privacy Policy when the Digital Exhibition, its features or privacy practices change. Any updated version will be published on this page, and visitors are encouraged to review the policy periodically.</p>
+  </div>
+
+  <div class="subsection">
+    <h3 class="subsection-title">5.3 Contact Us</h3>
+    <p>If you have questions, concerns or requests relating to this Privacy Policy or the handling of your information, please contact the Digital Exhibition team using the enquiry or contact options provided on the website.</p>
+  </div>
+</section>
 
   </main>
 </div>
 
-  </main>
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  <!-- Bar with the time -->
+  <div class="audio-progress-container">
+    <span id="currentTime">0:00</span>
+    <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
+    <span id="durationTime">0:00</span>
+  </div>
 
-  <div class="cookie-banner" id="cookieBanner">
-  <div class="cookie-content">
-    <p>We use cookies to improve your experience.</p>
-    <div class="cookie-buttons">
-      <button onclick="acceptCookies()" class="btn-cookie-accept">Accept</button>
-      <button onclick="declineCookies()" class="btn-cookie-decline">Decline</button>
-      <button onclick="closeCookieBanner()" class="cookie-close-icon">&times;</button>
+  <div class="audio-controls-wrapper">
+    <!-- Left control, speed and play button -->
+    <div class="audio-left">
+      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">0.5x</button>
+      <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
+        <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
+      </button>
+      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at 1.5 speed">1.5x</button>
     </div>
-  </div>
-</div><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
-  <div class="audio-left">
-    <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">
-      0.5x
-    </button>
 
-    <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
-      <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
-    </button>
+    <!-- Center info -->
+    <div class="audio-center">
+      <span class="audio-obj-name">Privacy Policy</span>
+      <span class="audio-shelf-label">Privacy Policy</span>
+    </div>
 
-    <button type="button" onclick="changeAudioSpeed(2)" aria-label="Play audio at double speed">
-      2x
-    </button>
-  </div>
-
-  <div class="audio-center">
-    <span class="audio-obj-name">
-      Privacy Policy
-    </span>
-    <span class="audio-shelf-label">
-      Privacy Policy
-    </span>
-  </div>
-
-  <div class="audio-right">
-    <button type="button" onclick="toggleMute()" aria-label="Mute or unmute audio">
-      <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
-    </button>
+    <!-- Volume and transcript -->
+    <div class="audio-right">
+      <div class="volume-container">
+        <div class="volume-popup" id="volumePopup">
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)" aria-label="Volume Slider">
+        </div>
+        <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
+          <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
+        </button>
+        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
   </div>
 
   <audio id="exhibitionAudio" src="" preload="metadata"></audio>
@@ -285,7 +319,7 @@
 
   <div class="footer-bottom">
     <div class="copyright-area">
-      <p class="footer-copyright">&copy; 2026 Digital Exhibition. All rights reserved.</p>
+      <p class="footer-copyright">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
     </div>
     <div class="legal-links">
       <a href="/group34/privacy/">Privacy</a>

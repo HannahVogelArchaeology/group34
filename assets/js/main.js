@@ -1,4 +1,3 @@
-
 /* Font size */
 let currentFontSize =
   parseInt(localStorage.getItem("userFontSize"), 10) || 100;
@@ -8,8 +7,7 @@ function applyFontSize(size) {
 }
 
 function changeFontSize(direction) {
-  if (direction === 0) {
-    currentFontSize = 100;
+  if (direction === 0) {currentFontSize = 100;
   } else {
     currentFontSize += direction * 10;
     currentFontSize = Math.min(150, Math.max(70, currentFontSize));
@@ -20,7 +18,7 @@ function changeFontSize(direction) {
 }
 
 
-/* Sidebar Menu */
+/* Sidebar menu */
 function toggleSidebarMenu() {
   const menu = document.getElementById("sidebarMenu");
   const overlay = document.getElementById("sidebarOverlay");
@@ -30,72 +28,64 @@ function toggleSidebarMenu() {
   }
 
   const isOpen = menu.classList.toggle("active");
-
   overlay.classList.toggle("active", isOpen);
   overlay.style.display = isOpen ? "block" : "none";
-
   document.body.classList.toggle("menu-open", isOpen);
 }
 
 
-/* Cookie Banner */
-function acceptCookies() {
-  localStorage.setItem("cookieConsent", "accepted");
-  closeCookieBanner();
-}
-
-function declineCookies() {
-  localStorage.setItem("cookieConsent", "declined");
-  closeCookieBanner();
-}
-
-function closeCookieBanner() {
-  const banner = document.getElementById("cookieBanner");
-
-  if (banner) {
-    banner.style.display = "none";
-  }
-
-  document.documentElement.classList.remove("show-cookie-banner");
-}
-
-
-/* Audio Player */
+/* Audio player */
 document.addEventListener("DOMContentLoaded", () => {
-  const audio = document.getElementById("exhibitionAudio");
-  const progressBar = document.getElementById("audioProgress");
-  const currentTimeEl = document.getElementById("currentTime");
-  const durationTimeEl = document.getElementById("durationTime");
+    const audio = document.getElementById("exhibitionAudio");
+    const progressBar = document.getElementById("audioProgress");
+    const currentTimeEl = document.getElementById("currentTime");
+    const durationTimeEl = document.getElementById("durationTime");
 
-  if (!audio) return;
-
-  // If Metadata is loaded set the duration
-  audio.addEventListener("loadedmetadata", () => {
-    durationTimeEl.textContent = formatTime(audio.duration);
-  });
-
-  // Update the time
-  audio.addEventListener("timeupdate", () => {
-    if (!isNaN(audio.duration)) {
-      const progress = (audio.currentTime / audio.duration) * 100;
-      progressBar.value = progress;
-      currentTimeEl.textContent = formatTime(audio.currentTime);
+    if (!audio) {
+      return;
     }
-  });
 
-  // If the audio is finished, change the icon
-  audio.addEventListener("ended", () => {
-    const playIcon = document.getElementById("playIcon");
-    if (playIcon) playIcon.className = "fas fa-play";
-  });
-});
+    audio.addEventListener("loadedmetadata", () => {
+        if (durationTimeEl) {
+          durationTimeEl.textContent = formatTime(audio.duration);
+        }
+      }
+    );
+
+    audio.addEventListener("timeupdate", () => {
+        if (!isNaN(audio.duration)) {
+          if (progressBar) {
+            progressBar.value = (audio.currentTime / audio.duration) * 100;
+          }
+
+          if (currentTimeEl) {
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+          }
+        }
+      }
+    );
+
+
+    audio.addEventListener("ended", () => {
+        const playIcon = document.getElementById("playIcon");
+        if (playIcon) {
+          playIcon.className = "fas fa-play";
+        }
+      }
+    );
+  }
+);
+
 
 function formatTime(seconds) {
-  if (isNaN(seconds)) return "0:00";
+  if (isNaN(seconds)) {
+    return "0:00";
+  }
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
 }
+
 
 function seekAudio(value) {
   const audio = document.getElementById("exhibitionAudio");
@@ -104,35 +94,54 @@ function seekAudio(value) {
   }
 }
 
+
 function toggleAudioPlayer() {
-  const bar = document.getElementById("bottomAudioBar");
-  if (!bar) return;
+  const bar = document.getElementById( "bottomAudioBar");
+
+  if (!bar) {
+    return;
+  }
 
   const isHidden = bar.style.display === "none" || bar.style.display === "";
   bar.style.display = isHidden ? "flex" : "none";
 
-  if (isHidden) toggleAudioPlay();
+  if (isHidden) {
+    toggleAudioPlay();
+  }
 }
+
 
 function toggleAudioPlay() {
   const audio = document.getElementById("exhibitionAudio");
   const playIcon = document.getElementById("playIcon");
-  if (!audio) return;
+
+  if (!audio) {
+    return;
+  }
 
   if (audio.paused) {
-    audio.play()
-      .then(() => { if (playIcon) playIcon.className = "fas fa-pause"; })
-      .catch((error) => console.error("Audio playback failed:", error));
+    audio.play() .then(() => {
+        if (playIcon) {
+          playIcon.className = "fas fa-pause";
+        }
+      })
+      .catch(() => {});
   } else {
     audio.pause();
-    if (playIcon) playIcon.className = "fas fa-play";
+    if (playIcon) {
+      playIcon.className = "fas fa-play";
+    }
   }
 }
 
+
 function changeAudioSpeed(speed) {
   const audio = document.getElementById("exhibitionAudio");
-  if (audio) audio.playbackRate = speed;
+  if (audio) {
+    audio.playbackRate = speed;
+  }
 }
+
 
 function toggleVolumePopup() {
   const popup = document.getElementById("volumePopup");
@@ -141,13 +150,17 @@ function toggleVolumePopup() {
   }
 }
 
+
 function setVolume(value) {
   const audio = document.getElementById("exhibitionAudio");
   const volumeIcon = document.getElementById("volumeIcon");
-  if (!audio) return;
+
+  if (!audio) {
+    return;
+  }
 
   audio.volume = value;
-  audio.muted = (value == 0);
+  audio.muted = value == 0;
 
   if (volumeIcon) {
     if (value == 0) {
@@ -161,144 +174,332 @@ function setVolume(value) {
 }
 
 function toggleTranscript() {
-  // Script modal or toggle call here...
-  // alert("Transcript button clicked");
+  /* Reserved for future transcript modal.... */
 }
 
 
-/* Image Thumbnails */
+/* Image thumbnails */
 function initialiseThumbnails() {
-  const thumbnails = document.querySelectorAll(
-    "[data-thumbnail-src]"
-  );
+  const thumbnails = document.querySelectorAll("[data-thumbnail-src]");
 
   thumbnails.forEach((thumbnail) => {
-    thumbnail.addEventListener("click", () => {
-      const image = document.getElementById("shelfMainImage");
-      const source = thumbnail.dataset.thumbnailSrc;
+      thumbnail.addEventListener("click",() => {
+          const image = document.getElementById("shelfMainImage");
+          const source = thumbnail.dataset.thumbnailSrc;
 
-      if (!image || !source) {
-        return;
-      }
+          if (!image || !source) {
+            return;
+          }
 
-      image.src = source;
+          image.src = source;
+          thumbnails.forEach((item) => {
+              item.classList.remove("active");
+            }
+          );
+          thumbnail.classList.add("active");
+        }
+      );
+    }
+  );
 
-      thumbnails.forEach((item) => {
-        item.classList.remove("active");
-      });
-
-      thumbnail.classList.add("active");
-    });
-  });
 }
 
 
-/* Image Expand*/
-
+/* Image overlay */
 function createImageOverlay(source, altText) {
   const existing = document.getElementById("imageLightbox");
-
   if (existing) {
     existing.remove();
   }
 
   const overlay = document.createElement("div");
-
   overlay.id = "imageLightbox";
 
-  Object.assign(overlay.style, {
-    position: "fixed",
-    inset: "0",
-    background: "rgba(0, 0, 0, 0.85)",
-    zIndex: "3000",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "30px",
-    boxSizing: "border-box"
-  });
+  Object.assign(overlay.style,{ // move this part to the css???
+      position: "fixed",
+      inset: "0",
+      background: "rgba(0, 0, 0, 0.85)",
+      zIndex: "3000",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: "30px",
+      boxSizing: "border-box"
+    }
+  );
+
 
   const image = document.createElement("img");
 
   image.src = source;
   image.alt = altText || "";
-
-  Object.assign(image.style, {
-    maxWidth: "95%",
-    maxHeight: "90%",
-    objectFit: "contain"
-  });
+  Object.assign(image.style,{ // move this part to the css???
+      maxWidth: "95%",
+      maxHeight: "90%",
+      objectFit: "contain"
+    }
+  );
 
   const closeButton = document.createElement("button");
 
   closeButton.type = "button";
   closeButton.setAttribute("aria-label", "Close enlarged image");
-  closeButton.textContent = "×";
+  closeButton.textContent ="×";
 
-  Object.assign(closeButton.style, {
-    position: "absolute",
-    top: "20px",
-    right: "25px",
-    fontSize: "2rem",
-    background: "transparent",
-    border: "0",
-    color: "#fff",
-    cursor: "pointer"
-  });
+  Object.assign(closeButton.style, { // move this part to the css???
+      position: "absolute",
+      top: "20px",
+      right: "25px",
+      fontSize: "2rem",
+      background:
+        "transparent",
+      border: "0",
+      color: "#fff",
+      cursor: "pointer"
+    }
+  );
 
-  closeButton.addEventListener("click", () => {
-    overlay.remove();
-  });
+  closeButton.addEventListener("click", () => overlay.remove());
 
   overlay.addEventListener("click", (event) => {
-    if (event.target === overlay) {
-      overlay.remove();
+      if (
+        event.target === overlay
+      ) {
+        overlay.remove();
+      }
     }
-  });
+  );
 
   overlay.appendChild(image);
   overlay.appendChild(closeButton);
+
   document.body.appendChild(overlay);
 }
 
+
 function initialiseImageExpand() {
-  const buttons = document.querySelectorAll(
-    "[data-expand-image]"
-  );
+  const buttons = document.querySelectorAll("[data-expand-image]");
 
   buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      let image;
+      button.addEventListener("click",() => {
+          const selector = button.dataset.expandImage;
+          const image = selector === "closest" ? button .closest(".hero-image-wrapper") ?.querySelector("img") : document.querySelector(selector);
 
-      const selector = button.dataset.expandImage;
-
-      if (selector === "closest") {
-        image = button
-          .closest(".hero-image-wrapper")
-          ?.querySelector("img");
-      } else {
-        image = document.querySelector(selector);
-      }
-
-      if (!image) {
-        return;
-      }
-
-      createImageOverlay(
-        image.src,
-        image.alt
+          if (image) {
+            createImageOverlay(image.src, image.alt);
+          }
+        }
       );
-    });
-  });
+    }
+  );
 }
 
 
-/* Page Initialisation*/
+/* Shelf image dialog */
+document.addEventListener(
+  "DOMContentLoaded",() => {
+    document
+      .querySelectorAll(".expand-btn[aria-controls]")
+      .forEach(
+        (button) => {
+          const dialog = document.getElementById(button.getAttribute("aria-controls"));
+          if (!dialog) {
+            return;
+          }
+
+          button.addEventListener("click", () => {
+              if (typeof dialog.showModal === "function") {
+                dialog.showModal();
+              } else {
+                dialog.setAttribute("open","");
+              }
+            }
+          );
+
+          dialog.addEventListener("close", () => button.focus());
+        }
+      );
+  }
+);
+
+
+/* Photo viewer page */
+
+function initialisePhotoViewer() {
+  const viewer = document.getElementById("photo-viewer");
+  if (!viewer) {
+    return;
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const objectTitle = params.get("object") || "Object";
+  const returnUrl = params.get("return") || "/";
+  const currentImage = params.get("image") || "";
+
+  const galleryImages = (params.get("gallery") || currentImage)
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  /* Read gallery metadata by index so each caption remains paired with its image. */
+  const indexedValues = (prefix) => {
+    const values = [];
+
+    for (let index = 0; ; index += 1) {
+      const value = params.get(`${prefix}${index}`);
+
+      if (value === null) {
+        break;
+      }
+
+      values.push(value);
+    }
+
+    return values;
+  };
+
+  const labels = indexedValues("label");
+  const captions = indexedValues("caption");
+
+  /* Keep compatibility with older photo links that used pipe-separated metadata. */
+  if (!labels.length) {
+    labels.push(
+      ...(params.get("labels") || "")
+        .split("|")
+        .map((value) => value.trim())
+        .filter(Boolean)
+    );
+  }
+
+  if (!captions.length) {
+    captions.push(
+      ...(params.get("captions") || "")
+        .split("|")
+        .map((value) => value.trim())
+        .filter(Boolean)
+    );
+  }
+
+  const images = galleryImages.length ? galleryImages : [currentImage];
+  let currentIndex = Math.max(0, images.indexOf(currentImage));
+
+  const mainImage = document.getElementById("photoMainImage");
+  const counter = document.getElementById("photoCounter");
+  const objectName = document.getElementById("photoObjectName");
+  const viewLabel = document.getElementById("photoViewLabel");
+  const imageCaption = document.getElementById("photoImageCaption");
+  const thumbnails = document.getElementById("photoThumbnails");
+  const backLink = document.getElementById("photoBackLink");
+  const closeButton = document.getElementById("photoClose");
+  const previousButton = document.getElementById("photoPrev");
+  const nextButton = document.getElementById("photoNext");
+
+  const defaultLabel = (index) => {
+    if (index === 0) {
+      return "FRONT";
+    }
+    return `VIEW ${index + 1}`;
+  };
+
+  const getLabel = (index) => labels[index] || defaultLabel(index);
+  const getCaption = (index) => captions[index] || `${objectTitle} — ${getLabel(index)} image`;
+
+  if (backLink) {
+    backLink.href = returnUrl;
+  }
+
+  if (closeButton) {
+    closeButton.addEventListener("click", () => {
+      window.location.href = returnUrl;
+    });
+  }
+
+  function renderPhoto(index) {
+    currentIndex = (index + images.length) % images.length;
+
+    const label = getLabel(currentIndex);
+    const caption = getCaption(currentIndex);
+
+    if (mainImage) {
+      mainImage.src = images[currentIndex];
+      mainImage.alt = caption;
+    }
+
+    if (counter) {
+      counter.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
+
+    if (objectName) {
+      objectName.textContent = objectTitle;
+    }
+
+    if (viewLabel) {
+      viewLabel.textContent = `[${label}]`;
+    }
+
+    if (imageCaption) {
+      imageCaption.textContent = caption;
+    }
+
+    if (thumbnails) {
+      thumbnails.querySelectorAll(".photo-thumbnail").forEach((thumbnail, indexInGallery) => {
+        thumbnail.classList.toggle("is-active", indexInGallery === currentIndex);
+      });
+    }
+  }
+
+  if (thumbnails) {
+    thumbnails.innerHTML = "";
+
+    images.forEach((src, index) => {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "photo-thumbnail";
+      button.setAttribute("aria-label", `View ${getLabel(index)}`);
+
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = getCaption(index);
+
+      const label = document.createElement("span");
+      label.className = "photo-thumb-label";
+      label.textContent = getLabel(index);
+
+      button.appendChild(label);
+      button.appendChild(image);
+      button.addEventListener("click", () => renderPhoto(index));
+
+      thumbnails.appendChild(button);
+    });
+  }
+
+  if (previousButton) {
+    previousButton.addEventListener("click", () => renderPhoto(currentIndex - 1));
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", () => renderPhoto(currentIndex + 1));
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") {
+      renderPhoto(currentIndex - 1);
+    } else if (event.key === "ArrowRight") {
+      renderPhoto(currentIndex + 1);
+    } else if (event.key === "Escape") {
+      window.location.href = returnUrl;
+    }
+  });
+
+  renderPhoto(currentIndex);
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
   applyFontSize(currentFontSize);
-
   initialiseThumbnails();
   initialiseImageExpand();
+  initialisePhotoViewer();
 
   const audio = document.getElementById("exhibitionAudio");
   const playIcon = document.getElementById("playIcon");
@@ -316,4 +517,15 @@ document.addEventListener("DOMContentLoaded", () => {
       playIcon.className = "fas fa-play";
     });
   }
+});
+
+// Auslan video download option disable
+document.addEventListener("DOMContentLoaded", function () {
+  const videos = document.querySelectorAll(".auslan-video");
+
+  videos.forEach(function (video) {
+    video.addEventListener("contextmenu", function (event) {
+      event.preventDefault();
+    });
+  });
 });

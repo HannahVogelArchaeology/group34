@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data:; media-src 'self' https:; connect-src 'self'; frame-src 'none';
+    object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+  >
+  <title>Photo View | Disability Heritage: Archaeology with Difference</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Material Icons CDN -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Prevent visual flashing on page load -->
+  <script>
+  (function() {
+    try {
+      var savedSize = localStorage.getItem('userFontSize');
+
+      if (savedSize) {
+        document.documentElement.style.fontSize = savedSize + '%';
+      }
+    } catch (error) {
+    // If localStorage is unavailable...
+  }
+  })();
+</script>
+
+<!-- SVG Favicon -->
+<link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
+
+<!-- Style sheet -->
+<link rel="stylesheet" href="/group34/assets/main.css">
+
+</head>
+
+<body>
+  <header class="pinned-header">
+  <div class="header-content">
+    <div class="header-left">
+      <a href="/group34/" class="exhibition-title">Disability Heritage: Archaeology with Difference</a>
+    </div>
+    
+    <div class="header-center">
+      
+        <span class="active-object-name">Photo View</span>
+      
+    </div>
+
+    <div class="header-right">
+      <div class="text-resizers">
+        <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
+        <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
+        <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
+      </div>
+      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
+<aside class="sidebar-menu" id="sidebarMenu">
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
+    <span class="hamburger-icon"></span>
+  </button>
+  
+  <nav class="sidebar-nav">
+    <!-- Top Direct Links -->
+    <a href="/group34/" class="nav-item main-link">
+      <i class="fa-solid fa-landmark"></i>
+      <span>HOME</span>
+    </a>
+    
+    <a href="/group34/about/" class="nav-item main-link">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <span>ABOUT</span>
+    </a>
+
+    <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
+    <div class="shelf-group">
+      <a href="/group34/shelves/top-shelf/" class="nav-item shelf-block-link">
+        <span class="shelf-label">TOP SHELF</span>
+        <div class="object-item">
+          <span class="num-box">1</span>
+          <span class="object-title">Pelike</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Middle Shelf Group -->
+    <div class="shelf-group">
+      <a href="/group34/shelves/middle-shelf/" class="shelf-label-link">
+        <span class="shelf-label">MIDDLE SHELF</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item">
+        <span class="num-box">2</span>
+        <span class="object-title">Reclining Figure</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item">
+        <span class="num-box">3</span>
+        <span class="object-title">Bronze dancer (replica)</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item">
+        <span class="num-box">4</span>
+        <span class="object-title">Figure of a musician</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item">
+        <span class="num-box">5</span>
+        <span class="object-title">Seated statuette</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item">
+        <span class="num-box">6</span>
+        <span class="object-title">Bronze figure of Priapus</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item">
+        <span class="num-box">7</span>
+        <span class="object-title">Terracotta figurine</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item">
+        <span class="num-box">8</span>
+        <span class="object-title">Amulet of Pataikos</span>
+      </a>
+    </div>
+
+    <!-- Bottom Shelf Group -->
+    <div class="shelf-group">
+      <a href="/group34/shelves/bottom-shelf/" class="shelf-label-link">
+        <span class="shelf-label">BOTTOM SHELF</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item">
+        <span class="num-box">9</span>
+        <span class="object-title">Feeding cup</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item">
+        <span class="num-box">10</span>
+        <span class="object-title">Spouted Vessel</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item">
+        <span class="num-box">11</span>
+        <span class="object-title">Feeding Vessel</span>
+      </a>
+    </div>
+  </nav>
+</aside>
+
+  <main class="main-content" id="main-content">
+    <main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
+
+<!-- Photo gallery data is generated at build time to keep photo URLs short. -->
+  <script type="application/json" id="photoGalleryData">
+  [
+    
+    
+  ]
+  </script>
+
+<!-- TOP BAR -->
+<div class="photo-viewer-header">
+    <a id="photoBackLink" class="photo-back-link" href="#" > &lt; BACK</a>
+    <span class="photo-counter" id="photoCounter"> 1 / 1 </span>
+    <button class="photo-close" id="photoClose" type="button" aria-label="Close photo viewer">×</button>
+</div>
+
+<!-- STAGE (MAIN DISPLAY) -->
+<div class="photo-viewer-stage">
+    <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">‹</button>
+    <figure class="photo-viewer-figure">
+        <div class="photo-caption-section" id="photoCaptionSection">
+            <span id="photoImageCaption">Image caption</span>
+        </div>
+        <img id="photoMainImage" src="" alt="">
+        <figcaption>
+            <span id="photoObjectName">Object Name</span>
+            <span aria-hidden="true"> • </span>
+            <span id="photoViewLabel">[Front View]</span>
+        </figcaption>
+    </figure>
+    <button class="photo-arrow photo-arrow-right" id="photoNext" type="button" aria-label="Next photo">›</button>
+</div>
+
+<!-- THUMBNAIL PANEL -->
+<div class="photo-thumbnail-panel">
+    <div class="photo-thumbnail-handle"></div>
+    <nav class="photo-thumbnails" id="photoThumbnails" aria-label="Photo views">
+    <!-- Thumbnails generated dynamically by JS -->
+    </nav>
+</div>
+
+</main>
+
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  <!-- Bar with the time -->
+  <div class="audio-progress-container">
+    <span id="currentTime">0:00</span>
+    <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
+    <span id="durationTime">0:00</span>
+  </div>
+
+  <div class="audio-controls-wrapper">
+    <!-- Left control, speed and play button -->
+    <div class="audio-left">
+      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">0.5x</button>
+      <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
+        <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
+      </button>
+      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at 1.5 speed">1.5x</button>
+    </div>
+
+    <!-- Center info -->
+    <div class="audio-center">
+      <span class="audio-obj-name">Photo View</span>
+      <span class="audio-shelf-label">Photo View</span>
+    </div>
+
+    <!-- Volume and transcript -->
+    <div class="audio-right">
+      <div class="volume-container">
+        <div class="volume-popup" id="volumePopup">
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)" aria-label="Volume Slider">
+        </div>
+        <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
+          <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
+        </button>
+        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+</div><footer class="site-footer">
+  
+
+  <div class="footer-bottom">
+    <div class="copyright-area">
+      <p class="footer-copyright">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
+    </div>
+    <div class="legal-links">
+      <a href="/group34/privacy/">Privacy</a>
+      <a href="/group34/terms/">Terms & Conditions</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="/group34/assets/js/main.js"></script>
+</body>
+</html>

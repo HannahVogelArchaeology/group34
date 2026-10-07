@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' data:; media-src 'self' https:; connect-src 'self'; frame-src 'none';
+    object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+  >
+  <title>Bottom Shelf | Disability Heritage: Archaeology with Difference</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Material Icons CDN -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Prevent visual flashing on page load -->
+  <script>
+  (function() {
+    try {
+      var savedSize = localStorage.getItem('userFontSize');
+
+      if (savedSize) {
+        document.documentElement.style.fontSize = savedSize + '%';
+      }
+    } catch (error) {
+    // If localStorage is unavailable...
+  }
+  })();
+</script>
+
+<!-- SVG Favicon -->
+<link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
+
+<!-- Style sheet -->
+<link rel="stylesheet" href="/group34/assets/main.css">
+
+</head>
+
+<body>
+  <header class="pinned-header">
+  <div class="header-content">
+    <div class="header-left">
+      <a href="/group34/" class="exhibition-title">Disability Heritage: Archaeology with Difference</a>
+    </div>
+    
+    <div class="header-center">
+      
+        <span class="active-object-name">Bottom Shelf</span>
+      
+    </div>
+
+    <div class="header-right">
+      <div class="text-resizers">
+        <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
+        <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
+        <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
+      </div>
+      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
+<aside class="sidebar-menu" id="sidebarMenu">
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
+    <span class="hamburger-icon"></span>
+  </button>
+  
+  <nav class="sidebar-nav">
+    <!-- Top Direct Links -->
+    <a href="/group34/" class="nav-item main-link">
+      <i class="fa-solid fa-landmark"></i>
+      <span>HOME</span>
+    </a>
+    
+    <a href="/group34/about/" class="nav-item main-link">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <span>ABOUT</span>
+    </a>
+
+    <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
+    <div class="shelf-group">
+      <a href="/group34/shelves/top-shelf/" class="nav-item shelf-block-link">
+        <span class="shelf-label">TOP SHELF</span>
+        <div class="object-item">
+          <span class="num-box">1</span>
+          <span class="object-title">Pelike</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Middle Shelf Group -->
+    <div class="shelf-group">
+      <a href="/group34/shelves/middle-shelf/" class="shelf-label-link">
+        <span class="shelf-label">MIDDLE SHELF</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item">
+        <span class="num-box">2</span>
+        <span class="object-title">Reclining Figure</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item">
+        <span class="num-box">3</span>
+        <span class="object-title">Bronze dancer (replica)</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item">
+        <span class="num-box">4</span>
+        <span class="object-title">Figure of a musician</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item">
+        <span class="num-box">5</span>
+        <span class="object-title">Seated statuette</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item">
+        <span class="num-box">6</span>
+        <span class="object-title">Bronze figure of Priapus</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item">
+        <span class="num-box">7</span>
+        <span class="object-title">Terracotta figurine</span>
+      </a>
+      <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item">
+        <span class="num-box">8</span>
+        <span class="object-title">Amulet of Pataikos</span>
+      </a>
+    </div>
+
+    <!-- Bottom Shelf Group -->
+    <div class="shelf-group">
+      <a href="/group34/shelves/bottom-shelf/" class="shelf-label-link">
+        <span class="shelf-label">BOTTOM SHELF</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item">
+        <span class="num-box">9</span>
+        <span class="object-title">Feeding cup</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item">
+        <span class="num-box">10</span>
+        <span class="object-title">Spouted Vessel</span>
+      </a>
+      <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item">
+        <span class="num-box">11</span>
+        <span class="object-title">Feeding Vessel</span>
+      </a>
+    </div>
+  </nav>
+</aside>
+
+  <main class="main-content" id="main-content">
+    
+<div class="bottom-shelf-container" data-bottom-shelf-version="interface-enhancement">
+
+  <h1 class="shelf-v2-title">
+    Bottom Shelf
+  </h1>
+
+  <!-- Hero Image + Numbered Object List -->
+  <div class="shelf-hero-grid">
+
+    <div class="shelf-hero-media">
+
+      <div class="hero-image-wrapper">
+        <a
+          class="shelf-photo-link"
+          href="/group34/photo/?image=/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg&object=Bottom%20Shelf&return=/group34/shelves/bottom-shelf/&gallery=/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg&label0=HERO%20IMAGE&caption0=11.%20Feeding%20vessel,%20MU3368,%20front%20angled%20view%20%C2%A9%20Gale%20History%20Museum"
+          aria-label="Open Bottom Shelf hero image in the photo viewer"
+        >
+          <img src="/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg" alt="Bottom Shelf hero image" loading="eager">
+        </a>
+
+        <a
+          class="expand-btn"
+          href="/group34/photo/?image=/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg&object=Bottom%20Shelf&return=/group34/shelves/bottom-shelf/&gallery=/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg&label0=HERO%20IMAGE&caption0=11.%20Feeding%20vessel,%20MU3368,%20front%20angled%20view%20%C2%A9%20Gale%20History%20Museum"
+          aria-label="Open Bottom Shelf hero image in the photo viewer"
+        >
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        </a>
+      </div>
+
+      <p class="image-caption">
+        11. Feeding vessel, MU3368, front angled view © Gale History Museum
+      </p>
+
+    </div>
+
+    <ul class="numbered-object-list">
+
+      
+
+      <li class="object-item">
+        <a
+          href="/group34/objects/bottom-shelf-object9/"
+          class="name"
+        >
+
+          <span class="num" aria-hidden="true">
+            9
+          </span>
+
+          <span>
+            Feeding cup
+          </span>
+
+          <span class="object-link-arrow" aria-hidden="true">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+
+        </a>
+      </li>
+
+      
+
+      <li class="object-item">
+        <a
+          href="/group34/objects/bottom-shelf-object10/"
+          class="name"
+        >
+
+          <span class="num" aria-hidden="true">
+            10
+          </span>
+
+          <span>
+            Spouted Vessel
+          </span>
+
+          <span class="object-link-arrow" aria-hidden="true">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+
+        </a>
+      </li>
+
+      
+
+      <li class="object-item">
+        <a
+          href="/group34/objects/bottom-shelf-object11/"
+          class="name"
+        >
+
+          <span class="num" aria-hidden="true">
+            11
+          </span>
+
+          <span>
+            Feeding Vessel
+          </span>
+
+          <span class="object-link-arrow" aria-hidden="true">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+
+        </a>
+      </li>
+
+      
+
+    </ul>
+
+  </div>
+
+  <!-- Overview Text -->
+  <section class="shelf-overview-section">
+
+    <h2>Overview</h2>
+    <p>These feeding vessels, despite differences in design over time, were made to support the needs of people. They represent difference, creating change in [material] culture.</p>
+
+  </section>
+
+  <!-- Object Cards -->
+  <section class="shelf-objects-section">
+
+    <h2>The Objects</h2>
+
+    <div class="objects-grid">
+
+      
+
+      <!-- Entire object card is clickable -->
+      <a
+        href="/group34/objects/bottom-shelf-object9/"
+        class="object-card"
+        aria-label="View Feeding cup"
+      >
+
+        <div class="card-header">
+
+          <span class="item-title">
+            9 Feeding cup
+          </span>
+
+          <!-- Keep View button visually in the existing position -->
+          <span class="btn-view" aria-hidden="true">
+            <span>View</span>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+
+        </div>
+
+        <div class="card-media">
+          <img
+            src="/group34/assets/images/9%20Feeding%20Cup_AHM1985053_front%20angled_image1.jpeg"
+            alt="9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle."
+            loading="eager"
+          >
+        </div>
+
+        <p class="card-caption">Feeding cup, AHM/1985/053, front view angled © Gale History</p>
+        <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> 9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle.</p>
+
+      </a>
+
+      
+
+      <!-- Entire object card is clickable -->
+      <a
+        href="/group34/objects/bottom-shelf-object10/"
+        class="object-card"
+        aria-label="View Spouted Vessel"
+      >
+
+        <div class="card-header">
+
+          <span class="item-title">
+            10 Spouted Vessel
+          </span>
+
+          <!-- Keep View button visually in the existing position -->
+          <span class="btn-view" aria-hidden="true">
+            <span>View</span>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+
+        </div>
+
+        <div class="card-media">
+          <img
+            src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg"
+            alt="Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines can be seen around the handle, neck, and body."
+            loading="eager"
+          >
+        </div>
+
+        <p class="card-caption">10. Spouted vessel, MU0091, front-angled view © Gale History Museum</p>
+        <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines can be seen around the handle, neck, and body.</p>
+
+      </a>
+
+      
+
+      <!-- Entire object card is clickable -->
+      <a
+        href="/group34/objects/bottom-shelf-object11/"
+        class="object-card"
+        aria-label="View Feeding Vessel"
+      >
+
+        <div class="card-header">
+
+          <span class="item-title">
+            11 Feeding Vessel
+          </span>
+
+          <!-- Keep View button visually in the existing position -->
+          <span class="btn-view" aria-hidden="true">
+            <span>View</span>
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </span>
+
+        </div>
+
+        <div class="card-media">
+          <img
+            src="/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg"
+            alt="Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base."
+            loading="eager"
+          >
+        </div>
+
+        <p class="card-caption">11. Feeding vessel, MU3368, front angled view © Gale History Museum</p>
+        <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base.</p>
+
+      </a>
+
+      
+
+    </div>
+
+  </section>
+
+  <nav class="shelf-pagination">
+  <a href="/group34/shelves/middle-shelf/" class="nav-box nav-back">
+    <span class="arrow">&larr;</span>
+    <div class="nav-text">
+      <span class="sub-label">BACK</span>
+      <span class="main-label">MIDDLE SHELF</span>
+    </div>
+  </a>
+
+  <a href="/group34/" class="nav-box nav-next">
+    <div class="nav-text">
+      <span class="sub-label">NEXT</span>
+      <span class="main-label">MAIN PAGE</span>
+    </div>
+    <span class="arrow">&rarr;</span>
+  </a>
+</nav>
+
+  <!-- Image Dialog Modal -->
+  <dialog id="bottom-shelf-image-dialog">
+
+    <div class="dialog-header">
+
+      <h2>Bottom Shelf</h2>
+
+      <form method="dialog">
+        <button class="dialog-close" type="submit">Close</button>
+      </form>
+
+    </div>
+
+    <img
+      src="/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg"
+      alt="Bottom Shelf Hero Expanded View"
+    >
+
+  </dialog>
+
+</div>
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  <!-- Bar with the time -->
+  <div class="audio-progress-container">
+    <span id="currentTime">0:00</span>
+    <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
+    <span id="durationTime">0:00</span>
+  </div>
+
+  <div class="audio-controls-wrapper">
+    <!-- Left control, speed and play button -->
+    <div class="audio-left">
+      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">0.5x</button>
+      <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
+        <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
+      </button>
+      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at 1.5 speed">1.5x</button>
+    </div>
+
+    <!-- Center info -->
+    <div class="audio-center">
+      <span class="audio-obj-name">Bottom Shelf</span>
+      <span class="audio-shelf-label">Bottom Shelf</span>
+    </div>
+
+    <!-- Volume and transcript -->
+    <div class="audio-right">
+      <div class="volume-container">
+        <div class="volume-popup" id="volumePopup">
+          <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)" aria-label="Volume Slider">
+        </div>
+        <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
+          <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
+        </button>
+        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+</div><footer class="site-footer">
+  
+
+  <div class="footer-bottom">
+    <div class="copyright-area">
+      <p class="footer-copyright">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
+    </div>
+    <div class="legal-links">
+      <a href="/group34/privacy/">Privacy</a>
+      <a href="/group34/terms/">Terms & Conditions</a>
+    </div>
+  </div>
+</footer>
+
+  <script src="/group34/assets/js/main.js"></script>
+</body>
+</html>
