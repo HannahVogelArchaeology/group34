@@ -125,108 +125,118 @@ margin: 0 auto;
 
 /* Shelves Explorer */
 .shelves-explorer {
-  background-color: #E8E2D5; /* Darkened cream for better visual separation while maintaining WCAG contrast with dark text */
-  padding: 50px 40px 80px 40px;
+background-color: #f6f3eb;
+padding: 50px 40px 80px 40px;
 
-  .explorer-title {
-    max-width: 1000px;
-    margin: 0 auto 36px auto;
-    font-size: 2.2em;
-    font-weight: 400;
-    color: #222222;
-  }
+.explorer-title {
+max-width: 1000px;
+margin: 0 auto 36px auto;
+font-size: 2.2em;
+font-weight: 400;
+color: #222222;
+}
 
-  .shelf-cards-container {
+.shelf-cards-container {
+display: flex;
+gap: 24px;
+max-width: 1000px;
+margin: 0 auto;
+
+.shelf-card {
+  background-color: #eae5d9;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  border-radius: 2px;
+  padding: 16px;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+  .card-header {
     display: flex;
-    gap: 24px;
-    max-width: 1000px;
-    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 
-    .shelf-card {
-      background-color: #eae5d9;
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-      border-radius: 2px;
-      padding: 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    margin-bottom: 16px;
+    width: 100%;
 
-      .card-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 16px;
-        width: 100%;
-
-        .shelf-label {
-          font-size: 0.85em;
-          letter-spacing: 1px;
-          font-weight: 600;
-          color: #444444;
-        }
-      }
-
-      .card-img {
-        width: 100%;
-        height: 220px;
-        margin-bottom: 16px;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      .caption {
-        font-size: 0.85em;
-        color: #555555;
-        margin: 0 0 16px 0;
-        text-align: center;
-      }
-
-      .view-button {
-        background-color: #b5833f;
-        color: #ffffff;
-        text-decoration: none;
-        padding: 6px 20px;
-        font-size: 0.75em;
-        letter-spacing: 1px;
-        border-radius: 2px;
-        font-weight: 600;
-        transition: background 0.2s ease;
-        pointer-events: none;
-
-        &:hover {
-          background-color: #543b19;
-        }
-      }
-
-      &:hover,
-      &:focus-visible {
-        color: inherit;
-        text-decoration: none;
-        background-color: #e3ddcf;
-        box-shadow: 0 8px 20px rgba(81, 52, 9, 0.12);
-        transform: translateY(-2px);
-
-        .view-button {
-          background-color: #543b19;
-        }
-      }
-
-      &:focus-visible {
-        outline: 3px solid #174e77;
-        outline-offset: 4px;
-      }
+    .shelf-label {
+      font-size: 0.85em;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #444444;
     }
   }
+
+  .card-img {
+    width: 100%;
+    height: 220px;
+    margin-bottom: 16px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .caption {
+    font-size: 0.85em;
+    color: #555555;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+
+  .view-button {
+    background-color: #b5833f;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 20px;
+    font-size: 0.75em;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+    pointer-events: none;
+
+    &:hover {
+      background-color: #543b19;
+    }
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: inherit;
+    text-decoration: none;
+    background-color: #e3ddcf;
+    box-shadow:
+      0 8px 20px rgba(81, 52, 9, 0.12);
+    transform: translateY(-2px);
+
+    .view-button {
+      background-color: #543b19;
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid #174e77;
+    outline-offset: 4px;
+  }
+}
+
+}
 }
 
 /* Quote Banner */
@@ -287,53 +297,53 @@ max-width: 65%;
 
 /* Auslan Video */
 .auslan-section {
-  background-color: #382713; /* Changed to dark brown to highlight the video section */
-  padding: 60px 40px 40px;
+background-color: #f6f3eb;
+padding: 60px 40px 40px;
 }
 
 .auslan-container {
-  max-width: 1000px;
-  margin: 0 auto;
+max-width: 1000px;
+margin: 0 auto;
 }
 
 .auslan-title {
-  font-size: 2.2em;
-  font-weight: 400;
-  color: #ffffff; /* Updated to white for accessible contrast against dark background */
-  margin: 0 0 32px;
+font-size: 2.2em;
+font-weight: 400;
+color: #222222;
+margin: 0 0 32px;
 }
 
 .video-card {
-  width: 100%;
-  background-color: #eae5d9;
-  padding: 12px;
-  box-sizing: border-box;
-  margin-bottom: 28px;
+width: 100%;
+background-color: #eae5d9;
+padding: 12px;
+box-sizing: border-box;
+margin-bottom: 28px;
 }
 
 .auslan-video {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 16 / 9;
-  object-fit: contain;
-  background-color: #000000;
+display: block;
+width: 100%;
+height: auto;
+aspect-ratio: 16 / 9;
+object-fit: contain;
+background-color: #000000;
 }
 
 .auslan-caption {
-  max-width: 900px;
-  margin: 0 0 12px;
-  font-size: 0.9em;
-  line-height: 1.5;
-  color: #e0dcd3; /* Lightened from #555555 to pass contrast checks */
+max-width: 900px;
+margin: 0 0 12px;
+font-size: 0.9em;
+line-height: 1.5;
+color: #555555;
 }
 
 .auslan-description {
-  max-width: 900px;
-  margin: 0;
-  font-size: 0.95em;
-  line-height: 1.7;
-  color: #ffffff; /* Lightened from #444444 to pass contrast checks */
+max-width: 900px;
+margin: 0;
+font-size: 0.95em;
+line-height: 1.7;
+color: #444444;
 }
 
 /* Acknowledgements */
