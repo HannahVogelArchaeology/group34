@@ -128,7 +128,7 @@
 
   .numbered-object-list {
     display: grid;
-    gap: 0.8em;
+    gap: 1.5em;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -142,10 +142,10 @@
       position: relative;
       display: flex;
       align-items: center;
-      gap: 0.9em;
+      gap: 2em;
       width: 100%;
-      min-height: 60px;
-      padding: 0.75em 1em;
+      min-height: 80px;
+      padding: 1em 1.5em;
       border: 1px solid var(--shelf-line);
       border-radius: 4px;
       background: var(--shelf-surface);
