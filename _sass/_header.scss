@@ -15,7 +15,7 @@
 
   .header-content {
     display: grid;
-    grid-template-columns: minmax(180px, 1fr) minmax(180px, 1fr) auto;
+    grid-template-columns: minmax(180px, 0.6fr) minmax(200px, 1.5fr) auto;
     min-height: 100%;
     align-items: center;
     max-width: 1200px;
