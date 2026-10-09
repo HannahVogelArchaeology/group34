@@ -333,6 +333,7 @@ function initialisePhotoViewer() {
 
   const params = new URLSearchParams(window.location.search);
   const objectTitle = params.get("object") || "Object";
+  const museumNumber = params.get("museum") || "";
   const returnUrl = params.get("return") || "/";
   const currentImage = params.get("image") || "";
 
@@ -430,7 +431,9 @@ function initialisePhotoViewer() {
     }
 
     if (objectName) {
-      objectName.textContent = objectTitle;
+      objectName.textContent = museumNumber
+        ? `${objectTitle}, ${museumNumber}`
+        : objectTitle;
     }
 
     if (viewLabel) {

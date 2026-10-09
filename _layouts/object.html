@@ -28,14 +28,14 @@ endif %}
 
       <div class="main-image-wrapper">
         <a class="main-image-link"
-          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
+          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&museum={{ page.acq_no | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
           aria-label="Open {{ page.title }} front image in the photo viewer">
           <img src="{{ first_gallery_src | relative_url }}"
             alt="{{ page.gallery_images[0].caption | default: page.title | escape }}" class="main-img">
         </a>
 
         <a class="expand-btn"
-          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
+          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&museum={{ page.acq_no | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
           aria-label="Open {{ page.title }} front image in the photo viewer">
           <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
         </a>
@@ -54,7 +54,7 @@ endif %}
           {% if static_file.path == gallery_image.src %}{% assign gallery_image_exists = true %}{% endif %}
           {% endfor %}
           <a class="thumb-box"
-            href="{{ '/photo/' | relative_url }}?image={% if gallery_image_exists %}{{ gallery_image.src | relative_url | uri_escape }}{% else %}{{ page.image | relative_url | uri_escape }}{% endif %}&object={{ page.title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
+            href="{{ '/photo/' | relative_url }}?image={% if gallery_image_exists %}{{ gallery_image.src | relative_url | uri_escape }}{% else %}{{ page.image | relative_url | uri_escape }}{% endif %}&object={{ page.title | uri_escape }}&museum={{ page.acq_no | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
             aria-label="Open {{ gallery_image.label }} of {{ page.title }}">
             <img
               src="{% if gallery_image_exists %}{{ gallery_image.src | relative_url }}{% else %}{{ page.image | relative_url }}{% endif %}"
