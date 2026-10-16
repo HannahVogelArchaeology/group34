@@ -116,7 +116,13 @@ layout: default
         </div>
 
         <p class="card-caption">{{ obj.caption }}</p>
-        <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> {{ obj.alt }}</p>
+        <details class="card-alt-disclosure" data-alt-disclosure>
+          <summary>
+            <span class="alt-icon" aria-hidden="true">ALT</span>
+            <span>Click to read the alternative text</span>
+          </summary>
+          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> {{ obj.alt }}</p>
+        </details>
 
       </a>
 

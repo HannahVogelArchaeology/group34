@@ -10,7 +10,7 @@ layout: default
     {% for object in site.objects %}
     {
       "key": {{ object.url | relative_url | jsonify }},
-      "object": {{ object.title | jsonify }},
+      "object": {{ object.title | jsonify }},\n      "museumNumber": {{ object.museum_number | default: object.acq_no | default: object.acquisition_number | jsonify }},
       "return": {{ object.url | relative_url | jsonify }},
       "images": [
         {% for gallery_image in object.gallery_images %}
@@ -33,7 +33,7 @@ layout: default
     {% for shelf in site.shelves %}
     {
       "key": {{ shelf.url | relative_url | jsonify }},
-      "object": {{ shelf.object_title | default: shelf.shelf_title | jsonify }},
+      "object": {{ shelf.object_title | default: shelf.shelf_title | jsonify }},\n      "museumNumber": {{ shelf.museum_number | default: shelf.acq_no | jsonify }},
       "return": {{ shelf.url | relative_url | jsonify }},
       "images": [
         {% if shelf.gallery_images %}

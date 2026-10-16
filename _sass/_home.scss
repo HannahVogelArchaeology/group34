@@ -456,3 +456,91 @@ padding-right: 24px;
 }
 }
 }
+
+
+/* Main feature layout */
+.home-feature-section {
+  background: #f4f1ea;
+  padding: clamp(2rem, 5vw, 4rem) 1.25rem;
+}
+.home-feature-container {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: stretch;
+}
+.home-feature-narrative {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+.home-feature-narrative .hero-description { line-height: 1.7; }
+.home-feature-narrative .btn-curator-bio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: auto;
+  padding: 0.75rem 1.25rem;
+  background: #8b5e25;
+  color: #fff;
+  text-decoration: none;
+}
+.home-feature-media { min-width: 0; margin: 0; }
+.home-feature-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+}
+.home-feature-media .image-caption {
+  margin: 0.6rem 0 0;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+@media (max-width: 700px) {
+  .home-feature-container { grid-template-columns: minmax(0, 1fr); }
+  .home-feature-media { grid-row: 1; }
+  .home-feature-narrative { grid-row: 2; }
+  .home-feature-narrative .btn-curator-bio { margin-top: 1.25rem; }
+}
+
+/* Alt-text disclosure controls on shelf object cards */
+.object-card .card-alt-disclosure {
+  display: block;
+  width: 100%;
+  margin-top: 0.75rem;
+  text-align: left;
+  border-top: 1px solid #c8b18e;
+  padding-top: 0.75rem;
+}
+.object-card .card-alt-disclosure summary {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  color: #8b5e25;
+  cursor: pointer;
+  list-style: none;
+}
+.object-card .card-alt-disclosure summary::-webkit-details-marker { display: none; }
+.object-card .alt-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.1rem;
+  min-height: 2rem;
+  border: 2px solid currentColor;
+  border-radius: 0.45rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.object-card .card-alt-text { margin: 0.75rem 0 0; overflow-wrap: anywhere; }
+.object-card .item-title { min-width: 0; overflow-wrap: anywhere; }
+.object-card .card-header { align-items: flex-start; }
+.object-card .btn-view { flex: 0 0 auto; }

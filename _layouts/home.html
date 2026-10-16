@@ -10,27 +10,23 @@ layout: default
   </div>
 </section>
 
-<!-- Hero Image / Placeholder Section -->
-<section class="hero-media-section">
-  <div class="hero-container hero-media-container">
-    <div class="hero-media-placeholder">
-      {% if page.hero_image %}
-        <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt }}">
-        <p class="image-caption">{{ page.hero_image_caption | default: "Main page exhibition hero image" }}</p>
-      {% else %}
-        <span class="placeholder-text">Main page</span>
-      {% endif %}
-    </div>
-  </div>
-</section>
-
-<!-- Narratives Section -->
-<section class="hero-narrative-section">
-  <div class="hero-container">
-    <div class="hero-content">
+<!-- Main feature: narrative on the left, image and caption on the right. -->
+<section class="home-feature-section">
+  <div class="home-feature-container">
+    <div class="home-feature-narrative">
       <p class="narratives-label">Narratives Here:</p>
-      <p class="hero-description">{{ page.hero_text | markdownify}}</p>
+      <div class="hero-description">{{ page.hero_text | markdownify }}</div>
+      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">&gt; About Us</a>
     </div>
+    <figure class="home-feature-media">
+      {% if page.hero_image %}
+      <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt | escape }}" loading="eager">
+      <figcaption class="image-caption">{{ page.hero_image_caption }}</figcaption>
+      {% else %}
+      <div class="hero-media-placeholder" role="img" aria-label="Main page image placeholder">Main page image placeholder</div>
+      <figcaption class="image-caption">Main page image caption</figcaption>
+      {% endif %}
+    </figure>
   </div>
 </section>
 
@@ -93,28 +89,6 @@ layout: default
   </div>
 </section>
 
-<!-- Quote Banner Section -->
-<section class="quote-section">
-  <div class="quote-container">
-
-    <div class="quote-left">
-      <blockquote class="quote-text">
-        "{{ page.quote_text | default: 'Quote here if needed' }}"
-      </blockquote>
-
-      <p class="quote-curator">
-        - {{ page.quote_curator | default: 'John Doe, Someone of Business Enterprise' }}
-      </p>
-    </div>
-
-    <div class="quote-right">
-      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">
-        &gt; About Us
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- Auslan Video Section -->
 <section class="auslan-section" aria-labelledby="auslan-video-heading">
 
@@ -130,7 +104,7 @@ layout: default
     </div>
 
     <p class="auslan-caption">
-      {{ page.auslan_caption }}
+      {{ page.auslan_caption | default: "Lorem ipsum caption here" }}
     </p>
 
     <p id="auslan-video-description" class="auslan-description">
