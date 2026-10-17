@@ -532,3 +532,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+/* Keep the alt-text disclosure independent from the whole-card navigation link. */
+document.addEventListener("click", (event) => {
+  const disclosure = event.target.closest("[data-alt-disclosure]");
+  if (disclosure) {
+    event.stopPropagation();
+  }
+});

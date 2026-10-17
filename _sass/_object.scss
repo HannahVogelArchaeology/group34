@@ -132,11 +132,11 @@
       min-width: 0;
       margin-top: 0.65em;
       box-sizing: border-box;
-      
+
       &:has(.explore-3d-btn) {
         grid-template-columns: minmax(0, 1fr) auto;
       }
-
+      
       .thumbnails-row {
         display: grid;
         grid-template-columns: repeat(auto-fill, 80px);
@@ -148,7 +148,6 @@
         padding-bottom: 2px;
 
         .thumb-box {
-          display: block;
           width: 80px;
           height: 80px;
           border: 1px solid #ccc;
