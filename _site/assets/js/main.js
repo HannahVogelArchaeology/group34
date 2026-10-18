@@ -333,6 +333,7 @@ function initialisePhotoViewer() {
 
   const params = new URLSearchParams(window.location.search);
   const objectTitle = params.get("object") || "Object";
+  const museumNumber = params.get("museum") || "";
   const returnUrl = params.get("return") || "/";
   const currentImage = params.get("image") || "";
 
@@ -430,7 +431,9 @@ function initialisePhotoViewer() {
     }
 
     if (objectName) {
-      objectName.textContent = objectTitle;
+      objectName.textContent = museumNumber
+        ? `${objectTitle}, ${museumNumber}`
+        : objectTitle;
     }
 
     if (viewLabel) {
@@ -528,4 +531,12 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
     });
   });
+});
+
+/* Keep the alt-text disclosure independent from the whole-card navigation link. */
+document.addEventListener("click", (event) => {
+  const disclosure = event.target.closest("[data-alt-disclosure]");
+  if (disclosure) {
+    event.stopPropagation();
+  }
 });
