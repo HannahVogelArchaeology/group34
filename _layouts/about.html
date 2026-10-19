@@ -2,46 +2,46 @@
 layout: default
 ---
 
-<div class="about-page-container">
-<h1 class="page-title">About Us</h1>
+<div class="about-page-container" role="main" aria-label="About Us Page">
+<h1 class="page-title" aria-label="Page Title: About Us">About Us</h1>
 
 <!-- Tab navigation -->
-<div class="tab-navigation" role="tablist" aria-label="About Us sections">
-    <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="visitor-tab" onclick="switchTab('visitor-tab', this)">
-        Visitor Information and Accessibility
-    </button>
+<nav aria-label="About Us section tabs">
+    <div class="tab-navigation" role="tablist" aria-label="About Us sections">
+        <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="visitor-tab" onclick="switchTab('visitor-tab', this)" aria-label="Visitor Information and Accessibility Tab">
+            Visitor Information and Accessibility
+        </button>
 
-    <button class="tab-btn"  type="button" role="tab" aria-selected="false" aria-controls="curation-tab" onclick="switchTab('curation-tab', this)">
-        Curation and Acknowledgements
-    </button>
-</div>
+        <button class="tab-btn"  type="button" role="tab" aria-selected="false" aria-controls="curation-tab" onclick="switchTab('curation-tab', this)" aria-label="Curation and Acknowledgements Tab">
+            Curation and Acknowledgements
+        </button>
+    </div>
+</nav>
 
 <!-- OPTIONAL QUOTE BANNER: Hidden until needed -->
-<div id="quote-banner" class="quote-banner" style="display: none;" hidden>
+<div id="quote-banner" class="quote-banner" style="display: none;" hidden aria-hidden="true">
     <h2>"Quote here if needed"</h2>
     <p>- John Doe, Someone of Business Enterprise</p>
 </div>
 
 <!-- VISITOR INFORMATION AND ACCESSIBILITY -->
-<section id="visitor-tab" class="tab-content active" role="tabpanel">
+<section id="visitor-tab" class="tab-content active" role="tabpanel" aria-label="Visitor Information and Accessibility Panel">
 <h2 class="main-tab-title">Visitor Information and Accessibility</h2>
 
-
 <!-- Visitor Information -->
-<section class="content-section">
+<section class="content-section" aria-label="General Visitor Information">
     <h3 class="gold-heading">Visitor Information</h3>
 
-
 <!-- For Website -->
-    <div class="sub-block">
+    <div class="sub-block" aria-label="Website Information">
     <h4 class="sub-title">For Website</h4>
 
-    <table class="info-table visitor-info-table">
+    <table class="info-table visitor-info-table" aria-label="Website location and details">
     <tbody>
         <tr>
             <td class="label-col">Location</td>
             <td class="value-col">
-                <a href="https://www.google.com" class="inline-link">https://www.google.com</a>
+                <a href="https://www.google.com" class="inline-link" aria-label="Visit the website location at Google">https://www.google.com</a>
             </td>
         </tr>
 
@@ -52,7 +52,7 @@ layout: default
     </tbody>
     </table>
 
-    <p class="section-desc">
+    <p class="section-desc" aria-label="Website description">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Proin eget justo ac tortor maximus scelerisque.
         Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis,
@@ -63,12 +63,11 @@ layout: default
     </p>
 </div>
 
-
 <!-- On Campus -->
-<div class="sub-block">
+<div class="sub-block" aria-label="On Campus Information">
     <h4 class="sub-title">On Campus</h4>
 
-    <table class="info-table visitor-info-table">
+    <table class="info-table visitor-info-table" aria-label="Campus location and opening hours">
         <tbody>
         <tr>
             <td class="label-col">Location</td>
@@ -113,7 +112,7 @@ layout: default
         </tbody>
     </table>
 
-    <p class="section-desc">
+    <p class="section-desc" aria-label="Campus visitor guidelines">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Proin eget justo ac tortor maximus scelerisque.
         Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis,
@@ -128,23 +127,17 @@ layout: default
 </section>
 
 <!-- CURATION AND ACKNOWLEDGEMENTS -->
-<section id="curation-tab" class="tab-content" role="tabpanel">
+<section id="curation-tab" class="tab-content" role="tabpanel" aria-label="Curation and Acknowledgements Panel">
 <h2 class="main-tab-title"> Curation and Acknowledgements </h2>
 
 
 <!-- CURATION -->
-<section class="content-section">
+<section class="content-section" aria-label="Curation Details">
     <h3 class="gold-heading">Curation</h3>
-    <div class="curator-profile">
-
-    <!-- PROFILE IMAGE to be added later...
-    -----------------------------------------------------
-    1. Put the image in assets/images/
-    2. Change the front matter at the top:
-        curator_image: "/assets/images/curator-profile.jpeg" -->
+    <div class="curator-profile" aria-label="Curator Profile">
 
     {% if page.curator_image and page.curator_image != "" %}
-        <div class="curator-image">
+        <div class="curator-image" aria-hidden="true">
         <img
             src="{{ page.curator_image | relative_url }}"
             alt="{{ page.curator_image_alt | escape }}">
@@ -152,8 +145,8 @@ layout: default
     {% endif %}
 
 
-    <div class="curator-bio">
-        <p class="author-sub">
+    <div class="curator-bio" aria-label="Curator Biography">
+        <p class="author-sub" aria-label="Curated by Hannah Vogel">
         by Hannah Vogel
         </p>
 
@@ -167,7 +160,7 @@ layout: default
 
 
 <!-- Curator Details -->
-    <table class="info-table curation-info-table">
+    <table class="info-table curation-info-table" aria-label="Curator Credentials and Contact Information">
     <tbody>
         <tr>
             <td class="label-col">Credentials</td>
@@ -178,14 +171,14 @@ layout: default
             <td class="label-col contact-label-main" rowspan="2">Contact</td>
             <td class="value-col contact-row">
                 <span class="contact-label">Email</span>
-                <span>abcde12345@gmail.com</span>
+                <span aria-label="Email address abcde12345@gmail.com">abcde12345@gmail.com</span>
             </td>
         </tr>
 
         <tr>
             <td class="value-col contact-row">
                 <span class="contact-label">Social</span>
-                <a href="#" aria-label="LinkedIn" class="inline-link">
+                <a href="#" aria-label="Visit Hannah Vogel on LinkedIn" class="inline-link">
                     <i class="fab fa-linkedin" aria-hidden="true"></i>
                 </a>
             </td>
@@ -195,37 +188,34 @@ layout: default
 </section>
 
 
-<!-- PUBLICATIONS later...
-    -------------------------------------------------------
-    This section is controlled by: publications_enabled: false
-    Change it to true when publications are required. -->
+<!-- PUBLICATIONS -->
 {% if page.publications_enabled %}
 
 {% endif %}
 
 
 <!-- Funding -->
-<section class="content-section">
+<section class="content-section" aria-label="Exhibition Funding">
 
     <h3 class="gold-heading">Funding</h3>
-    <div class="sub-block">
+    <div class="sub-block" aria-label="Funding details">
 
     <h4 class="sub-title">Lorem ipsum dolor sit amet</h4>
 
-    <p> This exhibition is funded by the National Disability Research Partnership’s Disability Research Leadership Program (2026). It is part of Hannah Vogel’s PhD project supported by the Commonwealth through an Australian Government Research Training Program Scholarship DOI: <a href="https://doi.org/10.82133/C42F-K220" class="inline-link">https://doi.org/10.82133/C42F-K220</a>.
+    <p> This exhibition is funded by the National Disability Research Partnership’s Disability Research Leadership Program (2026). It is part of Hannah Vogel’s PhD project supported by the Commonwealth through an Australian Government Research Training Program Scholarship DOI: <a href="https://doi.org/10.82133/C42F-K220" class="inline-link" aria-label="View Australian Government Research Training Program Scholarship documentation">https://doi.org/10.82133/C42F-K220</a>.
     </p>
     </div>
 </section>
 
 
 <!-- ACKNOWLEDGEMENTS -->
-<section class="content-section">
+<section class="content-section" aria-label="Exhibition Acknowledgements">
 
     <h3 class="gold-heading">Acknowledgements</h3>
 
     <p>This research was undertaken on the lands of the Wallumattagal clan of the Dharug Nation, whose cultures and customs have nurtured and continue to nurture this land, since the Dreaming. Their sovereignty was never ceded.</p>
     <p>Thanks to the Gale History Museum, Macquarie University for providing access to the materials for this exhibition, with special thanks to Leila Wallace, Dr Yvonne Inall and Sarah Judd. Thanks also to:</p>
-    <ul>
+    <ul aria-label="List of special thanks">
         <li>
             Dr Brian Ballsun-Stanton (website accessibility, development and support)
         </li>
@@ -239,53 +229,54 @@ layout: default
             Vision Australia (Tactile fabrication, large-print and braille guides)
         </li>
     </ul>
-    <p>I acknowledge [disability] community consultation, was provided by the <a href="https://www.ndrp.org.au/" target="_blank">National Disability Research Partnership</a> staff (especially, Catherine Raffaele and Jess Rosenthal), and the Disability Research Leaders Community of Practise members (especially, Matthew Jackson and Samantha Lilly). Acknowledgments for feedback and consultation also from Dr Alexandra F. Morris, Amy Cripps, Cecily Bateman, Chaya Kasif, Damian Gilbert, Dr David Chapman, Dr Ewan Coopey, Gessika Crowe, Hannah Newman, Jackie Tang, Dr Julia Hamilton, Dr Katie Shead, Louise Pryke, Marianne Strauss, Narges Safari, Nicole Leong, Penelope Blake, Prof Ronika Power, Sarah Massingham, Taylah Evans and many other community members who have elected to remain anonymous.</p>
+    <p>I acknowledge [disability] community consultation, was provided by the <a href="https://www.ndrp.org.au/" target="_blank" aria-label="Visit the National Disability Research Partnership website">National Disability Research Partnership</a> staff (especially, Catherine Raffaele and Jess Rosenthal), and the Disability Research Leaders Community of Practise members (especially, Matthew Jackson and Samantha Lilly). Acknowledgments for feedback and consultation also from Dr Alexandra F. Morris, Amy Cripps, Cecily Bateman, Chaya Kasif, Damian Gilbert, Dr David Chapman, Dr Ewan Coopey, Gessika Crowe, Hannah Newman, Jackie Tang, Dr Julia Hamilton, Dr Katie Shead, Louise Pryke, Marianne Strauss, Narges Safari, Nicole Leong, Penelope Blake, Prof Ronika Power, Sarah Massingham, Taylah Evans and many other community members who have elected to remain anonymous.</p>
     <p>Special thanks to Hannah Newman and Dr Brian Ballsun-Stanton for their work supporting the administrative and technical development of this exhibition and associated website.</p>
-    <p>In most instances, I have chosen to use identity-first disability language as a personal preference. Acknowledge that preferences vary amongst the diverse disability community and respect the choices of each person to express their experiences and embodiments. </p>
+    <p>In most instances, I have chosen to use identity-first disability language as a personal preference. Acknowledge that preferences vary amongst the diverse disability community and respect the choices of each person to express their experiences and embodiments.</p>
 </section>
 
 
 <!-- WEBSITE DEVELOPMENT TEAM -->
-<section class="content-section">
+<section class="content-section" aria-label="Website Development Team Section">
 <h3 class="gold-heading">Website Development Team</h3>
 
 <!-- Interactive Avatars -->
     <div class="team-avatars" id="avatar-container" role="tablist" aria-label="Website development team members">
 
-    <button class="avatar active" type="button" onclick="selectMember(0, this)" aria-label="Team member 1">
+    <button class="avatar active" type="button" role="tab" aria-selected="true" onclick="selectMember(0, this)" aria-label="Select Team member 1">
     AB
     </button>
 
-    <button class="avatar" type="button" onclick="selectMember(1, this)" aria-label="Team member 2">
+    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(1, this)" aria-label="Select Team member 2">
     CD
     </button>
 
-    <button class="avatar" type="button" onclick="selectMember(2, this)" aria-label="Team member 3">
+    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(2, this)" aria-label="Select Team member 3">
     EF
     </button>
 
-    <button class="avatar" type="button" onclick="selectMember(3, this)" aria-label="Team member 4">
+    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(3, this)" aria-label="Select Team member 4">
     GH
     </button>
 
-    <button class="avatar" type="button" onclick="selectMember(4, this)" aria-label="Team member 5">
+    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(4, this)" aria-label="Select Team member 5">
     IJ
     </button>
 
-    <button class="avatar" type="button" onclick="selectMember(5, this)" aria-label="Team member 6">
+    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(5, this)" aria-label="Select Team member 6">
     KL
     </button>
 </div>
 
 
 <!-- Dynamic Pointer Line -->
-<div class="gold-divider-line">
+<div class="gold-divider-line" aria-hidden="true">
     <div class="pointer-arrow" id="pointer-arrow" aria-hidden="true"></div>
 </div>
 
 
 <!-- Member Information -->
-<table class="info-table team-member-table">
+<div aria-live="polite" aria-label="Selected Team Member Details">
+<table class="info-table team-member-table" aria-label="Team member information">
     <tbody>
 
     <tr>
@@ -323,24 +314,22 @@ layout: default
     <tr>
         <td class="value-col" id="member-social">
         Social:
-        <a href="#" aria-label="LinkedIn" id="member-link" class="inline-link">
+        <a href="#" aria-label="Visit selected team member's LinkedIn" id="member-link" class="inline-link">
             <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
         </td>
     </tr>
     </tbody>
 </table>
+</div>
 
 </section>
 
 </section>
 </div>
 
-
-
 <!-- SCRIPT: About page interaction -->
 <script>
-
   /* Team Data */
 const teamMembers = [
     {
@@ -387,10 +376,8 @@ const teamMembers = [
     }
     ];
 
-
   /* Tab Switching */
 function switchTab(tabId, btn) {
-
     document
         .querySelectorAll('.tab-content')
         .forEach(function (element) {
@@ -425,27 +412,25 @@ function switchTab(tabId, btn) {
 
     if (banner) {
         banner.hidden = tabId !== 'curation-tab';
+        banner.setAttribute('aria-hidden', banner.hidden.toString());
     }
     }
-
 
   /* Team Member Selection */
 function selectMember(index, element) {
-
     document
         .querySelectorAll('#avatar-container .avatar')
         .forEach(function (avatar) {
         avatar.classList.remove('active');
+        avatar.setAttribute('aria-selected', 'false');
         });
 
-
     element.classList.add('active');
-
+    element.setAttribute('aria-selected', 'true');
 
     /* Move pointer under selected avatar */
     const pointer = document.getElementById('pointer-arrow');
     const divider = document.querySelector('.gold-divider-line');
-
 
     if (pointer && divider) {
         const avatarRect = element.getBoundingClientRect();
@@ -455,7 +440,6 @@ function selectMember(index, element) {
             avatarRect.left - dividerRect.left + (avatarRect.width / 2);
         pointer.style.left = (avatarCenter - 8) + 'px';
     }
-
 
     /* Populate member information */
     const data = teamMembers[index];
@@ -479,15 +463,12 @@ function selectMember(index, element) {
         data.link;
     }
 
-
   /* Page Initialisation */
 window.addEventListener('DOMContentLoaded', function () {
-
     /* Open curation tab when linked with #curation-tab */
     if (window.location.hash === '#curation-tab') {
         switchTab('curation-tab');
     }
-
 
     /* Initialise first team member and pointer */
     const firstAvatar =
