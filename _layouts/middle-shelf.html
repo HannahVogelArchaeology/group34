@@ -1,157 +1,43 @@
 ---
 layout: default
 ---
-
-{% capture hero_meta_query %}label0=HERO%20IMAGE&caption0={{ page.hero_caption | uri_escape }}{% endcapture %}
 <div class="middle-shelf-container">
+  <h1 class="shelf-v2-title">{{ page.shelf_title | default: "MIDDLE SHELF" }}</h1>
 
-  <h1 class="shelf-v2-title">
-    {{ page.shelf_title | default: "MIDDLE SHELF" }}
-  </h1>
-
-  <!-- Hero Image + Numbered Object List -->
-  <div class="shelf-hero-grid">
-
+  <div class="shelf-feature-layout">
     <div class="shelf-hero-media">
-
       <div class="hero-image-wrapper">
-        <a
-          class="shelf-photo-link"
-          href="{{ '/photo/' | relative_url }}?image={{ page.hero_image | relative_url | uri_escape }}&object={{ page.shelf_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ page.hero_image | relative_url | uri_escape }}&{{ hero_meta_query }}"
-          aria-label="Open Middle Shelf hero image in the photo viewer"
-        >
+        <a class="shelf-photo-link" href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0" aria-label="Open Middle Shelf hero image in the photo viewer">
           <img src="{{ page.hero_image | relative_url }}" alt="Middle Shelf hero image" loading="eager">
         </a>
-
-        <a
-          class="expand-btn"
-          href="{{ '/photo/' | relative_url }}?image={{ page.hero_image | relative_url | uri_escape }}&object={{ page.shelf_title | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ page.hero_image | relative_url | uri_escape }}&{{ hero_meta_query }}"
-          aria-label="Open Middle Shelf hero image in the photo viewer"
-        >
-          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        <a class="expand-btn" href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0" aria-label="Open Middle Shelf hero image in the photo viewer">
+          <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
-
-      <p class="image-caption">
-        {{ page.hero_caption | default: "Shelf display hero image" }}
-      </p>
-
+      <p class="image-caption">{{ page.hero_caption | default: "Shelf display hero image" }}</p>
     </div>
-
-    <!-- Numbered Object List -->
-    <ul class="numbered-object-list">
-
-      {% for obj in page.objects %}
-
-      <li class="object-item">
-        <a
-          href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            {{ obj.num }}
-          </span>
-
-          <span>
-            {{ obj.name }}
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      {% endfor %}
-
-    </ul>
+    <section class="shelf-overview-section">
+      <h2>Overview</h2>
+      <p>{{ page.overview }}</p>
+    </section>
   </div>
 
-  <!-- Overview Section -->
-  <section class="shelf-overview-section">
-
-    <h2>Overview</h2>
-    <p>{{ page.overview }}</p>
-
-  </section>
-
-  <!-- Objects Cards Grid -->
-  <section class="shelf-objects-section">
-
-    <h2>The Objects</h2>
-
-    <div class="objects-grid">
-
+  <section class="object-explorer-carousel" aria-label="Explore the objects">
+    <h2>Explore the objects</h2>
+    <p class="carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
+    <div class="object-carousel-track">
       {% for obj in page.objects %}
-
-      <!-- Entire card is now the accessible link -->
-      <a
-        href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}"
-        class="object-card"
-        aria-label="View {{ obj.name }}"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            {{ obj.num }} {{ obj.name }}
-          </span>
-
-          <!-- VIEW button -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="{{ obj.image | relative_url }}"
-            alt="{{ obj.alt | escape }}"
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">{{ obj.caption }}</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> {{ obj.alt }}</p>
-        </details>
-
+      {% assign obj_number = obj.slug | split: 'object' | last %}
+      <a class="object-carousel-card" href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" aria-label="View {{ obj.name }}">
+        <span class="object-carousel-number" aria-hidden="true">{{ obj_number }}</span>
+        <span class="object-carousel-image-wrap"><img src="{{ obj.image | relative_url }}" alt="{{ obj.alt | escape }}" loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">{{ obj.name }}</span>
+          <span class="object-carousel-caption">{{ obj.caption }}</span>
+        </span>
       </a>
-
       {% endfor %}
-
     </div>
-
   </section>
-
   {% include pagination.html %}
-
-  <!-- Image Dialog Modal -->
-  <dialog id="middle-shelf-image-dialog">
-
-    <div class="dialog-header">
-
-      <h2>Middle Shelf</h2>
-
-      <form method="dialog">
-        <button class="dialog-close" type="submit">Close</button>
-      </form>
-
-    </div>
-
-    <img
-      src="{{ page.hero_image | relative_url }}"
-      alt="Middle Shelf Hero Expanded View"
-    >
-
-  </dialog>
-
 </div>

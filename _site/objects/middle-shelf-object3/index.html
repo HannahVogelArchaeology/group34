@@ -14,13 +14,18 @@
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>3. Bronze dancer (replica) | Disability Heritage: Archaeology with Difference</title>
+  <meta name="description" content="Digital Exhibition">
+  <meta property="og:title" content="3. Bronze dancer (replica) | Disability Heritage: Archaeology with Difference">
+  <meta property="og:description" content="Digital Exhibition">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/group34/objects/middle-shelf-object3/">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Material Icons CDN -->
@@ -40,6 +45,10 @@
   }
   })();
 </script>
+
+<!--[if lte IE 9]>
+<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -63,14 +72,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>
@@ -78,8 +87,8 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
-    <span class="hamburger-icon"></span>
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
   </button>
   
   <nav class="sidebar-nav">
@@ -159,13 +168,11 @@
       </a>
     </div>
   </nav>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
 </aside>
 
   <main class="main-content" id="main-content">
     
-
-
-
 
 
 
@@ -179,20 +186,22 @@
 
   <div class="object-hero-grid">
 
+    <h1 class="object-heading">3. Bronze dancer (replica)</h1>
+
     <div class="media-column">
 
       <div class="main-image-wrapper">
         <a class="main-image-link"
-          href="/group34/photo/?image=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg&object=3.%20Bronze%20dancer%20(replica)&museum=MU0101&return=/group34/objects/middle-shelf-object3/&gallery=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg&label0=FRONT&caption0=3%20Bronze%20dancer,%20MU0101,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=BACK&caption1=3%20Bronze%20dancer,%20MU0101,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label2=LEFT%20SIDE%20FRONT&caption2=3%20Bronze%20dancer,%20MU0101,%20left%20side%20front%20%C2%A9%20Gale%20History%20Museum&label3=LEFT%20SIDE%20BACK&caption3=3%20Bronze%20dancer,%20MU0101,%20left%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum&label4=RIGHT%20SIDE%20FRONT&caption4=3%20Bronze%20dancer,%20MU0101,%20right%20side%20front%20view%20%C2%A9%20Gale%20History%20Museum&label5=RIGHT%20SIDE%20BACK&caption5=3%20Bronze%20dancer,%20MU0101,%20right%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+          href="/group34/photo/?key=/group34/objects/middle-shelf-object3/&index=0"
           aria-label="Open 3. Bronze dancer (replica) front image in the photo viewer">
           <img src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg"
             alt="3 Bronze dancer, MU0101, front view © Gale History Museum" class="main-img">
         </a>
 
         <a class="expand-btn"
-          href="/group34/photo/?image=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg&object=3.%20Bronze%20dancer%20(replica)&museum=MU0101&return=/group34/objects/middle-shelf-object3/&gallery=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg&label0=FRONT&caption0=3%20Bronze%20dancer,%20MU0101,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=BACK&caption1=3%20Bronze%20dancer,%20MU0101,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label2=LEFT%20SIDE%20FRONT&caption2=3%20Bronze%20dancer,%20MU0101,%20left%20side%20front%20%C2%A9%20Gale%20History%20Museum&label3=LEFT%20SIDE%20BACK&caption3=3%20Bronze%20dancer,%20MU0101,%20left%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum&label4=RIGHT%20SIDE%20FRONT&caption4=3%20Bronze%20dancer,%20MU0101,%20right%20side%20front%20view%20%C2%A9%20Gale%20History%20Museum&label5=RIGHT%20SIDE%20BACK&caption5=3%20Bronze%20dancer,%20MU0101,%20right%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+          href="/group34/photo/?key=/group34/objects/middle-shelf-object3/&index=0"
           aria-label="Open 3. Bronze dancer (replica) front image in the photo viewer">
-          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+          <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
 
@@ -207,7 +216,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg&object=3.%20Bronze%20dancer%20(replica)&museum=MU0101&return=/group34/objects/middle-shelf-object3/&gallery=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg&label0=FRONT&caption0=3%20Bronze%20dancer,%20MU0101,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=BACK&caption1=3%20Bronze%20dancer,%20MU0101,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label2=LEFT%20SIDE%20FRONT&caption2=3%20Bronze%20dancer,%20MU0101,%20left%20side%20front%20%C2%A9%20Gale%20History%20Museum&label3=LEFT%20SIDE%20BACK&caption3=3%20Bronze%20dancer,%20MU0101,%20left%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum&label4=RIGHT%20SIDE%20FRONT&caption4=3%20Bronze%20dancer,%20MU0101,%20right%20side%20front%20view%20%C2%A9%20Gale%20History%20Museum&label5=RIGHT%20SIDE%20BACK&caption5=3%20Bronze%20dancer,%20MU0101,%20right%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/middle-shelf-object3/&index=1"
             aria-label="Open BACK of 3. Bronze dancer (replica)">
             <img
               src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg"
@@ -217,7 +226,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg&object=3.%20Bronze%20dancer%20(replica)&museum=MU0101&return=/group34/objects/middle-shelf-object3/&gallery=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg&label0=FRONT&caption0=3%20Bronze%20dancer,%20MU0101,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=BACK&caption1=3%20Bronze%20dancer,%20MU0101,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label2=LEFT%20SIDE%20FRONT&caption2=3%20Bronze%20dancer,%20MU0101,%20left%20side%20front%20%C2%A9%20Gale%20History%20Museum&label3=LEFT%20SIDE%20BACK&caption3=3%20Bronze%20dancer,%20MU0101,%20left%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum&label4=RIGHT%20SIDE%20FRONT&caption4=3%20Bronze%20dancer,%20MU0101,%20right%20side%20front%20view%20%C2%A9%20Gale%20History%20Museum&label5=RIGHT%20SIDE%20BACK&caption5=3%20Bronze%20dancer,%20MU0101,%20right%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/middle-shelf-object3/&index=2"
             aria-label="Open LEFT SIDE FRONT of 3. Bronze dancer (replica)">
             <img
               src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg"
@@ -227,7 +236,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg&object=3.%20Bronze%20dancer%20(replica)&museum=MU0101&return=/group34/objects/middle-shelf-object3/&gallery=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg&label0=FRONT&caption0=3%20Bronze%20dancer,%20MU0101,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=BACK&caption1=3%20Bronze%20dancer,%20MU0101,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label2=LEFT%20SIDE%20FRONT&caption2=3%20Bronze%20dancer,%20MU0101,%20left%20side%20front%20%C2%A9%20Gale%20History%20Museum&label3=LEFT%20SIDE%20BACK&caption3=3%20Bronze%20dancer,%20MU0101,%20left%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum&label4=RIGHT%20SIDE%20FRONT&caption4=3%20Bronze%20dancer,%20MU0101,%20right%20side%20front%20view%20%C2%A9%20Gale%20History%20Museum&label5=RIGHT%20SIDE%20BACK&caption5=3%20Bronze%20dancer,%20MU0101,%20right%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/middle-shelf-object3/&index=3"
             aria-label="Open LEFT SIDE BACK of 3. Bronze dancer (replica)">
             <img
               src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg"
@@ -237,7 +246,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg&object=3.%20Bronze%20dancer%20(replica)&museum=MU0101&return=/group34/objects/middle-shelf-object3/&gallery=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg&label0=FRONT&caption0=3%20Bronze%20dancer,%20MU0101,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=BACK&caption1=3%20Bronze%20dancer,%20MU0101,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label2=LEFT%20SIDE%20FRONT&caption2=3%20Bronze%20dancer,%20MU0101,%20left%20side%20front%20%C2%A9%20Gale%20History%20Museum&label3=LEFT%20SIDE%20BACK&caption3=3%20Bronze%20dancer,%20MU0101,%20left%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum&label4=RIGHT%20SIDE%20FRONT&caption4=3%20Bronze%20dancer,%20MU0101,%20right%20side%20front%20view%20%C2%A9%20Gale%20History%20Museum&label5=RIGHT%20SIDE%20BACK&caption5=3%20Bronze%20dancer,%20MU0101,%20right%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/middle-shelf-object3/&index=4"
             aria-label="Open RIGHT SIDE FRONT of 3. Bronze dancer (replica)">
             <img
               src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg"
@@ -247,7 +256,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg&object=3.%20Bronze%20dancer%20(replica)&museum=MU0101&return=/group34/objects/middle-shelf-object3/&gallery=/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg,/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg&label0=FRONT&caption0=3%20Bronze%20dancer,%20MU0101,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=BACK&caption1=3%20Bronze%20dancer,%20MU0101,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label2=LEFT%20SIDE%20FRONT&caption2=3%20Bronze%20dancer,%20MU0101,%20left%20side%20front%20%C2%A9%20Gale%20History%20Museum&label3=LEFT%20SIDE%20BACK&caption3=3%20Bronze%20dancer,%20MU0101,%20left%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum&label4=RIGHT%20SIDE%20FRONT&caption4=3%20Bronze%20dancer,%20MU0101,%20right%20side%20front%20view%20%C2%A9%20Gale%20History%20Museum&label5=RIGHT%20SIDE%20BACK&caption5=3%20Bronze%20dancer,%20MU0101,%20right%20side%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/middle-shelf-object3/&index=5"
             aria-label="Open RIGHT SIDE BACK of 3. Bronze dancer (replica)">
             <img
               src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg"
@@ -263,8 +272,6 @@
 
     <div class="info-column">
 
-      <h1 class="object-heading">3. Bronze dancer (replica)</h1>
-
       <div class="overview-section">
         <p class="overview-title">Overview</p>
         <p class="overview-text">
@@ -277,19 +284,18 @@
 
         <div class="audio-actions">
           <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
-            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
             <span>Audio Description</span>
           </button>
         </div>
 
-        <details class="transcript-accordion">
-          <summary class="btn-transcript-toggle">[ READ TRANSCRIPT ]</summary>
+        <div class="transcript-accordion">
           <div class="transcript-box">
             <p class="transcript-text">
               A bronze figurine of a woman, fixed to a modern wooden block base. The figure is wearing a long dress that is fitted to the body, and a headdress; the hood or hair is shaped to a rounded point behind her head. The figure’s arms are held out wide with sleeves flaring slightly at the elbows. The left hand is held up with the palm facing outwards; the right is also held away from the body, but the palm faces down. The figure’s left foot is further forward than the right, and the heel of the right foot is slightly lifted to give the impression they are moving. The fabric of their dress appears slightly stretched around the legs, and several incised lines detail the head, face, neckline and dress.
             </p>
           </div>
-        </details>
+        </div>
       </div>
 
       <div class="metadata-section">
@@ -322,7 +328,7 @@ Copy of Etruscan bronze, c.525-500 BCE, 01.7482, from the Museum of Fine Arts, B
 
   <nav class="shelf-pagination">
   <a href="/group34/objects/middle-shelf-object2/" class="nav-box nav-back">
-    <span class="arrow">&larr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long"></i></span>
     <div class="nav-text">
       <span class="sub-label">BACK</span>
       <span class="main-label">OBJECT 2</span>
@@ -334,7 +340,7 @@ Copy of Etruscan bronze, c.525-500 BCE, 01.7482, from the Museum of Fine Arts, B
       <span class="sub-label">NEXT</span>
       <span class="main-label">OBJECT 4</span>
     </div>
-    <span class="arrow">&rarr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
   </a>
 </nav>
 
@@ -379,7 +385,7 @@ Copy of Etruscan bronze, c.525-500 BCE, 01.7482, from the Museum of Fine Arts, B
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+  <audio id="exhibitionAudio" src="" preload="none"></audio>
 </div><footer class="site-footer">
   
 

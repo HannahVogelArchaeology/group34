@@ -14,13 +14,18 @@
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>Privacy Policy | Disability Heritage: Archaeology with Difference</title>
+  <meta name="description" content="Digital Exhibition">
+  <meta property="og:title" content="Privacy Policy | Disability Heritage: Archaeology with Difference">
+  <meta property="og:description" content="Digital Exhibition">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/group34/privacy/">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Material Icons CDN -->
@@ -40,6 +45,10 @@
   }
   })();
 </script>
+
+<!--[if lte IE 9]>
+<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -63,14 +72,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>
@@ -78,8 +87,8 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
-    <span class="hamburger-icon"></span>
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
   </button>
   
   <nav class="sidebar-nav">
@@ -159,6 +168,7 @@
       </a>
     </div>
   </nav>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
 </aside>
 
   <main class="main-content" id="main-content">
@@ -313,7 +323,7 @@
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+  <audio id="exhibitionAudio" src="" preload="none"></audio>
 </div><footer class="site-footer">
   
 

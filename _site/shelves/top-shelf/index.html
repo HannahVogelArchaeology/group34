@@ -14,13 +14,18 @@
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>Top Shelf | Disability Heritage: Archaeology with Difference</title>
+  <meta name="description" content="Digital Exhibition">
+  <meta property="og:title" content="Top Shelf | Disability Heritage: Archaeology with Difference">
+  <meta property="og:description" content="Digital Exhibition">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/group34/shelves/top-shelf/">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Material Icons CDN -->
@@ -40,6 +45,10 @@
   }
   })();
 </script>
+
+<!--[if lte IE 9]>
+<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -63,14 +72,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>
@@ -78,8 +87,8 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
-    <span class="hamburger-icon"></span>
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
   </button>
   
   <nav class="sidebar-nav">
@@ -159,6 +168,7 @@
       </a>
     </div>
   </nav>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
 </aside>
 
   <main class="main-content" id="main-content">
@@ -168,21 +178,19 @@
   <div class="media-section">
     <div class="hero-image-wrapper">
       
-      
-      
       <a
         class="shelf-photo-link"
-        href="/group34/photo/?image=/group34/assets/images/1%20Pelike_MU4759_front_Image1.jpeg&object=1.%20Pelike&return=/group34/shelves/top-shelf/&gallery=/group34/assets/images/1%20Pelike_MU4759_front_Image1.jpeg,/group34/assets/images/1%20Pelike_MU4759_front%20scene_Image2.jpeg,/group34/assets/images/1%20Pelike_MU4759_back_Image3.jpeg&label0=FRONT&caption0=Pelike,%20MU4759,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=FRONT%20SCENE&caption1=Pelike,%20MU4759,%20front%20close-up%20of%20scene%20%C2%A9%20Gale%20History%20Museum&label2=BACK&caption2=Pelike,%20MU4759,%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+        href="/group34/photo/?key=/group34/shelves/top-shelf/&index=0"
         aria-label="Open Object 1 front image in the photo viewer"
       >
         <img src="/group34/assets/images/1%20Pelike_MU4759_front_Image1.jpeg" alt="Object 1. A Pelike. A large Greek-style vase. The scene depicts two men facing each other. One appears to use a staff, possibly as a mobility aid." class="hero-image" />
       </a>
       <a
         class="expand-btn"
-        href="/group34/photo/?image=/group34/assets/images/1%20Pelike_MU4759_front_Image1.jpeg&object=1.%20Pelike&return=/group34/shelves/top-shelf/&gallery=/group34/assets/images/1%20Pelike_MU4759_front_Image1.jpeg,/group34/assets/images/1%20Pelike_MU4759_front%20scene_Image2.jpeg,/group34/assets/images/1%20Pelike_MU4759_back_Image3.jpeg&label0=FRONT&caption0=Pelike,%20MU4759,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=FRONT%20SCENE&caption1=Pelike,%20MU4759,%20front%20close-up%20of%20scene%20%C2%A9%20Gale%20History%20Museum&label2=BACK&caption2=Pelike,%20MU4759,%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+        href="/group34/photo/?key=/group34/shelves/top-shelf/&index=0"
         aria-label="Open Object 1 front image in the photo viewer"
       >
-        <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
       </a>
     </div>
 
@@ -194,7 +202,7 @@
           
           <a
             class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/1%20Pelike_MU4759_front%20scene_Image2.jpeg&object=1.%20Pelike&return=/group34/shelves/top-shelf/&gallery=/group34/assets/images/1%20Pelike_MU4759_front_Image1.jpeg,/group34/assets/images/1%20Pelike_MU4759_front%20scene_Image2.jpeg,/group34/assets/images/1%20Pelike_MU4759_back_Image3.jpeg&label0=FRONT&caption0=Pelike,%20MU4759,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=FRONT%20SCENE&caption1=Pelike,%20MU4759,%20front%20close-up%20of%20scene%20%C2%A9%20Gale%20History%20Museum&label2=BACK&caption2=Pelike,%20MU4759,%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/shelves/top-shelf/&index=1"
             aria-label="Open FRONT SCENE image of Object 1"
           >
             <img src="/group34/assets/images/1%20Pelike_MU4759_front%20scene_Image2.jpeg" alt="Pelike, MU4759, front close-up of scene © Gale History Museum" />
@@ -203,7 +211,7 @@
           
           <a
             class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/1%20Pelike_MU4759_back_Image3.jpeg&object=1.%20Pelike&return=/group34/shelves/top-shelf/&gallery=/group34/assets/images/1%20Pelike_MU4759_front_Image1.jpeg,/group34/assets/images/1%20Pelike_MU4759_front%20scene_Image2.jpeg,/group34/assets/images/1%20Pelike_MU4759_back_Image3.jpeg&label0=FRONT&caption0=Pelike,%20MU4759,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label1=FRONT%20SCENE&caption1=Pelike,%20MU4759,%20front%20close-up%20of%20scene%20%C2%A9%20Gale%20History%20Museum&label2=BACK&caption2=Pelike,%20MU4759,%20back%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/shelves/top-shelf/&index=2"
             aria-label="Open BACK image of Object 1"
           >
             <img src="/group34/assets/images/1%20Pelike_MU4759_back_Image3.jpeg" alt="Pelike, MU4759, back view © Gale History Museum" />
@@ -228,14 +236,13 @@
     <h3>Listen to this story</h3>
     <div class="audio-controls">
       <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
         <span>Audio Description</span>
       </button>
     </div>
-    <details class="transcript-accordion">
-      <summary class="btn-transcript-toggle">[ READ TRANSCRIPT ]</summary>
+    <div class="transcript-accordion">
       <div class="transcript-box"><p class="body-text">This large ceramic vessel has a wide, thick rim upon a flared neck. A line of leaf-like decorations wraps around the neck. It has one handle on either side, starting below the rim and meeting at the shoulder of the vessel, which becomes a wide, bulbous body upon a circular base. The vessel is black in colour with a light orange scene in the centre. The scene depicts two young men facing each other. Both men are barefoot, have curly hair and wear large toga-style tunics that cover their bodies to the ankle, draping across one shoulder and leaving the other exposed. The man on the left is holding a long staff with his right hand; his arm is bent at the elbow. His right leg is outlined by the fabric and appears to be slightly bent forward, while his right shoulder is facing downwards, as if he is being supported by this staff. The other figure holds a shorter, curved object with his right hand around shoulder height; his arm is bent at the elbow. The two figures are standing on a geometric pattern above the vessel base and are framed by swirling patterns on either side.  </p></div>
-    </details>
+    </div>
   </section>
 
   <section class="shelf-section">
@@ -251,7 +258,7 @@ Purchase, 2013</td></tr>
 
   <nav class="shelf-pagination">
   <a href="/group34/" class="nav-box nav-back">
-    <span class="arrow">&larr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long"></i></span>
     <div class="nav-text">
       <span class="sub-label">BACK</span>
       <span class="main-label">MAIN PAGE</span>
@@ -263,7 +270,7 @@ Purchase, 2013</td></tr>
       <span class="sub-label">NEXT</span>
       <span class="main-label">MIDDLE SHELF</span>
     </div>
-    <span class="arrow">&rarr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
   </a>
 </nav>
 </div>
@@ -308,7 +315,7 @@ Purchase, 2013</td></tr>
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="/group34/assets/audio/top-shelf-description.mp3" preload="metadata"></audio>
+  <audio id="exhibitionAudio" src="/group34/assets/audio/top-shelf-description.mp3" preload="none"></audio>
 </div><footer class="site-footer">
   
 

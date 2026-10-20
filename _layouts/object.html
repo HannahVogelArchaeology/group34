@@ -2,9 +2,6 @@
 layout: default
 ---
 
-{% capture gallery_urls %}{% for image in page.gallery_images %}{% assign image_exists = false %}{% for static_file in site.static_files %}{% if static_file.path == image.src %}{% assign image_exists = true %}{% endif %}{% endfor %}{% if image_exists %}{{ image.src | relative_url }}{% else %}{{ page.image | relative_url }}{% endif %}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
-{% assign gallery_urls = gallery_urls | strip | strip_newlines %}
-{% capture gallery_meta_query %}{% for image in page.gallery_images %}label{{ forloop.index0 }}={{ image.label | uri_escape }}&caption{{ forloop.index0 }}={{ image.caption | uri_escape }}{% unless forloop.last %}&{% endunless %}{% endfor %}{% endcapture %}
 {% assign first_gallery_src = page.image %}
 {% if page.gallery_images and page.gallery_images[0].src %}
 {% for static_file in site.static_files %}
@@ -24,20 +21,22 @@ endif %}
 
   <div class="object-hero-grid">
 
+    <h1 class="object-heading">{{ page.title }}</h1>
+
     <div class="media-column">
 
       <div class="main-image-wrapper">
         <a class="main-image-link"
-          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&museum={{ page.acq_no | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
+          href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
           aria-label="Open {{ page.title }} front image in the photo viewer">
           <img src="{{ first_gallery_src | relative_url }}"
             alt="{{ page.gallery_images[0].caption | default: page.title | escape }}" class="main-img">
         </a>
 
         <a class="expand-btn"
-          href="{{ '/photo/' | relative_url }}?image={{ first_gallery_src | relative_url | uri_escape }}&object={{ page.title | uri_escape }}&museum={{ page.acq_no | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
+          href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
           aria-label="Open {{ page.title }} front image in the photo viewer">
-          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+          <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
 
@@ -54,7 +53,7 @@ endif %}
           {% if static_file.path == gallery_image.src %}{% assign gallery_image_exists = true %}{% endif %}
           {% endfor %}
           <a class="thumb-box"
-            href="{{ '/photo/' | relative_url }}?image={% if gallery_image_exists %}{{ gallery_image.src | relative_url | uri_escape }}{% else %}{{ page.image | relative_url | uri_escape }}{% endif %}&object={{ page.title | uri_escape }}&museum={{ page.acq_no | uri_escape }}&return={{ page.url | relative_url | uri_escape }}&gallery={{ gallery_urls | uri_escape }}&{{ gallery_meta_query }}"
+            href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index={{ forloop.index }}"
             aria-label="Open {{ gallery_image.label }} of {{ page.title }}">
             <img
               src="{% if gallery_image_exists %}{{ gallery_image.src | relative_url }}{% else %}{{ page.image | relative_url }}{% endif %}"
@@ -75,8 +74,6 @@ endif %}
 
     <div class="info-column">
 
-      <h1 class="object-heading">{{ page.title }}</h1>
-
       <div class="overview-section">
         <p class="overview-title">Overview</p>
         <p class="overview-text">
@@ -91,20 +88,19 @@ endif %}
 
         <div class="audio-actions">
           <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
-            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
             <span>Audio Description</span>
           </button>
         </div>
 
-        <details class="transcript-accordion">
-          <summary class="btn-transcript-toggle">[ READ TRANSCRIPT ]</summary>
+        <div class="transcript-accordion">
           <div class="transcript-box">
             <p class="transcript-text">
               {{ page.transcript_text | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua.' }}
             </p>
           </div>
-        </details>
+        </div>
       </div>
 
       <div class="metadata-section">

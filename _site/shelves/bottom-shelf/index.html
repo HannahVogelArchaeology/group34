@@ -14,13 +14,18 @@
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>Bottom Shelf | Disability Heritage: Archaeology with Difference</title>
+  <meta name="description" content="Digital Exhibition">
+  <meta property="og:title" content="Bottom Shelf | Disability Heritage: Archaeology with Difference">
+  <meta property="og:description" content="Digital Exhibition">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/group34/shelves/bottom-shelf/">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Material Icons CDN -->
@@ -40,6 +45,10 @@
   }
   })();
 </script>
+
+<!--[if lte IE 9]>
+<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -63,14 +72,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>
@@ -78,8 +87,8 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
-    <span class="hamburger-icon"></span>
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
   </button>
   
   <nav class="sidebar-nav">
@@ -159,272 +168,71 @@
       </a>
     </div>
   </nav>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
 </aside>
 
   <main class="main-content" id="main-content">
-    
-<div class="bottom-shelf-container" data-bottom-shelf-version="interface-enhancement">
+    <div class="bottom-shelf-container">
+  <h1 class="shelf-v2-title">Bottom Shelf</h1>
 
-  <h1 class="shelf-v2-title">
-    Bottom Shelf
-  </h1>
-
-  <!-- Hero Image + Numbered Object List -->
-  <div class="shelf-hero-grid">
-
+  <div class="shelf-feature-layout">
     <div class="shelf-hero-media">
-
       <div class="hero-image-wrapper">
-        <a
-          class="shelf-photo-link"
-          href="/group34/photo/?image=/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg&object=Bottom%20Shelf&return=/group34/shelves/bottom-shelf/&gallery=/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg&label0=HERO%20IMAGE&caption0=11.%20Feeding%20vessel,%20MU3368,%20front%20angled%20view%20%C2%A9%20Gale%20History%20Museum"
-          aria-label="Open Bottom Shelf hero image in the photo viewer"
-        >
+        <a class="shelf-photo-link" href="/group34/photo/?key=/group34/shelves/bottom-shelf/&index=0" aria-label="Open Bottom Shelf hero image in the photo viewer">
           <img src="/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg" alt="Bottom Shelf hero image" loading="eager">
         </a>
-
-        <a
-          class="expand-btn"
-          href="/group34/photo/?image=/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg&object=Bottom%20Shelf&return=/group34/shelves/bottom-shelf/&gallery=/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg&label0=HERO%20IMAGE&caption0=11.%20Feeding%20vessel,%20MU3368,%20front%20angled%20view%20%C2%A9%20Gale%20History%20Museum"
-          aria-label="Open Bottom Shelf hero image in the photo viewer"
-        >
-          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        <a class="expand-btn" href="/group34/photo/?key=/group34/shelves/bottom-shelf/&index=0" aria-label="Open Bottom Shelf hero image in the photo viewer">
+          <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
-
-      <p class="image-caption">
-        11. Feeding vessel, MU3368, front angled view © Gale History Museum
-      </p>
-
+      <p class="image-caption">11. Feeding vessel, MU3368, front angled view © Gale History Museum</p>
     </div>
-
-    <ul class="numbered-object-list">
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/bottom-shelf-object9/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            9
-          </span>
-
-          <span>
-            Feeding cup
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/bottom-shelf-object10/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            10
-          </span>
-
-          <span>
-            Spouted Vessel
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/bottom-shelf-object11/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            11
-          </span>
-
-          <span>
-            Feeding Vessel
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-    </ul>
-
+    <section class="shelf-overview-section">
+      <h2>Overview</h2>
+      <p>These feeding vessels, despite differences in design over time, were made to support the needs of people. They represent difference, creating change in [material] culture.</p>
+    </section>
   </div>
 
-  <!-- Overview Text -->
-  <section class="shelf-overview-section">
-
-    <h2>Overview</h2>
-    <p>These feeding vessels, despite differences in design over time, were made to support the needs of people. They represent difference, creating change in [material] culture.</p>
-
-  </section>
-
-  <!-- Object Cards -->
-  <section class="shelf-objects-section">
-
-    <h2>The Objects</h2>
-
-    <div class="objects-grid">
-
+  <section class="object-explorer-carousel" aria-label="Explore the objects">
+    <h2>Explore the objects</h2>
+    <p class="carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
+    <div class="object-carousel-track">
       
-
-      <!-- Entire object card is clickable -->
-      <a
-        href="/group34/objects/bottom-shelf-object9/"
-        class="object-card"
-        aria-label="View Feeding cup"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            9 Feeding cup
-          </span>
-
-          <!-- Keep View button visually in the existing position -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/9%20Feeding%20Cup_AHM1985053_front%20angled_image1.jpeg"
-            alt="9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">Feeding cup, AHM/1985/053, front view angled © Gale History</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> 9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/bottom-shelf-object9/" aria-label="View Feeding cup">
+        <span class="object-carousel-number" aria-hidden="true">9</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/9%20Feeding%20Cup_AHM1985053_front%20angled_image1.jpeg" alt="9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Feeding cup</span>
+          <span class="object-carousel-caption">Feeding cup, AHM/1985/053, front view angled © Gale History</span>
+        </span>
       </a>
-
       
-
-      <!-- Entire object card is clickable -->
-      <a
-        href="/group34/objects/bottom-shelf-object10/"
-        class="object-card"
-        aria-label="View Spouted Vessel"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            10 Spouted Vessel
-          </span>
-
-          <!-- Keep View button visually in the existing position -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg"
-            alt="Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines can be seen around the handle, neck, and body."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">10. Spouted vessel, MU0091, front-angled view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines can be seen around the handle, neck, and body.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/bottom-shelf-object10/" aria-label="View Spouted Vessel">
+        <span class="object-carousel-number" aria-hidden="true">10</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg" alt="Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines can be seen around the handle, neck, and body." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Spouted Vessel</span>
+          <span class="object-carousel-caption">10. Spouted vessel, MU0091, front-angled view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
-      <!-- Entire object card is clickable -->
-      <a
-        href="/group34/objects/bottom-shelf-object11/"
-        class="object-card"
-        aria-label="View Feeding Vessel"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            11 Feeding Vessel
-          </span>
-
-          <!-- Keep View button visually in the existing position -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg"
-            alt="Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">11. Feeding vessel, MU3368, front angled view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/bottom-shelf-object11/" aria-label="View Feeding Vessel">
+        <span class="object-carousel-number" aria-hidden="true">11</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg" alt="Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Feeding Vessel</span>
+          <span class="object-carousel-caption">11. Feeding vessel, MU3368, front angled view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
     </div>
-
   </section>
-
   <nav class="shelf-pagination">
   <a href="/group34/shelves/middle-shelf/" class="nav-box nav-back">
-    <span class="arrow">&larr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long"></i></span>
     <div class="nav-text">
       <span class="sub-label">BACK</span>
       <span class="main-label">MIDDLE SHELF</span>
@@ -436,31 +244,11 @@
       <span class="sub-label">NEXT</span>
       <span class="main-label">MAIN PAGE</span>
     </div>
-    <span class="arrow">&rarr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
   </a>
 </nav>
-
-  <!-- Image Dialog Modal -->
-  <dialog id="bottom-shelf-image-dialog">
-
-    <div class="dialog-header">
-
-      <h2>Bottom Shelf</h2>
-
-      <form method="dialog">
-        <button class="dialog-close" type="submit">Close</button>
-      </form>
-
-    </div>
-
-    <img
-      src="/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg"
-      alt="Bottom Shelf Hero Expanded View"
-    >
-
-  </dialog>
-
 </div>
+
   </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
   <!-- Bar with the time -->
   <div class="audio-progress-container">
@@ -501,7 +289,7 @@
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+  <audio id="exhibitionAudio" src="" preload="none"></audio>
 </div><footer class="site-footer">
   
 

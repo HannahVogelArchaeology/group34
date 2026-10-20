@@ -14,13 +14,18 @@
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>Middle Shelf | Disability Heritage: Archaeology with Difference</title>
+  <meta name="description" content="Digital Exhibition">
+  <meta property="og:title" content="Middle Shelf | Disability Heritage: Archaeology with Difference">
+  <meta property="og:description" content="Digital Exhibition">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/group34/shelves/middle-shelf/">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Material Icons CDN -->
@@ -40,6 +45,10 @@
   }
   })();
 </script>
+
+<!--[if lte IE 9]>
+<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -63,14 +72,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>
@@ -78,8 +87,8 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
-    <span class="hamburger-icon"></span>
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
   </button>
   
   <nav class="sidebar-nav">
@@ -159,532 +168,111 @@
       </a>
     </div>
   </nav>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
 </aside>
 
   <main class="main-content" id="main-content">
-    
-<div class="middle-shelf-container">
+    <div class="middle-shelf-container">
+  <h1 class="shelf-v2-title">Middle Shelf</h1>
 
-  <h1 class="shelf-v2-title">
-    Middle Shelf
-  </h1>
-
-  <!-- Hero Image + Numbered Object List -->
-  <div class="shelf-hero-grid">
-
+  <div class="shelf-feature-layout">
     <div class="shelf-hero-media">
-
       <div class="hero-image-wrapper">
-        <a
-          class="shelf-photo-link"
-          href="/group34/photo/?image=/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg&object=Middle%20Shelf&return=/group34/shelves/middle-shelf/&gallery=/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg&label0=HERO%20IMAGE&caption0=4.%20Figure%20of%20a%20Musician,%20MU0086,%20front-right%20side%20view%20%C2%A9%20Gale%20History%20Museum"
-          aria-label="Open Middle Shelf hero image in the photo viewer"
-        >
+        <a class="shelf-photo-link" href="/group34/photo/?key=/group34/shelves/middle-shelf/&index=0" aria-label="Open Middle Shelf hero image in the photo viewer">
           <img src="/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg" alt="Middle Shelf hero image" loading="eager">
         </a>
-
-        <a
-          class="expand-btn"
-          href="/group34/photo/?image=/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg&object=Middle%20Shelf&return=/group34/shelves/middle-shelf/&gallery=/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg&label0=HERO%20IMAGE&caption0=4.%20Figure%20of%20a%20Musician,%20MU0086,%20front-right%20side%20view%20%C2%A9%20Gale%20History%20Museum"
-          aria-label="Open Middle Shelf hero image in the photo viewer"
-        >
-          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+        <a class="expand-btn" href="/group34/photo/?key=/group34/shelves/middle-shelf/&index=0" aria-label="Open Middle Shelf hero image in the photo viewer">
+          <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
-
-      <p class="image-caption">
-        4. Figure of a Musician, MU0086, front-right side view © Gale History Museum
-      </p>
-
+      <p class="image-caption">4. Figure of a Musician, MU0086, front-right side view © Gale History Museum</p>
     </div>
-
-    <!-- Numbered Object List -->
-    <ul class="numbered-object-list">
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/middle-shelf-object2/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            2
-          </span>
-
-          <span>
-            Reclining Figure
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/middle-shelf-object3/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            3
-          </span>
-
-          <span>
-            Bronze dancer (replica)
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/middle-shelf-object4/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            4
-          </span>
-
-          <span>
-            Figure of a musician
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/middle-shelf-object5/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            5
-          </span>
-
-          <span>
-            Seated statuette
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/middle-shelf-object6/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            6
-          </span>
-
-          <span>
-            Bronze figure of Priapus
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/middle-shelf-object7/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            7
-          </span>
-
-          <span>
-            Terracotta figurine
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-      <li class="object-item">
-        <a
-          href="/group34/objects/middle-shelf-object8/"
-          class="name"
-        >
-
-          <span class="num" aria-hidden="true">
-            8
-          </span>
-
-          <span>
-            Amulet of Pataikos
-          </span>
-
-          <span class="object-link-arrow" aria-hidden="true">
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </a>
-      </li>
-
-      
-
-    </ul>
+    <section class="shelf-overview-section">
+      <h2>Overview</h2>
+      <p>Figurines were made for various reasons and were often accessible to many people. These differently shaped bodies are votive offerings or amulets used for protection, ensuring health and/or fertility, invoking the divine, or for afterlife beliefs. These are an important reflection of the reality of diversity, rather than an ‘ideal’ body.  </p>
+    </section>
   </div>
 
-  <!-- Overview Section -->
-  <section class="shelf-overview-section">
-
-    <h2>Overview</h2>
-    <p>Figurines were made for various reasons and were often accessible to many people. These differently shaped bodies are votive offerings or amulets used for protection, ensuring health and/or fertility, invoking the divine, or for afterlife beliefs. These are an important reflection of the reality of diversity, rather than an ‘ideal’ body.  </p>
-
-  </section>
-
-  <!-- Objects Cards Grid -->
-  <section class="shelf-objects-section">
-
-    <h2>The Objects</h2>
-
-    <div class="objects-grid">
-
+  <section class="object-explorer-carousel" aria-label="Explore the objects">
+    <h2>Explore the objects</h2>
+    <p class="carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
+    <div class="object-carousel-track">
       
-
-      <!-- Entire card is now the accessible link -->
-      <a
-        href="/group34/objects/middle-shelf-object2/"
-        class="object-card"
-        aria-label="View Reclining Figure"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            2 Reclining Figure
-          </span>
-
-          <!-- VIEW button -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/2%20Reclining%20Figure_MU4249_front_Image1.jpeg"
-            alt="Object 2. Reclining figure. This mould-made ceramic figure depicts a person reclining on their left side on a chaise-like base. The bodily and facial features are unclear due to the softness of the moulding. Remnants of pink-red, cream, and yellow paint are heavily worn on the base, back, and legs of the figure."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">2 Reclining Figure, MU4249, front view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 2. Reclining figure. This mould-made ceramic figure depicts a person reclining on their left side on a chaise-like base. The bodily and facial features are unclear due to the softness of the moulding. Remnants of pink-red, cream, and yellow paint are heavily worn on the base, back, and legs of the figure.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object2/" aria-label="View Reclining Figure">
+        <span class="object-carousel-number" aria-hidden="true">2</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/2%20Reclining%20Figure_MU4249_front_Image1.jpeg" alt="Object 2. Reclining figure. This mould-made ceramic figure depicts a person reclining on their left side on a chaise-like base. The bodily and facial features are unclear due to the softness of the moulding. Remnants of pink-red, cream, and yellow paint are heavily worn on the base, back, and legs of the figure." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Reclining Figure</span>
+          <span class="object-carousel-caption">2 Reclining Figure, MU4249, front view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
-      <!-- Entire card is now the accessible link -->
-      <a
-        href="/group34/objects/middle-shelf-object3/"
-        class="object-card"
-        aria-label="View Bronze dancer (replica)"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            3 Bronze dancer (replica)
-          </span>
-
-          <!-- VIEW button -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg"
-            alt="Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">3 Bronze dancer, MU0101, front view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object3/" aria-label="View Bronze dancer (replica)">
+        <span class="object-carousel-number" aria-hidden="true">3</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg" alt="Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Bronze dancer (replica)</span>
+          <span class="object-carousel-caption">3 Bronze dancer, MU0101, front view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
-      <!-- Entire card is now the accessible link -->
-      <a
-        href="/group34/objects/middle-shelf-object4/"
-        class="object-card"
-        aria-label="View Figure of a musician"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            4 Figure of a musician
-          </span>
-
-          <!-- VIEW button -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_front_Image1.jpeg"
-            alt="Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">4. Figure of a musician, MU0086, front view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object4/" aria-label="View Figure of a musician">
+        <span class="object-carousel-number" aria-hidden="true">4</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_front_Image1.jpeg" alt="Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Figure of a musician</span>
+          <span class="object-carousel-caption">4. Figure of a musician, MU0086, front view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
-      <!-- Entire card is now the accessible link -->
-      <a
-        href="/group34/objects/middle-shelf-object5/"
-        class="object-card"
-        aria-label="View Seated statuette"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            5 Seated statuette
-          </span>
-
-          <!-- VIEW button -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/5%20Seated%20Statuette_MU3735_front_Image1.jpeg"
-            alt="Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">5. Seated statuette, MU3735, front view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object5/" aria-label="View Seated statuette">
+        <span class="object-carousel-number" aria-hidden="true">5</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/5%20Seated%20Statuette_MU3735_front_Image1.jpeg" alt="Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Seated statuette</span>
+          <span class="object-carousel-caption">5. Seated statuette, MU3735, front view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
-      <!-- Entire card is now the accessible link -->
-      <a
-        href="/group34/objects/middle-shelf-object6/"
-        class="object-card"
-        aria-label="View Bronze figure of Priapus"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            6 Bronze figure of Priapus
-          </span>
-
-          <!-- VIEW button -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_front_Image1.jpeg"
-            alt="Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">Bronze figure of Priapus, MU4697, front view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object6/" aria-label="View Bronze figure of Priapus">
+        <span class="object-carousel-number" aria-hidden="true">6</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_front_Image1.jpeg" alt="Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Bronze figure of Priapus</span>
+          <span class="object-carousel-caption">Bronze figure of Priapus, MU4697, front view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
-      <!-- Entire card is now the accessible link -->
-      <a
-        href="/group34/objects/middle-shelf-object7/"
-        class="object-card"
-        aria-label="View Terracotta figurine"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            7 Terracotta figurine
-          </span>
-
-          <!-- VIEW button -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/7%20Terracotta%20Figurine_MU2676_front_Image1.jpeg"
-            alt="Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">Terracotta figurine, MU2676, front view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object7/" aria-label="View Terracotta figurine">
+        <span class="object-carousel-number" aria-hidden="true">7</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/7%20Terracotta%20Figurine_MU2676_front_Image1.jpeg" alt="Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Terracotta figurine</span>
+          <span class="object-carousel-caption">Terracotta figurine, MU2676, front view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
-      <!-- Entire card is now the accessible link -->
-      <a
-        href="/group34/objects/middle-shelf-object8/"
-        class="object-card"
-        aria-label="View Amulet of Pataikos"
-      >
-
-        <div class="card-header">
-
-          <span class="item-title">
-            8 Amulet of Pataikos
-          </span>
-
-          <!-- VIEW button -->
-          <span class="btn-view" aria-hidden="true">
-            <span>View</span>
-            <i class="fa-solid fa-arrow-right-long"></i>
-          </span>
-
-        </div>
-
-        <div class="card-media">
-          <img
-            src="/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_front_Image1.jpeg"
-            alt="Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure&#39;s head, there is a loop for it to be worn."
-            loading="eager"
-          >
-        </div>
-
-        <p class="card-caption">Amulet of Pataikos, MU0523, front view © Gale History Museum</p>
-        <details class="card-alt-disclosure" data-alt-disclosure>
-          <summary>
-            <span class="alt-icon" aria-hidden="true">ALT</span>
-            <span>Click to read the alternative text</span>
-          </summary>
-          <p class="card-alt-text"><span class="card-alt-label">Alt text:</span> Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure's head, there is a loop for it to be worn.</p>
-        </details>
-
+      
+      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object8/" aria-label="View Amulet of Pataikos">
+        <span class="object-carousel-number" aria-hidden="true">8</span>
+        <span class="object-carousel-image-wrap"><img src="/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_front_Image1.jpeg" alt="Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure&#39;s head, there is a loop for it to be worn." loading="lazy"></span>
+        <span class="object-carousel-copy">
+          <span class="object-carousel-title">Amulet of Pataikos</span>
+          <span class="object-carousel-caption">Amulet of Pataikos, MU0523, front view © Gale History Museum</span>
+        </span>
       </a>
-
       
-
     </div>
-
   </section>
-
   <nav class="shelf-pagination">
   <a href="/group34/shelves/top-shelf/" class="nav-box nav-back">
-    <span class="arrow">&larr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long"></i></span>
     <div class="nav-text">
       <span class="sub-label">BACK</span>
       <span class="main-label">TOP SHELF</span>
@@ -696,31 +284,11 @@
       <span class="sub-label">NEXT</span>
       <span class="main-label">BOTTOM SHELF</span>
     </div>
-    <span class="arrow">&rarr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
   </a>
 </nav>
-
-  <!-- Image Dialog Modal -->
-  <dialog id="middle-shelf-image-dialog">
-
-    <div class="dialog-header">
-
-      <h2>Middle Shelf</h2>
-
-      <form method="dialog">
-        <button class="dialog-close" type="submit">Close</button>
-      </form>
-
-    </div>
-
-    <img
-      src="/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg"
-      alt="Middle Shelf Hero Expanded View"
-    >
-
-  </dialog>
-
 </div>
+
   </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
   <!-- Bar with the time -->
   <div class="audio-progress-container">
@@ -761,7 +329,7 @@
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+  <audio id="exhibitionAudio" src="" preload="none"></audio>
 </div><footer class="site-footer">
   
 

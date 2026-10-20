@@ -5,17 +5,14 @@ layout: default
 <div class="about-page-container" role="main" aria-label="About Us Page">
 <h1 class="page-title" aria-label="Page Title: About Us">About Us</h1>
 
-<!-- Tab navigation -->
-<nav aria-label="About Us section tabs">
-    <div class="tab-navigation" role="tablist" aria-label="About Us sections">
-        <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="visitor-tab" onclick="switchTab('visitor-tab', this)" aria-label="Visitor Information and Accessibility Tab">
-            Visitor Information and Accessibility
-        </button>
-
-        <button class="tab-btn"  type="button" role="tab" aria-selected="false" aria-controls="curation-tab" onclick="switchTab('curation-tab', this)" aria-label="Curation and Acknowledgements Tab">
-            Curation and Acknowledgements
-        </button>
-    </div>
+<!-- Accessible vertical table of contents -->
+<nav class="about-toc" aria-label="About Us contents">
+    <h2>On this page</h2>
+    <ul>
+        <li><a href="#visitor-tab">Visitor Information and Accessibility</a></li>
+        <li><a href="#curation-tab">Curation and Acknowledgements</a></li>
+        <li><a href="#team-section">Website Development Team</a></li>
+    </ul>
 </nav>
 
 <!-- OPTIONAL QUOTE BANNER: Hidden until needed -->
@@ -236,7 +233,7 @@ layout: default
 
 
 <!-- WEBSITE DEVELOPMENT TEAM -->
-<section class="content-section" aria-label="Website Development Team Section">
+<section id="team-section" class="content-section" aria-label="Website Development Team Section">
 <h3 class="gold-heading">Website Development Team</h3>
 
 <!-- Interactive Avatars -->

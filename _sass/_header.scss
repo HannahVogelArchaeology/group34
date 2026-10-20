@@ -391,3 +391,219 @@
     }
   }
 }
+
+/* ------------------------------------------------------------------
+   Navigation (sidebar)
+   - Desktop: always visible, fixed to the right edge, full height.
+     Width, text size and padding use the original design values.
+   - Mobile (max-width: 700px): collapsed drawer opened with the
+     "Navigation Menu" text button.
+   ------------------------------------------------------------------ */
+:root { --sidebar-w: clamp(280px, 30vw, 380px); }
+
+.mobile-menu-btn {
+  display: none;
+  min-height: 36px;
+  padding: 4px 12px;
+  border: 1px solid #3b2812;
+  border-radius: 3px;
+  background: #53391b;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Back to top in the header keeps the colours of the floating Back to top button. */
+.header-top-btn {
+  display: none;
+  min-height: 36px;
+  padding: 4px 9px;
+  border: 1px solid #6d491b;
+  border-radius: 4px;
+  background: #8b5d24;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dark-mode-btn {
+  min-height: 36px;
+  padding: 4px 9px;
+  border: 1px solid #d0cbbd;
+  border-radius: 3px;
+  background: #e8e3d5;
+  color: #333;
+  font: inherit;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.browser-warning { padding: 1rem; background: #fff3cd; color: #222; }
+
+@media (min-width: 701px) {
+  .sidebar-overlay { display: none !important; }
+
+  .sidebar-menu {
+    right: 0;
+    width: var(--sidebar-w);
+    transition: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none; /* Scrolls with the wheel or keyboard if the window is short, without a visible scrollbar. */
+
+    &::-webkit-scrollbar { display: none; }
+
+    .close-sidebar { display: none; }
+  }
+
+  /* The header and page content sit beside the sidebar. */
+  .pinned-header {
+    width: calc(100% - var(--sidebar-w));
+
+    .header-content {
+      grid-template-columns: minmax(120px, 0.6fr) minmax(100px, 1.5fr) auto;
+    }
+  }
+
+  .main-content,
+  .site-footer { margin-right: var(--sidebar-w); }
+}
+
+@media (max-width: 700px) {
+  .pinned-header {
+    position: fixed;
+    min-height: 0;
+    padding: 0;
+
+    .header-content {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      padding: 0;
+    }
+
+    .header-left {
+      padding: 12px 14px;
+      border-bottom: 1px solid #d9d4c7;
+
+      .exhibition-title {
+        display: block;
+        font-size: 1.75rem;
+        font-weight: 700;
+        line-height: 1.15;
+      }
+    }
+
+    .header-center {
+      text-align: center;
+      overflow-wrap: anywhere;
+
+      .active-object-name {
+        display: block;
+        padding: 8px 14px;
+        border-bottom: 1px solid #d9d4c7;
+        font-size: 1rem;
+        font-weight: 400;
+      }
+    }
+
+    .header-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 10px;
+
+      .font-btn,
+      .dark-mode-btn,
+      .header-top-btn,
+      .mobile-menu-btn {
+        min-width: 0;
+        min-height: 34px;
+        padding: 4px 6px;
+        font-size: 0.7rem;
+      }
+
+      .text-resizers { gap: 4px; }
+    }
+
+    /* Left group: text size buttons + Dark Mode, Right group: Back to top + Navigation Menu. */
+    .header-top-btn { display: inline-flex; align-items: center; margin-left: auto; }
+    .mobile-menu-btn { margin-left: 0; }
+  }
+
+  /* The floating button is replaced by the one in the header. */
+  .back-to-top { display: none; }
+
+  /* --header-h is measured by main.js so the content always starts below the pinned header. */
+  .main-content { padding-top: var(--header-h, 120px); }
+
+  .mobile-menu-btn { display: inline-flex; align-items: center; }
+
+  /* Collapsed drawer (opened with the Navigation Menu button). */
+  .sidebar-menu {
+    right: 0;
+    width: min(86vw, 380px);
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform 0.3s ease-in-out, visibility 0s linear 0.3s;
+
+    &.active {
+      transform: none;
+      visibility: visible;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .close-sidebar {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 20px;
+      color: #ffffff;
+      font: inherit;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+  }
+}
+
+/* Scroll hint at the bottom of the navigation menu: a floating, non-clickable circle-arrow icon.
+   It is shown on every screen size while the menu does not fit on one screen. */
+@keyframes sidebar-hint-bob {
+  0%, 100% { transform: translateY(-100%); }
+  50% { transform: translateY(calc(-100% + 6px)); }
+}
+
+.sidebar-menu .sidebar-scroll-hint {
+  display: block;
+  position: sticky;
+  bottom: 18px;
+  z-index: 5;
+  height: 0;
+  text-align: center;
+  pointer-events: none; /* Not clickable */
+  opacity: 0;
+  transition: opacity 0.25s ease;
+
+  &.is-visible { opacity: 1; }
+
+  i {
+    display: inline-block;
+    transform: translateY(-100%);
+    color: #ffffff;
+    font-size: 2.2rem;
+    line-height: 1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+    animation: sidebar-hint-bob 1.4s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-menu .sidebar-scroll-hint i { animation: none; }
+}

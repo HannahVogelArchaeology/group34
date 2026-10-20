@@ -14,13 +14,18 @@
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>Photo View | Disability Heritage: Archaeology with Difference</title>
+  <meta name="description" content="Digital Exhibition">
+  <meta property="og:title" content="Photo View | Disability Heritage: Archaeology with Difference">
+  <meta property="og:description" content="Digital Exhibition">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/group34/photo/">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Material Icons CDN -->
@@ -40,6 +45,10 @@
   }
   })();
 </script>
+
+<!--[if lte IE 9]>
+<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -63,14 +72,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>
@@ -78,8 +87,8 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
-    <span class="hamburger-icon"></span>
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
   </button>
   
   <nav class="sidebar-nav">
@@ -159,15 +168,809 @@
       </a>
     </div>
   </nav>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
 </aside>
 
   <main class="main-content" id="main-content">
     <main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
 
-<!-- Photo gallery data is generated at build time to keep photo URLs short. -->
+<!--
+  Photo gallery data is generated at build time to keep photo URLs short.
+  Objects and shelves are regular pages (not Jekyll collections), so they are read from site.pages.
+-->
+  
+  
   <script type="application/json" id="photoGalleryData">
   [
     
+    {
+      "key": "/group34/objects/bottom-shelf-object10/",
+      "object": "10. Spouted Vessel",
+      "museumNumber": "MU0091",
+      "return": "/group34/objects/bottom-shelf-object10/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg",
+            "label": "FRONT ANGLED",
+            "caption": "10. Spouted vessel, MU0091, front-angled view © Gale History Museum",
+            "alt": "Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines can be seen around the handle, neck, and body."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg",
+            "label": "LEFT SIDE",
+            "caption": "10. Spouted vessel, MU0091, left side view © Gale History Museum",
+            "alt": "Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines appear around the handle, neck, and body."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg",
+            "label": "RIGHT SIDE",
+            "caption": "10. Spouted vessel, MU0091, right side view © Gale History Museum",
+            "alt": "Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. The vessel is angled so only one side is visible. On this side, the faded black lines, including one prominent wavy line, are stronger."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg",
+            "label": "FRONT",
+            "caption": "10. Spouted vessel, MU0091, front view © Gale History Museum",
+            "alt": "Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black and brown lines appear around the handle, neck, and body."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg",
+            "label": "BACK",
+            "caption": "10. Spouted vessel, MU0091, back view © Gale History Museum",
+            "alt": "Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  A spout at the shoulder of the vessel points upward to allow the vessel to tilt. Several faded black and brown lines can be seen around the handle, neck, and body."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg",
+            "label": "TOP",
+            "caption": "10. Spouted vessel, MU0091, top view © Gale History Museum",
+            "alt": "Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black and brown lines can be seen around the handle, neck, and body. The vessel has been angled so the top is in view. The brown and black lines continue on the top of the handle."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg",
+            "label": "BOTTOM",
+            "caption": "10. Spouted vessel, MU0091, bottom view © Gale History Museum",
+            "alt": "Object 10. Spouted vessel. A likely wheel-made ceramic vessel. There is a handle over the top of a flaring rim. The vessel has a narrow neck and a wide, ovoid-shaped body with a circular base.  At the shoulder of the vessel is a spout, pointed upwards to allow the vessel to tilt. Several faded black lines can be seen around the handle, neck, and body. The vessel has been tilted to show the base, the museum number can be seen in white marker, ‘MU 91.’"
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/bottom-shelf-object11/",
+      "object": "11. Feeding Vessel",
+      "museumNumber": "MU3368",
+      "return": "/group34/objects/bottom-shelf-object11/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg",
+            "label": "HERO SHOT",
+            "caption": "11. Feeding vessel, MU3368, front angled view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_front_Image2.jpeg",
+            "label": "FRONT",
+            "caption": "11. Feeding vessel, MU3368, front view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base. There is some discolouration around the tip of the spout where the glaze has worn off."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_front%20left%20side_Image3.jpeg",
+            "label": "FRONT LEFT SIDE",
+            "caption": "11. Feeding vessel, MU3368, front-left side view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_left%20side_Image4.jpeg",
+            "label": "LEFT SIDE",
+            "caption": "11. Feeding vessel, MU3368, left side view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base. A small but deep horizontal scratch is visible on the vessel body, just below the neck."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_back%20left%20side_Image5.jpeg",
+            "label": "BACK LEFT SIDE",
+            "caption": "11. Feeding vessel, MU3368, back-left side view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base"
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_back_Image6.jpeg",
+            "label": "BACK",
+            "caption": "11. Feeding vessel, MU3368, back view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base"
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_back%20right%20side_Image7.jpeg",
+            "label": "BACK RIGHT SIDE",
+            "caption": "11. Feeding vessel, MU3368, back-right side view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base"
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_right%20side_Image8.jpeg",
+            "label": "RIGHT SIDE",
+            "caption": "11. Feeding vessel, MU3368, right side with handle in view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base. The vessel is angled so its handle is in view. Where the handle meets the vessel body, the clay appears slightly raised and lumpy."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_top_Image9.jpeg",
+            "label": "TOP",
+            "caption": "11. Feeding vessel, MU3368, top view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, thin pouring spout and a flat base. The vessel has been tilted so the top is in full view. 18 small round holes cluster in the centre of the lid, which is concave. There are some minor scratches into the black glaze."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_bottom_Image10.jpeg",
+            "label": "BOTTOM",
+            "caption": "11. Feeding vessel, MU3368, bottom view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated several incised holes in the centre, a narrow handle, thin pouring spout and a flat base. The vessel is angled so the base is visible. It is an unglazed ‘terracotta’ in colouring, and the museum number is visible in white pen: ‘MU 3368.’ "
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/bottom-shelf-object9/",
+      "object": "9. Feeding cup",
+      "museumNumber": "AHM/1985/053",
+      "return": "/group34/objects/bottom-shelf-object9/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/9%20Feeding%20Cup_AHM1985053_front%20angled_image1.jpeg",
+            "label": "FRONT ANGLED",
+            "caption": "Feeding cup, AHM/1985/053, front view angled © Gale History Museum",
+            "alt": "9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/9%20Feeding%20Cup_AHM1985053_sideprofile%20with%20handle_image2.jpeg",
+            "label": "SIDE PROFILE WITH HANDLE",
+            "caption": "Feeding cup, AHM/1985/053, side profile with handle view © Gale History Museum",
+            "alt": "9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on each side of the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle. The vessel is angled so this handle is directly in view."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/9%20Feeding%20Cup_AHM1985053_sideprofile%20without%20handle_image3.jpeg",
+            "label": "SIDE PROFILE WITHOUT HANDLE",
+            "caption": "Feeding cup, AHM/1985/053, side profile without handle view © Gale History Museum",
+            "alt": "9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on each side of the pouring spout."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/9%20Feeding%20Cup_AHM1985053_front_image4.jpeg",
+            "label": "FRONT",
+            "caption": "Feeding cup, AHM/1985/053, front view © Gale History Museum",
+            "alt": "9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on each side of the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/9%20Feeding%20Cup_AHM1985053_back_image5.jpeg",
+            "label": "BACK",
+            "caption": "Feeding cup, AHM/1985/053, back view © Gale History Museum",
+            "alt": "9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on each side of the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/9%20Feeding%20Cup_AHM1985053_top_image6.jpeg",
+            "label": "TOP",
+            "caption": "Feeding cup, AHM/1985/053, top view © Gale History Museum",
+            "alt": "9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. In the image, the cup is angled so the top is in full view. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on each side of the pouring spout. While heavily faded, there appears to have been a gold line also on the vessel’s handle."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/9%20Feeding%20Cup_AHM1985053_bottom_image7.jpeg",
+            "label": "BOTTOM",
+            "caption": "Feeding cup, AHM/1985/053, bottom view © Gale History Museum",
+            "alt": "9. Feeding cup, a white porcelain cup, with a long pouring spout and small handle. The top of the cup is half enclosed on the spout side to enable the vessel to be tilted. There is an outlining gold decoration applied around the edges of the top of the vessel, and a strip of gold on each side of the pouring spout. The photograph shows the base of the cup, including the museum label, ‘AH85053.’ Another gold line is visible from this angle on the underside of the pouring spout."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/middle-shelf-object2/",
+      "object": "2. Reclining Figure",
+      "museumNumber": "MU4249",
+      "return": "/group34/objects/middle-shelf-object2/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/2%20Reclining%20Figure_MU4249_front_Image1.jpeg",
+            "label": "FRONT",
+            "caption": "2 Reclining Figure, MU4249, front view © Gale History Museum",
+            "alt": "Object 2. Reclining figure. This mould-made ceramic figure depicts a person reclining on their left side on a chaise-like base. The bodily and facial features are unclear due to the softness of the moulding. Remnants of pink-red, cream, and yellow paint are heavily worn on the base, back, and legs of the figure."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/2%20Reclining%20Figure_MU4249_back_Image2.jpeg",
+            "label": "BACK",
+            "caption": "2 Reclining Figure, MU4249, back view © Gale History Museum",
+            "alt": "Object 2. Reclining figure. This mould-made ceramic figure depicts a person reclining on their left side on a chaise-like base. This is the back of the figurine, which is smooth. Very few remnants of pink-red, cream, and yellow paint are visible on the back."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/2%20Reclining%20Figure_MU4249_base_Image3.jpeg",
+            "label": "BASE",
+            "caption": "2 Reclining Figure, MU4249, base view © Gale History Museum",
+            "alt": "Object 2. Reclining figure. This mould-made ceramic figure depicts a person reclining on their left side on a chaise-like base. This is a photo of the figurine’s base. The museum accession number is visible, as are some remnants of yellow and pink-red paint."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/middle-shelf-object3/",
+      "object": "3. Bronze dancer (replica)",
+      "museumNumber": "MU0101",
+      "return": "/group34/objects/middle-shelf-object3/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg",
+            "label": "FRONT",
+            "caption": "3 Bronze dancer, MU0101, front view © Gale History Museum",
+            "alt": "Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/3%20Bronze%20Dancer_MU0101_back_Image2.jpeg",
+            "label": "BACK",
+            "caption": "3 Bronze dancer, MU0101, back view © Gale History Museum",
+            "alt": "Object 3. Bronze dancer (a replica), the back of a metal figurine showing a woman appearing to dance, fitted to a wooden base."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20front_Image3.jpeg",
+            "label": "LEFT SIDE FRONT",
+            "caption": "3 Bronze dancer, MU0101, left side front © Gale History Museum",
+            "alt": "Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base. The figurine is angled so the woman’s front left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/3%20Bronze%20Dancer_MU0101_left%20side%20back_Image4.jpeg",
+            "label": "LEFT SIDE BACK",
+            "caption": "3 Bronze dancer, MU0101, left side back view © Gale History Museum",
+            "alt": "Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base. The figurine is angled so the woman’s left side and back are visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20front_Image5.jpeg",
+            "label": "RIGHT SIDE FRONT",
+            "caption": "3 Bronze dancer, MU0101, right side front view © Gale History Museum",
+            "alt": "Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base. The figurine is angled so the woman’s front right side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/3%20Bronze%20Dancer_MU0101_right%20side%20back_Image6.jpeg",
+            "label": "RIGHT SIDE BACK",
+            "caption": "3 Bronze dancer, MU0101, right side back view © Gale History Museum",
+            "alt": "Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base. The figurine is angled so the woman’s right side and back are visible."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/middle-shelf-object4/",
+      "object": "4. Figure of a musician",
+      "museumNumber": "MU0086",
+      "return": "/group34/objects/middle-shelf-object4/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_front_Image1.jpeg",
+            "label": "FRONT",
+            "caption": "4. Figure of a musician, MU0086, front view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg",
+            "label": "HERO SHOT",
+            "caption": "4. Figure of a musician, MU0086, front right-side view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so the drummer’s front-right side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_front%20left%20side_Image3.jpeg",
+            "label": "FRONT LEFT SIDE",
+            "caption": "4. Figure of a musician, MU0086, front left-side view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so the drummer’s front-left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_left%20side_Image4.jpeg",
+            "label": "LEFT SIDE",
+            "caption": "4. Figure of a musician, MU0086, left side view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so its left side faces forward."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_right%20side_Image5.jpeg",
+            "label": "RIGHT SIDE",
+            "caption": "4. Figure of a musician, MU0086, right side view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so its right side faces forward."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_left%20side%20back_Image6.jpeg",
+            "label": "LEFT SIDE BACK",
+            "caption": "4. Figure of a musician, MU0086, back left-side view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so its left side and back are visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_right%20side%20back_Image7.jpeg",
+            "label": "RIGHT SIDE BACK",
+            "caption": "4. Figure of a musician, MU0086, back right-side view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so its right side and back are visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_back_Image8.jpeg",
+            "label": "BACK",
+            "caption": "4. Figure of a musician, MU0086, back view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so its back is visible."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/middle-shelf-object5/",
+      "object": "5. Seated statuette",
+      "museumNumber": "MU3735",
+      "return": "/group34/objects/middle-shelf-object5/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/5%20Seated%20Statuette_MU3735_front_Image1.jpeg",
+            "label": "FRONT",
+            "caption": "5. Seated statuette, MU3735, front view © Gale History Museum",
+            "alt": "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/5%20Seated%20Statuette_MU3735_front%20left%20side_Image2.jpeg",
+            "label": "FRONT LEFT SIDE",
+            "caption": "5. Seated statuette, MU3735, front left side view © Gale History Museum",
+            "alt": "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright. The figure is angled so its front-left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/5%20Seated%20Statuette_MU3735_left%20side_Image3.jpeg",
+            "label": "LEFT SIDE",
+            "caption": "5. Seated statuette, MU3735, left side view © Gale History Museum",
+            "alt": "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright. The figure is angled so left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/5%20Seated%20Statuette_MU3735_right%20side_Image4.jpeg",
+            "label": "RIGHT SIDE",
+            "caption": "5. Seated statuette, MU3735, right side view © Gale History Museum",
+            "alt": "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright. The figure is angled so its right side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/5%20Seated%20Statuette_MU3735_back_Image5.jpeg",
+            "label": "BACK",
+            "caption": "5. Seated statuette, MU3735, back view © Gale History Museum",
+            "alt": "Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright. The figure is angled so its back is visible."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/middle-shelf-object6/",
+      "object": "6. Bronze figure of Priapus",
+      "museumNumber": "MU4697",
+      "return": "/group34/objects/middle-shelf-object6/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_front_Image1.jpeg",
+            "label": "FRONT",
+            "caption": "Bronze figure of Priapus, MU4697, front view © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_close%20up_Image2.jpeg",
+            "label": "CLOSEUP",
+            "caption": "Bronze figure of Priapus, MU4697, view of upper torso © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis. Close-up showing only the figurine’s top half, from groin up."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_back_Image3.jpeg",
+            "label": "BACK",
+            "caption": "Bronze figure of Priapus, MU4697, back view © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis, but this image is of the back of the figurine, showing the thin metal museum mount."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_right%20side_Image4.jpeg",
+            "label": "RIGHT SIDE",
+            "caption": "Bronze figure of Priapus, MU4697, right-side view © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis. The figure is angled so the right side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_right%20side%20front_Image5.jpeg",
+            "label": "RIGHT SIDE FRONT",
+            "caption": "Bronze figure of Priapus, MU4697, front-right side view © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis. The figure is angled so the front-right side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_left%20side%20front_Image6.jpeg",
+            "label": "LEFT SIDE FRONT",
+            "caption": "Bronze figure of Priapus, MU4697, front-left side view © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis. The figure is angled so the front-left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_left%20side_Image7.jpeg",
+            "label": "LEFT SIDE",
+            "caption": "Bronze figure of Priapus, MU4697, left-side view © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis. The figure is angled so the left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_top_Image8.jpeg",
+            "label": "TOP",
+            "caption": "Bronze figure of Priapus, MU4697, top view © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis. The image shows the figurine from above, with a view of the top of Priapus’ head."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_bottom_Image9.jpeg",
+            "label": "BASE",
+            "caption": "Bronze figure of Priapus, MU4697, base view © Gale History Museum",
+            "alt": "Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis. The image shows the base of the figurine, with the museum’s object number on Priapus’ feet."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/middle-shelf-object7/",
+      "object": "7. Terracotta figurine",
+      "museumNumber": "MU2676",
+      "return": "/group34/objects/middle-shelf-object7/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/7%20Terracotta%20Figurine_MU2676_front_Image1.jpeg",
+            "label": "FRONT",
+            "caption": "Terracotta figurine, MU2676, front view © Gale History Museum",
+            "alt": "Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/7%20Terracotta%20Figurine_MU2676_front%20left%20side_Image2.jpeg",
+            "label": "FRONT LEFT SIDE",
+            "caption": "Terracotta figurine, MU2676, front-left side view © Gale History Museum",
+            "alt": "Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base. The figure is angled so the front-left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/7%20Terracotta%20Figurine_MU2676_front%20right%20side_Image3.jpeg",
+            "label": "FRONT RIGHT SIDE",
+            "caption": "Terracotta figurine, MU2676, front-right side view © Gale History Museum",
+            "alt": "Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base. The figure is angled so the front-right side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/7%20Terracotta%20Figurine_MU2676_left%20side_Image4.jpeg",
+            "label": "LEFT SIDE",
+            "caption": "Terracotta figurine, MU2676, left side view © Gale History Museum",
+            "alt": "Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base. The figure is angled so the left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/7%20Terracotta%20Figurine_MU2676_right%20side_Image5.jpeg",
+            "label": "RIGHT SIDE",
+            "caption": "Terracotta figurine, MU2676, right side view © Gale History Museum",
+            "alt": "Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base. The figure is angled so the right side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/7%20Terracotta%20Figurine_MU2676_back%20left%20side_Image6.jpeg",
+            "label": "BACK LEFT SIDE",
+            "caption": "Terracotta figurine, MU2676, back left-side view © Gale History Museum",
+            "alt": "Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base. The figure is angled so the back-left side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/7%20Terracotta%20Figurine_MU2676_back%20right%20side_Image7.jpeg",
+            "label": "BACK RIGHT SIDE",
+            "caption": "Terracotta figurine, MU2676, back-right side view © Gale History Museum",
+            "alt": "Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base. The figure is angled so the back-right side is visible."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/7%20Terracotta%20Figurine_MU2676_back_Image8.jpeg",
+            "label": "BACK",
+            "caption": "Terracotta figurine, MU2676, back view © Gale History Museum",
+            "alt": "Object 7. Terracotta figurine, a ceramic human-like figure. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base. The figure is angled so its back is visible; the back is smooth except for three small pieces of clay pinched and lying flat at the top of the head, almost mimicking hair."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/objects/middle-shelf-object8/",
+      "object": "8. Amulet of Pataikos",
+      "museumNumber": "MU0523",
+      "return": "/group34/objects/middle-shelf-object8/",
+      "images": [
+        
+          
+          
+          {
+            "src": "/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_front_Image1.jpeg",
+            "label": "FRONT",
+            "caption": "Amulet of Pataikos, MU0523, front view © Gale History Museum",
+            "alt": "Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure's head, there is a loop for it to be worn."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_back_Image2.jpeg",
+            "label": "BACK",
+            "caption": "Amulet of Pataikos, MU0523, back view © Gale History Museum",
+            "alt": "Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure's head, there is a loop for it to be worn. This photo shows the back of the amulet, where the figure’s butt is clearly defined."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_right%20side_Image3.jpeg",
+            "label": "RIGHT SIDE",
+            "caption": "Amulet of Pataikos, MU0523, right side view © Gale History Museum",
+            "alt": "Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure's head, there is a loop for it to be worn. The figurine lies on its back with its right side visible, clearly showing the loop for threading."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_left%20side_Image4.jpeg",
+            "label": "LEFT SIDE",
+            "caption": "Amulet of Pataikos, MU0523, left side view © Gale History Museum",
+            "alt": "Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure's head, there is a loop for it to be worn. The figurine lies on its back with its left side visible, clearly showing the loop for threading."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_top_Image5.jpeg",
+            "label": "TOP",
+            "caption": "Amulet of Pataikos, MU0523, top view © Gale History Museum",
+            "alt": "Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure's head, there is a loop for it to be worn. The photo is taken of the top of the figure’s head, which appears to be smooth."
+          },
+        
+          
+          
+          {
+            "src": "/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_bottom_Image6.jpeg",
+            "label": "BASE",
+            "caption": "Amulet of Pataikos, MU0523, base view © Gale History Museum",
+            "alt": "Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure's head, there is a loop for it to be worn. This photo shows the base of the amulet, where the museum number ‘MU523’ is written in a white marker."
+          }
+        
+      ]
+    },
+    
+    
+    {
+      "key": "/group34/shelves/bottom-shelf/",
+      "object": "Bottom Shelf",
+      "museumNumber": "",
+      "return": "/group34/shelves/bottom-shelf/",
+      "images": [
+        
+          {
+            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg",
+            "label": "HERO IMAGE",
+            "caption": "11. Feeding vessel, MU3368, front angled view © Gale History Museum",
+            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top featuring several incised holes, a narrow handle, a thin pouring spout and a flat base."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/shelves/middle-shelf/",
+      "object": "Middle Shelf",
+      "museumNumber": "",
+      "return": "/group34/shelves/middle-shelf/",
+      "images": [
+        
+          {
+            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg",
+            "label": "HERO IMAGE",
+            "caption": "4. Figure of a Musician, MU0086, front-right side view © Gale History Museum",
+            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands."
+          }
+        
+      ]
+    },
+    
+    {
+      "key": "/group34/shelves/top-shelf/",
+      "object": "1. Pelike",
+      "museumNumber": "",
+      "return": "/group34/shelves/top-shelf/",
+      "images": [
+        
+          
+          {
+            "src": "/group34/assets/images/1%20Pelike_MU4759_front_Image1.jpeg",
+            "label": "FRONT",
+            "caption": "Pelike, MU4759, front view © Gale History Museum",
+            "alt": "Object 1. A Pelike. A large Greek-style vase. The scene depicts two men facing each other. One appears to use a staff, possibly as a mobility aid."
+          },
+          
+          {
+            "src": "/group34/assets/images/1%20Pelike_MU4759_front%20scene_Image2.jpeg",
+            "label": "FRONT SCENE",
+            "caption": "Pelike, MU4759, front close-up of scene © Gale History Museum",
+            "alt": "Object 1. Close-up of the scene on a pelike. A large Greek-style vase. The scene depicts two men facing each other. One appears to use a staff, possibly as a mobility aid."
+          },
+          
+          {
+            "src": "/group34/assets/images/1%20Pelike_MU4759_back_Image3.jpeg",
+            "label": "BACK",
+            "caption": "Pelike, MU4759, back view © Gale History Museum",
+            "alt": "Object 1. A Pelike. A large Greek-style vase. The scene depicts one seated man and one standing woman facing each other. The woman holds a fan and the man a dish of some sort. Flower-like shapes border the top, scrolls and swirls line the sides, and a Greek key runs along the bottom."
+          }
+          
+        
+      ]
+    }
     
   ]
   </script>
@@ -186,7 +989,9 @@
         <div class="photo-caption-section" id="photoCaptionSection">
             <span id="photoImageCaption">Image caption</span>
         </div>
-        <img id="photoMainImage" src="" alt="">
+        <div class="photo-zoom-frame" id="photoZoomFrame" role="button" tabindex="0" aria-pressed="false" aria-label="Magnify photo. Select to zoom in or out.">
+            <img id="photoMainImage" src="" alt="" draggable="false">
+        </div>
         <figcaption>
             <span id="photoObjectName">Object Name</span>
             <span aria-hidden="true"> • </span>
@@ -246,7 +1051,7 @@
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+  <audio id="exhibitionAudio" src="" preload="none"></audio>
 </div><footer class="site-footer">
   
 

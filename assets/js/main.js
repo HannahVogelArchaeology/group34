@@ -2,8 +2,35 @@
 let currentFontSize =
   parseInt(localStorage.getItem("userFontSize"), 10) || 100;
 
+/* Return to the top of the page (used by the header button and the floating button) */
+function scrollToTop() {
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+}
+
+/* Keep the page content below the pinned header, whatever its height */
+function syncHeaderHeight() {
+  const header = document.querySelector(".pinned-header");
+
+  if (header) {
+    document.documentElement.style.setProperty("--header-h", `${header.offsetHeight}px`);
+  }
+}
+
+/* Keep the Back to top button above the audio bar while it is open */
+function syncAudioBarOffset() {
+  const bar = document.getElementById("bottomAudioBar");
+  const isOpen = bar && bar.style.display !== "none" && bar.style.display !== "";
+
+  document.documentElement.style.setProperty("--audio-bar-h", isOpen ? `${bar.offsetHeight}px` : "0px");
+}
+
 function applyFontSize(size) {
   document.documentElement.style.fontSize = `${size}%`;
+  syncHeaderHeight();
+  syncAudioBarOffset();
+  updateSidebarScrollHint();
 }
 
 function changeFontSize(direction) {
@@ -18,19 +45,65 @@ function changeFontSize(direction) {
 }
 
 
-/* Sidebar menu */
-function toggleSidebarMenu() {
-  const menu = document.getElementById("sidebarMenu");
-  const overlay = document.getElementById("sidebarOverlay");
+/* Sidebar menu: always visible on desktop; collapsible drawer on mobile only (max-width: 700px) */
+const mobileMenuQuery = window.matchMedia("(max-width: 700px)");
 
-  if (!menu || !overlay) {
+/* Show the scroll hint only while the open menu is taller than the screen and is still at the top (any screen size) */
+function updateSidebarScrollHint() {
+  const menu = document.getElementById("sidebarMenu");
+  const hint = menu ? menu.querySelector(".sidebar-scroll-hint") : null;
+
+  if (!menu || !hint) {
     return;
   }
 
-  const isOpen = menu.classList.toggle("active");
-  overlay.classList.toggle("active", isOpen);
-  overlay.style.display = isOpen ? "block" : "none";
-  document.body.classList.toggle("menu-open", isOpen);
+  const canScroll = menu.scrollHeight > menu.clientHeight + 4;
+  const atTop = menu.scrollTop <= 8;
+  const isOpen = !mobileMenuQuery.matches || menu.classList.contains("active"); /* Always open on desktop */
+
+  hint.classList.toggle("is-visible", isOpen && canScroll && atTop);
+}
+
+function toggleSidebarMenu(forceState) {
+  const menu = document.getElementById("sidebarMenu");
+  const overlay = document.getElementById("sidebarOverlay");
+
+  if (!menu || !mobileMenuQuery.matches) {
+    return;
+  }
+
+  const open = typeof forceState === "boolean" ? forceState : !menu.classList.contains("active");
+
+  menu.classList.toggle("active", open);
+
+  if (overlay) {
+    overlay.classList.toggle("active", open);
+  }
+
+  document.querySelectorAll(".mobile-menu-btn").forEach((button) => {
+    button.setAttribute("aria-expanded", String(open));
+  });
+
+  if (open) {
+    menu.scrollTop = 0;
+  }
+
+  updateSidebarScrollHint();
+}
+
+/* Reset the drawer when the screen grows to desktop size, and close it with the Escape key */
+mobileMenuQuery.addEventListener("change", () => toggleSidebarMenu(false));
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    toggleSidebarMenu(false);
+  }
+});
+
+function toggleDarkMode() {
+  const enabled = document.body.classList.toggle("dark-mode");
+  try { localStorage.setItem("darkMode", enabled ? "enabled" : "disabled"); } catch (error) { /* Storage may be unavailable. */ }
+  const button = document.querySelector(".dark-mode-btn");
+  if (button) button.setAttribute("aria-pressed", String(enabled));
 }
 
 
@@ -104,6 +177,7 @@ function toggleAudioPlayer() {
 
   const isHidden = bar.style.display === "none" || bar.style.display === "";
   bar.style.display = isHidden ? "flex" : "none";
+  syncAudioBarOffset();
 
   if (isHidden) {
     toggleAudioPlay();
@@ -332,15 +406,35 @@ function initialisePhotoViewer() {
   }
 
   const params = new URLSearchParams(window.location.search);
-  const objectTitle = params.get("object") || "Object";
-  const museumNumber = params.get("museum") || "";
-  const returnUrl = params.get("return") || "/";
-  const currentImage = params.get("image") || "";
 
-  const galleryImages = (params.get("gallery") || currentImage)
-    .split(",")
-    .map((value) => value.trim())
-    .filter(Boolean);
+  /* Short links (?key=...&index=...) read the gallery from the JSON block in photo.html,
+     which keeps the address short enough for any web server. Old long links still work. */
+  let galleryEntry = null;
+  const galleryKey = params.get("key");
+  const galleryDataElement = document.getElementById("photoGalleryData");
+
+  if (galleryKey && galleryDataElement) {
+    try {
+      galleryEntry = JSON.parse(galleryDataElement.textContent).find((item) => item.key === galleryKey) || null;
+    } catch (error) {
+      galleryEntry = null;
+    }
+  }
+
+  const requestedIndex = parseInt(params.get("index"), 10) || 0;
+  const objectTitle = galleryEntry ? galleryEntry.object || "Object" : params.get("object") || "Object";
+  const museumNumber = galleryEntry ? galleryEntry.museumNumber || "" : params.get("museum") || "";
+  const returnUrl = galleryEntry ? galleryEntry.return || "/" : params.get("return") || "/";
+  const currentImage = galleryEntry
+    ? ((galleryEntry.images[requestedIndex] || galleryEntry.images[0] || {}).src || "")
+    : params.get("image") || "";
+
+  const galleryImages = galleryEntry
+    ? galleryEntry.images.map((item) => item.src)
+    : (params.get("gallery") || currentImage)
+        .split(",")
+        .map((value) => value.trim())
+        .filter(Boolean);
 
   /* Read gallery metadata by index so each caption remains paired with its image. */
   const indexedValues = (prefix) => {
@@ -381,8 +475,19 @@ function initialisePhotoViewer() {
     );
   }
 
+  if (galleryEntry) {
+    labels.length = 0;
+    captions.length = 0;
+    galleryEntry.images.forEach((item) => {
+      labels.push(item.label || "");
+      captions.push(item.caption || "");
+    });
+  }
+
   const images = galleryImages.length ? galleryImages : [currentImage];
-  let currentIndex = Math.max(0, images.indexOf(currentImage));
+  let currentIndex = galleryEntry
+    ? Math.min(Math.max(0, requestedIndex), images.length - 1)
+    : Math.max(0, images.indexOf(currentImage));
 
   const mainImage = document.getElementById("photoMainImage");
   const counter = document.getElementById("photoCounter");
@@ -394,6 +499,52 @@ function initialisePhotoViewer() {
   const closeButton = document.getElementById("photoClose");
   const previousButton = document.getElementById("photoPrev");
   const nextButton = document.getElementById("photoNext");
+  const zoomFrame = document.getElementById("photoZoomFrame");
+
+  /* Magnify: select the photo (click, tap, Enter or Space) to zoom in; move the pointer to pan; select again to zoom out */
+  const ZOOM_SCALE = 2.5;
+  let isZoomed = false;
+
+  function panZoom(event) {
+    if (!isZoomed || !zoomFrame || !mainImage) {
+      return;
+    }
+
+    const rect = zoomFrame.getBoundingClientRect();
+    const x = event && typeof event.clientX === "number" ? ((event.clientX - rect.left) / rect.width) * 100 : 50;
+    const y = event && typeof event.clientY === "number" ? ((event.clientY - rect.top) / rect.height) * 100 : 50;
+
+    mainImage.style.transformOrigin = `${Math.min(100, Math.max(0, x))}% ${Math.min(100, Math.max(0, y))}%`;
+  }
+
+  function setZoom(enabled, event) {
+    if (!zoomFrame || !mainImage) {
+      return;
+    }
+
+    isZoomed = enabled;
+    zoomFrame.classList.toggle("is-zoomed", enabled);
+    zoomFrame.setAttribute("aria-pressed", String(enabled));
+
+    if (enabled) {
+      panZoom(event);
+      mainImage.style.transform = `scale(${ZOOM_SCALE})`;
+    } else {
+      mainImage.style.transform = "";
+      mainImage.style.transformOrigin = "50% 50%";
+    }
+  }
+
+  if (zoomFrame) {
+    zoomFrame.addEventListener("click", (event) => setZoom(!isZoomed, event));
+    zoomFrame.addEventListener("pointermove", panZoom);
+    zoomFrame.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        setZoom(!isZoomed);
+      }
+    });
+  }
 
   const defaultLabel = (index) => {
     if (index === 0) {
@@ -417,6 +568,7 @@ function initialisePhotoViewer() {
 
   function renderPhoto(index) {
     currentIndex = (index + images.length) % images.length;
+    setZoom(false);
 
     const label = getLabel(currentIndex);
     const caption = getCaption(currentIndex);
@@ -490,7 +642,11 @@ function initialisePhotoViewer() {
     } else if (event.key === "ArrowRight") {
       renderPhoto(currentIndex + 1);
     } else if (event.key === "Escape") {
-      window.location.href = returnUrl;
+      if (isZoomed) {
+        setZoom(false);
+      } else {
+        window.location.href = returnUrl;
+      }
     }
   });
 
@@ -499,7 +655,37 @@ function initialisePhotoViewer() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+  try {
+    if (localStorage.getItem("darkMode") === "enabled") {
+      document.body.classList.add("dark-mode");
+      const darkButton = document.querySelector(".dark-mode-btn");
+      if (darkButton) darkButton.setAttribute("aria-pressed", "true");
+    }
+  } catch (error) { /* Storage may be unavailable. */ }
+
+  const topButton = document.createElement("button");
+  topButton.type = "button";
+  topButton.className = "back-to-top";
+  topButton.textContent = "Back to top";
+  topButton.setAttribute("aria-label", "Return to the top of this page");
+  topButton.addEventListener("click", scrollToTop);
+  document.body.appendChild(topButton);
+
   applyFontSize(currentFontSize);
+  window.addEventListener("resize", () => {
+    syncHeaderHeight();
+    syncAudioBarOffset();
+  });
+  window.addEventListener("load", syncHeaderHeight);
+
+  const sidebarMenu = document.getElementById("sidebarMenu");
+
+  if (sidebarMenu) {
+    sidebarMenu.addEventListener("scroll", updateSidebarScrollHint, { passive: true });
+    window.addEventListener("resize", updateSidebarScrollHint);
+    window.addEventListener("load", updateSidebarScrollHint);
+    updateSidebarScrollHint();
+  }
   initialiseThumbnails();
   initialiseImageExpand();
   initialisePhotoViewer();

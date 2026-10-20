@@ -14,13 +14,18 @@
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>About Us | Disability Heritage: Archaeology with Difference</title>
+  <meta name="description" content="Digital Exhibition">
+  <meta property="og:title" content="About Us | Disability Heritage: Archaeology with Difference">
+  <meta property="og:description" content="Digital Exhibition">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/group34/about.html">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Material Icons CDN -->
@@ -40,6 +45,10 @@
   }
   })();
 </script>
+
+<!--[if lte IE 9]>
+<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -63,14 +72,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>
@@ -78,8 +87,8 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
-    <span class="hamburger-icon"></span>
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
   </button>
   
   <nav class="sidebar-nav">
@@ -159,23 +168,21 @@
       </a>
     </div>
   </nav>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
 </aside>
 
   <main class="main-content" id="main-content">
     <div class="about-page-container" role="main" aria-label="About Us Page">
 <h1 class="page-title" aria-label="Page Title: About Us">About Us</h1>
 
-<!-- Tab navigation -->
-<nav aria-label="About Us section tabs">
-    <div class="tab-navigation" role="tablist" aria-label="About Us sections">
-        <button class="tab-btn active" type="button" role="tab" aria-selected="true" aria-controls="visitor-tab" onclick="switchTab('visitor-tab', this)" aria-label="Visitor Information and Accessibility Tab">
-            Visitor Information and Accessibility
-        </button>
-
-        <button class="tab-btn"  type="button" role="tab" aria-selected="false" aria-controls="curation-tab" onclick="switchTab('curation-tab', this)" aria-label="Curation and Acknowledgements Tab">
-            Curation and Acknowledgements
-        </button>
-    </div>
+<!-- Accessible vertical table of contents -->
+<nav class="about-toc" aria-label="About Us contents">
+    <h2>On this page</h2>
+    <ul>
+        <li><a href="#visitor-tab">Visitor Information and Accessibility</a></li>
+        <li><a href="#curation-tab">Curation and Acknowledgements</a></li>
+        <li><a href="#team-section">Website Development Team</a></li>
+    </ul>
 </nav>
 
 <!-- OPTIONAL QUOTE BANNER: Hidden until needed -->
@@ -388,7 +395,7 @@
 
 
 <!-- WEBSITE DEVELOPMENT TEAM -->
-<section class="content-section" aria-label="Website Development Team Section">
+<section id="team-section" class="content-section" aria-label="Website Development Team Section">
 <h3 class="gold-heading">Website Development Team</h3>
 
 <!-- Interactive Avatars -->
@@ -672,7 +679,7 @@ window.addEventListener('DOMContentLoaded', function () {
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+  <audio id="exhibitionAudio" src="" preload="none"></audio>
 </div><footer class="site-footer">
   
 

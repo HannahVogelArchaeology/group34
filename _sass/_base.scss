@@ -56,3 +56,41 @@ a {
 }
 
 
+
+
+/* Persistent return-to-top control. */
+.back-to-top { position: fixed; right: calc(var(--sidebar-w, 0px) + 1rem); bottom: calc(1rem + var(--audio-bar-h, 0px)); z-index: 1500; min-height: 44px; padding: .65rem .9rem; border: 1px solid #6d491b; border-radius: 4px; background: #8b5d24; color: #fff; font: inherit; font-size: .85rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+.back-to-top:focus-visible { outline: 3px solid #174e77; outline-offset: 3px; }
+body.dark-mode .back-to-top { background: #7a5420; border-color: #c9a063; color: #ffffff; }
+
+/* On mobile the menu is not a side column, so the button returns to the screen edge. */
+@media (max-width: 700px) { .back-to-top { right: 1rem; } }
+
+/* Font Awesome icon sizing inside the expand and audio buttons */
+.expand-btn i { font-size: 1.15rem; line-height: 20px; text-align: center; color: inherit; }
+.audio-play-btn i { font-size: 1.5rem; line-height: 1; flex-shrink: 0; }
+
+/* Thumbnail hover (object and top shelf pages): glowing border and a tint over the image */
+.thumb-box {
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thumb-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.thumb-box:hover,
+.thumb-box:focus-visible {
+  border-color: #f0b84f !important;
+  box-shadow: 0 0 0 2px rgba(240, 184, 79, 0.55), 0 0 12px 3px rgba(240, 184, 79, 0.6) !important;
+}
+
+.thumb-box:hover::after,
+.thumb-box:focus-visible::after { opacity: 1; }

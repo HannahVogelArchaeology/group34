@@ -16,7 +16,7 @@ layout: default
     <div class="home-feature-narrative">
       <p class="narratives-label">Narratives Here:</p>
       <div class="hero-description">{{ page.hero_text | markdownify }}</div>
-      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio">&gt; About Us</a>
+      <a href="{{ '/about/' | relative_url }}" class="btn-curator-bio">&gt; About Us</a>
     </div>
     <figure class="home-feature-media">
       {% if page.hero_image %}
@@ -97,7 +97,7 @@ layout: default
     <h2 id="auslan-video-heading" class="auslan-title">Auslan Video</h2>
 
     <div class="video-card">
-      <video class="auslan-video" controls controlsList="nodownload" disablePictureInPicture preload="metadata" playsinline oncontextmenu="return false;" aria-describedby="auslan-video-description">
+      <video class="auslan-video" controls controlsList="nodownload" disablePictureInPicture preload="none" playsinline oncontextmenu="return false;" aria-describedby="auslan-video-description">
         <source src="{{ page.auslan_video | relative_url }}" type="video/mp4">
         Your browser does not support HTML5 video.
       </video>

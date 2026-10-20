@@ -4,13 +4,19 @@ layout: default
 
 <main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
 
-<!-- Photo gallery data is generated at build time to keep photo URLs short. -->
+<!--
+  //Photo gallery data is generated at build time to keep photo URLs short.
+  Objects and shelves are regular pages (not Jekyll collections), so they are read from site.pages.
+-->
+  {% assign object_pages = site.pages | where: "layout", "object" %}
+  {% assign shelf_pages = site.pages | where_exp: "item", "item.layout contains '-shelf'" %}
   <script type="application/json" id="photoGalleryData">
   [
-    {% for object in site.objects %}
+    {% for object in object_pages %}
     {
       "key": {{ object.url | relative_url | jsonify }},
-      "object": {{ object.title | jsonify }},\n      "museumNumber": {{ object.museum_number | default: object.acq_no | default: object.acquisition_number | jsonify }},
+      "object": {{ object.title | jsonify }},
+      "museumNumber": {{ object.museum_number | default: object.acq_no | default: object.acquisition_number | jsonify }},
       "return": {{ object.url | relative_url | jsonify }},
       "images": [
         {% for gallery_image in object.gallery_images %}
@@ -30,10 +36,11 @@ layout: default
       ]
     },
     {% endfor %}
-    {% for shelf in site.shelves %}
+    {% for shelf in shelf_pages %}
     {
       "key": {{ shelf.url | relative_url | jsonify }},
-      "object": {{ shelf.object_title | default: shelf.shelf_title | jsonify }},\n      "museumNumber": {{ shelf.museum_number | default: shelf.acq_no | jsonify }},
+      "object": {{ shelf.object_title | default: shelf.shelf_title | jsonify }},
+      "museumNumber": "",
       "return": {{ shelf.url | relative_url | jsonify }},
       "images": [
         {% if shelf.gallery_images %}
@@ -73,7 +80,9 @@ layout: default
         <div class="photo-caption-section" id="photoCaptionSection">
             <span id="photoImageCaption">Image caption</span>
         </div>
-        <img id="photoMainImage" src="" alt="">
+        <div class="photo-zoom-frame" id="photoZoomFrame" role="button" tabindex="0" aria-pressed="false" aria-label="Magnify photo. Select to zoom in or out.">
+            <img id="photoMainImage" src="" alt="" draggable="false">
+        </div>
         <figcaption>
             <span id="photoObjectName">Object Name</span>
             <span aria-hidden="true"> • </span>
