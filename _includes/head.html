@@ -29,6 +29,87 @@
   <!-- Material Icons CDN -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+  <!-- Loading screen: shown only if the page takes longer than 2 seconds to load, and removed as soon as it has loaded -->
+  <script>
+  (function () {
+    var SHOW_AFTER_MS = 2000;
+    var GIVE_UP_AFTER_MS = 15000; /* Never keep the screen on for longer than this, even if something stalls */
+    var loader = null;
+    var finished = false;
+
+    function build() {
+      var overlay = document.createElement('div');
+      var spinner = document.createElement('div');
+      var message = document.createElement('p');
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      overlay.id = 'pageLoader';
+      overlay.setAttribute('role', 'status');
+      overlay.setAttribute('aria-live', 'polite');
+      /* Styles are set from script so the screen looks right even while the main stylesheet is still loading */
+      overlay.style.cssText = 'position:fixed;top:0;right:0;bottom:0;left:0;z-index:100000;display:flex;' +
+        'flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;background:#382713;' +
+        'color:#f6f3eb;font:600 1.1rem Manrope,Arial,sans-serif;text-align:center;transition:opacity .3s ease;';
+
+      spinner.setAttribute('aria-hidden', 'true');
+      spinner.style.cssText = 'width:56px;height:56px;box-sizing:border-box;border:5px solid rgba(246,243,235,.25);' +
+        'border-top-color:#d9b97e;border-radius:50%;';
+
+      message.style.cssText = 'margin:0;padding:0 1rem;';
+      message.textContent = 'Loading the exhibition\u2026';
+
+      overlay.appendChild(spinner);
+      overlay.appendChild(message);
+
+      if (spinner.animate && !reduceMotion) {
+        spinner.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 900, iterations: Infinity });
+      }
+
+      return overlay;
+    }
+
+    function hide() {
+      finished = true;
+      clearTimeout(showTimer);
+      clearTimeout(giveUpTimer);
+
+      if (!loader) {
+        return;
+      }
+
+      loader.style.opacity = '0';
+      setTimeout(function () {
+        if (loader && loader.parentNode) {
+          loader.parentNode.removeChild(loader);
+        }
+      }, 300);
+    }
+
+    function show() {
+      if (finished) {
+        return;
+      }
+
+      loader = build();
+
+      if (document.body) {
+        document.body.appendChild(loader);
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          if (!finished) {
+            document.body.appendChild(loader);
+          }
+        });
+      }
+    }
+
+    var showTimer = setTimeout(show, SHOW_AFTER_MS);
+    var giveUpTimer = setTimeout(hide, GIVE_UP_AFTER_MS);
+
+    window.addEventListener('load', hide);
+  })();
+  </script>
+
   <!-- Prevent visual flashing on page load -->
   <script>
   (function() {

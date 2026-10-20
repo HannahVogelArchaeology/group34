@@ -5,7 +5,7 @@ layout: default
 <main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
 
 <!--
-  //Photo gallery data is generated at build time to keep photo URLs short.
+  Photo gallery data is generated at build time to keep photo URLs short.
   Objects and shelves are regular pages (not Jekyll collections), so they are read from site.pages.
 -->
   {% assign object_pages = site.pages | where: "layout", "object" %}
@@ -70,7 +70,13 @@ layout: default
 <div class="photo-viewer-header">
     <a id="photoBackLink" class="photo-back-link" href="#" > &lt; BACK</a>
     <span class="photo-counter" id="photoCounter"> 1 / 1 </span>
-    <button class="photo-close" id="photoClose" type="button" aria-label="Close photo viewer">×</button>
+    <div class="photo-header-actions">
+        <button class="photo-guide-btn" id="photoGuideButton" type="button" aria-haspopup="dialog" aria-controls="photoGuide">
+            <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+            <span>Guide</span>
+        </button>
+        <button class="photo-close" id="photoClose" type="button" aria-label="Close photo viewer">×</button>
+    </div>
 </div>
 
 <!-- STAGE (MAIN DISPLAY) -->
@@ -98,6 +104,62 @@ layout: default
     <nav class="photo-thumbnails" id="photoThumbnails" aria-label="Photo views">
     <!-- Thumbnails generated dynamically by JS -->
     </nav>
+</div>
+
+<!-- GUIDE (modal): shows what each part of this page does. Opens with the page and with the Guide button. -->
+<div class="photo-guide" id="photoGuide" role="dialog" aria-modal="true" aria-labelledby="photoGuideTitle" hidden>
+    <div class="photo-guide-sheet">
+        <div class="photo-guide-top">
+            <h2 id="photoGuideTitle">Quick Guidance in the Photo Page</h2>
+            <button class="photo-guide-close" id="photoGuideClose" type="button">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                <span>Close guide</span>
+            </button>
+        </div>
+
+        <ul class="photo-guide-items">
+            <li class="guide-item guide-back">
+                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+                <span>To go back to the previous page, press the back button on the top left.</span>
+            </li>
+            <li class="guide-item guide-count">
+                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+                <span>The total number of the photos is listed on the top middle.</span>
+            </li>
+            <li class="guide-item guide-close-note">
+                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+                <span>To close the current page, press the close button on the top right.</span>
+            </li>
+            <li class="guide-item guide-caption">
+                <span>The caption of the photo is listed above the photo.</span>
+                <i class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>
+            </li>
+            <li class="guide-item guide-prev">
+                <i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i>
+                <span>Click the button on the left side of the photo to view the previous photo.</span>
+            </li>
+            <li class="guide-item guide-zoom">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span>Click anywhere inside the frame to see more closely.</span>
+            </li>
+            <li class="guide-item guide-next">
+                <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
+                <span>Click the button on the right side of the photo to view the next photo.</span>
+            </li>
+            <li class="guide-item guide-meta">
+                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+                <span>The number, object title, museum number, and viewpoint are listed under the photo.</span>
+            </li>
+            <li class="guide-item guide-wardrobe">
+                <i class="fa-solid fa-images" aria-hidden="true"></i>
+                <span>
+                    Click any photo you want to see from the wardrobe.
+                    <span class="guide-desktop-only">Scroll down to see more photos.</span>
+                    <span class="guide-mobile-only">Scroll left or right to see more photos.</span>
+                </span>
+            </li>
+        </ul>
+    </div>
 </div>
 
 </main>

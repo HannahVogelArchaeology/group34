@@ -76,7 +76,7 @@
   height: min(60vh, 600px);
   overflow: hidden;
   background: #f1eee6;
-  color: #2c2825; /* Dark alt text on the light frame */
+  color: #2c2825;
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='13' cy='13' r='9' fill='white' fill-opacity='.9' stroke='black' stroke-width='2.5'/%3E%3Cpath d='M20 20l9 9' stroke='black' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M13 8.5v9M8.5 13h9' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, zoom-in;
 
   &.is-zoomed {
@@ -305,3 +305,176 @@
 
 .photo-thumbnail:hover::after,
 .photo-thumbnail:focus-visible::after { opacity: 1; }
+
+/* Guide button in the top bar (next to the close button) */
+.photo-header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.photo-guide-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0 0.85rem;
+  border: 1px solid #bdb7a8;
+  border-radius: 4px;
+  background: transparent;
+  color: #222;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible { background: #e8e3d5; }
+}
+
+/* Guide (modal): a dark, semi-transparent layer that explains each part of the photo page */
+.photo-guide {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow-y: auto;
+  background: rgba(20, 16, 10, 0.84);
+  color: #ffffff;
+
+  &[hidden] { display: none; }
+}
+
+.photo-guide-sheet {
+  box-sizing: border-box;
+  min-height: 100%;
+  display: grid;
+  gap: 0.9rem 1rem;
+  padding: 1rem 1.25rem 1.5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-rows: auto auto auto 1fr auto auto;
+  grid-template-areas:
+    "title title title"
+    "back count close"
+    "caption caption caption"
+    "prev zoom next"
+    "meta meta meta"
+    "wardrobe wardrobe wardrobe";
+}
+
+.photo-guide-top {
+  grid-area: title;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.35rem, 3.2vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+}
+
+.photo-guide-close {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #f0d4a2;
+  color: #2c2210;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible { background: #ffffff; }
+}
+
+.photo-guide-items {
+  display: contents; /* The list items are placed directly on the grid. */
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guide-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+  color: #ffffff;
+  font-size: clamp(0.8rem, 1.7vw, 1.1rem);
+  line-height: 1.35;
+
+  > i {
+    color: #f0d4a2;
+    font-size: 1.5em;
+  }
+}
+
+.guide-back { grid-area: back; align-items: flex-start; }
+.guide-count { grid-area: count; align-items: center; text-align: center; }
+.guide-close-note { grid-area: close; align-items: flex-end; text-align: right; }
+.guide-caption { grid-area: caption; align-items: center; text-align: center; }
+.guide-prev { grid-area: prev; align-self: center; align-items: flex-start; }
+.guide-next { grid-area: next; align-self: center; align-items: flex-end; text-align: right; }
+.guide-meta { grid-area: meta; align-items: center; text-align: center; }
+
+.guide-zoom {
+  grid-area: zoom;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+  min-height: 8rem;
+  padding: 1rem;
+  border: 2px dashed rgba(255, 255, 255, 0.6);
+  border-radius: 6px;
+  text-align: center;
+  font-size: clamp(0.9rem, 2vw, 1.4rem);
+}
+
+.guide-wardrobe {
+  grid-area: wardrobe;
+  align-items: flex-start;
+  padding: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.guide-desktop-only { display: none; }
+
+/* Wide screens: the layout follows the real page (wardrobe panel on the right) */
+@media (min-width: 992px) {
+  .photo-guide-sheet {
+    padding: 1rem 20px 20px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 1fr) 240px;
+    grid-template-rows: auto auto auto 1fr auto;
+    grid-template-areas:
+      "title title title title"
+      "back count count close"
+      ".    caption .    wardrobe"
+      "prev zoom  next wardrobe"
+      ".    meta   .    wardrobe";
+  }
+
+  .guide-desktop-only { display: inline; }
+  .guide-mobile-only { display: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .photo-guide:not([hidden]) { animation: photo-guide-in 0.2s ease-out; }
+}
+
+@keyframes photo-guide-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

@@ -636,7 +636,69 @@ function initialisePhotoViewer() {
     nextButton.addEventListener("click", () => renderPhoto(currentIndex + 1));
   }
 
+  /* Guide (modal): opens together with the photo page and again with the Guide button */
+  const guide = document.getElementById("photoGuide");
+  const guideButton = document.getElementById("photoGuideButton");
+  const guideCloseButton = document.getElementById("photoGuideClose");
+  const guideBackground = document.querySelectorAll(".photo-viewer-header, .photo-viewer-stage, .photo-thumbnail-panel");
+
+  function isGuideOpen() {
+    return Boolean(guide) && !guide.hidden;
+  }
+
+  function setGuideOpen(open) {
+    if (!guide) {
+      return;
+    }
+
+    guide.hidden = !open;
+
+    /* The page behind the guide cannot be reached with the keyboard or a screen reader while it is open */
+    guideBackground.forEach((element) => {
+      element.inert = open;
+    });
+
+    if (guideButton) {
+      guideButton.setAttribute("aria-expanded", String(open));
+    }
+
+    if (open && guideCloseButton) {
+      guideCloseButton.focus();
+    } else if (!open && guideButton) {
+      guideButton.focus();
+    }
+  }
+
+  if (guide) {
+    if (guideButton) {
+      guideButton.addEventListener("click", () => setGuideOpen(true));
+    }
+
+    if (guideCloseButton) {
+      guideCloseButton.addEventListener("click", () => setGuideOpen(false));
+    }
+
+    /* The close button is the only control inside the guide, so Tab keeps the focus on it */
+    guide.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") {
+        event.preventDefault();
+
+        if (guideCloseButton) {
+          guideCloseButton.focus();
+        }
+      }
+    });
+  }
+
   document.addEventListener("keydown", (event) => {
+    if (isGuideOpen()) {
+      if (event.key === "Escape") {
+        setGuideOpen(false);
+      }
+
+      return;
+    }
+
     if (event.key === "ArrowLeft") {
       renderPhoto(currentIndex - 1);
     } else if (event.key === "ArrowRight") {
@@ -651,6 +713,7 @@ function initialisePhotoViewer() {
   });
 
   renderPhoto(currentIndex);
+  setGuideOpen(true); /* Show the guide every time the photo page opens */
 }
 
 

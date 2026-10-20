@@ -515,3 +515,11 @@ padding-right: 24px;
 .object-carousel-caption { font-size: .8rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .object-carousel-card:hover .object-carousel-caption, .object-carousel-card:focus-visible .object-carousel-caption { font-size: .9rem; -webkit-line-clamp: unset; display: block; }
 @media (max-width: 700px) { .home-feature-container { grid-template-columns: 1fr; } .home-feature-media { grid-row: 1; } .home-feature-narrative { min-height: 220px; } .object-carousel-track { flex-wrap: wrap; gap: .75rem; } .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; } .object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 0; transform: none; } }
+
+/* Narrow desktop windows (sidebar visible): seven cards in one row would be too small, so they wrap. */
+@media (min-width: 701px) and (max-width: 900px) {
+  .object-carousel-track { flex-wrap: wrap; gap: .75rem; }
+  .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; }
+  .object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 0; transform: none; }
+}
+

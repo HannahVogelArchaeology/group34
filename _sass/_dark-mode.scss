@@ -231,5 +231,20 @@ body.dark-mode {
 
   .photo-thumbnail::after,
   .thumb-box::after { background: rgba(255, 255, 255, 0.16) !important; }
+
+  /* Photo page: Guide button and guide modal */
+  .photo-guide-btn {
+    border-color: #5a5c62 !important;
+
+    &:hover,
+    &:focus-visible { background-color: #3a3b40 !important; }
+  }
+
+  .main-content .photo-guide-close,
+  .main-content .photo-guide-close span {
+    color: #2c2210 !important;
+  }
+
+  .main-content .photo-guide-close { background-color: #f0d4a2 !important; }
 }
 

@@ -475,7 +475,9 @@
   .site-footer { margin-right: var(--sidebar-w); }
 }
 
-@media (max-width: 700px) {
+/* Stacked header (title, object name, buttons). Used on phones and on narrow desktop windows, where the
+   header only has the width that is left beside the fixed sidebar. */
+@mixin stacked-header {
   .pinned-header {
     position: fixed;
     min-height: 0;
@@ -531,17 +533,28 @@
 
       .text-resizers { gap: 4px; }
     }
+  }
 
-    /* Left group: text size buttons + Dark Mode, Right group: Back to top + Navigation Menu. */
+  /* --header-h is measured by main.js so the content always starts below the pinned header. */
+  .main-content { padding-top: var(--header-h, 120px); }
+}
+
+/* Narrow desktop windows (sidebar visible): the buttons would cover the object name in one row. */
+@media (min-width: 701px) and (max-width: 1000px) {
+  @include stacked-header;
+}
+
+@media (max-width: 700px) {
+  @include stacked-header;
+
+  .pinned-header {
+    /* Left group: text size buttons + Dark Mode. Right group: Back to top + Navigation Menu. */
     .header-top-btn { display: inline-flex; align-items: center; margin-left: auto; }
     .mobile-menu-btn { margin-left: 0; }
   }
 
   /* The floating button is replaced by the one in the header. */
   .back-to-top { display: none; }
-
-  /* --header-h is measured by main.js so the content always starts below the pinned header. */
-  .main-content { padding-top: var(--header-h, 120px); }
 
   .mobile-menu-btn { display: inline-flex; align-items: center; }
 
