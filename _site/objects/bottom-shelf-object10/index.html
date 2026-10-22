@@ -14,17 +14,103 @@
     object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>10. Spouted Vessel | Disability Heritage: Archaeology with Difference</title>
+  <meta name="description" content="Digital Exhibition">
+  <meta property="og:title" content="10. Spouted Vessel | Disability Heritage: Archaeology with Difference">
+  <meta property="og:description" content="Digital Exhibition">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost:4000/group34/objects/bottom-shelf-object10/">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome icons -->
+  <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- Material Icons CDN -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <!-- Loading screen: shown only if the page takes longer than 2 seconds to load, and removed as soon as it has loaded -->
+  <script>
+  (function () {
+    var SHOW_AFTER_MS = 2000;
+    var GIVE_UP_AFTER_MS = 15000; /* Never keep the screen on for longer than this, even if something stalls */
+    var loader = null;
+    var finished = false;
+
+    function build() {
+      var overlay = document.createElement('div');
+      var spinner = document.createElement('div');
+      var message = document.createElement('p');
+      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      overlay.id = 'pageLoader';
+      overlay.setAttribute('role', 'status');
+      overlay.setAttribute('aria-live', 'polite');
+      /* Styles are set from script so the screen looks right even while the main stylesheet is still loading */
+      overlay.style.cssText = 'position:fixed;top:0;right:0;bottom:0;left:0;z-index:100000;display:flex;' +
+        'flex-direction:column;align-items:center;justify-content:center;gap:1.25rem;background:#382713;' +
+        'color:#f6f3eb;font:600 1.1rem Manrope,Arial,sans-serif;text-align:center;transition:opacity .3s ease;';
+
+      spinner.setAttribute('aria-hidden', 'true');
+      spinner.style.cssText = 'width:56px;height:56px;box-sizing:border-box;border:5px solid rgba(246,243,235,.25);' +
+        'border-top-color:#d9b97e;border-radius:50%;';
+
+      message.style.cssText = 'margin:0;padding:0 1rem;';
+      message.textContent = 'Loading the exhibition\u2026';
+
+      overlay.appendChild(spinner);
+      overlay.appendChild(message);
+
+      if (spinner.animate && !reduceMotion) {
+        spinner.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }], { duration: 900, iterations: Infinity });
+      }
+
+      return overlay;
+    }
+
+    function hide() {
+      finished = true;
+      clearTimeout(showTimer);
+      clearTimeout(giveUpTimer);
+
+      if (!loader) {
+        return;
+      }
+
+      loader.style.opacity = '0';
+      setTimeout(function () {
+        if (loader && loader.parentNode) {
+          loader.parentNode.removeChild(loader);
+        }
+      }, 300);
+    }
+
+    function show() {
+      if (finished) {
+        return;
+      }
+
+      loader = build();
+
+      if (document.body) {
+        document.body.appendChild(loader);
+      } else {
+        document.addEventListener('DOMContentLoaded', function () {
+          if (!finished) {
+            document.body.appendChild(loader);
+          }
+        });
+      }
+    }
+
+    var showTimer = setTimeout(show, SHOW_AFTER_MS);
+    var giveUpTimer = setTimeout(hide, GIVE_UP_AFTER_MS);
+
+    window.addEventListener('load', hide);
+  })();
+  </script>
 
   <!-- Prevent visual flashing on page load -->
   <script>
@@ -40,6 +126,10 @@
   }
   })();
 </script>
+
+<!--[if lte IE 9]>
+<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -63,14 +153,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>
@@ -78,8 +168,8 @@
 
   <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
 <aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close menu">
-    <span class="hamburger-icon"></span>
+  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
   </button>
   
   <nav class="sidebar-nav">
@@ -159,13 +249,11 @@
       </a>
     </div>
   </nav>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
 </aside>
 
   <main class="main-content" id="main-content">
     
-
-
-
 
 
 
@@ -179,20 +267,22 @@
 
   <div class="object-hero-grid">
 
+    <h1 class="object-heading">10. Spouted Vessel</h1>
+
     <div class="media-column">
 
       <div class="main-image-wrapper">
         <a class="main-image-link"
-          href="/group34/photo/?image=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg&object=10.%20Spouted%20Vessel&museum=MU0091&return=/group34/objects/bottom-shelf-object10/&gallery=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&label0=FRONT%20ANGLED&caption0=10.%20Spouted%20vessel,%20MU0091,%20front-angled%20view%20%C2%A9%20Gale%20History%20Museum&label1=LEFT%20SIDE&caption1=10.%20Spouted%20vessel,%20MU0091,%20left%20side%20view%20%C2%A9%20Gale%20History%20Museum&label2=RIGHT%20SIDE&caption2=10.%20Spouted%20vessel,%20MU0091,%20right%20side%20view%20%C2%A9%20Gale%20History%20Museum&label3=FRONT&caption3=10.%20Spouted%20vessel,%20MU0091,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label4=BACK&caption4=10.%20Spouted%20vessel,%20MU0091,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label5=TOP&caption5=10.%20Spouted%20vessel,%20MU0091,%20top%20view%20%C2%A9%20Gale%20History%20Museum&label6=BOTTOM&caption6=10.%20Spouted%20vessel,%20MU0091,%20bottom%20view%20%C2%A9%20Gale%20History%20Museum"
+          href="/group34/photo/?key=/group34/objects/bottom-shelf-object10/&index=0"
           aria-label="Open 10. Spouted Vessel front image in the photo viewer">
           <img src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg"
             alt="10. Spouted vessel, MU0091, front-angled view © Gale History Museum" class="main-img">
         </a>
 
         <a class="expand-btn"
-          href="/group34/photo/?image=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg&object=10.%20Spouted%20Vessel&museum=MU0091&return=/group34/objects/bottom-shelf-object10/&gallery=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&label0=FRONT%20ANGLED&caption0=10.%20Spouted%20vessel,%20MU0091,%20front-angled%20view%20%C2%A9%20Gale%20History%20Museum&label1=LEFT%20SIDE&caption1=10.%20Spouted%20vessel,%20MU0091,%20left%20side%20view%20%C2%A9%20Gale%20History%20Museum&label2=RIGHT%20SIDE&caption2=10.%20Spouted%20vessel,%20MU0091,%20right%20side%20view%20%C2%A9%20Gale%20History%20Museum&label3=FRONT&caption3=10.%20Spouted%20vessel,%20MU0091,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label4=BACK&caption4=10.%20Spouted%20vessel,%20MU0091,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label5=TOP&caption5=10.%20Spouted%20vessel,%20MU0091,%20top%20view%20%C2%A9%20Gale%20History%20Museum&label6=BOTTOM&caption6=10.%20Spouted%20vessel,%20MU0091,%20bottom%20view%20%C2%A9%20Gale%20History%20Museum"
+          href="/group34/photo/?key=/group34/objects/bottom-shelf-object10/&index=0"
           aria-label="Open 10. Spouted Vessel front image in the photo viewer">
-          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+          <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
 
@@ -207,7 +297,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg&object=10.%20Spouted%20Vessel&museum=MU0091&return=/group34/objects/bottom-shelf-object10/&gallery=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&label0=FRONT%20ANGLED&caption0=10.%20Spouted%20vessel,%20MU0091,%20front-angled%20view%20%C2%A9%20Gale%20History%20Museum&label1=LEFT%20SIDE&caption1=10.%20Spouted%20vessel,%20MU0091,%20left%20side%20view%20%C2%A9%20Gale%20History%20Museum&label2=RIGHT%20SIDE&caption2=10.%20Spouted%20vessel,%20MU0091,%20right%20side%20view%20%C2%A9%20Gale%20History%20Museum&label3=FRONT&caption3=10.%20Spouted%20vessel,%20MU0091,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label4=BACK&caption4=10.%20Spouted%20vessel,%20MU0091,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label5=TOP&caption5=10.%20Spouted%20vessel,%20MU0091,%20top%20view%20%C2%A9%20Gale%20History%20Museum&label6=BOTTOM&caption6=10.%20Spouted%20vessel,%20MU0091,%20bottom%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/bottom-shelf-object10/&index=1"
             aria-label="Open LEFT SIDE of 10. Spouted Vessel">
             <img
               src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg"
@@ -217,7 +307,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg&object=10.%20Spouted%20Vessel&museum=MU0091&return=/group34/objects/bottom-shelf-object10/&gallery=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&label0=FRONT%20ANGLED&caption0=10.%20Spouted%20vessel,%20MU0091,%20front-angled%20view%20%C2%A9%20Gale%20History%20Museum&label1=LEFT%20SIDE&caption1=10.%20Spouted%20vessel,%20MU0091,%20left%20side%20view%20%C2%A9%20Gale%20History%20Museum&label2=RIGHT%20SIDE&caption2=10.%20Spouted%20vessel,%20MU0091,%20right%20side%20view%20%C2%A9%20Gale%20History%20Museum&label3=FRONT&caption3=10.%20Spouted%20vessel,%20MU0091,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label4=BACK&caption4=10.%20Spouted%20vessel,%20MU0091,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label5=TOP&caption5=10.%20Spouted%20vessel,%20MU0091,%20top%20view%20%C2%A9%20Gale%20History%20Museum&label6=BOTTOM&caption6=10.%20Spouted%20vessel,%20MU0091,%20bottom%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/bottom-shelf-object10/&index=2"
             aria-label="Open RIGHT SIDE of 10. Spouted Vessel">
             <img
               src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg"
@@ -227,7 +317,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg&object=10.%20Spouted%20Vessel&museum=MU0091&return=/group34/objects/bottom-shelf-object10/&gallery=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&label0=FRONT%20ANGLED&caption0=10.%20Spouted%20vessel,%20MU0091,%20front-angled%20view%20%C2%A9%20Gale%20History%20Museum&label1=LEFT%20SIDE&caption1=10.%20Spouted%20vessel,%20MU0091,%20left%20side%20view%20%C2%A9%20Gale%20History%20Museum&label2=RIGHT%20SIDE&caption2=10.%20Spouted%20vessel,%20MU0091,%20right%20side%20view%20%C2%A9%20Gale%20History%20Museum&label3=FRONT&caption3=10.%20Spouted%20vessel,%20MU0091,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label4=BACK&caption4=10.%20Spouted%20vessel,%20MU0091,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label5=TOP&caption5=10.%20Spouted%20vessel,%20MU0091,%20top%20view%20%C2%A9%20Gale%20History%20Museum&label6=BOTTOM&caption6=10.%20Spouted%20vessel,%20MU0091,%20bottom%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/bottom-shelf-object10/&index=3"
             aria-label="Open FRONT of 10. Spouted Vessel">
             <img
               src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg"
@@ -237,7 +327,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg&object=10.%20Spouted%20Vessel&museum=MU0091&return=/group34/objects/bottom-shelf-object10/&gallery=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&label0=FRONT%20ANGLED&caption0=10.%20Spouted%20vessel,%20MU0091,%20front-angled%20view%20%C2%A9%20Gale%20History%20Museum&label1=LEFT%20SIDE&caption1=10.%20Spouted%20vessel,%20MU0091,%20left%20side%20view%20%C2%A9%20Gale%20History%20Museum&label2=RIGHT%20SIDE&caption2=10.%20Spouted%20vessel,%20MU0091,%20right%20side%20view%20%C2%A9%20Gale%20History%20Museum&label3=FRONT&caption3=10.%20Spouted%20vessel,%20MU0091,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label4=BACK&caption4=10.%20Spouted%20vessel,%20MU0091,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label5=TOP&caption5=10.%20Spouted%20vessel,%20MU0091,%20top%20view%20%C2%A9%20Gale%20History%20Museum&label6=BOTTOM&caption6=10.%20Spouted%20vessel,%20MU0091,%20bottom%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/bottom-shelf-object10/&index=4"
             aria-label="Open BACK of 10. Spouted Vessel">
             <img
               src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg"
@@ -247,7 +337,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg&object=10.%20Spouted%20Vessel&museum=MU0091&return=/group34/objects/bottom-shelf-object10/&gallery=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&label0=FRONT%20ANGLED&caption0=10.%20Spouted%20vessel,%20MU0091,%20front-angled%20view%20%C2%A9%20Gale%20History%20Museum&label1=LEFT%20SIDE&caption1=10.%20Spouted%20vessel,%20MU0091,%20left%20side%20view%20%C2%A9%20Gale%20History%20Museum&label2=RIGHT%20SIDE&caption2=10.%20Spouted%20vessel,%20MU0091,%20right%20side%20view%20%C2%A9%20Gale%20History%20Museum&label3=FRONT&caption3=10.%20Spouted%20vessel,%20MU0091,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label4=BACK&caption4=10.%20Spouted%20vessel,%20MU0091,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label5=TOP&caption5=10.%20Spouted%20vessel,%20MU0091,%20top%20view%20%C2%A9%20Gale%20History%20Museum&label6=BOTTOM&caption6=10.%20Spouted%20vessel,%20MU0091,%20bottom%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/bottom-shelf-object10/&index=5"
             aria-label="Open TOP of 10. Spouted Vessel">
             <img
               src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg"
@@ -257,7 +347,7 @@
           
           
           <a class="thumb-box"
-            href="/group34/photo/?image=/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&object=10.%20Spouted%20Vessel&museum=MU0091&return=/group34/objects/bottom-shelf-object10/&gallery=/group34/assets/images/10%20Spouted%20Vessel_MU0091_front%20angled_Image1.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_left%20side_Image2.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_right%20side_Image3.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_front_Image4.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_back_Image5.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_top_Image6.jpeg,/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg&label0=FRONT%20ANGLED&caption0=10.%20Spouted%20vessel,%20MU0091,%20front-angled%20view%20%C2%A9%20Gale%20History%20Museum&label1=LEFT%20SIDE&caption1=10.%20Spouted%20vessel,%20MU0091,%20left%20side%20view%20%C2%A9%20Gale%20History%20Museum&label2=RIGHT%20SIDE&caption2=10.%20Spouted%20vessel,%20MU0091,%20right%20side%20view%20%C2%A9%20Gale%20History%20Museum&label3=FRONT&caption3=10.%20Spouted%20vessel,%20MU0091,%20front%20view%20%C2%A9%20Gale%20History%20Museum&label4=BACK&caption4=10.%20Spouted%20vessel,%20MU0091,%20back%20view%20%C2%A9%20Gale%20History%20Museum&label5=TOP&caption5=10.%20Spouted%20vessel,%20MU0091,%20top%20view%20%C2%A9%20Gale%20History%20Museum&label6=BOTTOM&caption6=10.%20Spouted%20vessel,%20MU0091,%20bottom%20view%20%C2%A9%20Gale%20History%20Museum"
+            href="/group34/photo/?key=/group34/objects/bottom-shelf-object10/&index=6"
             aria-label="Open BOTTOM of 10. Spouted Vessel">
             <img
               src="/group34/assets/images/10%20Spouted%20Vessel_MU0091_bottom_Image7.jpeg"
@@ -278,8 +368,6 @@
 
     <div class="info-column">
 
-      <h1 class="object-heading">10. Spouted Vessel</h1>
-
       <div class="overview-section">
         <p class="overview-title">Overview</p>
         <p class="overview-text">
@@ -292,19 +380,18 @@
 
         <div class="audio-actions">
           <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
-            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+            <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
             <span>Audio Description</span>
           </button>
         </div>
 
-        <details class="transcript-accordion">
-          <summary class="btn-transcript-toggle">[ READ TRANSCRIPT ]</summary>
+        <div class="transcript-accordion">
           <div class="transcript-box">
             <p class="transcript-text">
               A likely wheel-made ceramic vessel. There is a handle arching over a flaring rim. The vessel has a narrow neck and wide, ovoid-shaped body tapering to a small circular base.  At the shoulder of the vessel is a spout, pointed upwards at an acute angle to allow the vessel to tilt. Several faded black painted lines can be seen as decoration around the handle, neck, and body. The spout was likely originally painted black in colour, although the surface is now eroded in places. The painted lines around the neck are tightly arranged, with a thick black line at the neck base. A thick, faded, wavy line extends around the shoulder of the vessel at the level of the spout.
             </p>
           </div>
-        </details>
+        </div>
       </div>
 
       <div class="metadata-section">
@@ -336,7 +423,7 @@
 
   <nav class="shelf-pagination">
   <a href="/group34/objects/bottom-shelf-object9/" class="nav-box nav-back">
-    <span class="arrow">&larr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long"></i></span>
     <div class="nav-text">
       <span class="sub-label">BACK</span>
       <span class="main-label">OBJECT 9</span>
@@ -348,7 +435,7 @@
       <span class="sub-label">NEXT</span>
       <span class="main-label">OBJECT 11</span>
     </div>
-    <span class="arrow">&rarr;</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
   </a>
 </nav>
 
@@ -393,7 +480,7 @@
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="metadata"></audio>
+  <audio id="exhibitionAudio" src="" preload="none"></audio>
 </div><footer class="site-footer">
   
 

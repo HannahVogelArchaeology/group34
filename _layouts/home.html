@@ -3,22 +3,22 @@ layout: default
 ---
 
 <!-- Exhibition Title Section -->
-<section class="hero-title-section" aria-label="Exhibition Title">
+<section class="hero-title-section">
   <div class="hero-container">
     <h1 class="hero-main-title">{{ page.hero_title | strip | newline_to_br }}</h1>
-    <p class="hero-curator" aria-label="Curated by Hannah Vogel">Curated by Hannah Vogel</p>
+    <p class="hero-curator">Curated by Hannah Vogel</p>
   </div>
 </section>
 
 <!-- Main feature: narrative on the left, image and caption on the right. -->
-<section class="home-feature-section" aria-label="Exhibition Narrative">
+<section class="home-feature-section">
   <div class="home-feature-container">
     <div class="home-feature-narrative">
-      <p class="narratives-label" aria-hidden="true">Narratives Here:</p>
-      <div class="hero-description" aria-label="Exhibition Introduction">{{ page.hero_text | markdownify }}</div>
-      <a href="{{ '/about/#curation-tab' | relative_url }}" class="btn-curator-bio" aria-label="Read more about us and the curator">&gt; About Us</a>
+      <p class="narratives-label">Narratives Here:</p>
+      <div class="hero-description">{{ page.hero_text | markdownify }}</div>
+      <a href="{{ '/about/' | relative_url }}" class="btn-curator-bio">&gt; About Us</a>
     </div>
-    <figure class="home-feature-media" aria-label="Feature Image">
+    <figure class="home-feature-media">
       {% if page.hero_image %}
       <img src="{{ page.hero_image | relative_url }}" alt="{{ page.hero_alt | escape }}" loading="eager">
       <figcaption class="image-caption">{{ page.hero_image_caption }}</figcaption>
@@ -31,14 +31,14 @@ layout: default
 </section>
 
 <!-- Shelves Explorer Section -->
-<section class="shelves-explorer" aria-labelledby="explorer-title">
-  <h2 id="explorer-title" class="explorer-title">Explore the exhibition</h2>
+<section class="shelves-explorer">
+  <h2 class="explorer-title">Explore the exhibition</h2>
 
-  <div class="shelf-cards-container" role="list" aria-label="Exhibition Shelves">
+  <div class="shelf-cards-container">
 
     <!-- Top Shelf -->
-    <a href="{{ '/shelves/top-shelf/' | relative_url }}" class="shelf-card" role="listitem" aria-label="View Top Shelf featuring a Pelike">
-      <div class="card-header" aria-hidden="true">
+    <a href="{{ '/shelves/top-shelf/' | relative_url }}" class="shelf-card" aria-label="View Top Shelf">
+      <div class="card-header">
         <span class="shelf-label">TOP SHELF</span>
       </div>
 
@@ -54,8 +54,8 @@ layout: default
     </a>
 
     <!-- Middle Shelf -->
-    <a href="{{ '/shelves/middle-shelf/' | relative_url }}" class="shelf-card" role="listitem" aria-label="View Middle Shelf featuring a Figure of a Musician">
-      <div class="card-header" aria-hidden="true">
+    <a href="{{ '/shelves/middle-shelf/' | relative_url }}" class="shelf-card" aria-label="View Middle Shelf">
+      <div class="card-header">
         <span class="shelf-label">MIDDLE SHELF</span>
       </div>
 
@@ -71,8 +71,8 @@ layout: default
     </a>
 
     <!-- Bottom Shelf -->
-    <a href="{{ '/shelves/bottom-shelf/' | relative_url }}" class="shelf-card" role="listitem" aria-label="View Bottom Shelf featuring a Feeding vessel">
-      <div class="card-header" aria-hidden="true">
+    <a href="{{ '/shelves/bottom-shelf/' | relative_url }}" class="shelf-card" aria-label="View Bottom Shelf">
+      <div class="card-header">
         <span class="shelf-label">BOTTOM SHELF</span>
       </div>
 
@@ -97,31 +97,31 @@ layout: default
     <h2 id="auslan-video-heading" class="auslan-title">Auslan Video</h2>
 
     <div class="video-card">
-      <video class="auslan-video" controls controlsList="nodownload" disablePictureInPicture preload="metadata" playsinline oncontextmenu="return false;" aria-describedby="auslan-video-description" aria-label="Auslan sign language interpretation video">
+      <video class="auslan-video" controls controlsList="nodownload" disablePictureInPicture preload="none" playsinline oncontextmenu="return false;" aria-describedby="auslan-video-description">
         <source src="{{ page.auslan_video | relative_url }}" type="video/mp4">
-        <span aria-live="polite">Your browser does not support HTML5 video.</span>
+        Your browser does not support HTML5 video.
       </video>
     </div>
 
-    <p class="auslan-caption" aria-label="Video Caption">
+    <p class="auslan-caption">
       {{ page.auslan_caption | default: "Lorem ipsum caption here" }}
     </p>
 
-    <p id="auslan-video-description" class="auslan-description" aria-label="Video Description">
+    <p id="auslan-video-description" class="auslan-description">
       {{ page.auslan_text }}
     </p>
   </div>
 </section>
 
 <!-- Acknowledgement Section -->
-<section class="acknowledgement-section" aria-label="Acknowledgements Section">
+<section class="acknowledgement-section">
 
   <div class="acknowledgement-container">
-    <div class="ack-left" aria-hidden="true">
+    <div class="ack-left">
       <h2>ACKNOWLEDGEMENTS</h2>
     </div>
 
-    <div class="ack-right" aria-label="Acknowledgement details">
+    <div class="ack-right">
       <p>{{ page.acknowledgement_text | markdownify }}</p>
     </div>
   </div>

@@ -19,3 +19,31 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* The audio bar stops at the sidebar so its volume and close buttons stay clickable. */
+@media (min-width: 701px) {
+  .bottom-audio-bar { width: calc(100% - var(--sidebar-w, 0px)); }
+}
+
+/* Narrow content column (phones, and desktop windows narrowed next to the sidebar):
+   Back and Next share the row equally (left and right), on every page that has them. */
+@media (max-width: 1000px) {
+  .shelf-pagination,
+  .middle-shelf-container .shelf-pagination,
+  .bottom-shelf-container .shelf-pagination {
+    flex-direction: row;
+    gap: 0.6em;
+  }
+
+  .shelf-pagination .nav-box {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 0.9em 0.7em;
+  }
+
+  .shelf-pagination .nav-box.nav-back .arrow { margin-right: 0.6em; }
+  .shelf-pagination .nav-box.nav-next .arrow { margin-left: 0.6em; }
+  .shelf-pagination .nav-box .arrow { font-size: 1.1em; }
+  .shelf-pagination .nav-box .nav-text .sub-label { font-size: 0.75em; }
+  .shelf-pagination .nav-box .nav-text .main-label { font-size: 0.95em; overflow-wrap: anywhere; }
+}

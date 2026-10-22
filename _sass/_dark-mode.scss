@@ -1,0 +1,250 @@
+/* Dark mode */
+body.dark-mode {
+  color-scheme: dark;
+  background-color: #1b1c1e !important;
+  color: #ece8de;
+
+  /* Shelf pages read their colours from CSS variables. */
+  .middle-shelf-container,
+  .bottom-shelf-container {
+    --shelf-accent: #e0bd82;
+    --shelf-accent-dark: #f0d4a2;
+    --shelf-focus: #8fc7f5;
+    --shelf-text: #ece8de;
+    --shelf-muted: #c9c4b8;
+    --shelf-surface: #26272a;
+    --shelf-surface-hover: #303135;
+    --shelf-line: #5a5448;
+    --shelf-image: #303135;
+  }
+
+  /* Text: every text element inside the page content is light */
+  .main-content {
+    @each $tag in p, li, td, th, dt, dd, figcaption, label, small, strong, em, blockquote,
+      h1, h2, h3, h4, h5, h6, summary, span, a, button {
+      #{$tag} { color: #ece8de !important; }
+    }
+
+    /* Accent headings and labels keep a (lighter) gold */
+    @each $selector in ".overview-title", ".audio-section h3", ".metadata-section h3", ".meta-label",
+      ".shelf-section h3", ".shelf-overview-section h2", ".gold-heading", ".main-tab-title",
+      ".label-col", ".about-toc h2", ".publications-section h2", "td.label",
+      ".markdown-content h2", ".markdown-content h3", ".markdown-content th",
+      ".markdown-content td:first-child", ".btn-transcript-toggle" {
+      #{$selector} { color: #e0bd82 !important; }
+    }
+  }
+
+  /* Header */
+  .pinned-header {
+    background-color: #26272a !important;
+    border-bottom-color: #45474c !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    color: #ece8de;
+
+    .exhibition-title,
+    .active-object-name { color: #ece8de; }
+  }
+
+  .font-btn,
+  .dark-mode-btn {
+    background-color: #3a3b40 !important;
+    border-color: #5a5c62 !important;
+    color: #ece8de;
+
+    &:hover,
+    &:focus-visible { background-color: #4a4b51 !important; }
+  }
+
+  .mobile-menu-btn {
+    background-color: #7a5420 !important;
+    border-color: #c9a063 !important;
+    color: #ffffff;
+  }
+
+  /* Home page */
+  .hero-media-section { background-color: #2a2b2e !important; }
+
+  .home-feature-section,
+  .shelves-explorer,
+  .auslan-section,
+  .acknowledgement-section { background-color: #232427 !important; }
+
+  .shelf-card,
+  .video-card { background-color: #303135 !important; }
+
+  .shelf-card {
+    &:hover,
+    &:focus-visible {
+      background-color: #3a3b40 !important;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .view-button { background-color: #7a5420 !important; color: #ffffff !important; }
+    &:hover .view-button,
+    &:focus-visible .view-button { background-color: #5b3d17 !important; }
+  }
+
+  .btn-curator-bio { background-color: #7a5420 !important; color: #ffffff !important; }
+
+  /* Image boxes, thumbnails and buttons on images */
+  .main-image-wrapper,
+  .hero-image-wrapper,
+  .media-section .hero-image-wrapper,
+  .object-carousel-card,
+  .object-carousel-image-wrap {
+    background-color: #2c2d31 !important;
+    border-color: #45474c !important;
+  }
+
+  .thumb-box {
+    background-color: #2c2d31 !important;
+    border-color: #55565b !important;
+
+    &.active { border-color: #e0bd82 !important; }
+  }
+
+  .explore-3d-btn {
+    background-color: #2c2d31 !important;
+    border-color: #55565b !important;
+
+    &:hover,
+    &:focus-visible { border-color: #e0bd82 !important; }
+  }
+
+  .expand-btn {
+    background: rgba(38, 39, 42, 0.95) !important;
+    border-color: #8b6a3a !important;
+
+    &:hover,
+    &:focus-visible {
+      background: #7a5420 !important;
+      border-color: #c9a063 !important;
+    }
+  }
+
+  .transcript-box {
+    background-color: #2c2d31 !important;
+    border-color: #45474c !important;
+  }
+
+  /* Tables and dividers */
+  .metadata-table td,
+  .metadata-table th,
+  .object-meta-table td,
+  .info-table td,
+  .info-table th,
+  .markdown-content td,
+  .markdown-content th { border-bottom-color: #45474c !important; }
+
+  .shelf-pagination { border-top-color: #45474c !important; }
+
+  /* Previous / next buttons */
+  .nav-box,
+  .nav-card {
+    background-color: #26272a !important;
+    border-color: #7a5c32 !important;
+
+    &:hover,
+    &:focus-visible {
+      background-color: #303135 !important;
+      border-color: #e0bd82 !important;
+      box-shadow: inset 0 -3px 0 #e0bd82;
+    }
+  }
+
+  /* About, privacy and terms pages */
+  .about-toc {
+    background: #26272a !important;
+    border-left-color: #e0bd82 !important;
+  }
+
+  .avatar {
+    border-color: #c9a063 !important;
+
+    &:hover,
+    &.active { background-color: #3a3b40 !important; }
+  }
+
+  .toc-card { background-color: transparent !important; }
+
+  /* Photo page */
+  .photo-viewer-header,
+  .photo-thumbnail-panel {
+    background: #26272a !important;
+    color: #ece8de;
+  }
+
+  .photo-thumbnail-handle { background: #6a6c72 !important; }
+  .photo-thumbnail { background: #3a3b40 !important; }
+  .photo-zoom-frame { background: #2c2d31 !important; }
+
+  /* Team initials (About page) */
+  .avatar {
+    background-color: transparent !important;
+    border-color: #c9a063 !important;
+    color: #ece8de !important;
+
+    &:hover,
+    &.active {
+      background-color: #3a3b40 !important;
+      border-color: #e0bd82 !important;
+      color: #ffffff !important;
+    }
+  }
+
+  /* Header buttons: bright text on dark buttons */
+  .pinned-header .font-btn,
+  .pinned-header .dark-mode-btn,
+  .pinned-header .mobile-menu-btn { color: #ece8de !important; }
+
+  .pinned-header .mobile-menu-btn { color: #ffffff !important; }
+
+  /* Same colours as the floating Back to top button in dark mode */
+  .pinned-header .header-top-btn {
+    background-color: #7a5420 !important;
+    border-color: #c9a063 !important;
+    color: #ffffff !important;
+  }
+
+  .pinned-header .mobile-menu-btn { color: #ffffff !important; }
+
+  .pinned-header .header-left,
+  .pinned-header .header-center .active-object-name { border-bottom-color: #45474c !important; }
+
+  /* Home page shelf cards: the image area is dark, so its alt text stays readable */
+  .shelf-card .card-img,
+  .shelf-card .card-img img {
+    background-color: #3a3b40 !important;
+    color: #ece8de !important;
+  }
+
+  /* Number block on object cards */
+  .main-content .object-carousel-number {
+    background-color: #7a5420 !important;
+    color: #ffffff !important;
+  }
+
+  /* Photo page: bright alt text on dark frame and thumbnails */
+  .photo-zoom-frame { color: #ece8de; }
+  .photo-thumbnail { color: #ece8de; }
+
+  .photo-thumbnail::after,
+  .thumb-box::after { background: rgba(255, 255, 255, 0.16) !important; }
+
+  /* Photo page: Guide button and guide modal */
+  .photo-guide-btn {
+    border-color: #5a5c62 !important;
+
+    &:hover,
+    &:focus-visible { background-color: #3a3b40 !important; }
+  }
+
+  .main-content .photo-guide-close,
+  .main-content .photo-guide-close span {
+    color: #2c2210 !important;
+  }
+
+  .main-content .photo-guide-close { background-color: #f0d4a2 !important; }
+}
+

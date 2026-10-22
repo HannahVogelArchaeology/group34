@@ -511,3 +511,45 @@
     line-height: 1.45;
   }
 }
+
+/* Object page order. The heading is a direct child of the grid so it can sit above the photo on mobile. */
+.object-detail-container {
+  .object-hero-grid {
+    grid-template-areas:
+      "media title"
+      "media info";
+    grid-template-rows: auto 1fr;
+    row-gap: 0; /* No extra space between the object name and the overview */
+
+    @media (max-width: 850px) {
+      grid-template-areas:
+        "title"
+        "media"
+        "info";
+      grid-template-rows: auto;
+      gap: 1.25em;
+    }
+  }
+
+  .object-heading {
+    grid-area: title;
+    margin: 0 0 0.5em;
+    font-size: 2em;
+    font-weight: 400;
+    line-height: 1.2;
+
+    @media (max-width: 850px) { margin-bottom: 0; }
+  }
+
+  /* The first block under the object name starts right away (no extra top margin). */
+  .info-column .overview-section .overview-title { margin-top: 0; }
+
+  .media-column { grid-area: media; min-width: 0; }
+  .info-column { grid-area: info; min-width: 0; }
+
+  /* On narrow screens the thumbnails and the Explore in 3D button stack in that order. */
+  @media (max-width: 850px) {
+    .media-column .media-controls:has(.explore-3d-btn) { grid-template-columns: minmax(0, 1fr); }
+    .media-column .media-controls .explore-3d-btn { justify-self: start; }
+  }
+}

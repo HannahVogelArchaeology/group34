@@ -8,3 +8,7 @@ in `LICENSE`.
 The vendored templates were modified in August 2026 to provide an explicitly
 named primary navigation landmark, a keyboard-native mobile menu, a skip link,
 and visible keyboard focus.
+
+The Minima social-media includes, the Minima navigation include, the Minima syntax-highlighting styles and the files that only they used were removed in October 2026 because nothing in the site uses them.
+
+Fonts, icon fonts and build tools used by the site, and their licences, are listed in `THIRD_PARTY_NOTICES.md`. The full licence texts are in `LICENSE` and the `LICENSES/` folder.

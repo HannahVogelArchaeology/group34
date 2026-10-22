@@ -617,3 +617,11 @@ i.fa-linkedin {
     }
   }
 }
+
+/* Accessible vertical contents list; keep all sections visible for scrolling. */
+.about-page-container .about-toc { margin: 0 0 3rem; padding: 1rem 1.25rem; border-left: 4px solid #b5833f; background: #f6f3eb; }
+.about-page-container .about-toc h2 { margin-top: 0; font-size: 1.15rem; }
+.about-page-container .about-toc ul { display: flex; flex-direction: column; gap: .6rem; margin: 0; padding-left: 1.25rem; }
+.about-page-container .about-toc a { text-decoration: underline; text-underline-offset: .18em; }
+.about-page-container .tab-content { display: block !important; scroll-margin-top: 120px; }
+.about-page-container .tab-navigation { display: none; }

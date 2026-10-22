@@ -13,14 +13,14 @@
     </div>
 
     <div class="header-right">
-      <div class="text-resizers">
+      <div class="text-resizers" aria-label="Text size controls">
         <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
         <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
         <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
     </div>
   </div>
 </header>

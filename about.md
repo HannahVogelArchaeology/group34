@@ -1,11 +1,6 @@
 ---
 layout: about
 title: About Us
-
-curator_image: ""
-curator_image_alt: "Profile photograph of Hannah Vogel"
-
-publications_enabled: false
 ---
 
 <!-- ABOUT_VISITOR_START -->
@@ -49,23 +44,7 @@ by **Hannah Vogel**
 | Contact     | **Email** — abcde12345@gmail.com |
 |             | **Social** — [LinkedIn](#)       |
 
-<!-- ABOUT_PUBLICATIONS_START -->
-
-### Publications
-
-#### Publication Title
-
-Author Name, Year
-
-Publication description can be added here.
-
-[View publication](#)
-
-<!-- ABOUT_PUBLICATIONS_END -->
-
 ### Funding
-
-#### Lorem ipsum dolor sit amet
 
 This exhibition is funded by the National Disability Research Partnership’s Disability Research Leadership Program (2026). It is part of Hannah Vogel’s PhD project supported by the Commonwealth through an Australian Government Research Training Program Scholarship DOI: [https://doi.org/10.82133/C42F-K220](https://doi.org/10.82133/C42F-K220).
 

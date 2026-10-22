@@ -239,62 +239,6 @@ margin: 0 auto;
 }
 }
 
-/* Quote Banner */
-.quote-section {
-background: linear-gradient(
-90deg,
-#785a30 30%,
-#c39c5e 100%
-);
-
-padding: 50px 40px;
-color: #ffffff;
-
-.quote-container {
-max-width: 1000px;
-margin: 0 auto;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-
-.quote-left {
-max-width: 65%;
-
-.quote-text {
-  font-size: 1.5em;
-  font-style: normal;
-  margin: 0 0 10px 0;
-  color: #ffffff;
-}
-
-.quote-curator {
-  font-size: 0.9em;
-  color: #f0e6d2;
-  margin: 0;
-}
-
-}
-
-.quote-right {
-.btn-curator-bio {
-  display: inline-block;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
-  padding: 8px 20px;
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 0.85em;
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: background 0.2s ease;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.25);
-  }
-}
-
-}
-}
-
 /* Auslan Video */
 .auslan-section {
 background-color: #f6f3eb;
@@ -544,3 +488,38 @@ padding-right: 24px;
 .object-card .item-title { min-width: 0; overflow-wrap: anywhere; }
 .object-card .card-header { align-items: flex-start; }
 .object-card .btn-view { flex: 0 0 auto; }
+
+
+/* Main feature layout: narrative on the left, image and caption on the right. */
+.home-feature-section { padding: clamp(24px, 4vw, 56px); background: #f6f3eb; }
+.home-feature-container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 64px); align-items: stretch; max-width: 1400px; margin: 0 auto; }
+.home-feature-narrative { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; min-width: 0; }
+.home-feature-narrative .btn-curator-bio { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; background: #8b5d24; color: #fff; text-decoration: none; min-height: 48px; }
+.home-feature-media { margin: 0; min-width: 0; display: flex; flex-direction: column; }
+.home-feature-media img { display: block; width: 100%; height: auto; max-height: 650px; object-fit: contain; }
+.home-feature-media .image-caption { text-align: left; overflow-wrap: anywhere; margin: 10px 0 0; }
+.object-explorer-carousel { padding: 2rem 0 3rem; background: transparent; } /* No side padding: aligns with the hero image above. */
+.object-explorer-carousel h2 { margin-top: 0; }
+.carousel-instructions { margin-bottom: 1.25rem; }
+/* All cards share the row width, so no horizontal scrollbar is needed. The hovered card grows and comes forward. */
+.object-carousel-track { display: flex; align-items: stretch; gap: 0; overflow: visible; padding: 1.5rem 0 2rem; isolation: isolate; }
+.object-carousel-card { position: relative; flex: 1 1 0; min-width: 0; min-height: 360px; margin-left: -1rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: 10px; color: #fff; text-decoration: none; background: #d6d1c7; box-shadow: 0 8px 22px rgba(0,0,0,.14); transition: transform .25s ease, flex-grow .25s ease, box-shadow .25s ease; }
+.object-carousel-card:first-child { margin-left: 0; }
+.object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 2.4; transform: translateY(-8px) scale(1.03); z-index: 2; box-shadow: 0 16px 34px rgba(0,0,0,.22); outline: 3px solid #8b5d24; outline-offset: 3px; }
+/* Number block in the top-left corner of each object card */
+.object-carousel-number { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 2; display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 3px; background: #f8f6f1; color: #3b2a14; font-size: 1rem; font-weight: 700; line-height: 1; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); pointer-events: none; }
+.object-carousel-image-wrap { position: absolute; inset: 0; background: #d6d1c7; }
+.object-carousel-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; color: transparent; font-size: 0; } /* Hides broken-image alt text overlay while placeholders are empty; alt text is still read by screen readers. */
+.object-carousel-copy { position: relative; z-index: 1; display: flex; flex-direction: column; gap: .45rem; padding: .85rem; background: linear-gradient(transparent, rgba(20,20,20,.88)); min-height: 110px; justify-content: flex-end; }
+.object-carousel-title { font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; }
+.object-carousel-caption { font-size: .8rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.object-carousel-card:hover .object-carousel-caption, .object-carousel-card:focus-visible .object-carousel-caption { font-size: .9rem; -webkit-line-clamp: unset; display: block; }
+@media (max-width: 700px) { .home-feature-container { grid-template-columns: 1fr; } .home-feature-media { grid-row: 1; } .home-feature-narrative { min-height: 220px; } .object-carousel-track { flex-wrap: wrap; gap: .75rem; } .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; } .object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 0; transform: none; } }
+
+/* Narrow desktop windows (sidebar visible): seven cards in one row would be too small, so they wrap. */
+@media (min-width: 701px) and (max-width: 900px) {
+  .object-carousel-track { flex-wrap: wrap; gap: .75rem; }
+  .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; }
+  .object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 0; transform: none; }
+}
+

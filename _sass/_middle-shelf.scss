@@ -567,3 +567,10 @@
     max-width: 100%;
   }
 }
+
+/* Responsive hero and object carousel layout. */
+.middle-shelf-container .shelf-feature-layout { display: block; margin-bottom: 2rem; } /* Order: heading, hero image, caption, overview, objects. */
+.middle-shelf-container .hero-image-wrapper { aspect-ratio: 16 / 9; width: 100%; } /* Landscape hero image */
+.middle-shelf-container .shelf-overview-section { margin: 2rem 0 0; min-width: 0; }
+.middle-shelf-container .shelf-hero-media { min-width: 0; }
+.middle-shelf-container .shelf-hero-media .image-caption { max-width: 100%; overflow-wrap: anywhere; }
