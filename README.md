@@ -35,5 +35,6 @@ names to `team.md` and `CITATION.cff` rather than inferring them from accounts.
 ## Licence and attribution
 
 The code is derived from the MIT-licensed Minima theme. See `LICENSE` and
-`NOTICE.md`. Content and media added by the team may have different terms; record
+`NOTICE.md`. The licences of the fonts, icons and build tools the site uses are listed in
+`THIRD_PARTY_NOTICES.md`, with the full texts in the `LICENSES/` folder. Content and media added by the team may have different terms; record
 those terms and the required credit beside each asset.
