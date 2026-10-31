@@ -3,15 +3,12 @@ layout: middle-shelf
 title: "Middle Shelf"
 permalink: /shelves/middle-shelf/
 
-shelf_number: "MIDDLE SHELF"
 shelf_title: "Middle Shelf"
 
 hero_image: "/assets/images/MiddleShelf_hero.jpg"
-show_hero_image: true
 hero_alt: "This is the alternative text area for the middle shelf's hero image."
 hero_caption: "This is the caption area for the middle shelf's hero image."
 
-show_object_images: false
 
 overview: >-
   Figurines were made for various reasons and were often accessible to many people. These differently shaped bodies are votive offerings or amulets used for protection, ensuring health and/or fertility, invoking the divine, or for afterlife beliefs. These are an important reflection of the reality of diversity, rather than an ‘ideal’ body.  

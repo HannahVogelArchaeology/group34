@@ -146,13 +146,6 @@
   .photo-zoom-frame.has-pointer-icon .photo-zoom-pointer { display: none; }
 }
 
-.photo-viewer-figure figcaption {
-  min-height: 1.5em;
-  font-size: 1.1rem;
-  text-align: center;
-  color: #fff;
-}
-
 /* The arrows come after the photo in the HTML (reading order) but keep their left and right columns on screen. */
 .photo-arrow-left { grid-column: 1; grid-row: 1; }
 .photo-viewer-figure { grid-column: 2; grid-row: 1; }
@@ -204,7 +197,7 @@
   gap: 0.8rem;
   padding: 6px; /* Room for the hover glow */
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: hidden; 
   /* Centre the thumbnails only while they fit; start at the edge when they overflow,
      so the first thumbnail is never cut off. */
   > :first-child { margin-left: auto; }
@@ -221,7 +214,7 @@
   overflow: hidden;
   border: 2px solid transparent;
   background: #b8b4ab;
-  color: #2c2825;
+  color: #2c2825; /* Dark alt text on the light thumbnail */
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -245,6 +238,8 @@
 @media (min-width: 992px) {
   .photo-viewer-stage {
     grid-template-columns: 44px minmax(0, 1fr) 44px;
+    /* Keep the right arrow as far from the thumbnail panel as the left arrow is from the screen edge (1.5rem).
+       The panel is 240px wide plus 1rem padding on each side, and 20px from the right edge. */
     padding-right: calc(20px + 240px + 2rem + 1.5rem);
   }
 

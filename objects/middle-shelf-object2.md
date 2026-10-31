@@ -2,7 +2,6 @@
 layout: object
 title: "2. Reclining Figure"
 permalink: /objects/middle-shelf-object2/
-object_number: "OBJECT 2"
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
 image: "/assets/images/2 Reclining Figure_MU4249_front_Image1.jpg"

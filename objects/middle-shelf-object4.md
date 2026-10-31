@@ -2,7 +2,6 @@
 layout: object
 title: "4. Figure of a musician"
 permalink: /objects/middle-shelf-object4/
-object_number: "OBJECT 4"
 image: "/assets/images/4 Figure of a Musician_MU0086_front_Image1.jpg"
 gallery_images:
   - src: "/assets/images/4 Figure of a Musician_MU0086_front_Image1.jpg"

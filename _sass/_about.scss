@@ -26,42 +26,10 @@
   }
 
   
-  
-
-  /* Quote Banner */
-
-  .quote-banner {
-    background:
-      linear-gradient(
-        90deg,
-        $accent-bronze 0%,
-        #c39c5e 100%
-      );
-
-    color: white;
-    text-align: center;
-    padding: 32px 25px;
-    margin: 0 -40px 60px;
-
-    h2 {
-      font-size: 1.4em;
-      font-weight: 400;
-      font-style: italic;
-      margin: 0 0 4px;
-      color: white;
-    }
-
-    p {
-      font-size: 0.8em;
-      color: white;
-      margin: 0;
-    }
-  }
 
   /*nTab Content Visibility */
 
   .tab-content {
-    display: none;
 
     &.active {
       display: block;
@@ -110,10 +78,7 @@
 
     
 
-    
-
   /* Curator Profile */
-  
 
   .curator-profile {
     display: flex;
@@ -152,7 +117,6 @@
     }
   }
 
-  
   
 
   /* Sub Blocks */
@@ -233,8 +197,6 @@
       }
     }
   }
-
-    
 
   /* Team Avatars */
   .team-avatars {
@@ -334,13 +296,6 @@ i.fa-linkedin {
         35px;
     }
 
-    
-
-    .quote-banner {
-      margin-left: -24px;
-      margin-right: -24px;
-    }
-
     .main-tab-title {
       font-size: 1.5em;
       margin-bottom: 35px;
@@ -361,8 +316,6 @@ i.fa-linkedin {
         height: 150px;
       }
     }
-
-    
 
     .info-table {
       display: block;

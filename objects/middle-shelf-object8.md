@@ -2,7 +2,6 @@
 layout: object
 title: "8. Amulet of Pataikos"
 permalink: /objects/middle-shelf-object8/
-object_number: "OBJECT 8"
 image: "/assets/images/8 Amulet of Pataikos_MU0523_front_Image1.jpg"
 gallery_images:
   - src: "/assets/images/8 Amulet of Pataikos_MU0523_front_Image1.jpg"

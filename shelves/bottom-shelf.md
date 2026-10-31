@@ -3,16 +3,13 @@ layout: bottom-shelf
 title: "Bottom Shelf"
 permalink: /shelves/bottom-shelf/
 
-shelf_number: "BOTTOM SHELF"
 shelf_title: "Bottom Shelf"
 
 hero_image: "/assets/images/BottomShelf_hero.jpg"
-show_hero_image: true
 hero_alt: "This is the alternative text area for the bottom shelf's hero image."
 hero_caption: "This is the caption area for the middle shelf's hero image."
 
 # Keep placeholders until the approved object photographs are supplied.
-show_object_images: false
 
 overview: >-
   These feeding vessels, despite differences in design over time, were made to support the needs of people. They represent difference, creating change in [material] culture.

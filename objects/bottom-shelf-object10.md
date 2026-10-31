@@ -2,7 +2,6 @@
 layout: object
 title: "10. Spouted Vessel"
 permalink: /objects/bottom-shelf-object10/
-object_number: "OBJECT 10"
 image: "/assets/images/10 Spouted Vessel_MU0091_front angled_Image1.jpg"
 gallery_images:
   - src: "/assets/images/10 Spouted Vessel_MU0091_front angled_Image1.jpg"

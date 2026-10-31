@@ -2,7 +2,6 @@
 layout: object
 title: "6. Bronze figure of Priapus"
 permalink: /objects/middle-shelf-object6/
-object_number: "OBJECT 6"
 image: "/assets/images/6 Bronze Figurine of Priapus_MU4697_front_Image1.jpg"
 gallery_images:
   - src: "/assets/images/6 Bronze Figurine of Priapus_MU4697_front_Image1.jpg"

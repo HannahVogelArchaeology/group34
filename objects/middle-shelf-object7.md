@@ -2,7 +2,6 @@
 layout: object
 title: "7. Terracotta figurine"
 permalink: /objects/middle-shelf-object7/
-object_number: "OBJECT 7"
 image: "/assets/images/7 Terracotta Figurine_MU2676_front_Image1.jpg"
 gallery_images:
   - src: "/assets/images/7 Terracotta Figurine_MU2676_front_Image1.jpg"

@@ -2,7 +2,6 @@
 layout: object
 title: "3. Bronze dancer (replica)"
 permalink: /objects/middle-shelf-object3/
-object_number: "OBJECT 3"
 image: "/assets/images/3 Bronze Dancer_MU0101_front_Image1.jpg"
 gallery_images:
   - src: "/assets/images/3 Bronze Dancer_MU0101_front_Image1.jpg"

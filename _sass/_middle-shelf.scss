@@ -47,14 +47,12 @@
   }
 
   /* Hero image + numbered object list */
-  
 
   .hero-image-wrapper {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    aspect-ratio: 3 / 4;
     overflow: hidden;
     border: 1px solid #d2c6b5;
     border-radius: 3px;
@@ -112,8 +110,6 @@
     }
   }
 
-  
-
   /* Overview Section */
   .shelf-overview-section {
     margin-bottom: 4em;
@@ -132,37 +128,6 @@
     }
   }
 
-    
-
-  /* Image Dialog */
-  #middle-shelf-image-dialog {
-    width: min(90vw, 900px);
-    max-height: 90vh;
-    padding: 1.25em;
-    overflow: auto;
-    border: 1px solid var(--shelf-accent);
-    border-radius: 6px;
-    background: var(--shelf-surface);
-    color: var(--shelf-text);
-    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.28);
-
-    &::backdrop {
-      background: rgba(24, 21, 17, 0.72);
-    }
-
-    
-
-    
-
-    > img {
-      display: block;
-      max-width: 100%;
-      max-height: 70vh;
-      margin: 0 auto;
-      object-fit: contain;
-    }
-  }
-
   /* Responsive Styles */
   @media (max-width: 700px) {
     padding: 2.25em 1em 3em;
@@ -170,8 +135,6 @@
     .shelf-v2-title {
       margin-bottom: 1.8em;
     }
-
-    
 
     .hero-image-wrapper {
       width: min(100%, 520px);
@@ -190,26 +153,20 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .expand-btn,
-    .name {
+    .expand-btn {
       transition: none !important;
       transform: none !important;
     }
   }
 
   @media (forced-colors: active) {
-    .expand-btn,
-    .name,
-    #middle-shelf-image-dialog {
+    .expand-btn {
       border: 1px solid CanvasText;
     }
   }
 }
 
 /* Keep the shelf image caption under the image while the object list stays on the right */
-  .shelf-hero-media {
-    min-width: 0;
-  }
 
   .shelf-photo-link {
     display: block;

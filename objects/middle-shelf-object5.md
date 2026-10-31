@@ -2,7 +2,6 @@
 layout: object
 title: "5. Seated statuette"
 permalink: /objects/middle-shelf-object5/
-object_number: "OBJECT 5"
 image: "/assets/images/5 Seated Statuette_MU3735_front_Image1.jpg"
 gallery_images:
   - src: "/assets/images/5 Seated Statuette_MU3735_front_Image1.jpg"

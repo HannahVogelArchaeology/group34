@@ -298,42 +298,17 @@ padding-right: 24px;
 }
 
 /* Main feature layout */
-.home-feature-section {
-  background: #f4f1ea;
-  padding: clamp(2rem, 5vw, 4rem) 1.25rem;
-}
 .home-feature-container {
   width: min(100%, 1200px);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(1.5rem, 4vw, 4rem);
-  align-items: stretch;
 }
-.home-feature-narrative {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  min-width: 0;
-}
+
 /* The narrative text size. */
 .home-feature-narrative .hero-description { font-size: 1.2em; line-height: 1.7; }
-.home-feature-media { min-width: 0; margin: 0; }
-.home-feature-media img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 620px;
-  object-fit: contain;
-}
+
 .home-feature-media .image-caption {
-  margin: 0.6rem 0 0;
-  overflow-wrap: anywhere;
   line-height: 1.45;
 }
 @media (max-width: 700px) {
-  .home-feature-container { grid-template-columns: minmax(0, 1fr); }
-  .home-feature-media { grid-row: 1; }
   .home-feature-narrative { grid-row: 2; }
   .home-feature-narrative .btn-curator-bio { margin-top: 1.25rem; }
 }

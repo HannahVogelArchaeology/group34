@@ -2,7 +2,6 @@
 layout: object
 title: "11. Feeding Vessel"
 permalink: /objects/bottom-shelf-object11/
-object_number: "OBJECT 11"
 image: "/assets/images/11 Feeding Vessel_MU3368_hero shot_Image1.jpg"
 gallery_images:
   - src: "/assets/images/11 Feeding Vessel_MU3368_hero shot_Image1.jpg"

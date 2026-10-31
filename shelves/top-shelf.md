@@ -2,7 +2,6 @@
 layout: top-shelf
 title: "Top Shelf"
 permalink: /shelves/top-shelf/
-shelf_number: "TOP SHELF"
 shelf_title: "Top Shelf"
 object_title: "1. Pelike"
 acq_no: "MU4759"

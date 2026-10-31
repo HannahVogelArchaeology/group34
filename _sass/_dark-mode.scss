@@ -61,7 +61,6 @@ body.dark-mode {
   }
 
   /* Home page */
-  
 
   .home-feature-section,
   .shelves-explorer,
@@ -158,10 +157,7 @@ body.dark-mode {
   }
 
   .avatar {
-    border-color: #c9a063 !important;
 
-    &:hover,
-    &.active { background-color: #3a3b40 !important; }
   }
 
   .toc-card { background-color: transparent !important; }
@@ -195,8 +191,6 @@ body.dark-mode {
   .pinned-header .font-btn,
   .pinned-header .dark-mode-btn,
   .pinned-header .mobile-menu-btn { color: #ece8de !important; }
-
-  .pinned-header .mobile-menu-btn { color: #ffffff !important; }
 
   /* Same colours as the floating Back to top button in dark mode */
   .pinned-header .header-top-btn {

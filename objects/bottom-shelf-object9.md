@@ -2,7 +2,6 @@
 layout: object
 title: "9. Feeding cup"
 permalink: /objects/bottom-shelf-object9/
-object_number: "OBJECT 9"
 shelf_title: "Bottom Shelf"
 shelf_url: "/shelves/bottom-shelf/"
 image: "/assets/images/9 Feeding Cup_AHM1985053_front angled_image1.jpg"
