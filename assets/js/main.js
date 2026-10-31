@@ -517,7 +517,22 @@ function initialisePhotoViewer() {
     }
   }
 
+  /* The magnifier icon follows the mouse pointer inside the frame (not for touch). */
+  function movePointerIcon(event) {
+    if (!zoomFrame || event.pointerType === "touch") {
+      return;
+    }
+
+    const rect = zoomFrame.getBoundingClientRect();
+    zoomFrame.style.setProperty("--pointer-x", `${event.clientX - rect.left}px`);
+    zoomFrame.style.setProperty("--pointer-y", `${event.clientY - rect.top}px`);
+    zoomFrame.classList.add("has-pointer-icon");
+  }
+
   if (zoomFrame) {
+    zoomFrame.addEventListener("pointerenter", movePointerIcon);
+    zoomFrame.addEventListener("pointermove", movePointerIcon);
+    zoomFrame.addEventListener("pointerleave", () => zoomFrame.classList.remove("has-pointer-icon"));
     zoomFrame.addEventListener("click", (event) => setZoom(!isZoomed, event));
     zoomFrame.addEventListener("pointermove", panZoom);
     zoomFrame.addEventListener("keydown", (event) => {
@@ -526,6 +541,63 @@ function initialisePhotoViewer() {
         setZoom(!isZoomed);
       }
     });
+  }
+
+  /* Fit the frame to the photo: pass the file's own proportions and width to the CSS.
+     The CSS keeps the frame inside its column and below its maximum height. */
+  function fitFrameToPhoto() {
+    if (!zoomFrame || !mainImage) {
+      return;
+    }
+
+    const width = mainImage.naturalWidth;
+    const height = mainImage.naturalHeight;
+
+    if (width > 0 && height > 0) {
+      zoomFrame.style.setProperty("--photo-ratio", String(width / height));
+      zoomFrame.style.setProperty("--photo-natural-w", `${width}px`);
+    } else {
+      // The file did not load (or has no size): fall back to the default frame from the CSS.
+      zoomFrame.style.removeProperty("--photo-ratio");
+      zoomFrame.style.removeProperty("--photo-natural-w");
+    }
+  }
+
+  /* Limit the frame height to the space left in the stage after the caption, the title line and the gaps.
+     This keeps the frame clear of the top bar and the thumbnail panel, on desktop and on mobile. */
+  const photoStage = viewer.querySelector(".photo-viewer-stage");
+  const photoFigure = document.getElementById("photoFigure");
+
+  function limitFrameHeight() {
+    if (!zoomFrame || !photoStage || !photoFigure) {
+      return;
+    }
+
+    const stageStyle = window.getComputedStyle(photoStage);
+    const freeHeight =
+      photoStage.clientHeight - parseFloat(stageStyle.paddingTop) - parseFloat(stageStyle.paddingBottom);
+    const otherHeight = photoFigure.offsetHeight - zoomFrame.offsetHeight;
+
+    if (freeHeight > 0) {
+      zoomFrame.style.setProperty("--photo-max-h", `${Math.max(48, Math.min(600, freeHeight - otherHeight))}px`);
+    }
+  }
+
+  if (mainImage) {
+    mainImage.addEventListener("load", () => {
+      fitFrameToPhoto();
+      limitFrameHeight();
+    });
+    mainImage.addEventListener("error", () => {
+      fitFrameToPhoto();
+      limitFrameHeight();
+    });
+  }
+
+  if (photoStage && "ResizeObserver" in window) {
+    new ResizeObserver(limitFrameHeight).observe(photoStage);
+  } else {
+    window.addEventListener("resize", limitFrameHeight);
   }
 
   const defaultLabel = (index) => {
@@ -581,6 +653,9 @@ function initialisePhotoViewer() {
     if (altText) {
       altText.textContent = caption;
     }
+
+    // The caption may wrap to a different number of lines, so measure the free height again.
+    limitFrameHeight();
 
     if (thumbnails) {
       thumbnails.querySelectorAll(".photo-thumbnail").forEach((thumbnail, indexInGallery) => {

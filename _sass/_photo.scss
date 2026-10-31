@@ -69,18 +69,28 @@
   gap: 0.55rem;
 }
 
-/* Zoom frame: the photo is magnified inside this box. */
+/* Zoom frame: the photo is magnified inside this box.
+   The frame follows the photo: main.js sets --photo-ratio (width / height) and --photo-natural-w
+   from the loaded file, and --photo-max-h from the space that is really free in the stage.
+   The frame is never wider than its column or the photo's own width, and never taller than --photo-max-h,
+   so it cannot run into the top bar, the caption or the thumbnail panel.
+   The vh values below are only the starting values used until the script has measured the stage. */
 .photo-zoom-frame {
+  --photo-ratio: 1.5; /* Used until a photo has loaded, or if it fails to load. */
+  --photo-natural-w: 900px;
+  --photo-max-h: min(60vh, 600px);
   display: block;
-  width: min(100%, 900px);
-  height: min(60vh, 600px);
+  box-sizing: border-box;
+  width: min(100%, 900px, var(--photo-natural-w), calc(var(--photo-max-h) * var(--photo-ratio)));
+  aspect-ratio: var(--photo-ratio);
   overflow: hidden;
   background: #f1eee6;
   color: #2c2825;
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='13' cy='13' r='9' fill='white' fill-opacity='.9' stroke='black' stroke-width='2.5'/%3E%3Cpath d='M20 20l9 9' stroke='black' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M13 8.5v9M8.5 13h9' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, zoom-in;
+  position: relative;
+  cursor: zoom-in; /* Fallback. While the mouse is over the photo, the pointer icon below is used instead. */
 
   &.is-zoomed {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='13' cy='13' r='9' fill='white' fill-opacity='.9' stroke='black' stroke-width='2.5'/%3E%3Cpath d='M20 20l9 9' stroke='black' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M8.5 13h9' stroke='black' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") 13 13, zoom-out;
+    cursor: zoom-out;
     touch-action: none;
   }
 
@@ -99,6 +109,41 @@
     user-select: none;
     -webkit-user-drag: none;
   }
+}
+
+/* Magnifier pointer: Font Awesome icons that follow the mouse inside the frame.
+   The real pointer is hidden only while the icon is shown (mouse or pen over the photo). */
+.photo-zoom-frame.has-pointer-icon { cursor: none; }
+
+.photo-zoom-pointer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.62);
+  color: #ffffff;
+  font-size: 1.25rem;
+  pointer-events: none;
+  /* The centre of the icon sits on the pointer position set by main.js. */
+  transform: translate(calc(var(--pointer-x, 0px) - 50%), calc(var(--pointer-y, 0px) - 50%));
+
+  .photo-zoom-pointer-out { display: none; }
+}
+
+.photo-zoom-frame.has-pointer-icon .photo-zoom-pointer { display: flex; }
+.photo-zoom-frame.is-zoomed .photo-zoom-pointer-in { display: none; }
+.photo-zoom-frame.is-zoomed .photo-zoom-pointer-out { display: inline-block; }
+
+/* Touch screens have no hover pointer, so no icon is drawn. */
+@media (hover: none) {
+  .photo-zoom-frame.has-pointer-icon { cursor: zoom-in; }
+  .photo-zoom-frame.has-pointer-icon .photo-zoom-pointer { display: none; }
 }
 
 .photo-viewer-figure figcaption {
@@ -159,7 +204,7 @@
   gap: 0.8rem;
   padding: 6px; /* Room for the hover glow */
   overflow-x: auto;
-  overflow-y: hidden; 
+  overflow-y: hidden;
   /* Centre the thumbnails only while they fit; start at the edge when they overflow,
      so the first thumbnail is never cut off. */
   > :first-child { margin-left: auto; }
@@ -176,7 +221,7 @@
   overflow: hidden;
   border: 2px solid transparent;
   background: #b8b4ab;
-  color: #2c2825; /* Dark alt text on the light thumbnail */
+  color: #2c2825;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -200,7 +245,7 @@
 @media (min-width: 992px) {
   .photo-viewer-stage {
     grid-template-columns: 44px minmax(0, 1fr) 44px;
-    padding-right: 280px;
+    padding-right: calc(20px + 240px + 2rem + 1.5rem);
   }
 
   .photo-thumbnail-panel {
@@ -244,7 +289,7 @@
   }
 
   .photo-zoom-frame {
-    height: min(44vh, 500px);
+    --photo-max-h: min(44vh, 500px);
   }
 
   .photo-viewer-stage { overflow: hidden; }
@@ -288,7 +333,7 @@
 
 /* Short screens (for example a phone held sideways): keep everything inside the viewport. */
 @media (max-width: 991px) and (max-height: 520px) {
-  .photo-zoom-frame { height: 32vh; }
+  .photo-zoom-frame { --photo-max-h: 32vh; }
   .photo-thumbnail { width: 80px; height: 64px; }
 }
 

@@ -318,17 +318,6 @@ padding-right: 24px;
 }
 /* The narrative text size. */
 .home-feature-narrative .hero-description { font-size: 1.2em; line-height: 1.7; }
-.home-feature-narrative .btn-curator-bio {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  margin-top: auto;
-  padding: 0.75rem 1.25rem;
-  background: #8b5e25;
-  color: #fff;
-  text-decoration: none;
-}
 .home-feature-media { min-width: 0; margin: 0; }
 .home-feature-media img {
   display: block;
@@ -353,7 +342,23 @@ padding-right: 24px;
 .home-feature-section { padding: clamp(24px, 4vw, 56px); background: #f6f3eb; }
 .home-feature-container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 64px); align-items: stretch; max-width: 1400px; margin: 0 auto; }
 .home-feature-narrative { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; min-width: 0; }
-.home-feature-narrative .btn-curator-bio { margin-top: auto; display: inline-flex; align-items: center; justify-content: center; padding: 14px 22px; background: #8b5d24; color: #fff; text-decoration: none; min-height: 48px; }
+/* About Us button: one rule. The hover and focus colour matches the shelf card button (#543b19). */
+.home-feature-narrative .btn-curator-bio {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  min-height: 48px;
+  background: #8b5d24;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.home-feature-narrative .btn-curator-bio:hover,
+.home-feature-narrative .btn-curator-bio:focus-visible {
+  background: #543b19;
+}
 .home-feature-media { margin: 0; min-width: 0; display: flex; flex-direction: column; }
 .home-feature-media img { display: block; width: 100%; height: auto; max-height: 650px; object-fit: contain; }
 .home-feature-media .image-caption { text-align: left; overflow-wrap: anywhere; margin: 10px 0 0; }
@@ -364,7 +369,9 @@ padding-right: 24px;
 .object-carousel-track { display: flex; align-items: stretch; gap: 0; overflow: visible; padding: 1.5rem 0 2rem; isolation: isolate; }
 .object-carousel-card { position: relative; flex: 1 1 0; min-width: 0; min-height: 360px; margin-left: -1rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: 10px; color: #fff; text-decoration: none; background: #d6d1c7; box-shadow: 0 8px 22px rgba(0,0,0,.14); z-index: 0; /* Own stacking context: a neighbour's number block can never paint over the hovered card's outline. */ transition: transform .7s ease, flex-grow .7s ease, box-shadow .7s ease, outline-color .7s ease; }
 .object-carousel-card:first-child { margin-left: 0; }
-.object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 2.4; transform: translateY(-8px) scale(1.03); z-index: 5; box-shadow: 0 16px 34px rgba(0,0,0,.22); outline: 3px solid #8b5d24; outline-offset: 3px; }
+.object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 2.4; transform: translateY(-8px) scale(1.03); z-index: 5; box-shadow: 0 16px 34px rgba(0,0,0,.22); outline: 3px solid #8b5d24; outline-offset: 0; /* No gap: the outline sits flush against the card edge. */ }
+/* The shelf pages set a 3px offset on all keyboard-focused links; the object cards override it so the focus outline is flush too. */
+.object-explorer-carousel .object-carousel-card:focus-visible { outline-offset: 0; }
 /* Number block in the top-left corner of each object card */
 .object-carousel-number { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 2; display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 3px; background: #f8f6f1; color: #3b2a14; font-size: 1rem; font-weight: 700; line-height: 1; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); pointer-events: none; }
 .object-carousel-image-wrap { position: absolute; inset: 0; background: #d6d1c7; }

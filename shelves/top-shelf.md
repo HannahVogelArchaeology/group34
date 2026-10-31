@@ -5,6 +5,7 @@ permalink: /shelves/top-shelf/
 shelf_number: "TOP SHELF"
 shelf_title: "Top Shelf"
 object_title: "1. Pelike"
+acq_no: "MU4759"
 hero_image: "/assets/images/1 Pelike_MU4759_front_Image1.jpg"
 prev_url: "/"
 prev_label: "MAIN PAGE"

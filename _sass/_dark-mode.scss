@@ -84,6 +84,9 @@ body.dark-mode {
   }
 
   .btn-curator-bio { background-color: #7a5420 !important; color: #ffffff !important; }
+  /* Dark mode hover and focus: darker than the resting colour, using the same brown as the dark shelf card button. */
+  .btn-curator-bio:hover,
+  .btn-curator-bio:focus-visible { background-color: #5b3d17 !important; }
 
   /* Image boxes, thumbnails and buttons on images */
   .main-image-wrapper,

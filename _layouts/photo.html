@@ -40,7 +40,7 @@ layout: default
     {
       "key": {{ shelf.url | relative_url | jsonify }},
       "object": {{ shelf.object_title | default: shelf.shelf_title | jsonify }},
-      "museumNumber": "",
+      "museumNumber": {{ shelf.museum_number | default: shelf.acq_no | default: "" | jsonify }},
       "return": {{ shelf.url | relative_url | jsonify }},
       "images": [
         {% if shelf.gallery_images %}
@@ -90,6 +90,11 @@ layout: default
         <span class="sr-only">This is the alternative text of the photo: <span id="photoAltText"></span></span>
         <div class="photo-zoom-frame" id="photoZoomFrame" role="button" tabindex="0" aria-pressed="false" aria-label="Magnify photo. Select to zoom in or out.">
             <img id="photoMainImage" src="" alt="" aria-hidden="true" draggable="false">
+            <!-- Mouse pointer icon: shown while the mouse is over the photo. Plus before zooming in, minus while zoomed in. -->
+            <span class="photo-zoom-pointer" id="photoZoomPointer" aria-hidden="true">
+                <i class="fa-solid fa-magnifying-glass-plus photo-zoom-pointer-in"></i>
+                <i class="fa-solid fa-magnifying-glass-minus photo-zoom-pointer-out"></i>
+            </span>
         </div>
         <figcaption aria-label="Object title and current view">
             <span class="sr-only">This is the object title and the view: </span>
@@ -100,10 +105,10 @@ layout: default
     </figure>
 <!-- Keyboard and screen reader order: photo information, then Previous, then Next. The grid places them left and right. -->
     <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">
-        <span aria-hidden="true">‹</span>
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
     </button>
     <button class="photo-arrow photo-arrow-right" id="photoNext" type="button" aria-label="Next photo">
-        <span aria-hidden="true">›</span>
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
     </button>
 </section>
 
