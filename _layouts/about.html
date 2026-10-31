@@ -308,7 +308,7 @@ layout: default
     </tr>
 
     <tr>
-        <td class="label-col" rowspan="2">
+        <td class="label-col" id="member-contact-label" rowspan="2">
             Contact
         </td>
 
@@ -317,7 +317,7 @@ layout: default
         </td>
     </tr>
 
-    <tr>
+    <tr id="member-social-row">
         <td class="value-col" id="member-social">
         Social:
         <a href="#" aria-label="Visit selected team member's LinkedIn" id="member-link" class="inline-link" target="_blank">
@@ -425,8 +425,22 @@ function selectMember(index, element) {
     document.getElementById('member-email').innerHTML =
         data.email;
 
-    document.getElementById('member-link').href =
-        data.link;
+    /* Show the Social row only for members who have a LinkedIn address.
+       An empty value or "#" means no address, so the row is hidden and the Contact cell spans one row. */
+    const hasLink = Boolean(data.link) && data.link !== '#';
+    const socialRow = document.getElementById('member-social-row');
+    const contactLabel = document.getElementById('member-contact-label');
+
+    /* A hidden row keeps a neutral address, so a previous member's link is never left behind. */
+    document.getElementById('member-link').href = hasLink ? data.link : '#';
+
+    if (socialRow) {
+        socialRow.hidden = !hasLink;
+    }
+
+    if (contactLabel) {
+        contactLabel.rowSpan = hasLink ? 2 : 1;
+    }
     }
 
   /* Page Initialisation */

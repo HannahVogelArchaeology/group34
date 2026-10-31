@@ -350,3 +350,7 @@ i.fa-linkedin {
 .about-page-container .about-toc a { text-decoration: underline; text-underline-offset: .18em; }
 .about-page-container .tab-content { display: block !important; scroll-margin-top: 120px; }
 
+/* The Social row is hidden (attribute set by the About page script) for members without a LinkedIn address. */
+.team-member-table tr[hidden] {
+  display: none;
+}
