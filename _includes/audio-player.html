@@ -1,42 +1,42 @@
-<div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+<div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" style="display: none;">
   <!-- Bar with the time -->
-  <div class="audio-progress-container">
-    <span id="currentTime">0:00</span>
+  <div class="audio-progress-container" role="group" aria-label="Audio progress and seek bar">
+    <span id="currentTime" aria-label="Current audio time">0:00</span>
     <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
-    <span id="durationTime">0:00</span>
+    <span id="durationTime" aria-label="Total audio duration">0:00</span>
   </div>
 
   <div class="audio-controls-wrapper">
     <!-- Left control, speed and play button -->
-    <div class="audio-left">
-      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">0.5x</button>
+    <div class="audio-left" role="group" aria-label="Playback speed and play controls">
+      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed (0.5x)">0.5x</button>
       <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
         <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
       </button>
-      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at 1.5 speed">1.5x</button>
+      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at one and a half speed (1.5x)">1.5x</button>
     </div>
 
     <!-- Center info -->
-    <div class="audio-center">
+    <div class="audio-center" aria-live="polite" aria-label="Currently playing track details">
       <span class="audio-obj-name">{{ page.object_title | default: page.title }}</span>
       <span class="audio-shelf-label">{{ page.shelf_title | default: page.title }}</span>
     </div>
 
-    <!-- Volume and transcript -->
+    <!-- Volume and close -->
     <div class="audio-right">
-      <div class="volume-container">
+      <div class="volume-container" role="group" aria-label="Volume and player controls">
         <div class="volume-popup" id="volumePopup">
           <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)" aria-label="Volume Slider">
         </div>
-        <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
+        <button type="button" onclick="toggleVolumePopup()" aria-label="Toggle volume slider" aria-controls="volumePopup">
           <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
         </button>
-        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
-          <i class="fa-solid fa-xmark"></i>
+        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button" aria-label="Close audio player">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="{{ page.audio_src | relative_url }}" preload="none"></audio>
+  <audio id="exhibitionAudio" src="{{ page.audio_src | relative_url }}" preload="none" aria-label="Exhibition audio track"></audio>
 </div>

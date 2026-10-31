@@ -140,55 +140,59 @@
 </head>
 
 <body>
-  <header class="pinned-header">
+  <header class="pinned-header" role="banner" aria-label="Site Header">
   <div class="header-content">
     <div class="header-left">
-      <a href="/group34/" class="exhibition-title">Disability Heritage: Archaeology with Difference</a>
+      <a href="/group34/" class="exhibition-title" aria-label="Disability Heritage: Archaeology with Difference - Return to Home Page">Disability Heritage: Archaeology with Difference</a>
     </div>
     
-    <div class="header-center">
+    <div class="header-center" aria-live="polite">
       
-        <span class="active-object-name">Privacy Policy</span>
+        <span class="active-object-name" aria-label="Current page: Privacy Policy">Privacy Policy</span>
       
     </div>
 
-    <div class="header-right">
-      <div class="text-resizers" aria-label="Text size controls">
-        <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
-        <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
-        <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
+    <div class="header-right" role="group" aria-label="Accessibility and navigation utilities">
+      <div class="text-resizers" role="group" aria-label="Text size controls">
+        <button type="button" onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">
+          <span aria-hidden="true">A -</span>
+        </button>
+        <button type="button" onclick="changeFontSize(0)" class="font-btn" aria-label="Reset text size to default">
+          <span aria-hidden="true">Reset</span>
+        </button>
+        <button type="button" onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">
+          <span aria-hidden="true">A +</span>
+        </button>
       </div>
-      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false" aria-label="Toggle dark mode">Dark Mode</button>
       <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
-      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Open navigation menu">Navigation Menu</button>
     </div>
   </div>
 </header>
-
-
-  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
-<aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
-    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()" aria-hidden="true"></div>
+<aside class="sidebar-menu" id="sidebarMenu" aria-label="Main Exhibition Navigation Drawer" aria-hidden="true">
+  <button class="close-sidebar" type="button" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span aria-hidden="true">Close</span>
   </button>
   
-  <nav class="sidebar-nav">
+  <nav class="sidebar-nav" aria-label="Exhibition Sections and Objects">
     <!-- Top Direct Links -->
-    <a href="/group34/" class="nav-item main-link">
-      <i class="fa-solid fa-landmark"></i>
+    <a href="/group34/" class="nav-item main-link" aria-label="Go to Home page">
+      <i class="fa-solid fa-landmark" aria-hidden="true"></i>
       <span>HOME</span>
     </a>
     
-    <a href="/group34/about/" class="nav-item main-link">
+    <a href="/group34/about/" class="nav-item main-link" aria-label="Go to About Us page">
       <i class="fa fa-search" aria-hidden="true"></i>
       <span>ABOUT</span>
     </a>
 
     <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
-    <div class="shelf-group">
-      <a href="/group34/shelves/top-shelf/" class="nav-item shelf-block-link">
-        <span class="shelf-label">TOP SHELF</span>
-        <div class="object-item">
+    <div class="shelf-group" role="group" aria-label="Top Shelf">
+      <a href="/group34/shelves/top-shelf/" class="nav-item shelf-block-link" aria-label="Top Shelf: Object 1, Pelike">
+        <span class="shelf-label" aria-hidden="true">TOP SHELF</span>
+        <div class="object-item" aria-hidden="true">
           <span class="num-box">1</span>
           <span class="object-title">Pelike</span>
         </div>
@@ -196,63 +200,63 @@
     </div>
 
     <!-- Middle Shelf Group -->
-    <div class="shelf-group">
-      <a href="/group34/shelves/middle-shelf/" class="shelf-label-link">
+    <div class="shelf-group" role="group" aria-label="Middle Shelf and Objects">
+      <a href="/group34/shelves/middle-shelf/" class="shelf-label-link" aria-label="View Middle Shelf Overview">
         <span class="shelf-label">MIDDLE SHELF</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item">
-        <span class="num-box">2</span>
+      <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item" aria-label="Object 2: Reclining Figure">
+        <span class="num-box" aria-hidden="true">2</span>
         <span class="object-title">Reclining Figure</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item">
-        <span class="num-box">3</span>
+      <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item" aria-label="Object 3: Bronze dancer (replica)">
+        <span class="num-box" aria-hidden="true">3</span>
         <span class="object-title">Bronze dancer (replica)</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item">
-        <span class="num-box">4</span>
+      <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item" aria-label="Object 4: Figure of a musician">
+        <span class="num-box" aria-hidden="true">4</span>
         <span class="object-title">Figure of a musician</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item">
-        <span class="num-box">5</span>
+      <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item" aria-label="Object 5: Seated statuette">
+        <span class="num-box" aria-hidden="true">5</span>
         <span class="object-title">Seated statuette</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item">
-        <span class="num-box">6</span>
+      <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item" aria-label="Object 6: Bronze figure of Priapus">
+        <span class="num-box" aria-hidden="true">6</span>
         <span class="object-title">Bronze figure of Priapus</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item">
-        <span class="num-box">7</span>
+      <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item" aria-label="Object 7: Terracotta figurine">
+        <span class="num-box" aria-hidden="true">7</span>
         <span class="object-title">Terracotta figurine</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item">
-        <span class="num-box">8</span>
+      <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item" aria-label="Object 8: Amulet of Pataikos">
+        <span class="num-box" aria-hidden="true">8</span>
         <span class="object-title">Amulet of Pataikos</span>
       </a>
     </div>
 
     <!-- Bottom Shelf Group -->
-    <div class="shelf-group">
-      <a href="/group34/shelves/bottom-shelf/" class="shelf-label-link">
+    <div class="shelf-group" role="group" aria-label="Bottom Shelf and Objects">
+      <a href="/group34/shelves/bottom-shelf/" class="shelf-label-link" aria-label="View Bottom Shelf Overview">
         <span class="shelf-label">BOTTOM SHELF</span>
       </a>
-      <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item">
-        <span class="num-box">9</span>
+      <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item" aria-label="Object 9: Feeding cup">
+        <span class="num-box" aria-hidden="true">9</span>
         <span class="object-title">Feeding cup</span>
       </a>
-      <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item">
-        <span class="num-box">10</span>
+      <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item" aria-label="Object 10: Spouted Vessel">
+        <span class="num-box" aria-hidden="true">10</span>
         <span class="object-title">Spouted Vessel</span>
       </a>
-      <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item">
-        <span class="num-box">11</span>
+      <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item" aria-label="Object 11: Feeding Vessel">
+        <span class="num-box" aria-hidden="true">11</span>
         <span class="object-title">Feeding Vessel</span>
       </a>
     </div>
   </nav>
-  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down" aria-hidden="true"></i></div>
 </aside>
 
-  <main class="main-content" id="main-content">
+  <main class="main-content" id="main-content" aria-label="Main exhibition content">
     <div class="privacy-container">
   <!-- Banner Header -->
   <header class="privacy-hero">
@@ -364,58 +368,58 @@
   </main>
 </div>
 
-  </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" style="display: none;">
   <!-- Bar with the time -->
-  <div class="audio-progress-container">
-    <span id="currentTime">0:00</span>
+  <div class="audio-progress-container" role="group" aria-label="Audio progress and seek bar">
+    <span id="currentTime" aria-label="Current audio time">0:00</span>
     <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
-    <span id="durationTime">0:00</span>
+    <span id="durationTime" aria-label="Total audio duration">0:00</span>
   </div>
 
   <div class="audio-controls-wrapper">
     <!-- Left control, speed and play button -->
-    <div class="audio-left">
-      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">0.5x</button>
+    <div class="audio-left" role="group" aria-label="Playback speed and play controls">
+      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed (0.5x)">0.5x</button>
       <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
         <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
       </button>
-      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at 1.5 speed">1.5x</button>
+      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at one and a half speed (1.5x)">1.5x</button>
     </div>
 
     <!-- Center info -->
-    <div class="audio-center">
+    <div class="audio-center" aria-live="polite" aria-label="Currently playing track details">
       <span class="audio-obj-name">Privacy Policy</span>
       <span class="audio-shelf-label">Privacy Policy</span>
     </div>
 
-    <!-- Volume and transcript -->
+    <!-- Volume and close -->
     <div class="audio-right">
-      <div class="volume-container">
+      <div class="volume-container" role="group" aria-label="Volume and player controls">
         <div class="volume-popup" id="volumePopup">
           <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)" aria-label="Volume Slider">
         </div>
-        <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
+        <button type="button" onclick="toggleVolumePopup()" aria-label="Toggle volume slider" aria-controls="volumePopup">
           <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
         </button>
-        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
-          <i class="fa-solid fa-xmark"></i>
+        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button" aria-label="Close audio player">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="none"></audio>
-</div><footer class="site-footer">
+  <audio id="exhibitionAudio" src="" preload="none" aria-label="Exhibition audio track"></audio>
+</div><footer class="site-footer" role="contentinfo" aria-label="Site Footer">
   
 
   <div class="footer-bottom">
     <div class="copyright-area">
-      <p class="footer-copyright">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
+      <p class="footer-copyright" aria-label="Copyright 2026 Disability Heritage: Archaeology with Difference. All rights reserved.">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
     </div>
-    <div class="legal-links">
-      <a href="/group34/privacy/">Privacy</a>
-      <a href="/group34/terms/">Terms & Conditions</a>
-    </div>
+    <nav class="legal-links" aria-label="Legal and policy links">
+      <a href="/group34/privacy/" aria-label="Read our Privacy Policy">Privacy</a>
+      <a href="/group34/terms/" aria-label="Read our Terms and Conditions">Terms &amp; Conditions</a>
+    </nav>
   </div>
 </footer>
 

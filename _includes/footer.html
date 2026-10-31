@@ -1,35 +1,35 @@
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo" aria-label="Site Footer">
   {% if page.url == "/" or page.url == "/index.html" %}
   <div class="footer-top">
-    <div class="footer-left">
-      <h4>Connect with us</h4>
+    <div class="footer-left" role="region" aria-labelledby="footer-connect-heading">
+      <h4 id="footer-connect-heading">Connect with us</h4>
       <p>Stay updated with our latest archaeological discoveries and virtual exhibits. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, justo ac lacinia maximus, sed neque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla amc ligula, ultrices ut amet magna nec, efficitur porta purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque.</p>
-      <div class="social-icons">
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <div class="social-icons" role="group" aria-label="Social media links">
+        <a href="#" aria-label="Visit our YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        <a href="#" aria-label="Visit our Instagram profile"><i class="fab fa-instagram" aria-hidden="true"></i></a>
       </div>
     </div>
     
     <div class="footer-right">
-      <form class="enquiry-box" onsubmit="event.preventDefault(); window.open('mailto:abcde1234@gmail.com?subject=' + encodeURIComponent('Enquiry about the digital museum') + '&body=' + encodeURIComponent('What to Enquire:'), '_blank');">
-        <i class="fas fa-envelope message-icon"></i>
-        <span class="enquiry-text">Enquiries</span>
-        <button type="submit" class="submit-btn">Submit</button>
+      <form class="enquiry-box" aria-label="Send an email enquiry about the digital museum" onsubmit="event.preventDefault(); window.open('mailto:abcde1234@gmail.com?subject=' + encodeURIComponent('Enquiry about the digital museum') + '&body=' + encodeURIComponent('What to Enquire:'), '_blank');">
+        <i class="fas fa-envelope message-icon" aria-hidden="true"></i>
+        <span class="enquiry-text" id="enquiry-label">Enquiries</span>
+        <button type="submit" class="submit-btn" aria-label="Submit email enquiry">Submit</button>
       </form>
     </div>
   </div>
 
-  <hr class="footer-line">
+  <hr class="footer-line" aria-hidden="true">
   {% endif %}
 
   <div class="footer-bottom">
     <div class="copyright-area">
-      <p class="footer-copyright">&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
+      <p class="footer-copyright" aria-label="Copyright {{ 'now' | date: '%Y' }} {{ site.title | escape }}. All rights reserved.">&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. All rights reserved.</p>
     </div>
-    <div class="legal-links">
-      <a href="{{ '/privacy/' | relative_url }}">Privacy</a>
-      <a href="{{ '/terms/' | relative_url }}">Terms & Conditions</a>
-    </div>
+    <nav class="legal-links" aria-label="Legal and policy links">
+      <a href="{{ '/privacy/' | relative_url }}" aria-label="Read our Privacy Policy">Privacy</a>
+      <a href="{{ '/terms/' | relative_url }}" aria-label="Read our Terms and Conditions">Terms &amp; Conditions</a>
+    </nav>
   </div>
 </footer>

@@ -2,80 +2,87 @@
 layout: default
 ---
 
-<div class="top-shelf-container">
+<div class="top-shelf-container" role="region" aria-label="{{ page.shelf_title | default: 'Top Shelf' | escape }}">
   <h1 class="shelf-title">{{ page.shelf_title | default: "TOP SHELF" }}</h1>
 
-  <div class="media-section">
+  <section class="media-section" aria-label="Media gallery for {{ page.object_title | default: 'Object 1' | escape }}">
     <div class="hero-image-wrapper">
       {% assign top_gallery = page.gallery_images %}
       <a
         class="shelf-photo-link"
         href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
-        aria-label="Open Object 1 front image in the photo viewer"
+        aria-label="Open {{ page.object_title | default: 'Object 1' | escape }} front image in the photo viewer"
       >
         <img src="{{ top_gallery[0].src | relative_url }}" alt="{{ top_gallery[0].alt | escape }}" class="hero-image" />
       </a>
       <a
         class="expand-btn"
         href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
-        aria-label="Open Object 1 front image in the photo viewer"
+        aria-label="Expand {{ page.object_title | default: 'Object 1' | escape }} front image to full screen in photo viewer"
       >
         <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
       </a>
     </div>
 
-    <p class="image-caption">{{ top_gallery[0].caption }}</p>
+    <p class="image-caption" aria-label="Image caption">{{ top_gallery[0].caption }}</p>
 
-    <div class="media-controls-bar">
-      <div class="thumbnail-list" aria-label="Object 1 additional photos">
+    <div class="media-controls-bar" aria-label="Additional media controls">
+      <div class="thumbnail-list" role="list" aria-label="{{ page.object_title | default: 'Object 1' | escape }} additional photo views">
         {% for image in top_gallery offset:1 %}
           {% assign image_index = forloop.index %}
           <a
             class="thumb-box"
+            role="listitem"
             href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index={{ image_index }}"
-            aria-label="Open {{ image.label }} image of Object 1"
+            aria-label="Open {{ image.label | escape }} view of {{ page.object_title | default: 'Object 1' | escape }}"
           >
             <img src="{{ image.src | relative_url }}" alt="{{ image.caption | escape }}" />
           </a>
         {% endfor %}
       </div>
-      <button class="explore-3d-btn" type="button">
+      <button class="explore-3d-btn" type="button" aria-label="Explore a 3D model of {{ page.object_title | default: 'Object 1' | escape }}">
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-        Explore in 3D
+        <span aria-hidden="true">Explore in 3D</span>
       </button>
     </div>
-  </div>
+  </section>
 
-  <h3 class="object-heading">{{ page.object_title | default: "Object 1" }}</h3>
+  <h2 class="object-heading">{{ page.object_title | default: "Object 1" }}</h2>
 
-  <section class="shelf-section">
-    <h3>Overview Text</h3>
+  <section class="shelf-section" aria-labelledby="top-shelf-overview-heading">
+    <h3 id="top-shelf-overview-heading">Overview Text</h3>
     <p class="body-text">{{ page.overview | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, justo ac lacinia maximus, sed neque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula." }}</p>
   </section>
 
-  <section class="shelf-section">
-    <h3>Listen to this story</h3>
+  <section class="shelf-section" aria-labelledby="top-shelf-audio-heading">
+    <h3 id="top-shelf-audio-heading">Listen to this story</h3>
     <div class="audio-controls">
-      <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
+      <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button" aria-label="Play audio description for {{ page.object_title | default: 'Object 1' | escape }}">
         <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
-        <span>Audio Description</span>
+        <span aria-hidden="true">Audio Description</span>
       </button>
     </div>
-    <div class="transcript-accordion">
-      <div class="transcript-box"><p class="body-text">{{ page.transcript_text | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }}</p></div>
+    <div class="transcript-accordion" role="region" aria-label="Audio Transcript">
+      <div class="transcript-box">
+        <p class="body-text">{{ page.transcript_text | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }}</p>
+      </div>
     </div>
   </section>
 
-  <section class="shelf-section">
-    <h3>Object Information</h3>
-    <table class="metadata-table">
-      <tr><td class="label">Acq. No</td><td class="value">MU4759</td></tr>
-      <tr><td class="label">Material</td><td class="value">Ceramic</td></tr>
-      <tr><td class="label">Dimensions</td><td class="value">??mm x ??mm</td></tr>
-      <tr><td class="label">Details</td><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
+  <section class="shelf-section" aria-labelledby="top-shelf-info-heading">
+    <h3 id="top-shelf-info-heading">Object Information</h3>
+    <table class="metadata-table" aria-label="Metadata for {{ page.object_title | default: 'Object 1' | escape }}">
+      <tbody>
+        <tr><th scope="row" class="label">Acq. No</th><td class="value">MU4759</td></tr>
+        <tr><th scope="row" class="label">Material</th><td class="value">Ceramic</td></tr>
+        <tr><th scope="row" class="label">Dimensions</th><td class="value">??mm x ??mm</td></tr>
+        <tr><th scope="row" class="label">Details</th><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
 Purchase, 2013</td></tr>
+      </tbody>
     </table>
   </section>
 
-  {% include pagination.html %}
+  <nav aria-label="Pagination Navigation">
+    {% include pagination.html %}
+  </nav>
 </div>

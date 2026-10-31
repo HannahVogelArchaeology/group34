@@ -140,55 +140,59 @@
 </head>
 
 <body>
-  <header class="pinned-header">
+  <header class="pinned-header" role="banner" aria-label="Site Header">
   <div class="header-content">
     <div class="header-left">
-      <a href="/group34/" class="exhibition-title">Disability Heritage: Archaeology with Difference</a>
+      <a href="/group34/" class="exhibition-title" aria-label="Disability Heritage: Archaeology with Difference - Return to Home Page">Disability Heritage: Archaeology with Difference</a>
     </div>
     
-    <div class="header-center">
+    <div class="header-center" aria-live="polite">
       
-        <span class="active-object-name">Middle Shelf</span>
+        <span class="active-object-name" aria-label="Current page: Middle Shelf">Middle Shelf</span>
       
     </div>
 
-    <div class="header-right">
-      <div class="text-resizers" aria-label="Text size controls">
-        <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
-        <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
-        <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
+    <div class="header-right" role="group" aria-label="Accessibility and navigation utilities">
+      <div class="text-resizers" role="group" aria-label="Text size controls">
+        <button type="button" onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">
+          <span aria-hidden="true">A -</span>
+        </button>
+        <button type="button" onclick="changeFontSize(0)" class="font-btn" aria-label="Reset text size to default">
+          <span aria-hidden="true">Reset</span>
+        </button>
+        <button type="button" onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">
+          <span aria-hidden="true">A +</span>
+        </button>
       </div>
-      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false">Dark Mode</button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false" aria-label="Toggle dark mode">Dark Mode</button>
       <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
-      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false">Navigation Menu</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Open navigation menu">Navigation Menu</button>
     </div>
   </div>
 </header>
-
-
-  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()"></div>
-<aside class="sidebar-menu" id="sidebarMenu">
-  <button class="close-sidebar" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
-    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span>Close</span>
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()" aria-hidden="true"></div>
+<aside class="sidebar-menu" id="sidebarMenu" aria-label="Main Exhibition Navigation Drawer" aria-hidden="true">
+  <button class="close-sidebar" type="button" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span aria-hidden="true">Close</span>
   </button>
   
-  <nav class="sidebar-nav">
+  <nav class="sidebar-nav" aria-label="Exhibition Sections and Objects">
     <!-- Top Direct Links -->
-    <a href="/group34/" class="nav-item main-link">
-      <i class="fa-solid fa-landmark"></i>
+    <a href="/group34/" class="nav-item main-link" aria-label="Go to Home page">
+      <i class="fa-solid fa-landmark" aria-hidden="true"></i>
       <span>HOME</span>
     </a>
     
-    <a href="/group34/about/" class="nav-item main-link">
+    <a href="/group34/about/" class="nav-item main-link" aria-label="Go to About Us page">
       <i class="fa fa-search" aria-hidden="true"></i>
       <span>ABOUT</span>
     </a>
 
     <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
-    <div class="shelf-group">
-      <a href="/group34/shelves/top-shelf/" class="nav-item shelf-block-link">
-        <span class="shelf-label">TOP SHELF</span>
-        <div class="object-item">
+    <div class="shelf-group" role="group" aria-label="Top Shelf">
+      <a href="/group34/shelves/top-shelf/" class="nav-item shelf-block-link" aria-label="Top Shelf: Object 1, Pelike">
+        <span class="shelf-label" aria-hidden="true">TOP SHELF</span>
+        <div class="object-item" aria-hidden="true">
           <span class="num-box">1</span>
           <span class="object-title">Pelike</span>
         </div>
@@ -196,91 +200,91 @@
     </div>
 
     <!-- Middle Shelf Group -->
-    <div class="shelf-group">
-      <a href="/group34/shelves/middle-shelf/" class="shelf-label-link">
+    <div class="shelf-group" role="group" aria-label="Middle Shelf and Objects">
+      <a href="/group34/shelves/middle-shelf/" class="shelf-label-link" aria-label="View Middle Shelf Overview">
         <span class="shelf-label">MIDDLE SHELF</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item">
-        <span class="num-box">2</span>
+      <a href="/group34/objects/middle-shelf-object2/" class="nav-item object-item" aria-label="Object 2: Reclining Figure">
+        <span class="num-box" aria-hidden="true">2</span>
         <span class="object-title">Reclining Figure</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item">
-        <span class="num-box">3</span>
+      <a href="/group34/objects/middle-shelf-object3/" class="nav-item object-item" aria-label="Object 3: Bronze dancer (replica)">
+        <span class="num-box" aria-hidden="true">3</span>
         <span class="object-title">Bronze dancer (replica)</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item">
-        <span class="num-box">4</span>
+      <a href="/group34/objects/middle-shelf-object4/" class="nav-item object-item" aria-label="Object 4: Figure of a musician">
+        <span class="num-box" aria-hidden="true">4</span>
         <span class="object-title">Figure of a musician</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item">
-        <span class="num-box">5</span>
+      <a href="/group34/objects/middle-shelf-object5/" class="nav-item object-item" aria-label="Object 5: Seated statuette">
+        <span class="num-box" aria-hidden="true">5</span>
         <span class="object-title">Seated statuette</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item">
-        <span class="num-box">6</span>
+      <a href="/group34/objects/middle-shelf-object6/" class="nav-item object-item" aria-label="Object 6: Bronze figure of Priapus">
+        <span class="num-box" aria-hidden="true">6</span>
         <span class="object-title">Bronze figure of Priapus</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item">
-        <span class="num-box">7</span>
+      <a href="/group34/objects/middle-shelf-object7/" class="nav-item object-item" aria-label="Object 7: Terracotta figurine">
+        <span class="num-box" aria-hidden="true">7</span>
         <span class="object-title">Terracotta figurine</span>
       </a>
-      <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item">
-        <span class="num-box">8</span>
+      <a href="/group34/objects/middle-shelf-object8/" class="nav-item object-item" aria-label="Object 8: Amulet of Pataikos">
+        <span class="num-box" aria-hidden="true">8</span>
         <span class="object-title">Amulet of Pataikos</span>
       </a>
     </div>
 
     <!-- Bottom Shelf Group -->
-    <div class="shelf-group">
-      <a href="/group34/shelves/bottom-shelf/" class="shelf-label-link">
+    <div class="shelf-group" role="group" aria-label="Bottom Shelf and Objects">
+      <a href="/group34/shelves/bottom-shelf/" class="shelf-label-link" aria-label="View Bottom Shelf Overview">
         <span class="shelf-label">BOTTOM SHELF</span>
       </a>
-      <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item">
-        <span class="num-box">9</span>
+      <a href="/group34/objects/bottom-shelf-object9/" class="nav-item object-item" aria-label="Object 9: Feeding cup">
+        <span class="num-box" aria-hidden="true">9</span>
         <span class="object-title">Feeding cup</span>
       </a>
-      <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item">
-        <span class="num-box">10</span>
+      <a href="/group34/objects/bottom-shelf-object10/" class="nav-item object-item" aria-label="Object 10: Spouted Vessel">
+        <span class="num-box" aria-hidden="true">10</span>
         <span class="object-title">Spouted Vessel</span>
       </a>
-      <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item">
-        <span class="num-box">11</span>
+      <a href="/group34/objects/bottom-shelf-object11/" class="nav-item object-item" aria-label="Object 11: Feeding Vessel">
+        <span class="num-box" aria-hidden="true">11</span>
         <span class="object-title">Feeding Vessel</span>
       </a>
     </div>
   </nav>
-  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down"></i></div>
+  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down" aria-hidden="true"></i></div>
 </aside>
 
-  <main class="main-content" id="main-content">
-    <div class="middle-shelf-container">
+  <main class="main-content" id="main-content" aria-label="Main exhibition content">
+    <div class="middle-shelf-container" role="region" aria-label="Middle Shelf">
   <h1 class="shelf-v2-title">Middle Shelf</h1>
 
   <div class="shelf-feature-layout">
-    <div class="shelf-hero-media">
+    <div class="shelf-hero-media" role="region" aria-label="Middle Shelf Featured Image">
       <div class="hero-image-wrapper">
         <a class="shelf-photo-link" href="/group34/photo/?key=/group34/shelves/middle-shelf/&index=0" aria-label="Open Middle Shelf hero image in the photo viewer">
           <img src="/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg" alt="Middle Shelf hero image" loading="eager">
         </a>
-        <a class="expand-btn" href="/group34/photo/?key=/group34/shelves/middle-shelf/&index=0" aria-label="Open Middle Shelf hero image in the photo viewer">
+        <a class="expand-btn" href="/group34/photo/?key=/group34/shelves/middle-shelf/&index=0" aria-label="Expand Middle Shelf hero image to full screen in the photo viewer">
           <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
-      <p class="image-caption">4. Figure of a Musician, MU0086, front-right side view © Gale History Museum</p>
+      <p class="image-caption" aria-label="Hero image caption">4. Figure of a Musician, MU0086, front-right side view © Gale History Museum</p>
     </div>
-    <section class="shelf-overview-section">
-      <h2>Overview</h2>
+    <section class="shelf-overview-section" aria-labelledby="middle-shelf-overview-heading">
+      <h2 id="middle-shelf-overview-heading">Overview</h2>
       <p>Figurines were made for various reasons and were often accessible to many people. These differently shaped bodies are votive offerings or amulets used for protection, ensuring health and/or fertility, invoking the divine, or for afterlife beliefs. These are an important reflection of the reality of diversity, rather than an ‘ideal’ body.  </p>
     </section>
   </div>
 
-  <section class="object-explorer-carousel" aria-label="Explore the objects">
-    <h2>Explore the objects</h2>
-    <p class="carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
-    <div class="object-carousel-track">
+  <section class="object-explorer-carousel" aria-labelledby="middle-shelf-explorer-heading">
+    <h2 id="middle-shelf-explorer-heading">Explore the objects</h2>
+    <p class="carousel-instructions" id="middle-carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
+    <div class="object-carousel-track" role="list" aria-label="Middle Shelf Objects" aria-describedby="middle-carousel-instructions">
       
       
-      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object2/" aria-label="View Reclining Figure">
+      <a class="object-carousel-card" role="listitem" href="/group34/objects/middle-shelf-object2/" aria-label="View Object 2: Reclining Figure">
         <span class="object-carousel-number" aria-hidden="true">2</span>
         <span class="object-carousel-image-wrap"><img src="/group34/assets/images/2%20Reclining%20Figure_MU4249_front_Image1.jpeg" alt="Object 2. Reclining figure. This mould-made ceramic figure depicts a person reclining on their left side on a chaise-like base. The bodily and facial features are unclear due to the softness of the moulding. Remnants of pink-red, cream, and yellow paint are heavily worn on the base, back, and legs of the figure." loading="lazy"></span>
         <span class="object-carousel-copy">
@@ -290,7 +294,7 @@
       </a>
       
       
-      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object3/" aria-label="View Bronze dancer (replica)">
+      <a class="object-carousel-card" role="listitem" href="/group34/objects/middle-shelf-object3/" aria-label="View Object 3: Bronze dancer (replica)">
         <span class="object-carousel-number" aria-hidden="true">3</span>
         <span class="object-carousel-image-wrap"><img src="/group34/assets/images/3%20Bronze%20Dancer_MU0101_front_Image1.jpeg" alt="Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base." loading="lazy"></span>
         <span class="object-carousel-copy">
@@ -300,7 +304,7 @@
       </a>
       
       
-      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object4/" aria-label="View Figure of a musician">
+      <a class="object-carousel-card" role="listitem" href="/group34/objects/middle-shelf-object4/" aria-label="View Object 4: Figure of a musician">
         <span class="object-carousel-number" aria-hidden="true">4</span>
         <span class="object-carousel-image-wrap"><img src="/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_front_Image1.jpeg" alt="Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands." loading="lazy"></span>
         <span class="object-carousel-copy">
@@ -310,7 +314,7 @@
       </a>
       
       
-      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object5/" aria-label="View Seated statuette">
+      <a class="object-carousel-card" role="listitem" href="/group34/objects/middle-shelf-object5/" aria-label="View Object 5: Seated statuette">
         <span class="object-carousel-number" aria-hidden="true">5</span>
         <span class="object-carousel-image-wrap"><img src="/group34/assets/images/5%20Seated%20Statuette_MU3735_front_Image1.jpeg" alt="Object 5. Seated statuette. A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a large and tall circular headdress and is seated upright." loading="lazy"></span>
         <span class="object-carousel-copy">
@@ -320,7 +324,7 @@
       </a>
       
       
-      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object6/" aria-label="View Bronze figure of Priapus">
+      <a class="object-carousel-card" role="listitem" href="/group34/objects/middle-shelf-object6/" aria-label="View Object 6: Bronze figure of Priapus">
         <span class="object-carousel-number" aria-hidden="true">6</span>
         <span class="object-carousel-image-wrap"><img src="/group34/assets/images/6%20Bronze%20Figurine%20of%20Priapus_MU4697_front_Image1.jpeg" alt="Object 6. Bronze figure of Priapus. A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis." loading="lazy"></span>
         <span class="object-carousel-copy">
@@ -330,7 +334,7 @@
       </a>
       
       
-      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object7/" aria-label="View Terracotta figurine">
+      <a class="object-carousel-card" role="listitem" href="/group34/objects/middle-shelf-object7/" aria-label="View Object 7: Terracotta figurine">
         <span class="object-carousel-number" aria-hidden="true">7</span>
         <span class="object-carousel-image-wrap"><img src="/group34/assets/images/7%20Terracotta%20Figurine_MU2676_front_Image1.jpeg" alt="Object 7. Terracotta figurine, a ceramic human-like figure. The face is shaped with a long, pointed nose, and holes in the clay indicate eyes and a mouth. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base." loading="lazy"></span>
         <span class="object-carousel-copy">
@@ -340,7 +344,7 @@
       </a>
       
       
-      <a class="object-carousel-card" href="/group34/objects/middle-shelf-object8/" aria-label="View Amulet of Pataikos">
+      <a class="object-carousel-card" role="listitem" href="/group34/objects/middle-shelf-object8/" aria-label="View Object 8: Amulet of Pataikos">
         <span class="object-carousel-number" aria-hidden="true">8</span>
         <span class="object-carousel-image-wrap"><img src="/group34/assets/images/8%20Amulet%20of%20Pataikos_MU0523_front_Image1.jpeg" alt="Object 8. Amulet of Pataikos. Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing male figure with dwarfism, a large head, and clenched fists, with legs slightly bent apart. Behind the figure&#39;s head, there is a loop for it to be worn." loading="lazy"></span>
         <span class="object-carousel-copy">
@@ -351,77 +355,79 @@
       
     </div>
   </section>
-  <nav class="shelf-pagination">
-  <a href="/group34/shelves/top-shelf/" class="nav-box nav-back">
-    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long"></i></span>
-    <div class="nav-text">
+
+  <nav aria-label="Pagination Navigation">
+    <nav class="shelf-pagination" aria-label="Page navigation">
+  <a href="/group34/shelves/top-shelf/" class="nav-box nav-back" aria-label="Go back to TOP SHELF">
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i></span>
+    <div class="nav-text" aria-hidden="true">
       <span class="sub-label">BACK</span>
       <span class="main-label">TOP SHELF</span>
     </div>
   </a>
 
-  <a href="/group34/shelves/bottom-shelf/" class="nav-box nav-next">
-    <div class="nav-text">
+  <a href="/group34/shelves/bottom-shelf/" class="nav-box nav-next" aria-label="Go next to BOTTOM SHELF">
+    <div class="nav-text" aria-hidden="true">
       <span class="sub-label">NEXT</span>
       <span class="main-label">BOTTOM SHELF</span>
     </div>
-    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></span>
   </a>
 </nav>
+  </nav>
 </div>
-
-  </main><div class="bottom-audio-bar" id="bottomAudioBar" style="display: none;">
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" style="display: none;">
   <!-- Bar with the time -->
-  <div class="audio-progress-container">
-    <span id="currentTime">0:00</span>
+  <div class="audio-progress-container" role="group" aria-label="Audio progress and seek bar">
+    <span id="currentTime" aria-label="Current audio time">0:00</span>
     <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
-    <span id="durationTime">0:00</span>
+    <span id="durationTime" aria-label="Total audio duration">0:00</span>
   </div>
 
   <div class="audio-controls-wrapper">
     <!-- Left control, speed and play button -->
-    <div class="audio-left">
-      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed">0.5x</button>
+    <div class="audio-left" role="group" aria-label="Playback speed and play controls">
+      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed (0.5x)">0.5x</button>
       <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
         <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
       </button>
-      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at 1.5 speed">1.5x</button>
+      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at one and a half speed (1.5x)">1.5x</button>
     </div>
 
     <!-- Center info -->
-    <div class="audio-center">
+    <div class="audio-center" aria-live="polite" aria-label="Currently playing track details">
       <span class="audio-obj-name">Middle Shelf</span>
       <span class="audio-shelf-label">Middle Shelf</span>
     </div>
 
-    <!-- Volume and transcript -->
+    <!-- Volume and close -->
     <div class="audio-right">
-      <div class="volume-container">
+      <div class="volume-container" role="group" aria-label="Volume and player controls">
         <div class="volume-popup" id="volumePopup">
           <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1" oninput="setVolume(this.value)" aria-label="Volume Slider">
         </div>
-        <button type="button" onclick="toggleVolumePopup()" aria-label="Adjust volume">
+        <button type="button" onclick="toggleVolumePopup()" aria-label="Toggle volume slider" aria-controls="volumePopup">
           <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
         </button>
-        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
-          <i class="fa-solid fa-xmark"></i>
+        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button" aria-label="Close audio player">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="" preload="none"></audio>
-</div><footer class="site-footer">
+  <audio id="exhibitionAudio" src="" preload="none" aria-label="Exhibition audio track"></audio>
+</div><footer class="site-footer" role="contentinfo" aria-label="Site Footer">
   
 
   <div class="footer-bottom">
     <div class="copyright-area">
-      <p class="footer-copyright">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
+      <p class="footer-copyright" aria-label="Copyright 2026 Disability Heritage: Archaeology with Difference. All rights reserved.">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
     </div>
-    <div class="legal-links">
-      <a href="/group34/privacy/">Privacy</a>
-      <a href="/group34/terms/">Terms & Conditions</a>
-    </div>
+    <nav class="legal-links" aria-label="Legal and policy links">
+      <a href="/group34/privacy/" aria-label="Read our Privacy Policy">Privacy</a>
+      <a href="/group34/terms/" aria-label="Read our Terms and Conditions">Terms &amp; Conditions</a>
+    </nav>
   </div>
 </footer>
 

@@ -1,34 +1,34 @@
 ---
 layout: default
 ---
-<div class="bottom-shelf-container">
+<div class="bottom-shelf-container" role="region" aria-label="{{ page.shelf_title | default: 'Bottom Shelf' | escape }}">
   <h1 class="shelf-v2-title">{{ page.shelf_title | default: "BOTTOM SHELF" }}</h1>
 
   <div class="shelf-feature-layout">
-    <div class="shelf-hero-media">
+    <div class="shelf-hero-media" role="region" aria-label="Bottom Shelf Featured Image">
       <div class="hero-image-wrapper">
         <a class="shelf-photo-link" href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0" aria-label="Open Bottom Shelf hero image in the photo viewer">
           <img src="{{ page.hero_image | relative_url }}" alt="Bottom Shelf hero image" loading="eager">
         </a>
-        <a class="expand-btn" href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0" aria-label="Open Bottom Shelf hero image in the photo viewer">
+        <a class="expand-btn" href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0" aria-label="Expand Bottom Shelf hero image to full screen in the photo viewer">
           <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
-      <p class="image-caption">{{ page.hero_caption | default: "Shelf display hero image" }}</p>
+      <p class="image-caption" aria-label="Hero image caption">{{ page.hero_caption | default: "Shelf display hero image" }}</p>
     </div>
-    <section class="shelf-overview-section">
-      <h2>Overview</h2>
+    <section class="shelf-overview-section" aria-labelledby="bottom-shelf-overview-heading">
+      <h2 id="bottom-shelf-overview-heading">Overview</h2>
       <p>{{ page.overview }}</p>
     </section>
   </div>
 
-  <section class="object-explorer-carousel" aria-label="Explore the objects">
-    <h2>Explore the objects</h2>
-    <p class="carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
-    <div class="object-carousel-track">
+  <section class="object-explorer-carousel" aria-labelledby="bottom-shelf-explorer-heading">
+    <h2 id="bottom-shelf-explorer-heading">Explore the objects</h2>
+    <p class="carousel-instructions" id="bottom-carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
+    <div class="object-carousel-track" role="list" aria-label="Bottom Shelf Objects" aria-describedby="bottom-carousel-instructions">
       {% for obj in page.objects %}
       {% assign obj_number = obj.slug | split: 'object' | last %}
-      <a class="object-carousel-card" href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" aria-label="View {{ obj.name }}">
+      <a class="object-carousel-card" role="listitem" href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" aria-label="View Object {{ obj_number }}: {{ obj.name | escape }}">
         <span class="object-carousel-number" aria-hidden="true">{{ obj_number }}</span>
         <span class="object-carousel-image-wrap"><img src="{{ obj.image | relative_url }}" alt="{{ obj.alt | escape }}" loading="lazy"></span>
         <span class="object-carousel-copy">
@@ -39,5 +39,8 @@ layout: default
       {% endfor %}
     </div>
   </section>
-  {% include pagination.html %}
+
+  <nav aria-label="Pagination Navigation">
+    {% include pagination.html %}
+  </nav>
 </div>

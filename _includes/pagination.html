@@ -1,17 +1,17 @@
-<nav class="shelf-pagination">
-  <a href="{{ page.prev_url | default: '/' | relative_url }}" class="nav-box nav-back">
-    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long"></i></span>
-    <div class="nav-text">
+<nav class="shelf-pagination" aria-label="Page navigation">
+  <a href="{{ page.prev_url | default: '/' | relative_url }}" class="nav-box nav-back" aria-label="Go back to {{ page.prev_label | default: 'Main Page' | escape }}">
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i></span>
+    <div class="nav-text" aria-hidden="true">
       <span class="sub-label">BACK</span>
       <span class="main-label">{{ page.prev_label | default: 'MAIN PAGE' }}</span>
     </div>
   </a>
 
-  <a href="{{ page.next_url | default: '/' | relative_url }}" class="nav-box nav-next">
-    <div class="nav-text">
+  <a href="{{ page.next_url | default: '/' | relative_url }}" class="nav-box nav-next" aria-label="Go next to {{ page.next_label | default: 'Main Page' | escape }}">
+    <div class="nav-text" aria-hidden="true">
       <span class="sub-label">NEXT</span>
       <span class="main-label">{{ page.next_label | default: 'MAIN PAGE' }}</span>
     </div>
-    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long"></i></span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></span>
   </a>
 </nav>
