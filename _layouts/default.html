@@ -2,15 +2,31 @@
 <html lang="en">
 {% include head.html %}
 <body>
+  <!-- Page start. Back to top moves keyboard focus here, so the next Tab always reaches the skip links.
+       The text is announced to screen reader users at the start of every page. -->
+  <div id="pageTop" tabindex="-1">
+    <p class="sr-only">Keyboard users: press Tab to reach "Skip to main content" and "Go to navigation bar".</p>
+  </div>
+
+  <!-- Skip links: the first focusable items on every page (visible only while focused). -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#sidebarNav" id="skipToNavigation">Go to navigation bar</a>
+
   {% include header.html %}
   {% include menu.html %}
 
-  <main class="main-content" id="main-content" aria-label="Main exhibition content">
+  <main class="main-content" id="main-content" tabindex="-1" aria-label="Main exhibition content">
+    <!-- Hidden unless the check in _includes/head.html finds that the browser is too old. -->
+    <div class="browser-warning" role="alert">
+      You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </div>
+
     {{ content }}
   </main>
 
   {%- include audio-player.html -%}
-  {% include footer.html %}
+  {%- comment -%} The photo viewer fills the screen, so the footer is left out of that page. {%- endcomment -%}
+  {% unless page.layout == "photo" %}{% include footer.html %}{% endunless %}
 
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>

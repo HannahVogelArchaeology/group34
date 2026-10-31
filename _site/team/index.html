@@ -26,7 +26,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Font Awesome icons (version pinned to 6.4.0) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- The URL is pinned to an exact version and the integrity hash is checked in GitHub Actions
+       (scripts/check-cdn-integrity.mjs). Google Fonts serve different CSS per browser, so they cannot carry a hash. -->
 
   <!-- Material Icons CDN -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -127,9 +131,33 @@
   })();
 </script>
 
-<!--[if lte IE 9]>
-<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-<![endif]-->
+<!-- Outdated browser check. It tests for the features the site needs instead of reading the browser name.
+     It is written in plain old JavaScript (no arrow functions, const or template strings) so that old browsers can run it.
+     When a feature is missing it adds the class "outdated-browser" to <html>, which shows the warning in _layouts/default.html. -->
+<script>
+(function () {
+  var supported = false;
+
+  try {
+    supported =
+      !!(window.CSS && window.CSS.supports) &&
+      window.CSS.supports('(--site-test: 0)') &&   /* CSS custom properties (colours and sizes) */
+      window.CSS.supports('display', 'grid') &&    /* CSS grid (page layouts) */
+      window.CSS.supports('inset', '0') &&         /* inset shorthand (photo viewer, sidebar) */
+      'fetch' in window &&
+      'Promise' in window &&
+      !!window.matchMedia &&
+      !!Element.prototype.closest &&
+      'noModule' in document.createElement('script'); /* modern JavaScript, which assets/js/main.js uses */
+  } catch (error) {
+    supported = false;
+  }
+
+  if (!supported) {
+    document.documentElement.className += ' outdated-browser';
+  }
+})();
+</script>
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -140,6 +168,16 @@
 </head>
 
 <body>
+  <!-- Page start. Back to top moves keyboard focus here, so the next Tab always reaches the skip links.
+       The text is announced to screen reader users at the start of every page. -->
+  <div id="pageTop" tabindex="-1">
+    <p class="sr-only">Keyboard users: press Tab to reach "Skip to main content" and "Go to navigation bar".</p>
+  </div>
+
+  <!-- Skip links: the first focusable items on every page (visible only while focused). -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#sidebarNav" id="skipToNavigation">Go to navigation bar</a>
+
   <header class="pinned-header" role="banner" aria-label="Site Header">
   <div class="header-content">
     <div class="header-left">
@@ -148,7 +186,8 @@
     
     <div class="header-center" aria-live="polite">
       
-        <span class="active-object-name" aria-label="Current page: Team">Team</span>
+        <span class="active-object-name" aria-label="Current page: Team"><span aria-hidden="true">Team</span><span class="sr-only">Team</span>
+</span>
       
     </div>
 
@@ -176,7 +215,7 @@
     <i class="fa-solid fa-xmark" aria-hidden="true"></i><span aria-hidden="true">Close</span>
   </button>
   
-  <nav class="sidebar-nav" aria-label="Exhibition Sections and Objects">
+  <nav class="sidebar-nav" id="sidebarNav" tabindex="-1" aria-label="Exhibition Sections and Objects">
     <!-- Top Direct Links -->
     <a href="/group34/" class="nav-item main-link" aria-label="Go to Home page">
       <i class="fa-solid fa-landmark" aria-hidden="true"></i>
@@ -185,7 +224,7 @@
     
     <a href="/group34/about/" class="nav-item main-link" aria-label="Go to About Us page">
       <i class="fa fa-search" aria-hidden="true"></i>
-      <span>ABOUT</span>
+      <span>About Us</span>
     </a>
 
     <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
@@ -256,7 +295,12 @@
   <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down" aria-hidden="true"></i></div>
 </aside>
 
-  <main class="main-content" id="main-content" aria-label="Main exhibition content">
+  <main class="main-content" id="main-content" tabindex="-1" aria-label="Main exhibition content">
+    <!-- Hidden unless the check in _includes/head.html finds that the browser is too old. -->
+    <div class="browser-warning" role="alert">
+      You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </div>
+
     <div class="page-wrapper" role="region" aria-label="Team Page">
   <h1 class="page-title" aria-label="Page Title: Team">Team</h1>
   <div class="page-content" aria-label="Team Content">
@@ -264,7 +308,10 @@
 
   </div>
 </div>
-  </main><div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" style="display: none;">
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" aria-describedby="audioPlayerIntro" tabindex="-1" style="display: none;">
+  <!-- Spoken when the player opens (keyboard focus lands on the player itself, not on the time or seek bar). -->
+  <p class="sr-only" id="audioPlayerIntro">You are in the audio player. Press Tab to change the playback speed, play or pause, adjust the volume, or close the player.</p>
+
   <!-- Bar with the time -->
   <div class="audio-progress-container" role="group" aria-label="Audio progress and seek bar">
     <span id="currentTime" aria-label="Current audio time">0:00</span>
@@ -284,7 +331,8 @@
 
     <!-- Center info -->
     <div class="audio-center" aria-live="polite" aria-label="Currently playing track details">
-      <span class="audio-obj-name">Team</span>
+      <span class="audio-obj-name"><span aria-hidden="true">Team</span><span class="sr-only">Team</span>
+</span>
       <span class="audio-shelf-label">Team</span>
     </div>
 
@@ -297,7 +345,7 @@
         <button type="button" onclick="toggleVolumePopup()" aria-label="Toggle volume slider" aria-controls="volumePopup">
           <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
         </button>
-        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button" aria-label="Close audio player">
+        <button class="audio-play-btn" onclick="closeAudioPlayer()" type="button" aria-label="Close audio player">
           <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
       </div>

@@ -108,6 +108,14 @@
   color: #fff;
 }
 
+/* The arrows come after the photo in the HTML (reading order) but keep their left and right columns on screen. */
+.photo-arrow-left { grid-column: 1; grid-row: 1; }
+.photo-viewer-figure { grid-column: 2; grid-row: 1; }
+.photo-arrow-right { grid-column: 3; grid-row: 1; }
+
+/* The photo block can receive script focus (after a thumbnail is chosen) without a visible ring. */
+.photo-viewer-figure:focus { outline: none; }
+
 /* Arrows (back/next) */
 .photo-arrow {
   width: 56px;
@@ -151,8 +159,7 @@
   gap: 0.8rem;
   padding: 6px; /* Room for the hover glow */
   overflow-x: auto;
-  overflow-y: hidden; /* No vertical scrollbar in the horizontal strip */
-
+  overflow-y: hidden; 
   /* Centre the thumbnails only while they fit; start at the edge when they overflow,
      so the first thumbnail is never cut off. */
   > :first-child { margin-left: auto; }
@@ -182,8 +189,7 @@
     width: 100%;
     height: 0;
     min-height: 0;
-    object-fit: contain; /* Show the whole picture instead of cropping it */
-  }
+    object-fit: contain;   }
 }
 
 .photo-thumbnail.is-active {

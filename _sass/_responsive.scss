@@ -3,21 +3,14 @@
     flex-direction: column;
   }
 
-  .quote-section {
-    flex-direction: column;
-    gap: 20px;
-    
-    .quote-left { max-width: 100%; }
-  }
+  
 
   .footer-top {
     flex-direction: column;
     gap: 20px;
   }
 
-  .individual-object-container .object-content {
-    grid-template-columns: 1fr;
-  }
+  
 }
 
 /* The audio bar stops at the sidebar so its volume and close buttons stay clickable. */

@@ -27,8 +27,6 @@ Font Awesome icons are licensed CC BY 4.0, which requires attribution. The attri
 | Component                                                                    | Version in `Gemfile.lock` | Licence                      |
 | ---------------------------------------------------------------------------- | ------------------------- | ---------------------------- |
 | Jekyll                                                                       | 4.3.4                     | MIT                          |
-| jekyll-feed                                                                  | 0.17.0                    | MIT                          |
-| jekyll-seo-tag                                                               | 2.9.0                     | MIT                          |
 | Minima (templates and styles vendored into this repository, see `NOTICE.md`) | 2.5.2                     | MIT                          |
 | kramdown                                                                     | 2.5.2                     | MIT                          |
 | sass-embedded (Dart Sass)                                                    | 1.102.0                   | MIT                          |

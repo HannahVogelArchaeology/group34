@@ -1,0 +1,83 @@
+name: Browser and device matrix
+
+# Runs the minimum browser and device matrix from TESTING.md on every push and pull request,
+# and checks that every third-party (CDN) file is pinned to a version and an integrity hash.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cdn-integrity:
+    name: CDN versions and integrity hashes
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: "4.0.6"
+          bundler-cache: true
+      - name: Build site
+        run: bundle exec jekyll build --destination "${RUNNER_TEMP}/site/group34"
+      - name: Check pinned versions and verify each hash against the CDN download
+        run: node scripts/check-cdn-integrity.mjs "${RUNNER_TEMP}/site/group34" --verify
+
+  browsers:
+    name: ${{ matrix.project }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Desktop browsers
+          - { project: desktop-chromium, browser: chromium }
+          - { project: desktop-firefox, browser: firefox }
+          - { project: desktop-webkit, browser: webkit }
+          # Phones and tablet
+          - { project: android-phone, browser: chromium }
+          - { project: iphone, browser: webkit }
+          - { project: ipad, browser: webkit }
+          # Layout breakpoint (700px) and the smallest supported phone width
+          - { project: width-700-drawer, browser: chromium }
+          - { project: width-701-sidebar, browser: chromium }
+          - { project: width-320-small-phone, browser: chromium }
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
+        with:
+          ruby-version: "4.0.6"
+          bundler-cache: true
+      - name: Build site
+        run: bundle exec jekyll build --destination "${RUNNER_TEMP}/site/group34"
+      - name: Serve site
+        run: |
+          python3 -m http.server 4173 --directory "${RUNNER_TEMP}/site" >"${RUNNER_TEMP}/server.log" 2>&1 &
+          curl --fail --silent --show-error --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:4173/group34/ >/dev/null
+      - name: Install test tools (exact versions from tests/package.json)
+        working-directory: tests
+        run: |
+          if [ -f package-lock.json ]; then npm ci --ignore-scripts --no-audit --no-fund; else npm install --ignore-scripts --no-audit --no-fund; fi
+          npx playwright install --with-deps ${{ matrix.browser }}
+      - name: Run tests
+        working-directory: tests
+        env:
+          BASE_URL: http://127.0.0.1:4173/group34/
+        run: npx playwright test --project=${{ matrix.project }}
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: report-${{ matrix.project }}
+          path: tests/playwright-report
+          if-no-files-found: ignore

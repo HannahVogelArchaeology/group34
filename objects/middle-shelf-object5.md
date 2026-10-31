@@ -28,7 +28,7 @@ gallery_images:
 3d_link: "https://macquarie.nira.app/a/aoM52vPBQNmANQuVJHCZ1w/1"
 acq_no: "MU3735"
 material: "Ceramic"
-dimensions: "Lorem Ipsum"
+dimensions: "H: 200mm, W: 95mm, D: 47mm"
 details: >-
   Mesopotamia, Greek seated figurine, c.3000 B.C.E.
 
@@ -41,4 +41,5 @@ prev_url: "/objects/middle-shelf-object4/"
 prev_label: "OBJECT 4"
 next_url: "/objects/middle-shelf-object6/"
 next_label: "OBJECT 6"
+audio_src: "/assets/audio/5. Seated Statuette MU3735.m4a"
 ---

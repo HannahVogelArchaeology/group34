@@ -8,10 +8,10 @@ layout: default
 <!-- Accessible vertical table of contents -->
 <nav class="about-toc" aria-label="About Us contents">
     <h2>On this page</h2>
-    <ul>
-        <li><a href="#visitor-tab">Visitor Information and Accessibility</a></li>
-        <li><a href="#curation-tab">Curation and Acknowledgements</a></li>
-        <li><a href="#team-section">Website Development Team</a></li>
+    <ul aria-label="List of sections on this page">
+        <li><a href="#visitor-tab" aria-label="Go to the Visitor Information and Accessibility section">Visitor Information and Accessibility</a></li>
+        <li><a href="#curation-tab" aria-label="Go to the Curation and Acknowledgements section">Curation and Acknowledgements</a></li>
+        <li><a href="#team-section" aria-label="Go to the Website Development Team section">Website Development Team</a></li>
     </ul>
 </nav>
 
@@ -32,7 +32,7 @@ layout: default
         <tr>
             <td class="label-col">Location</td>
             <td class="value-col">
-                <a href="https://www.google.com" class="inline-link" aria-label="Visit the website location at Google">https://www.google.com</a>
+                <a href="https://www.google.com" class="inline-link" aria-label="Visit the website location at Google" target="_blank">https://www.google.com</a>
             </td>
         </tr>
 
@@ -58,7 +58,7 @@ layout: default
 <div class="sub-block" aria-label="On Campus Information">
     <h4 class="sub-title">On Campus</h4>
 
-    <table class="info-tawwble visitor-info-table" aria-label="Campus location and opening hours">
+    <table class="info-table visitor-info-table" aria-label="Campus location and opening hours">
         <tbody>
         <tr>
             <td class="label-col">Location</td>
@@ -104,14 +104,23 @@ layout: default
     </table>
 
     <p class="section-desc" aria-label="Campus visitor guidelines">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Proin eget justo ac tortor maximus scelerisque.
-        Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis,
-        ac laoreet turpis est sed ligula.
-        Nulla ante felis, ultrices sit amet magna nec,
-        efficitur porta purus.
-        Nulla posuere posuere tellus, dictum dictum diam pharetra ac.
+        This exhibition is displayed at the
+        <a href="https://www.mq.edu.au/faculty-of-arts/about/gale-history-museum/visit" class="inline-link" aria-label="Visit the website of Gale History Museum" target="_blank">Gale History Museum</a>
+        from 10th November 2026 until the 1st of March 2027. The Museum is open 10am to 4pm, Monday to Friday (closed on public holidays) and is located on Macquarie University's Wallumattagal Campus, North Ryde, on the ground floor of the Arts Precinct at 25C Wally's Walk. Please refer to P-12 on the
+        <a href="https://www.mq.edu.au/__data/assets/pdf_file/0016/108142/Campus-Map.pdf"class="inline-link" aria-label="Visit the campus map" target="_blank">Campus Map.</a>
+        Parking and public transport information can be accessed via Museum’s
+        <a href="https://www.mq.edu.au/faculty-of-arts/about/gale-history-museum/visit" class="inline-link" aria-label="Visit the Museum's Visit page on the Macquarie University Website" target="_blank">Visit page</a>
+        on the Macquarie University Website.
     </p>
+    <p class="section-desc" aria-label="Campus visitor guidelines">
+        Accessibility features for the on-campus display include:
+    </p>
+    <ul class="section-desc" aria-label="List of accessibility features on campus display">
+            <li>Tactile 3D printed models of the objects</li>
+            <li>Tactile 3D printed fabrication of the scene depicted on Object 1, Pelike (MU4759)</li>
+            <li>Braille and Large-print guide</li>
+            <li>An interactive touchscreen and QR codes to access this website including an Auslan (Australian Sign Language) interpretation video and high-quality photographs with audio-visual descriptions.</li>
+        </ul>
 
 </div>
 </section>
@@ -141,10 +150,21 @@ layout: default
         by Hannah Vogel
         </p>
 
-        <p>
-            <strong>Hannah Vogel</strong> is an archaeologist researching ableism and disability.
-            She is an advocate for accessibility, with experience in museums, outreach and inclusive pedagogies.
-            Hannah is a teaching academic and PhD candidate in the School of Humanities (Macquarie University) and was awarded emerging leader of disability by the National Disability Research Partnership.
+        <p aria-label="Curator introduction">
+            <strong>Hannah Vogel</strong> is an archaeologist, teaching academic, and PhD candidate researcher in the School of Humanities, Macquarie University (Sydney, Australia). As a leading researcher on ableism and disability, she combines archaeological scholarship with advocacy and experience in museums, public outreach, accessibility, and inclusive pedagogies. Her work has helped shape the emerging field of archaeological disability studies.
+        </p>
+
+        <p aria-label="Curator publications and recognition">
+            Her recent books include <i>Disability in Ancient Egypt and Egyptology</i> (Routledge, 2024) and <i>Disability Activism in and Out of the Academy</i> (2026). She has been recognised an emerging research leader of the inaugural National Disability Leadership Program by the
+            <a href="https://www.ndrp.org.au/" class="inline-link" aria-label="Visit the website of Nationality Disability Research Partnership" target="_blank">National Disability Research Partnership.</a>
+        </p>
+
+        <p aria-label="Curator profile and website links">
+            Check out her
+            <a href="https://researchers.mq.edu.au/en/persons/hannah-vogel/" class="inline-link" aria-label="Visit the website of Hannah Vogel's Macquarie University Profile" target="_blank">Macquaire University Profile</a>
+            or
+            <a href="https://hvogel.org/" class="inline-link" aria-label="Visit the website hvogel.org" target="_blank">Website (hvogel.org)</a>
+            for more information about her projects, research, outreach and advocacy:
         </p>
     </div>
     </div>
@@ -154,24 +174,23 @@ layout: default
     <table class="info-table curation-info-table" aria-label="Curator Credentials and Contact Information">
     <tbody>
         <tr>
-            <td class="label-col">Credentials</td>
-            <td class="value-col">Lorem Ipsum</td>
-        </tr>
-
-        <tr>
-            <td class="label-col contact-label-main" rowspan="2">Contact</td>
-            <td class="value-col contact-row">
-                <span class="contact-label">Email</span>
-                <span aria-label="Email address abcde12345@gmail.com">abcde12345@gmail.com</span>
+            <td class="label-col">MQ Profile Link</td>
+            <td class="value-col">
+                <a href="https://researchers.mq.edu.au/en/persons/hannah-vogel/" class="inline-link" aria-label="Visit the website of Hannah Vogel's Macquarie University Profile" target="_blank">https://researchers.mq.edu.au/en/persons/hannah-vogel/</a>
             </td>
         </tr>
 
         <tr>
-            <td class="value-col contact-row">
-                <span class="contact-label">Social</span>
-                <a href="#" aria-label="Visit Hannah Vogel on LinkedIn" class="inline-link">
-                    <i class="fab fa-linkedin" aria-hidden="true"></i>
-                </a>
+            <td class="label-col">Personal Website</td>
+            <td class="value-col">
+                <a href="https://hvogel.org/" class="inline-link" aria-label="Visit the website hvogel.org" target="_blank">https://hvogel.org/</a>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="label-col">NDRP Link</td>
+            <td class="value-col">
+                <a href="https://www.ndrp.org.au/" class="inline-link" aria-label="Visit the website of Nationality Disability Research Partnership" target="_blank">https://www.ndrp.org.au/</a>
             </td>
         </tr>
     </tbody>
@@ -186,7 +205,7 @@ layout: default
     <h3 class="gold-heading">Funding</h3>
     <div class="sub-block" aria-label="Funding details">
 
-    <p> This exhibition is funded by the National Disability Research Partnership’s Disability Research Leadership Program (2026). It is part of Hannah Vogel’s PhD project supported by the Commonwealth through an Australian Government Research Training Program Scholarship DOI: <a href="https://doi.org/10.82133/C42F-K220" class="inline-link" aria-label="View Australian Government Research Training Program Scholarship documentation">https://doi.org/10.82133/C42F-K220</a>.
+    <p aria-label="Funding statement"> This exhibition is funded by the National Disability Research Partnership’s Disability Research Leadership Program (2026). It is part of Hannah Vogel’s PhD project supported by the Commonwealth through an Australian Government Research Training Program Scholarship DOI: <a href="https://doi.org/10.82133/C42F-K220" class="inline-link" aria-label="View Australian Government Research Training Program Scholarship documentation" target="_blank">https://doi.org/10.82133/C42F-K220</a>.
     </p>
     </div>
 </section>
@@ -197,8 +216,8 @@ layout: default
 
     <h3 class="gold-heading">Acknowledgements</h3>
 
-    <p>This research was undertaken on the lands of the Wallumattagal clan of the Dharug Nation, whose cultures and customs have nurtured and continue to nurture this land, since the Dreaming. Their sovereignty was never ceded.</p>
-    <p>Thanks to the Gale History Museum, Macquarie University for providing access to the materials for this exhibition, with special thanks to Leila Wallace, Dr Yvonne Inall and Sarah Judd. Thanks also to:</p>
+    <p aria-label="Acknowledgement of Country">This research was undertaken on the lands of the Wallumattagal clan of the Dharug Nation, whose cultures and customs have nurtured and continue to nurture this land, since the Dreaming. Their sovereignty was never ceded.</p>
+    <p aria-label="Thanks to the Gale History Museum">Thanks to the Gale History Museum, Macquarie University for providing access to the materials for this exhibition, with special thanks to Leila Wallace, Dr Yvonne Inall and Sarah Judd. Thanks also to:</p>
     <ul aria-label="List of special thanks">
         <li>
             Dr Brian Ballsun-Stanton (website accessibility, development and support)
@@ -212,10 +231,13 @@ layout: default
         <li>
             Vision Australia (Tactile fabrication, large-print and braille guides)
         </li>
+        <li>
+            Marcus Arruzza (Video production and digital scans)
+        </li>
     </ul>
-    <p>I acknowledge [disability] community consultation, was provided by the <a href="https://www.ndrp.org.au/" target="_blank" aria-label="Visit the National Disability Research Partnership website">National Disability Research Partnership</a> staff (especially, Catherine Raffaele and Jess Rosenthal), and the Disability Research Leaders Community of Practise members (especially, Matthew Jackson and Samantha Lilly). Acknowledgments for feedback and consultation also from Dr Alexandra F. Morris, Amy Cripps, Cecily Bateman, Chaya Kasif, Damian Gilbert, Dr David Chapman, Dr Ewan Coopey, Gessika Crowe, Hannah Newman, Jackie Tang, Dr Julia Hamilton, Dr Katie Shead, Louise Pryke, Marianne Strauss, Narges Safari, Nicole Leong, Penelope Blake, Prof Ronika Power, Sarah Massingham, Taylah Evans and many other community members who have elected to remain anonymous.</p>
-    <p>Special thanks to Hannah Newman and Dr Brian Ballsun-Stanton for their work supporting the administrative and technical development of this exhibition and associated website.</p>
-    <p>In most instances, I have chosen to use identity-first disability language as a personal preference. Acknowledge that preferences vary amongst the diverse disability community and respect the choices of each person to express their experiences and embodiments.</p>
+    <p aria-label="Disability community consultation acknowledgement">I acknowledge [disability] community consultation, was provided by the <a href="https://www.ndrp.org.au/" target="_blank" aria-label="Visit the National Disability Research Partnership website">National Disability Research Partnership</a> staff (especially, Catherine Raffaele and Jess Rosenthal), and the Disability Research Leaders Community of Practise members (especially, Matthew Jackson and Samantha Lilly). Acknowledgments for feedback and consultation also from Dr Alexandra F. Morris, Amy Cripps, Cecily Bateman, Chaya Kasif, Damian Gilbert, Dr David Chapman, Dr Ewan Coopey, Gessika Crowe, Hannah Newman, Jackie Tang, Dr Julia Hamilton, Dr Katie Shead, Louise Pryke, Marianne Strauss, Narges Safari, Nicole Leong, Penelope Blake, Prof Ronika Power, Sarah Massingham, Taylah Evans and many other community members who have elected to remain anonymous.</p>
+    <p aria-label="Thanks for administrative and technical support">Special thanks to Hannah Newman and Dr Brian Ballsun-Stanton for their work supporting the administrative and technical development of this exhibition and associated website.</p>
+    <p aria-label="Note on disability language">In most instances, I have chosen to use identity-first disability language as a personal preference. Acknowledge that preferences vary amongst the diverse disability community and respect the choices of each person to express their experiences and embodiments.</p>
 </section>
 
 
@@ -227,27 +249,27 @@ layout: default
     <div class="team-avatars" id="avatar-container" role="tablist" aria-label="Website development team members">
 
     <button class="avatar active" type="button" role="tab" aria-selected="true" onclick="selectMember(0, this)" aria-label="Select Team member 1">
-    AB
+    KHS
     </button>
 
     <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(1, this)" aria-label="Select Team member 2">
-    CD
+    JB
     </button>
 
     <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(2, this)" aria-label="Select Team member 3">
-    EF
+    TD
     </button>
 
     <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(3, this)" aria-label="Select Team member 4">
-    GH
+    DH
     </button>
 
     <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(4, this)" aria-label="Select Team member 5">
-    IJ
+    LN
     </button>
 
     <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(5, this)" aria-label="Select Team member 6">
-    KL
+    IC
     </button>
 </div>
 
@@ -298,7 +320,7 @@ layout: default
     <tr>
         <td class="value-col" id="member-social">
         Social:
-        <a href="#" aria-label="Visit selected team member's LinkedIn" id="member-link" class="inline-link">
+        <a href="#" aria-label="Visit selected team member's LinkedIn" id="member-link" class="inline-link" target="_blank">
             <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
         </td>
@@ -317,88 +339,48 @@ layout: default
   /* Team Data */
 const teamMembers = [
     {
-        name: "ABCDEF GHIJKL",
-        degree: "Bachelor of Information Technology<br>Software Technology",
-        role: "Lorem Ipsum",
-        email: "Email: abcde12345@gmail.com",
-        link: "#"
-    },
-    {
-        name: "MNOPQ RSTUVW",
-        degree: "Bachelor of Cyber Security<br>Information Systems",
-        role: "Lorem Ipsum",
-        email: "Email: abcde12345@gmail.com",
-        link: "#"
-    },
-    {
-        name: "AaBbCc DeEeFf",
-        degree: "Bachelor of Game Design<br>Interactive Media",
-        role: "Lorem Ipsum",
-        email: "Email: abcde12345@gmail.com",
-        link: "#"
-    },
-    {
-        name: "GgHhIi JjKkLl",
+        name: "Kamrul Hasan Somo",
         degree: "Bachelor of Information Technology<br>Data Science",
-        role: "Lorem Ipsum",
-        email: "Email: abcde12345@gmail.com",
+        role: "Project Lead",
+        email: "Email: khsomo959@gmail.com",
         link: "#"
     },
     {
-        name: "MmNnOo PpQqRr",
-        degree: "Bachelor of Computer Science<br>Software Engineering",
-        role: "Lorem Ipsum",
-        email: "Email: abcde12345@gmail.com",
+        name: "Jooeun Bark",
+        degree: "Bachelor of Information Technology<br>Software Technology",
+        role: "Front-end Lead",
+        email: "Email: jooeun.bark129@gmail.com",
+        link: "https://www.linkedin.com/in/jooeun-bark-a02007448"
+    },
+    {
+        name: "Tanya Do",
+        degree: "Bachelor of Information and Technology<br>Web and App Development",
+        role: "UI/UX & Accessibility Lead",
+        email: "Email: Tanya_do@outlook.com",
+        link: "https://www.linkedin.com/in/tanya-do-41787a308"
+    },
+    {
+        name: "Declan Hourigan",
+        degree: "Bachelor of Information Technology<br>Artificial Intelligence",
+        role: "QA and Testing Lead",
+        email: "Email: Declan.hourigan105@gmail.com",
+        link: "https://www.linkedin.com/in/declan-hourigan-5a7739284/"
+    },
+    {
+        name: "Lam Nguyen",
+        degree: "Bachelor of Information System<br>Business Analysis",
+        role: "Media Integration Lead",
+        email: "Email: lamn1199@gmail.com",
         link: "#"
     },
     {
-        name: "SsTtUu VvWwXxYyZz",
-        degree: "Bachelor of Information Technology<br>Web Design",
-        role: "Lorem Ipsum",
-        email: "Email: abcde12345@gmail.com",
-        link: "#"
+        name: "Ibrahim Camara",
+        degree: "Bachelor of Information Technology<br>Information Systems and Business Analysis",
+        role: "User Documentation Lead",
+        email: "Email: ibhimca7172@gmail.com",
+        link: "https://www.linkedin.com/in/ibrahim-camara-832177325/"
     }
     ];
-
-  /* Tab Switching */
-function switchTab(tabId, btn) {
-    document
-        .querySelectorAll('.tab-content')
-        .forEach(function (element) {
-            element.classList.remove('active');
-        });
-
-    document
-        .querySelectorAll('.tab-btn')
-        .forEach(function (element) {
-            element.classList.remove('active');
-            element.setAttribute('aria-selected', 'false');
-        });
-
-    const targetContent = document.getElementById(tabId);
-
-    if (targetContent) {
-        targetContent.classList.add('active');
-    }
-
-    if (!btn) {
-        btn = document.querySelector(
-        '.tab-btn[onclick*="' + tabId + '"]'
-        );
-    }
-
-    if (btn) {
-        btn.classList.add('active');
-        btn.setAttribute('aria-selected', 'true');
-    }
-
-    const banner = document.getElementById('quote-banner');
-
-    if (banner) {
-        banner.hidden = tabId !== 'curation-tab';
-        banner.setAttribute('aria-hidden', banner.hidden.toString());
-    }
-    }
 
   /* Team Member Selection */
 function selectMember(index, element) {
@@ -449,11 +431,6 @@ function selectMember(index, element) {
 
   /* Page Initialisation */
 window.addEventListener('DOMContentLoaded', function () {
-    /* Open curation tab when linked with #curation-tab */
-    if (window.location.hash === '#curation-tab') {
-        switchTab('curation-tab');
-    }
-
     /* Initialise first team member and pointer */
     const firstAvatar =
         document.querySelector('#avatar-container .avatar');

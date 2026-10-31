@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+<!-- Page summary: read first when a screen reader user lands on the main content. -->
+<p class="sr-only page-summary">This is the Middle Shelf page. In keyboard order, this page has the photo, the overview, and Explore the objects, which lists {{ page.objects | size }} objects you can open, followed by the previous and next buttons.</p>
+
 <div class="middle-shelf-container" role="region" aria-label="{{ page.shelf_title | default: 'Middle Shelf' | escape }}">
   <h1 class="shelf-v2-title">{{ page.shelf_title | default: "MIDDLE SHELF" }}</h1>
 
@@ -15,10 +18,12 @@ layout: default
         </a>
       </div>
       <p class="image-caption" aria-label="Hero image caption">{{ page.hero_caption | default: "Shelf display hero image" }}</p>
+      <p class="sr-only end-of-section">This is the end of section: photo.</p>
     </div>
     <section class="shelf-overview-section" aria-labelledby="middle-shelf-overview-heading">
       <h2 id="middle-shelf-overview-heading">Overview</h2>
       <p>{{ page.overview }}</p>
+      <p class="sr-only end-of-section">This is the end of section: overview.</p>
     </section>
   </div>
 
@@ -38,6 +43,7 @@ layout: default
       </a>
       {% endfor %}
     </div>
+    <p class="sr-only end-of-section">This is the end of section: Explore the objects.</p>
   </section>
 
   <nav aria-label="Pagination Navigation">

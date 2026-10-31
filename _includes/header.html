@@ -6,9 +6,9 @@
     
     <div class="header-center" aria-live="polite">
       {% if page.object_name %}
-        <span class="active-object-name" aria-label="Current object: {{ page.object_name | escape }}">{{ page.object_name }}</span>
+        <span class="active-object-name" aria-label="Current object: {{ page.object_name | escape }}">{% include object-title.html title=page.object_name %}</span>
       {% elsif page.title and page.title != "Home" %}
-        <span class="active-object-name" aria-label="Current page: {{ page.title | escape }}">{{ page.title }}</span>
+        <span class="active-object-name" aria-label="Current page: {{ page.title | escape }}">{% include object-title.html title=page.title %}</span>
       {% endif %}
     </div>
 

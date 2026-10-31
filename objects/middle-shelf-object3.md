@@ -29,9 +29,10 @@ gallery_images:
     label: "RIGHT SIDE BACK"
     alt: "Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base. The figurine is angled so the woman’s right side and back are visible."
     caption: "3 Bronze dancer, MU0101, right side back view © Gale History Museum"
+3d_link: ""
 acq_no: "MU0101"
 material: "Bronze"
-dimensions: "Lorem Ipsum"
+dimensions: "H: 154mm, W: 82mm, D: 45mm"
 details: >-
   Boston, c.1997.
   Purchased in 1997.
@@ -45,4 +46,5 @@ prev_url: "/objects/middle-shelf-object2/"
 prev_label: "OBJECT 2"
 next_url: "/objects/middle-shelf-object4/"
 next_label: "OBJECT 4"
+audio_src: "/assets/audio/3. Bronze Dancer MU0101.m4a"
 ---

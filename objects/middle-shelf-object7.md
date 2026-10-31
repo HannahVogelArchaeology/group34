@@ -37,10 +37,9 @@ gallery_images:
     label: "BACK"
     alt: "Object 7. Terracotta figurine, a ceramic human-like figure. The body is very loosely moulded and flares widely to a circular shape at the bottom. The figure is placed on a black (modern) square base. The figure is angled so its back is visible; the back is smooth except for three small pieces of clay pinched and lying flat at the top of the head, almost mimicking hair."
     caption: "Terracotta figurine, MU2676, back view © Gale History Museum"
-3d_link: ""
 acq_no: "MU2676"
 material: "Terracotta"
-dimensions: "Lorem Ipsum"
+dimensions: "H: 78mm, W: 35mm, D: 32mm"
 details: >-
   Cyprus, c.7th century B.C.E.
 
@@ -53,4 +52,5 @@ prev_url: "/objects/middle-shelf-object6/"
 prev_label: "OBJECT 6"
 next_url: "/objects/middle-shelf-object8/"
 next_label: "OBJECT 8"
+audio_src: "/assets/audio/7. terracotta figurine MU2676.m4a"
 ---

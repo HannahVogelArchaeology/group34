@@ -2,8 +2,16 @@
 layout: default
 ---
 
+<!-- Page summary: read first when a screen reader user lands on the main content. -->
+{% assign top_summary_title = page.object_title | default: "Object 1" %}
+<p class="sr-only page-summary">This is the Top Shelf page. The Top Shelf has one object: {% include object-title-spoken.html title=top_summary_title %}. In keyboard order, this page has the shelf title, the object title, photo, overview, audio description and object information, followed by the previous and next buttons.</p>
+
 <div class="top-shelf-container" role="region" aria-label="{{ page.shelf_title | default: 'Top Shelf' | escape }}">
   <h1 class="shelf-title">{{ page.shelf_title | default: "TOP SHELF" }}</h1>
+
+  <!-- The only object on this shelf is named first, so visitors know what the photo and text describe. -->
+  <h2 class="object-heading">{% assign top_object_title = page.object_title | default: "Object 1" %}{% include object-title.html title=top_object_title %}</h2>
+  <p class="sr-only end-of-section">This is the end of section: object name.</p>
 
   <section class="media-section" aria-label="Media gallery for {{ page.object_title | default: 'Object 1' | escape }}">
     <div class="hero-image-wrapper">
@@ -45,13 +53,13 @@ layout: default
         <span aria-hidden="true">Explore in 3D</span>
       </button>
     </div>
+    <p class="sr-only end-of-section">This is the end of section: photo.</p>
   </section>
-
-  <h2 class="object-heading">{{ page.object_title | default: "Object 1" }}</h2>
 
   <section class="shelf-section" aria-labelledby="top-shelf-overview-heading">
     <h3 id="top-shelf-overview-heading">Overview Text</h3>
     <p class="body-text">{{ page.overview | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, justo ac lacinia maximus, sed neque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula." }}</p>
+    <p class="sr-only end-of-section">This is the end of section: overview.</p>
   </section>
 
   <section class="shelf-section" aria-labelledby="top-shelf-audio-heading">
@@ -67,19 +75,21 @@ layout: default
         <p class="body-text">{{ page.transcript_text | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }}</p>
       </div>
     </div>
+    <p class="sr-only end-of-section">This is the end of section: audio description and transcript.</p>
   </section>
 
   <section class="shelf-section" aria-labelledby="top-shelf-info-heading">
     <h3 id="top-shelf-info-heading">Object Information</h3>
     <table class="metadata-table" aria-label="Metadata for {{ page.object_title | default: 'Object 1' | escape }}">
       <tbody>
-        <tr><th scope="row" class="label">Acq. No</th><td class="value">MU4759</td></tr>
-        <tr><th scope="row" class="label">Material</th><td class="value">Ceramic</td></tr>
-        <tr><th scope="row" class="label">Dimensions</th><td class="value">??mm x ??mm</td></tr>
-        <tr><th scope="row" class="label">Details</th><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
+        <tr><td class="label"><span aria-hidden="true">Acq. No</span><span class="sr-only">Acquisition Number</span></td><td class="value">MU4759</td></tr>
+        <tr><td class="label">Material</td><td class="value">Ceramic</td></tr>
+        <tr><td class="label">Dimensions</td><td class="value">H: 344mm, W: 200mm</td></tr>
+        <tr class="meta-row-details"><td class="label">Details</td><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
 Purchase, 2013</td></tr>
       </tbody>
     </table>
+    <p class="sr-only end-of-section">This is the end of section: object information.</p>
   </section>
 
   <nav aria-label="Pagination Navigation">

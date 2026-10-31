@@ -40,7 +40,7 @@ gallery_images:
 3d_link: "https://macquarie.nira.app/a/e5SWZw6_RRyxpX5EgJtf9g/1"
 acq_no: "MU0086"
 material: "Ceramic"
-dimensions: "Lorem Ipsum"
+dimensions: "H: 82mm, W: 30mm, D: 38mm"
 details: >-
   Greece, 7th-6th century B.C.E.
 
@@ -53,4 +53,5 @@ prev_url: "/objects/middle-shelf-object3/"
 prev_label: "OBJECT 3"
 next_url: "/objects/middle-shelf-object5/"
 next_label: "OBJECT 5"
+audio_src: "/assets/audio/4. Figure of a musician MU0086.m4a"
 ---

@@ -6,10 +6,10 @@ permalink: /shelves/middle-shelf/
 shelf_number: "MIDDLE SHELF"
 shelf_title: "Middle Shelf"
 
-hero_image: "/assets/images/4 Figure of a Musician_MU0086_hero shot_Image2.jpeg"
+hero_image: "/assets/images/MiddleShelf_hero.jpeg"
 show_hero_image: true
-hero_alt: "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands."
-hero_caption: "4. Figure of a Musician, MU0086, front-right side view © Gale History Museum"
+hero_alt: "This is the alternative text area for the middle shelf's hero image."
+hero_caption: "This is the caption area for the middle shelf's hero image."
 
 show_object_images: false
 

@@ -15,7 +15,6 @@
   padding: 40px 40px 80px;
   box-sizing: border-box;
 
-
   /* Page Title */
   .page-title {
     text-align: center;
@@ -26,47 +25,8 @@
     margin: 45px 0 45px;
   }
 
-
-  /* Navigation Tabs */
-
-  .tab-navigation {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    margin: 0 auto 70px;
-
-    .tab-btn {
-      flex: 1;
-      padding: 12px 22px;
-      border: none;
-      text-align: center;
-      min-width: 260px;
-      background-color: $card-bg;
-      color: #b5833f;
-      font-family: $font-family-base;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition:
-        background-color 0.2s ease,
-        color 0.2s ease,
-        opacity 0.2s ease;
-
-      &.active {
-        background-color: #b5833f;
-        color: white;
-      }
-
-      &:hover {
-        opacity: 0.9;
-      }
-
-      &:focus-visible {
-        outline: 3px solid #174e77;
-        outline-offset: 3px;
-      }
-    }
-  }
-
+  
+  
 
   /* Quote Banner */
 
@@ -98,7 +58,6 @@
     }
   }
 
-
   /*nTab Content Visibility */
 
   .tab-content {
@@ -109,7 +68,6 @@
     }
   }
 
-
   /* Main Tab Title */
   .main-tab-title {
     font-size: 1.8em;
@@ -118,7 +76,6 @@
     font-family: $font-family-base;
     margin: 10px 0 45px;
   }
-
 
   /* General Content Sections */
 
@@ -151,119 +108,12 @@
     }
   }
 
+    
 
-  /* Markdown Content */
-  .markdown-content {
-    color: $text-color-primary;
-    font-family: $font-family-base;
-
-    h2 {
-      font-size: 1.8em;
-      color: #b5833f;
-      font-weight: 400;
-      margin: 10px 0 45px;
-    }
-
-    h3 {
-      color: #b5833f;
-      font-size: 1.5em;
-      font-weight: 400;
-      margin: 0 0 1.2em;
-    }
-
-    h4 {
-      font-size: 1.4em;
-      font-weight: 400;
-      color: $text-color-primary;
-      margin: 0 0 20px;
-    }
-
-    p {
-      line-height: 1.65;
-      color: $text-color-primary;
-      font-size: 1em;
-      margin: 0 0 1.2em;
-    }
-
-    strong {
-      font-weight: 700;
-    }
-
-    a {
-      color: $text-color-primary;
-      text-decoration: underline;
-
-      &:hover {
-        color: $accent-bronze;
-      }
-    }
-
-
-    ul,
-    ol {
-      line-height: 1.65;
-      font-size: 0.9em;
-    }
-
-
-    table {
-      width: 100%;
-      margin: 1em 0;
-      border-collapse: collapse;
-      background-color: transparent;
-    }
-
-
-    th,
-    td {
-      padding: 12px 8px;
-      font-size: 1em;
-      font-family: $font-family-base;
-      line-height: 1.5;
-      border-bottom: 1px solid $border-color;
-      vertical-align: top;
-      text-align: left;
-    }
-
-    th {
-      color: #b5833f;
-      font-weight: 400;
-    }
-
-    td:first-child {
-      color: #b5833f;
-      width: 30%;
-      font-weight: 400;
-    }
-  }
-
-
-  /* Visitor Content */
-  .visitor-content {
-    h2 {
-      margin-top: 10px;
-    }
-
-    h3 {
-      margin-top: 0;
-    }
-
-
-    h4 {
-      margin-top: 45px;
-    }
-
-
-    table {
-      margin-bottom: 28px;
-    }
-  }
-
+    
 
   /* Curator Profile */
-  .curator-section {
-    margin-bottom: 70px;
-  }
+  
 
   .curator-profile {
     display: flex;
@@ -271,7 +121,6 @@
     gap: 32px;
     margin-bottom: 30px;
   }
-
 
   .curator-image {
     width: 180px;
@@ -286,7 +135,6 @@
       border-radius: 2px;
     }
   }
-
 
   .curator-bio {
     flex: 1;
@@ -304,13 +152,8 @@
     }
   }
 
-
-  /* Curation Details */
-
-  .curation-details {
-    width: 100%;
-  }
-
+  
+  
 
   /* Sub Blocks */
 
@@ -324,14 +167,27 @@
       margin: 0 0 20px;
     }
 
+    /* Same text style as the curator biography paragraphs (size, colour, line height and font). */
     .section-desc {
       margin-top: 28px;
       line-height: 1.65;
-      color: #555;
-      font-size: 0.9em;
+      color: $text-color-primary;
+      font-size: 1em;
+      font-family: $font-family-base;
+
+      li {
+        line-height: 1.65;
+        color: $text-color-primary;
+        font-size: 1em;
+        font-family: $font-family-base;
+      }
+    }
+
+    /* A list that follows its introduction paragraph sits close to it. */
+    ul.section-desc {
+      margin-top: 0;
     }
   }
-
 
   /* Data Tables */
 
@@ -340,7 +196,6 @@
     margin: 1em 0;
     border-collapse: collapse;
     background-color: transparent;
-
 
     td {
       padding: 12px 8px;
@@ -358,7 +213,6 @@
       vertical-align: top;
     }
 
-
     .value-col {
       color: $text-color-primary;
 
@@ -370,7 +224,6 @@
       }
     }
 
-
     .inline-link {
       color: $text-color-primary;
       text-decoration: underline;
@@ -381,56 +234,7 @@
     }
   }
 
-
-  /* Publications */
-  .publications-section {
-    margin-top: 20px;
-
-    .publication-content {
-      border-top:
-        1px solid
-        $border-color;
-      padding-top: 25px;
-    }
-
-
-    h2 {
-      font-size: 1.5em;
-      font-weight: 400;
-      color: #b5833f;
-    }
-
-
-    h3 {
-      font-size: 1.4em;
-      font-weight: 400;
-      color: $text-color-primary;
-      margin-bottom: 10px;
-    }
-
-
-    h4 {
-      font-size: 1.25em;
-      font-weight: 400;
-      color: $text-color-primary;
-      margin: 0 0 8px;
-    }
-
-    p {
-      line-height: 1.65;
-      font-size: 1em;
-    }
-
-    a {
-      color: $text-color-primary;
-      text-decoration: underline;
-
-      &:hover {
-        color: $accent-bronze;
-      }
-    }
-  }
-
+    
 
   /* Team Avatars */
   .team-avatars {
@@ -463,7 +267,6 @@
         background-color: #f1ebd8;
       }
 
-
       &.active {
         border-color: #b08d57;
         background-color: $card-bg;
@@ -474,14 +277,12 @@
           rgba(176, 141, 87, 0.2);
       }
 
-
       &:focus-visible {
         outline: 3px solid #174e77;
         outline-offset: 3px;
       }
     }
   }
-
 
   /* Dynamic Pointer Line */
 
@@ -508,7 +309,6 @@
   }
 }
 
-
 /* LinkedIn Icon */
 
 .value-col
@@ -516,7 +316,6 @@
 i.fa-linkedin {
   font-size: 2rem;
 }
-
 
 /* Responsive About Page */
 
@@ -535,33 +334,22 @@ i.fa-linkedin {
         35px;
     }
 
-    .tab-navigation {
-      flex-direction: column;
-      margin-bottom: 45px;
-
-      .tab-btn {
-        width: 100%;
-        min-width: 0;
-      }
-    }
+    
 
     .quote-banner {
       margin-left: -24px;
       margin-right: -24px;
     }
 
-
     .main-tab-title {
       font-size: 1.5em;
       margin-bottom: 35px;
     }
 
-
     .curator-profile {
       flex-direction: column;
       gap: 20px;
     }
-
 
     .curator-image {
       width: 150px;
@@ -574,20 +362,7 @@ i.fa-linkedin {
       }
     }
 
-
-    .markdown-content {
-      table {
-        display: block;
-        overflow-x: auto;
-      }
-
-
-      th,
-      td {
-        min-width: 150px;
-      }
-    }
-
+    
 
     .info-table {
       display: block;
@@ -597,16 +372,13 @@ i.fa-linkedin {
         width: 35%;
       }
 
-
       .value-col.hours-row {
         min-width: 220px;
       }
     }
 
-
     .team-avatars {
       gap: 8px;
-
 
       .avatar {
         width: 44px;
@@ -624,4 +396,4 @@ i.fa-linkedin {
 .about-page-container .about-toc ul { display: flex; flex-direction: column; gap: .6rem; margin: 0; padding-left: 1.25rem; }
 .about-page-container .about-toc a { text-decoration: underline; text-underline-offset: .18em; }
 .about-page-container .tab-content { display: block !important; scroll-margin-top: 120px; }
-.about-page-container .tab-navigation { display: none; }
+

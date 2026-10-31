@@ -1,0 +1,14 @@
+{%- comment -%}
+  Spoken form of an object title for assistive technology.
+  "3. Bronze dancer (replica)" becomes "Object number 3, Bronze dancer (replica)",
+  so the number is not mistaken for a quantity. Titles without a leading number are returned unchanged.
+{%- endcomment -%}
+{%- assign ot_text = include.title | strip -%}
+{%- assign ot_number = ot_text | split: '.' | first | strip -%}
+{%- assign ot_value = ot_number | plus: 0 -%}
+{%- assign ot_check = ot_value | append: '' -%}
+{%- if ot_value > 0 and ot_check == ot_number -%}
+Object number {{ ot_number }}, {{ ot_text | remove_first: ot_number | remove_first: '.' | strip | escape }}
+{%- else -%}
+{{ ot_text | escape }}
+{%- endif -%}

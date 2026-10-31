@@ -1,0 +1,11 @@
+{
+  "name": "disability-heritage-site-tests",
+  "private": true,
+  "description": "Cross-browser and device checks for the exhibition site. Run in GitHub Actions; see TESTING.md.",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

@@ -73,7 +73,6 @@
   }
 }
 
-
 /* Audio Player */
 .bottom-audio-bar {
   position: fixed;
@@ -87,6 +86,9 @@
   padding: 8px 20px 12px;
   box-sizing: border-box;
   z-index: 1000;
+
+  /* The player receives script focus when it opens, without a visible ring. */
+  &:focus { outline: none; }
 
   button {
     background: none;
@@ -269,16 +271,3 @@
   }
 }
 
-
-/* For mobile view */
-@media (max-width: 768px) {
-  .cookie-banner {
-    padding: 24px;
-
-    .cookie-content {
-      .cookie-title {
-        font-size: 24px;
-      }
-    }
-  }
-}

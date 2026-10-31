@@ -6,10 +6,10 @@ permalink: /shelves/bottom-shelf/
 shelf_number: "BOTTOM SHELF"
 shelf_title: "Bottom Shelf"
 
-hero_image: "/assets/images/11 Feeding Vessel_MU3368_hero shot_Image1.jpeg"
+hero_image: "/assets/images/BottomShelf_hero.jpeg"
 show_hero_image: true
-hero_alt: "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top featuring several incised holes, a narrow handle, a thin pouring spout and a flat base."
-hero_caption: "11. Feeding vessel, MU3368, front angled view © Gale History Museum"
+hero_alt: "This is the alternative text area for the bottom shelf's hero image."
+hero_caption: "This is the caption area for the middle shelf's hero image."
 
 # Keep placeholders until the approved object photographs are supplied.
 show_object_images: false

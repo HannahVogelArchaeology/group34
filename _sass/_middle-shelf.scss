@@ -47,13 +47,7 @@
   }
 
   /* Hero image + numbered object list */
-  .shelf-hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
-    gap: clamp(2em, 6vw, 4.5em);
-    align-items: center;
-    margin-bottom: 4.5em;
-  }
+  
 
   .hero-image-wrapper {
     position: relative;
@@ -118,80 +112,7 @@
     }
   }
 
-  .numbered-object-list {
-    display: grid;
-    gap: 0.8em;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-
-    .object-item {
-      display: block;
-      margin: 0;
-    }
-
-    .name {
-      position: relative;
-      display: flex;
-      align-items: center;
-      gap: 2em;
-      width: 100%;
-      min-height: 80px;
-      padding: 0.85em 1.5em;
-      border: 1px solid var(--shelf-line);
-      border-radius: 4px;
-      background: var(--shelf-surface);
-      color: var(--shelf-text);
-      font-size: 1.05em;
-      line-height: 1.35;
-      text-decoration: none;
-      transition: background-color 160ms ease, border-color 160ms ease,
-        color 160ms ease, box-shadow 160ms ease;
-
-      .num {
-        flex: 0 0 2.1em;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 2.1em;
-        border-radius: 3px;
-        background: rgba(113, 73, 13, 0.09);
-        color: var(--shelf-accent);
-        font-weight: 600;
-      }
-
-      .object-link-arrow {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-left: auto;
-        color: var(--shelf-accent);
-        transition: transform 160ms ease;
-
-        svg {
-          width: 21px;
-          height: 21px;
-          fill: none;
-          stroke: currentColor;
-          stroke-width: 1.8;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-        }
-      }
-
-      &:hover,
-      &:focus-visible {
-        border-color: var(--shelf-accent);
-        background: var(--shelf-surface-hover);
-        color: var(--shelf-accent-dark);
-        box-shadow: inset 4px 0 0 var(--shelf-accent);
-
-        .object-link-arrow {
-          transform: translateX(4px);
-        }
-      }
-    }
-  }
+  
 
   /* Overview Section */
   .shelf-overview-section {
@@ -211,170 +132,7 @@
     }
   }
 
-  /* Object Cards Grid */
-  .shelf-objects-section {
-    h2 {
-      margin: 0 0 1.4em;
-      color: var(--shelf-accent);
-      font-size: 1.3em;
-      font-weight: 500;
-    }
-
-    .objects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.5em;
-    }
-
-    .object-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      padding: 1em;
-      border: 1px solid #d5c9b8;
-      border-radius: 5px;
-      background-color: #eee9e0;
-      color: inherit;
-      text-decoration: none;
-      cursor: pointer;
-
-      transition:
-        background-color 160ms ease,
-        border-color 160ms ease,
-        box-shadow 160ms ease;
-
-      &:hover,
-      &:focus-visible {
-        border-color: var(--shelf-accent);
-        background-color: var(--shelf-surface-hover);
-        box-shadow: 0 7px 18px rgba(81, 52, 9, 0.12);
-        text-decoration: none;
-        
-        .item-title {
-          color: var(--shelf-accent-dark);
-        }
-
-        .view-arrow {
-          transform: translateX(3px);
-        }
-      }
-      
-      &:focus-visible {
-        outline: 3px solid var(--shelf-accent);
-        outline-offset: 3px;
-      }
-    }
-
-    .card-header {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      align-items: start;
-      column-gap: 0.65em;
-      min-height: 2.3em;
-      margin-bottom: 0.75em;
-
-      .item-title {
-        min-width: 0;
-        color: var(--shelf-text);
-        font-size: 0.95em;
-        font-weight: 600;
-        line-height: 1.35;
-        overflow-wrap: anywhere;
-        transition: color 160ms ease;
-      }
-    }
-
-    .card-media {
-      position: relative;
-      display: grid;
-      place-items: center;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      overflow: hidden;
-      border: 1px solid rgba(113, 73, 13, 0.12);
-      background-color: var(--shelf-image);
-
-      > img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .card-image-placeholder {
-        display: grid;
-        place-items: center;
-        gap: 0.35em;
-        margin: 0;
-        color: var(--shelf-muted);
-      }
-    }
-
-    .card-caption,
-    .card-alt-text {
-      width: 100%;
-      max-width: 100%;
-      margin: 0;
-      overflow-wrap: anywhere;
-    }
-
-    .card-caption {
-      margin-top: 0.75em;
-      color: #555;
-      font-size: 0.82em;
-      line-height: 1.45;
-    }
-
-    .card-alt-text {
-      margin-top: 0.55em;
-      color: var(--shelf-muted);
-      font-size: 0.75em;
-      line-height: 1.45;
-    }
-
-    .card-alt-label {
-      font-weight: 600;
-      color: var(--shelf-text);
-    }
-
-    .btn-view {
-      align-self: flex-start;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45em;
-      min-width: 82px;
-      min-height: 44px;
-      margin: 0;
-      padding: 0.5em 0.85em;
-      border: 1px solid var(--shelf-accent);
-      border-radius: 4px;
-      background-color: var(--shelf-accent);
-      color: #fff;
-      font-size: 0.875em;
-      text-decoration: none;
-      pointer-events: none;
-      transition: background-color 160ms ease, border-color 160ms ease;
-
-      .view-arrow {
-        width: 18px;
-        height: 18px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        transition: transform 160ms ease;
-      }
-
-      &:hover,
-      &:focus-visible {
-        border-color: var(--shelf-accent-dark);
-        background-color: var(--shelf-accent-dark);
-        text-decoration: underline;
-      }
-    }
-  }
+    
 
   /* Image Dialog */
   #middle-shelf-image-dialog {
@@ -392,40 +150,9 @@
       background: rgba(24, 21, 17, 0.72);
     }
 
-    .dialog-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1em;
-      margin-bottom: 1em;
+    
 
-      h2 {
-        margin: 0;
-        color: var(--shelf-text);
-        font-size: 1.25em;
-        font-weight: 500;
-      }
-
-      form {
-        margin: 0;
-      }
-    }
-
-    .dialog-close {
-      min-height: 44px;
-      padding: 0.5em 1em;
-      border: 1px solid var(--shelf-accent);
-      border-radius: 4px;
-      background: var(--shelf-accent);
-      color: #fff;
-      font: inherit;
-      cursor: pointer;
-
-      &:hover,
-      &:focus-visible {
-        background: var(--shelf-accent-dark);
-      }
-    }
+    
 
     > img {
       display: block;
@@ -437,17 +164,6 @@
   }
 
   /* Responsive Styles */
-  @media (max-width: 850px) {
-    .shelf-hero-grid {
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.9fr);
-      gap: 2em;
-    }
-
-    .shelf-objects-section .objects-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
   @media (max-width: 700px) {
     padding: 2.25em 1em 3em;
 
@@ -455,14 +171,9 @@
       margin-bottom: 1.8em;
     }
 
-    .shelf-hero-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5em;
-      margin-bottom: 3em;
-    }
+    
 
-    .hero-image-wrapper,
-    .numbered-object-list {
+    .hero-image-wrapper {
       width: min(100%, 520px);
       margin: 0 auto;
     }
@@ -478,24 +189,9 @@
   }
   }
 
-  @media (max-width: 580px) {
-    .shelf-objects-section .objects-grid {
-      grid-template-columns: 1fr;
-    }
-
-    #middle-shelf-image-dialog .dialog-header {
-      align-items: flex-start;
-    }
-  }
-
   @media (prefers-reduced-motion: reduce) {
     .expand-btn,
-    .name,
-    .object-link-arrow,
-    .object-card,
-    .item-title,
-    .btn-view,
-    .view-arrow {
+    .name {
       transition: none !important;
       transform: none !important;
     }
@@ -504,8 +200,6 @@
   @media (forced-colors: active) {
     .expand-btn,
     .name,
-    .object-card,
-    .btn-view,
     #middle-shelf-image-dialog {
       border: 1px solid CanvasText;
     }
@@ -529,8 +223,6 @@
     font-size: 0.85rem;
     line-height: 1.45;
   }
-
-
 
 /* Keep hero captions inside the same width as the image on narrow screens. */
 .shelf-hero-media {

@@ -32,7 +32,7 @@ gallery_images:
 3d_link: "https://macquarie.nira.app/a/S89lZLMKRfCoB5qdh4sjRQ/1"
 acq_no: "MU0523"
 material: "Green Faience"
-dimensions: "Lorem Ipsum"
+dimensions: "H: 33mm, W: 14mm, D: 8mm"
 details: >-
   Egypt, Third Intermediate Period or Ptolemaic period, c. 1069 - 664 / 332 - 30 B.C.E.
 
@@ -45,4 +45,5 @@ prev_url: "/objects/middle-shelf-object7/"
 prev_label: "OBJECT 7"
 next_url: "/shelves/bottom-shelf/"
 next_label: "BOTTOM SHELF"
+audio_src: "/assets/audio/8. Amulet of Pataikos MU0523.m4a"
 ---

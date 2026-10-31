@@ -44,7 +44,7 @@ gallery_images:
 3d_link: "https://macquarie.nira.app/a/hpbtWsRWSQaHaJPHElDtJQ/1"
 acq_no: "MU4697"
 material: "Bronze"
-dimensions: "Lorem Ipsum"
+dimensions: "H: 80mm, W: 28mm, D: 30mm"
 details: >-
   Roman, c.1st-4th century C.E.
 
@@ -57,4 +57,5 @@ prev_url: "/objects/middle-shelf-object5/"
 prev_label: "OBJECT 5"
 next_url: "/objects/middle-shelf-object7/"
 next_label: "OBJECT 7"
+audio_src: "/assets/audio/6. Bronze figurine of Priapus MU4697.m4a"
 ---

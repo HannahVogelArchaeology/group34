@@ -1,6 +1,7 @@
 ---
 layout: about
 title: About Us
+permalink: /about/
 ---
 
 <!-- ABOUT_VISITOR_START -->

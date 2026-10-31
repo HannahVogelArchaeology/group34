@@ -26,7 +26,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Font Awesome icons (version pinned to 6.4.0) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- The URL is pinned to an exact version and the integrity hash is checked in GitHub Actions
+       (scripts/check-cdn-integrity.mjs). Google Fonts serve different CSS per browser, so they cannot carry a hash. -->
 
   <!-- Material Icons CDN -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -127,9 +131,33 @@
   })();
 </script>
 
-<!--[if lte IE 9]>
-<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-<![endif]-->
+<!-- Outdated browser check. It tests for the features the site needs instead of reading the browser name.
+     It is written in plain old JavaScript (no arrow functions, const or template strings) so that old browsers can run it.
+     When a feature is missing it adds the class "outdated-browser" to <html>, which shows the warning in _layouts/default.html. -->
+<script>
+(function () {
+  var supported = false;
+
+  try {
+    supported =
+      !!(window.CSS && window.CSS.supports) &&
+      window.CSS.supports('(--site-test: 0)') &&   /* CSS custom properties (colours and sizes) */
+      window.CSS.supports('display', 'grid') &&    /* CSS grid (page layouts) */
+      window.CSS.supports('inset', '0') &&         /* inset shorthand (photo viewer, sidebar) */
+      'fetch' in window &&
+      'Promise' in window &&
+      !!window.matchMedia &&
+      !!Element.prototype.closest &&
+      'noModule' in document.createElement('script'); /* modern JavaScript, which assets/js/main.js uses */
+  } catch (error) {
+    supported = false;
+  }
+
+  if (!supported) {
+    document.documentElement.className += ' outdated-browser';
+  }
+})();
+</script>
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -140,6 +168,16 @@
 </head>
 
 <body>
+  <!-- Page start. Back to top moves keyboard focus here, so the next Tab always reaches the skip links.
+       The text is announced to screen reader users at the start of every page. -->
+  <div id="pageTop" tabindex="-1">
+    <p class="sr-only">Keyboard users: press Tab to reach "Skip to main content" and "Go to navigation bar".</p>
+  </div>
+
+  <!-- Skip links: the first focusable items on every page (visible only while focused). -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#sidebarNav" id="skipToNavigation">Go to navigation bar</a>
+
   <header class="pinned-header" role="banner" aria-label="Site Header">
   <div class="header-content">
     <div class="header-left">
@@ -148,7 +186,8 @@
     
     <div class="header-center" aria-live="polite">
       
-        <span class="active-object-name" aria-label="Current page: Top Shelf">Top Shelf</span>
+        <span class="active-object-name" aria-label="Current page: Top Shelf"><span aria-hidden="true">Top Shelf</span><span class="sr-only">Top Shelf</span>
+</span>
       
     </div>
 
@@ -176,7 +215,7 @@
     <i class="fa-solid fa-xmark" aria-hidden="true"></i><span aria-hidden="true">Close</span>
   </button>
   
-  <nav class="sidebar-nav" aria-label="Exhibition Sections and Objects">
+  <nav class="sidebar-nav" id="sidebarNav" tabindex="-1" aria-label="Exhibition Sections and Objects">
     <!-- Top Direct Links -->
     <a href="/group34/" class="nav-item main-link" aria-label="Go to Home page">
       <i class="fa-solid fa-landmark" aria-hidden="true"></i>
@@ -185,7 +224,7 @@
     
     <a href="/group34/about/" class="nav-item main-link" aria-label="Go to About Us page">
       <i class="fa fa-search" aria-hidden="true"></i>
-      <span>ABOUT</span>
+      <span>About Us</span>
     </a>
 
     <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
@@ -256,9 +295,23 @@
   <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down" aria-hidden="true"></i></div>
 </aside>
 
-  <main class="main-content" id="main-content" aria-label="Main exhibition content">
-    <div class="top-shelf-container" role="region" aria-label="Top Shelf">
+  <main class="main-content" id="main-content" tabindex="-1" aria-label="Main exhibition content">
+    <!-- Hidden unless the check in _includes/head.html finds that the browser is too old. -->
+    <div class="browser-warning" role="alert">
+      You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </div>
+
+    <!-- Page summary: read first when a screen reader user lands on the main content. -->
+
+<p class="sr-only page-summary">This is the Top Shelf page. The Top Shelf has one object: Object number 1, Pelike. In keyboard order, this page has the shelf title, the object title, photo, overview, audio description and object information, followed by the previous and next buttons.</p>
+
+<div class="top-shelf-container" role="region" aria-label="Top Shelf">
   <h1 class="shelf-title">Top Shelf</h1>
+
+  <!-- The only object on this shelf is named first, so visitors know what the photo and text describe. -->
+  <h2 class="object-heading"><span aria-hidden="true">1. Pelike</span><span class="sr-only">Object number 1, Pelike</span>
+</h2>
+  <p class="sr-only end-of-section">This is the end of section: object name.</p>
 
   <section class="media-section" aria-label="Media gallery for 1. Pelike">
     <div class="hero-image-wrapper">
@@ -310,13 +363,13 @@
         <span aria-hidden="true">Explore in 3D</span>
       </button>
     </div>
+    <p class="sr-only end-of-section">This is the end of section: photo.</p>
   </section>
-
-  <h2 class="object-heading">1. Pelike</h2>
 
   <section class="shelf-section" aria-labelledby="top-shelf-overview-heading">
     <h3 id="top-shelf-overview-heading">Overview Text</h3>
     <p class="body-text">This pelike depicts the use of a mobility aid: a staff or cane. In ancient Greece, staff-like objects were also symbols of power, authority and justice. Archaeological narratives are selective about how these artefacts are interpreted, often rejecting the possibility of disability coinciding with symbols of power.</p>
+    <p class="sr-only end-of-section">This is the end of section: overview.</p>
   </section>
 
   <section class="shelf-section" aria-labelledby="top-shelf-audio-heading">
@@ -332,19 +385,21 @@
         <p class="body-text">This large ceramic vessel has a wide, thick rim upon a flared neck. A line of leaf-like decorations wraps around the neck. It has one handle on either side, starting below the rim and meeting at the shoulder of the vessel, which becomes a wide, bulbous body upon a circular base. The vessel is black in colour with a light orange scene in the centre. The scene depicts two young men facing each other. Both men are barefoot, have curly hair and wear large toga-style tunics that cover their bodies to the ankle, draping across one shoulder and leaving the other exposed. The man on the left is holding a long staff with his right hand; his arm is bent at the elbow. His right leg is outlined by the fabric and appears to be slightly bent forward, while his right shoulder is facing downwards, as if he is being supported by this staff. The other figure holds a shorter, curved object with his right hand around shoulder height; his arm is bent at the elbow. The two figures are standing on a geometric pattern above the vessel base and are framed by swirling patterns on either side.  </p>
       </div>
     </div>
+    <p class="sr-only end-of-section">This is the end of section: audio description and transcript.</p>
   </section>
 
   <section class="shelf-section" aria-labelledby="top-shelf-info-heading">
     <h3 id="top-shelf-info-heading">Object Information</h3>
     <table class="metadata-table" aria-label="Metadata for 1. Pelike">
       <tbody>
-        <tr><th scope="row" class="label">Acq. No</th><td class="value">MU4759</td></tr>
-        <tr><th scope="row" class="label">Material</th><td class="value">Ceramic</td></tr>
-        <tr><th scope="row" class="label">Dimensions</th><td class="value">??mm x ??mm</td></tr>
-        <tr><th scope="row" class="label">Details</th><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
+        <tr><td class="label"><span aria-hidden="true">Acq. No</span><span class="sr-only">Acquisition Number</span></td><td class="value">MU4759</td></tr>
+        <tr><td class="label">Material</td><td class="value">Ceramic</td></tr>
+        <tr><td class="label">Dimensions</td><td class="value">H: 344mm, W: 200mm</td></tr>
+        <tr class="meta-row-details"><td class="label">Details</td><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
 Purchase, 2013</td></tr>
       </tbody>
     </table>
+    <p class="sr-only end-of-section">This is the end of section: object information.</p>
   </section>
 
   <nav aria-label="Pagination Navigation">
@@ -367,7 +422,10 @@ Purchase, 2013</td></tr>
 </nav>
   </nav>
 </div>
-  </main><div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" style="display: none;">
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" aria-describedby="audioPlayerIntro" tabindex="-1" style="display: none;">
+  <!-- Spoken when the player opens (keyboard focus lands on the player itself, not on the time or seek bar). -->
+  <p class="sr-only" id="audioPlayerIntro">You are in the audio player. Press Tab to change the playback speed, play or pause, adjust the volume, or close the player.</p>
+
   <!-- Bar with the time -->
   <div class="audio-progress-container" role="group" aria-label="Audio progress and seek bar">
     <span id="currentTime" aria-label="Current audio time">0:00</span>
@@ -387,7 +445,8 @@ Purchase, 2013</td></tr>
 
     <!-- Center info -->
     <div class="audio-center" aria-live="polite" aria-label="Currently playing track details">
-      <span class="audio-obj-name">1. Pelike</span>
+      <span class="audio-obj-name"><span aria-hidden="true">1. Pelike</span><span class="sr-only">Object number 1, Pelike</span>
+</span>
       <span class="audio-shelf-label">Top Shelf</span>
     </div>
 
@@ -400,14 +459,14 @@ Purchase, 2013</td></tr>
         <button type="button" onclick="toggleVolumePopup()" aria-label="Toggle volume slider" aria-controls="volumePopup">
           <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
         </button>
-        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button" aria-label="Close audio player">
+        <button class="audio-play-btn" onclick="closeAudioPlayer()" type="button" aria-label="Close audio player">
           <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
       </div>
     </div>
   </div>
 
-  <audio id="exhibitionAudio" src="/group34/assets/audio/top-shelf-description.mp3" preload="none" aria-label="Exhibition audio track"></audio>
+  <audio id="exhibitionAudio" src="/group34/assets/audio/1.%20Pelike%20MU4759.m4a" preload="none" aria-label="Exhibition audio track"></audio>
 </div><footer class="site-footer" role="contentinfo" aria-label="Site Footer">
   
 

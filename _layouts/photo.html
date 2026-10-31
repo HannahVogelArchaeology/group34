@@ -83,22 +83,25 @@ layout: default
 
 <!-- STAGE (MAIN DISPLAY) -->
 <section class="photo-viewer-stage" aria-label="Main photo display">
-    <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">
-        <span aria-hidden="true">‹</span>
-    </button>
-    <figure class="photo-viewer-figure" aria-live="polite">
+    <figure class="photo-viewer-figure" id="photoFigure" tabindex="-1">
         <div class="photo-caption-section" id="photoCaptionSection" aria-label="Photo caption">
-            <span id="photoImageCaption">Image caption</span>
+            <span class="sr-only">This is the caption: </span><span id="photoImageCaption">Image caption</span>
         </div>
+        <span class="sr-only">This is the alternative text of the photo: <span id="photoAltText"></span></span>
         <div class="photo-zoom-frame" id="photoZoomFrame" role="button" tabindex="0" aria-pressed="false" aria-label="Magnify photo. Select to zoom in or out.">
-            <img id="photoMainImage" src="" alt="" draggable="false">
+            <img id="photoMainImage" src="" alt="" aria-hidden="true" draggable="false">
         </div>
         <figcaption aria-label="Object title and current view">
+            <span class="sr-only">This is the object title and the view: </span>
             <span id="photoObjectName">Object Name</span>
             <span aria-hidden="true"> • </span>
             <span id="photoViewLabel">[Front View]</span>
         </figcaption>
     </figure>
+<!-- Keyboard and screen reader order: photo information, then Previous, then Next. The grid places them left and right. -->
+    <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">
+        <span aria-hidden="true">‹</span>
+    </button>
     <button class="photo-arrow photo-arrow-right" id="photoNext" type="button" aria-label="Next photo">
         <span aria-hidden="true">›</span>
     </button>
@@ -113,10 +116,14 @@ layout: default
 </aside>
 
 <!-- GUIDE (modal): shows what each part of this page does. Opens with the page and with the Guide button. -->
-<div class="photo-guide" id="photoGuide" role="dialog" aria-modal="true" aria-labelledby="photoGuideTitle" hidden>
+<div class="photo-guide" id="photoGuide" role="dialog" aria-modal="true" aria-labelledby="photoGuideTitle" aria-describedby="photoGuideIntro" hidden>
     <div class="photo-guide-sheet">
         <div class="photo-guide-top">
             <h2 id="photoGuideTitle">Quick Guidance in the Photo Page</h2>
+            <div class="sr-only" id="photoGuideIntro">
+                <p>This is the section that explains how to use the photo page, before you view the photos.</p>
+                <p>If you already understand all of the instructions, press the Close guide button.</p>
+            </div>
             <button class="photo-guide-close" id="photoGuideClose" type="button" aria-label="Close quick guidance dialog">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 <span aria-hidden="true">Close guide</span>

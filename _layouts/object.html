@@ -11,6 +11,9 @@ endif %}
 {% endif %}
 {% assign three_d_link = page['3d_link'] %}
 
+<!-- Page summary: read first when a screen reader user lands on the main content (for example through "Skip to main content"). -->
+<p class="sr-only page-summary">This is the page of {% include object-title-spoken.html title=page.title %}, on the {{ page.shelf_title | default: 'Middle Shelf' | escape }}. In keyboard order, this page has a link back to the shelf, then the object title, overview, audio description, object information and photo, followed by the previous and next object buttons.</p>
+
 <div class="object-detail-container">
 
   <div class="back-navigation">
@@ -19,9 +22,71 @@ endif %}
     </a>
   </div>
 
+  <!-- DOM order follows the reading order: title, overview, audio, object information, photo, pagination. CSS grid areas keep the visual layout. -->
   <div class="object-hero-grid">
 
-    <h1 class="object-heading">{{ page.title }}</h1>
+    <h1 class="object-heading">{% include object-title.html title=page.title %}</h1>
+    <p class="sr-only end-of-section">This is the end of section: object name.</p>
+
+
+    <div class="info-column">
+
+      <div class="overview-section">
+        <p class="overview-title">Overview</p>
+        <p class="overview-text">
+          {{ page.overview | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac
+          tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet
+          turpis est sed ligula.' }}
+        </p>
+      </div>
+      <p class="sr-only end-of-section">This is the end of section: overview.</p>
+
+      <div class="audio-section">
+        <h3>Listen to this story</h3>
+
+        <div class="audio-actions">
+          <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
+            <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
+            <span>Audio Description</span>
+          </button>
+        </div>
+
+        <div class="transcript-accordion">
+          <div class="transcript-box">
+            <p class="transcript-text">
+              {{ page.transcript_text | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.' }}
+            </p>
+          </div>
+        </div>
+      </div>
+      <p class="sr-only end-of-section">This is the end of section: audio description and transcript.</p>
+
+      <div class="metadata-section">
+        <h3>Object Information</h3>
+
+        <table class="object-meta-table">
+          <tr>
+            <td class="meta-label"><span aria-hidden="true">Acq. No</span><span class="sr-only">Acquisition Number</span></td>
+            <td class="meta-value">{{ page.acq_no | default: 'MU0523' }}</td>
+          </tr>
+          <tr>
+            <td class="meta-label">Material</td>
+            <td class="meta-value">{{ page.material | default: 'Lorem Ipsum' }}</td>
+          </tr>
+          <tr>
+            <td class="meta-label">Dimensions</td>
+            <td class="meta-value">{{ page.dimensions | default: 'Lorem Ipsum' }}</td>
+          </tr>
+          <tr class="meta-row-details">
+            <td class="meta-label">Details</td>
+            <td class="meta-value">{{ page.details | default: 'Lorem Ipsum' | escape | newline_to_br }}</td>
+          </tr>
+        </table>
+      </div>
+      <p class="sr-only end-of-section">This is the end of section: object information.</p>
+
+    </div>
 
     <div class="media-column">
 
@@ -70,62 +135,9 @@ endif %}
         {% endif %}
       </div>
 
-    </div>
+    
 
-    <div class="info-column">
-
-      <div class="overview-section">
-        <p class="overview-title">Overview</p>
-        <p class="overview-text">
-          {{ page.overview | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac
-          tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet
-          turpis est sed ligula.' }}
-        </p>
-      </div>
-
-      <div class="audio-section">
-        <h3>Listen to this story</h3>
-
-        <div class="audio-actions">
-          <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button">
-            <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
-            <span>Audio Description</span>
-          </button>
-        </div>
-
-        <div class="transcript-accordion">
-          <div class="transcript-box">
-            <p class="transcript-text">
-              {{ page.transcript_text | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.' }}
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="metadata-section">
-        <h3>Object Information</h3>
-
-        <table class="object-meta-table">
-          <tr>
-            <td class="meta-label">Acq. No</td>
-            <td class="meta-value">{{ page.acq_no | default: 'MU0523' }}</td>
-          </tr>
-          <tr>
-            <td class="meta-label">Material</td>
-            <td class="meta-value">{{ page.material | default: 'Lorem Ipsum' }}</td>
-          </tr>
-          <tr>
-            <td class="meta-label">Dimensions</td>
-            <td class="meta-value">{{ page.dimensions | default: 'Lorem Ipsum' }}</td>
-          </tr>
-          <tr>
-            <td class="meta-label">Details</td>
-            <td class="meta-value">{{ page.details | default: 'Lorem Ipsum' | escape | newline_to_br }}</td>
-          </tr>
-        </table>
-      </div>
-
+      <p class="sr-only end-of-section">This is the end of section: photo of {{ page.title | escape }}.</p>
     </div>
 
   </div>

@@ -7,6 +7,12 @@ function scrollToTop() {
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+
+  // Move keyboard focus to the start of the page, so the next Tab reaches "Skip to main content".
+  const pageTop = document.getElementById("pageTop");
+  if (pageTop) {
+    pageTop.focus({ preventScroll: true });
+  }
 }
 
 /* Keep the page content below the pinned header, whatever its height */
@@ -64,6 +70,21 @@ function updateSidebarScrollHint() {
   hint.classList.toggle("is-visible", isOpen && canScroll && atTop);
 }
 
+/* Keep the sidebar exposed to assistive technology and the keyboard only while it is visible:
+   always on desktop, and only when the drawer is open on mobile. */
+function syncSidebarAccessibility() {
+  const menu = document.getElementById("sidebarMenu");
+
+  if (!menu) {
+    return;
+  }
+
+  const visible = !mobileMenuQuery.matches || menu.classList.contains("active");
+
+  menu.setAttribute("aria-hidden", String(!visible));
+  menu.inert = !visible;
+}
+
 function toggleSidebarMenu(forceState) {
   const menu = document.getElementById("sidebarMenu");
   const overlay = document.getElementById("sidebarOverlay");
@@ -88,11 +109,15 @@ function toggleSidebarMenu(forceState) {
     menu.scrollTop = 0;
   }
 
+  syncSidebarAccessibility();
   updateSidebarScrollHint();
 }
 
 /* Reset the drawer when the screen grows to desktop size, and close it with the Escape key */
-mobileMenuQuery.addEventListener("change", () => toggleSidebarMenu(false));
+mobileMenuQuery.addEventListener("change", () => {
+  toggleSidebarMenu(false);
+  syncSidebarAccessibility();
+});
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     toggleSidebarMenu(false);
@@ -139,15 +164,36 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
+    // When playback finishes, return the button to the play icon.
     audio.addEventListener("ended", () => {
-        const playIcon = document.getElementById("playIcon");
-        if (playIcon) {
-          playIcon.className = "fas fa-play";
-        }
+        setAudioPlayingState(false);
       }
     );
   }
 );
+
+
+// Show an object title such as "3. Bronze dancer (replica)" unchanged on screen, while assistive
+// technology reads "Object number 3, Bronze dancer (replica)" so the number is not heard as a quantity.
+function renderObjectTitle(element, title, extra) {
+  const visible = extra ? `${title}, ${extra}` : title;
+  const match = /^\s*(\d+)\.\s*(.*)$/.exec(title);
+  const spoken = match
+    ? `Object number ${match[1]}, ${match[2]}${extra ? `, ${extra}` : ""}`
+    : visible;
+
+  element.textContent = "";
+
+  const visibleSpan = document.createElement("span");
+  visibleSpan.setAttribute("aria-hidden", "true");
+  visibleSpan.textContent = visible;
+
+  const spokenSpan = document.createElement("span");
+  spokenSpan.className = "sr-only";
+  spokenSpan.textContent = spoken;
+
+  element.append(visibleSpan, spokenSpan);
+}
 
 
 function formatTime(seconds) {
@@ -168,43 +214,126 @@ function seekAudio(value) {
 }
 
 
+// UI play state. The icon follows this flag (not the audio events), so the
+// button always flips on a press, even while the audio file is still a
+// placeholder that the browser cannot actually play.
+let audioIsPlaying = false;
+
+
+// Switch the play button between the play and pause Font Awesome icons.
+function setAudioPlayingState(isPlaying) {
+  audioIsPlaying = isPlaying;
+  const playIcon = document.getElementById("playIcon");
+
+  if (playIcon) {
+    playIcon.className = isPlaying ? "fas fa-pause" : "fas fa-play";
+  }
+}
+
+
+// The button that opened the audio player, so focus can return to it when the player closes.
+let audioPlayerTrigger = null;
+
+
+// Show the audio player. It is placed right after the button that opened it, so the
+// keyboard and screen reader order is: Audio Description button, player controls, then
+// the rest of the page (the audio transcript first).
+function openAudioPlayer() {
+  const bar = document.getElementById("bottomAudioBar");
+
+  if (!bar) {
+    return;
+  }
+
+  const active = document.activeElement;
+  const trigger = active && active !== document.body && !bar.contains(active)
+    ? active
+    : document.querySelector("main .audio-play-btn");
+
+  audioPlayerTrigger = trigger || null;
+
+  const anchor = trigger ? trigger.closest(".audio-actions, .audio-controls") || trigger : null;
+  if (anchor) {
+    anchor.insertAdjacentElement("afterend", bar);
+  }
+
+  bar.style.display = "flex";
+  syncAudioBarOffset();
+
+  // Start playback (the pause icon shows after the first press).
+  if (!audioIsPlaying) {
+    toggleAudioPlay();
+  }
+
+  // Move focus to the player itself (not to the seek bar, whose changing time would be read out
+  // every second). Screen readers announce the player and its instructions; Tab then reaches the controls.
+  bar.focus();
+}
+
+
+// Close the audio player: stop the audio, hide the player and return focus to the button that opened it.
+function closeAudioPlayer() {
+  const bar = document.getElementById("bottomAudioBar");
+  const audio = document.getElementById("exhibitionAudio");
+
+  if (audio) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+  setAudioPlayingState(false);
+
+  const volumePopup = document.getElementById("volumePopup");
+  if (volumePopup) {
+    volumePopup.style.display = "none";
+  }
+  document.body.classList.remove("volume-popup-open");
+
+  if (bar) {
+    bar.style.display = "none";
+  }
+  syncAudioBarOffset();
+
+  if (audioPlayerTrigger && document.contains(audioPlayerTrigger)) {
+    audioPlayerTrigger.focus();
+  }
+}
+
+
+// The Audio Description button on the page opens the player, or closes it when it is already open.
 function toggleAudioPlayer() {
-  const bar = document.getElementById( "bottomAudioBar");
+  const bar = document.getElementById("bottomAudioBar");
 
   if (!bar) {
     return;
   }
 
   const isHidden = bar.style.display === "none" || bar.style.display === "";
-  bar.style.display = isHidden ? "flex" : "none";
-  syncAudioBarOffset();
 
   if (isHidden) {
-    toggleAudioPlay();
+    openAudioPlayer();
+  } else {
+    closeAudioPlayer();
   }
 }
 
 
 function toggleAudioPlay() {
   const audio = document.getElementById("exhibitionAudio");
-  const playIcon = document.getElementById("playIcon");
 
   if (!audio) {
     return;
   }
 
-  if (audio.paused) {
-    audio.play() .then(() => {
-        if (playIcon) {
-          playIcon.className = "fas fa-pause";
-        }
-      })
-      .catch(() => {});
+  if (!audioIsPlaying) {
+    setAudioPlayingState(true);
+    const result = audio.play();
+    if (result && typeof result.catch === "function") {
+      // A rejected play() (for example a placeholder file) keeps the icon state.
+      result.catch(() => {});
+    }
   } else {
     audio.pause();
-    if (playIcon) {
-      playIcon.className = "fas fa-play";
-    }
+    setAudioPlayingState(false);
   }
 }
 
@@ -220,7 +349,10 @@ function changeAudioSpeed(speed) {
 function toggleVolumePopup() {
   const popup = document.getElementById("volumePopup");
   if (popup) {
-    popup.style.display = (popup.style.display === "flex" || popup.style.display === "block") ? "none" : "block";
+    const willOpen = !(popup.style.display === "flex" || popup.style.display === "block");
+    popup.style.display = willOpen ? "block" : "none";
+    // While the volume slider is open, the Back to top button moves up so it never covers the slider.
+    document.body.classList.toggle("volume-popup-open", willOpen);
   }
 }
 
@@ -246,156 +378,6 @@ function setVolume(value) {
     }
   }
 }
-
-function toggleTranscript() {
-  /* Reserved for future transcript modal.... */
-}
-
-
-/* Image thumbnails */
-function initialiseThumbnails() {
-  const thumbnails = document.querySelectorAll("[data-thumbnail-src]");
-
-  thumbnails.forEach((thumbnail) => {
-      thumbnail.addEventListener("click",() => {
-          const image = document.getElementById("shelfMainImage");
-          const source = thumbnail.dataset.thumbnailSrc;
-
-          if (!image || !source) {
-            return;
-          }
-
-          image.src = source;
-          thumbnails.forEach((item) => {
-              item.classList.remove("active");
-            }
-          );
-          thumbnail.classList.add("active");
-        }
-      );
-    }
-  );
-
-}
-
-
-/* Image overlay */
-function createImageOverlay(source, altText) {
-  const existing = document.getElementById("imageLightbox");
-  if (existing) {
-    existing.remove();
-  }
-
-  const overlay = document.createElement("div");
-  overlay.id = "imageLightbox";
-
-  Object.assign(overlay.style,{ // move this part to the css???
-      position: "fixed",
-      inset: "0",
-      background: "rgba(0, 0, 0, 0.85)",
-      zIndex: "3000",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "30px",
-      boxSizing: "border-box"
-    }
-  );
-
-
-  const image = document.createElement("img");
-
-  image.src = source;
-  image.alt = altText || "";
-  Object.assign(image.style,{ // move this part to the css???
-      maxWidth: "95%",
-      maxHeight: "90%",
-      objectFit: "contain"
-    }
-  );
-
-  const closeButton = document.createElement("button");
-
-  closeButton.type = "button";
-  closeButton.setAttribute("aria-label", "Close enlarged image");
-  closeButton.textContent ="×";
-
-  Object.assign(closeButton.style, { // move this part to the css???
-      position: "absolute",
-      top: "20px",
-      right: "25px",
-      fontSize: "2rem",
-      background:
-        "transparent",
-      border: "0",
-      color: "#fff",
-      cursor: "pointer"
-    }
-  );
-
-  closeButton.addEventListener("click", () => overlay.remove());
-
-  overlay.addEventListener("click", (event) => {
-      if (
-        event.target === overlay
-      ) {
-        overlay.remove();
-      }
-    }
-  );
-
-  overlay.appendChild(image);
-  overlay.appendChild(closeButton);
-
-  document.body.appendChild(overlay);
-}
-
-
-function initialiseImageExpand() {
-  const buttons = document.querySelectorAll("[data-expand-image]");
-
-  buttons.forEach((button) => {
-      button.addEventListener("click",() => {
-          const selector = button.dataset.expandImage;
-          const image = selector === "closest" ? button .closest(".hero-image-wrapper") ?.querySelector("img") : document.querySelector(selector);
-
-          if (image) {
-            createImageOverlay(image.src, image.alt);
-          }
-        }
-      );
-    }
-  );
-}
-
-
-/* Shelf image dialog */
-document.addEventListener(
-  "DOMContentLoaded",() => {
-    document
-      .querySelectorAll(".expand-btn[aria-controls]")
-      .forEach(
-        (button) => {
-          const dialog = document.getElementById(button.getAttribute("aria-controls"));
-          if (!dialog) {
-            return;
-          }
-
-          button.addEventListener("click", () => {
-              if (typeof dialog.showModal === "function") {
-                dialog.showModal();
-              } else {
-                dialog.setAttribute("open","");
-              }
-            }
-          );
-
-          dialog.addEventListener("close", () => button.focus());
-        }
-      );
-  }
-);
-
 
 /* Photo viewer page */
 
@@ -583,9 +565,7 @@ function initialisePhotoViewer() {
     }
 
     if (objectName) {
-      objectName.textContent = museumNumber
-        ? `${objectTitle}, ${museumNumber}`
-        : objectTitle;
+      renderObjectTitle(objectName, objectTitle, museumNumber);
     }
 
     if (viewLabel) {
@@ -594,6 +574,12 @@ function initialisePhotoViewer() {
 
     if (imageCaption) {
       imageCaption.textContent = caption;
+    }
+
+    // Spoken, labelled copy of the alternative text (the image itself is hidden from screen readers).
+    const altText = document.getElementById("photoAltText");
+    if (altText) {
+      altText.textContent = caption;
     }
 
     if (thumbnails) {
@@ -622,7 +608,16 @@ function initialisePhotoViewer() {
 
       button.appendChild(label);
       button.appendChild(image);
-      button.addEventListener("click", () => renderPhoto(index));
+      button.addEventListener("click", (event) => {
+        renderPhoto(index);
+
+        // Chosen with the keyboard: move to the photo information, so it is read in order
+        // (caption, alternative text, object title), then Previous and Next follow.
+        const photoFigure = document.getElementById("photoFigure");
+        if (event.detail === 0 && photoFigure) {
+          photoFigure.focus();
+        }
+      });
 
       thumbnails.appendChild(button);
     });
@@ -734,6 +729,23 @@ document.addEventListener("DOMContentLoaded", () => {
   topButton.addEventListener("click", scrollToTop);
   document.body.appendChild(topButton);
 
+  // Keep the button above the footer: when the footer scrolls into view,
+  // lift the button by the height of the visible part of the footer.
+  const siteFooter = document.querySelector(".site-footer");
+
+  function updateTopButtonOffset() {
+    let overlap = 0;
+    if (siteFooter) {
+      const footerTop = siteFooter.getBoundingClientRect().top;
+      overlap = Math.max(0, window.innerHeight - footerTop);
+    }
+    document.documentElement.style.setProperty("--footer-overlap", overlap + "px");
+  }
+
+  window.addEventListener("scroll", updateTopButtonOffset, { passive: true });
+  window.addEventListener("resize", updateTopButtonOffset);
+  updateTopButtonOffset();
+
   applyFontSize(currentFontSize);
   window.addEventListener("resize", () => {
     syncHeaderHeight();
@@ -749,24 +761,35 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load", updateSidebarScrollHint);
     updateSidebarScrollHint();
   }
-  initialiseThumbnails();
-  initialiseImageExpand();
   initialisePhotoViewer();
 
-  const audio = document.getElementById("exhibitionAudio");
-  const playIcon = document.getElementById("playIcon");
+  // Initial accessibility state of the sidebar.
+  syncSidebarAccessibility();
 
-  if (audio && playIcon) {
-    audio.addEventListener("play", () => {
-      playIcon.className = "fas fa-pause";
+  // "Skip to main content": move focus straight into the main content (the navigation is not entered).
+  const skipToMain = document.querySelector('.skip-link[href="#main-content"]');
+  const mainContent = document.getElementById("main-content");
+
+  if (skipToMain && mainContent) {
+    skipToMain.addEventListener("click", (event) => {
+      event.preventDefault();
+      mainContent.focus();
     });
+  }
 
-    audio.addEventListener("pause", () => {
-      playIcon.className = "fas fa-play";
-    });
+  // "Go to navigation bar" skip link: open the drawer first on mobile, then move focus into the navigation.
+  const skipToNavigation = document.getElementById("skipToNavigation");
+  const sidebarNav = document.getElementById("sidebarNav");
 
-    audio.addEventListener("ended", () => {
-      playIcon.className = "fas fa-play";
+  if (skipToNavigation && sidebarNav) {
+    skipToNavigation.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      if (mobileMenuQuery.matches) {
+        toggleSidebarMenu(true);
+      }
+
+      sidebarNav.focus();
     });
   }
 });

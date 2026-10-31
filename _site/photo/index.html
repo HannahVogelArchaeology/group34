@@ -26,7 +26,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Font Awesome icons (version pinned to 6.4.0) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- The URL is pinned to an exact version and the integrity hash is checked in GitHub Actions
+       (scripts/check-cdn-integrity.mjs). Google Fonts serve different CSS per browser, so they cannot carry a hash. -->
 
   <!-- Material Icons CDN -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -127,9 +131,33 @@
   })();
 </script>
 
-<!--[if lte IE 9]>
-<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-<![endif]-->
+<!-- Outdated browser check. It tests for the features the site needs instead of reading the browser name.
+     It is written in plain old JavaScript (no arrow functions, const or template strings) so that old browsers can run it.
+     When a feature is missing it adds the class "outdated-browser" to <html>, which shows the warning in _layouts/default.html. -->
+<script>
+(function () {
+  var supported = false;
+
+  try {
+    supported =
+      !!(window.CSS && window.CSS.supports) &&
+      window.CSS.supports('(--site-test: 0)') &&   /* CSS custom properties (colours and sizes) */
+      window.CSS.supports('display', 'grid') &&    /* CSS grid (page layouts) */
+      window.CSS.supports('inset', '0') &&         /* inset shorthand (photo viewer, sidebar) */
+      'fetch' in window &&
+      'Promise' in window &&
+      !!window.matchMedia &&
+      !!Element.prototype.closest &&
+      'noModule' in document.createElement('script'); /* modern JavaScript, which assets/js/main.js uses */
+  } catch (error) {
+    supported = false;
+  }
+
+  if (!supported) {
+    document.documentElement.className += ' outdated-browser';
+  }
+})();
+</script>
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="/group34/assets/favicon.svg">
@@ -140,6 +168,16 @@
 </head>
 
 <body>
+  <!-- Page start. Back to top moves keyboard focus here, so the next Tab always reaches the skip links.
+       The text is announced to screen reader users at the start of every page. -->
+  <div id="pageTop" tabindex="-1">
+    <p class="sr-only">Keyboard users: press Tab to reach "Skip to main content" and "Go to navigation bar".</p>
+  </div>
+
+  <!-- Skip links: the first focusable items on every page (visible only while focused). -->
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a class="skip-link" href="#sidebarNav" id="skipToNavigation">Go to navigation bar</a>
+
   <header class="pinned-header" role="banner" aria-label="Site Header">
   <div class="header-content">
     <div class="header-left">
@@ -148,7 +186,8 @@
     
     <div class="header-center" aria-live="polite">
       
-        <span class="active-object-name" aria-label="Current page: Photo View">Photo View</span>
+        <span class="active-object-name" aria-label="Current page: Photo View"><span aria-hidden="true">Photo View</span><span class="sr-only">Photo View</span>
+</span>
       
     </div>
 
@@ -176,7 +215,7 @@
     <i class="fa-solid fa-xmark" aria-hidden="true"></i><span aria-hidden="true">Close</span>
   </button>
   
-  <nav class="sidebar-nav" aria-label="Exhibition Sections and Objects">
+  <nav class="sidebar-nav" id="sidebarNav" tabindex="-1" aria-label="Exhibition Sections and Objects">
     <!-- Top Direct Links -->
     <a href="/group34/" class="nav-item main-link" aria-label="Go to Home page">
       <i class="fa-solid fa-landmark" aria-hidden="true"></i>
@@ -185,7 +224,7 @@
     
     <a href="/group34/about/" class="nav-item main-link" aria-label="Go to About Us page">
       <i class="fa fa-search" aria-hidden="true"></i>
-      <span>ABOUT</span>
+      <span>About Us</span>
     </a>
 
     <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
@@ -256,7 +295,12 @@
   <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down" aria-hidden="true"></i></div>
 </aside>
 
-  <main class="main-content" id="main-content" aria-label="Main exhibition content">
+  <main class="main-content" id="main-content" tabindex="-1" aria-label="Main exhibition content">
+    <!-- Hidden unless the check in _includes/head.html finds that the browser is too old. -->
+    <div class="browser-warning" role="alert">
+      You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+    </div>
+
     <main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
 
 <!--
@@ -998,10 +1042,10 @@
       "images": [
         
           {
-            "src": "/group34/assets/images/11%20Feeding%20Vessel_MU3368_hero%20shot_Image1.jpeg",
+            "src": "/group34/assets/images/BottomShelf_hero.jpeg",
             "label": "HERO IMAGE",
-            "caption": "11. Feeding vessel, MU3368, front angled view © Gale History Museum",
-            "alt": "Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top featuring several incised holes, a narrow handle, a thin pouring spout and a flat base."
+            "caption": "This is the caption area for the middle shelf's hero image.",
+            "alt": "This is the alternative text area for the bottom shelf's hero image."
           }
         
       ]
@@ -1015,10 +1059,10 @@
       "images": [
         
           {
-            "src": "/group34/assets/images/4%20Figure%20of%20a%20Musician_MU0086_hero%20shot_Image2.jpeg",
+            "src": "/group34/assets/images/MiddleShelf_hero.jpeg",
             "label": "HERO IMAGE",
-            "caption": "4. Figure of a Musician, MU0086, front-right side view © Gale History Museum",
-            "alt": "Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands."
+            "caption": "This is the caption area for the middle shelf's hero image.",
+            "alt": "This is the alternative text area for the middle shelf's hero image."
           }
         
       ]
@@ -1077,22 +1121,25 @@
 
 <!-- STAGE (MAIN DISPLAY) -->
 <section class="photo-viewer-stage" aria-label="Main photo display">
-    <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">
-        <span aria-hidden="true">‹</span>
-    </button>
-    <figure class="photo-viewer-figure" aria-live="polite">
+    <figure class="photo-viewer-figure" id="photoFigure" tabindex="-1">
         <div class="photo-caption-section" id="photoCaptionSection" aria-label="Photo caption">
-            <span id="photoImageCaption">Image caption</span>
+            <span class="sr-only">This is the caption: </span><span id="photoImageCaption">Image caption</span>
         </div>
+        <span class="sr-only">This is the alternative text of the photo: <span id="photoAltText"></span></span>
         <div class="photo-zoom-frame" id="photoZoomFrame" role="button" tabindex="0" aria-pressed="false" aria-label="Magnify photo. Select to zoom in or out.">
-            <img id="photoMainImage" src="" alt="" draggable="false">
+            <img id="photoMainImage" src="" alt="" aria-hidden="true" draggable="false">
         </div>
         <figcaption aria-label="Object title and current view">
+            <span class="sr-only">This is the object title and the view: </span>
             <span id="photoObjectName">Object Name</span>
             <span aria-hidden="true"> • </span>
             <span id="photoViewLabel">[Front View]</span>
         </figcaption>
     </figure>
+<!-- Keyboard and screen reader order: photo information, then Previous, then Next. The grid places them left and right. -->
+    <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">
+        <span aria-hidden="true">‹</span>
+    </button>
     <button class="photo-arrow photo-arrow-right" id="photoNext" type="button" aria-label="Next photo">
         <span aria-hidden="true">›</span>
     </button>
@@ -1107,10 +1154,14 @@
 </aside>
 
 <!-- GUIDE (modal): shows what each part of this page does. Opens with the page and with the Guide button. -->
-<div class="photo-guide" id="photoGuide" role="dialog" aria-modal="true" aria-labelledby="photoGuideTitle" hidden>
+<div class="photo-guide" id="photoGuide" role="dialog" aria-modal="true" aria-labelledby="photoGuideTitle" aria-describedby="photoGuideIntro" hidden>
     <div class="photo-guide-sheet">
         <div class="photo-guide-top">
             <h2 id="photoGuideTitle">Quick Guidance in the Photo Page</h2>
+            <div class="sr-only" id="photoGuideIntro">
+                <p>This is the section that explains how to use the photo page, before you view the photos.</p>
+                <p>If you already understand all of the instructions, press the Close guide button.</p>
+            </div>
             <button class="photo-guide-close" id="photoGuideClose" type="button" aria-label="Close quick guidance dialog">
                 <i class="fa-solid fa-xmark" aria-hidden="true"></i>
                 <span aria-hidden="true">Close guide</span>
@@ -1163,7 +1214,10 @@
 </div>
 
 </main>
-  </main><div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" style="display: none;">
+  </main><div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" aria-describedby="audioPlayerIntro" tabindex="-1" style="display: none;">
+  <!-- Spoken when the player opens (keyboard focus lands on the player itself, not on the time or seek bar). -->
+  <p class="sr-only" id="audioPlayerIntro">You are in the audio player. Press Tab to change the playback speed, play or pause, adjust the volume, or close the player.</p>
+
   <!-- Bar with the time -->
   <div class="audio-progress-container" role="group" aria-label="Audio progress and seek bar">
     <span id="currentTime" aria-label="Current audio time">0:00</span>
@@ -1183,7 +1237,8 @@
 
     <!-- Center info -->
     <div class="audio-center" aria-live="polite" aria-label="Currently playing track details">
-      <span class="audio-obj-name">Photo View</span>
+      <span class="audio-obj-name"><span aria-hidden="true">Photo View</span><span class="sr-only">Photo View</span>
+</span>
       <span class="audio-shelf-label">Photo View</span>
     </div>
 
@@ -1196,7 +1251,7 @@
         <button type="button" onclick="toggleVolumePopup()" aria-label="Toggle volume slider" aria-controls="volumePopup">
           <i class="fas fa-volume-up" id="volumeIcon" aria-hidden="true"></i>
         </button>
-        <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button" aria-label="Close audio player">
+        <button class="audio-play-btn" onclick="closeAudioPlayer()" type="button" aria-label="Close audio player">
           <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
       </div>
@@ -1204,19 +1259,7 @@
   </div>
 
   <audio id="exhibitionAudio" src="" preload="none" aria-label="Exhibition audio track"></audio>
-</div><footer class="site-footer" role="contentinfo" aria-label="Site Footer">
-  
-
-  <div class="footer-bottom">
-    <div class="copyright-area">
-      <p class="footer-copyright" aria-label="Copyright 2026 Disability Heritage: Archaeology with Difference. All rights reserved.">&copy; 2026 Disability Heritage: Archaeology with Difference. All rights reserved.</p>
-    </div>
-    <nav class="legal-links" aria-label="Legal and policy links">
-      <a href="/group34/privacy/" aria-label="Read our Privacy Policy">Privacy</a>
-      <a href="/group34/terms/" aria-label="Read our Terms and Conditions">Terms &amp; Conditions</a>
-    </nav>
-  </div>
-</footer>
+</div>
 
   <script src="/group34/assets/js/main.js"></script>
 </body>

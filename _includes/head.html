@@ -24,7 +24,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Font Awesome icons (version pinned to 6.4.0) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+  <!-- The URL is pinned to an exact version and the integrity hash is checked in GitHub Actions
+       (scripts/check-cdn-integrity.mjs). Google Fonts serve different CSS per browser, so they cannot carry a hash. -->
 
   <!-- Material Icons CDN -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -125,9 +129,33 @@
   })();
 </script>
 
-<!--[if lte IE 9]>
-<p class="browser-warning">You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-<![endif]-->
+<!-- Outdated browser check. It tests for the features the site needs instead of reading the browser name.
+     It is written in plain old JavaScript (no arrow functions, const or template strings) so that old browsers can run it.
+     When a feature is missing it adds the class "outdated-browser" to <html>, which shows the warning in _layouts/default.html. -->
+<script>
+(function () {
+  var supported = false;
+
+  try {
+    supported =
+      !!(window.CSS && window.CSS.supports) &&
+      window.CSS.supports('(--site-test: 0)') &&   /* CSS custom properties (colours and sizes) */
+      window.CSS.supports('display', 'grid') &&    /* CSS grid (page layouts) */
+      window.CSS.supports('inset', '0') &&         /* inset shorthand (photo viewer, sidebar) */
+      'fetch' in window &&
+      'Promise' in window &&
+      !!window.matchMedia &&
+      !!Element.prototype.closest &&
+      'noModule' in document.createElement('script'); /* modern JavaScript, which assets/js/main.js uses */
+  } catch (error) {
+    supported = false;
+  }
+
+  if (!supported) {
+    document.documentElement.className += ' outdated-browser';
+  }
+})();
+</script>
 
 <!-- SVG Favicon -->
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
