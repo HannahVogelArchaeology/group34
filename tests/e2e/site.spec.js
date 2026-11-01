@@ -15,6 +15,18 @@ const PAGES = [
 
 const isDesktopWidth = (page) => (page.viewportSize() || { width: 0 }).width > 700;
 
+// Closes the Quick Guidance dialog on the photo viewer and moves the keyboard starting point back to the top of the page.
+const closeGuideAndRestartFocus = async (page) => {
+  await page.locator("#photoGuideClose").click();
+  await expect(page.locator("#photoGuide")).toBeHidden();
+  await page.evaluate(() => {
+    document.activeElement.blur();
+    document.body.setAttribute("tabindex", "-1");
+    document.body.focus();
+    document.body.removeAttribute("tabindex");
+  });
+};
+
 for (const target of PAGES) {
   test.describe(target.name, () => {
     test("loads without script errors or broken local files", async ({ page, baseURL }) => {
@@ -43,6 +55,11 @@ for (const target of PAGES) {
 
     test("skip links are the first two keyboard stops", async ({ page }) => {
       await page.goto(target.path);
+      if (target.name === "Photo viewer") {
+        // The Quick Guidance dialog opens with this page and keeps the focus on its close button (see the
+        // "Quick Guidance dialog" tests below), so close it and start from the top of the page.
+        await closeGuideAndRestartFocus(page);
+      }
       await page.keyboard.press("Tab");
       await expect(page.locator(":focus")).toHaveText("Skip to main content");
       await page.keyboard.press("Tab");
@@ -157,6 +174,57 @@ test.describe("Photo viewer", () => {
     await page.locator("#photoGuideClose").click();
     await expect(guide).toBeHidden();
     await expect(page.locator("#photoFigure .sr-only").first()).toContainText("This is the caption");
+  });
+
+  test("Quick Guidance dialog: opens with the page, keeps the focus inside, closes with Escape", async ({ page }) => {
+    await page.goto(PAGES.find((item) => item.name === "Photo viewer").path);
+    const guide = page.locator("#photoGuide");
+    const closeButton = page.locator("#photoGuideClose");
+
+    await expect(guide).toBeVisible();
+    await expect(guide).toHaveAttribute("role", "dialog");
+    await expect(guide).toHaveAttribute("aria-modal", "true");
+    await expect(page.locator("#photoGuideTitle")).toHaveText("Quick Guidance in the Photo Page");
+    await expect(page.locator(".photo-guide-items li").first()).toBeVisible();
+
+    // The focus starts on the close button and Tab and Shift+Tab cannot leave it
+    await expect(closeButton).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(closeButton).toBeFocused();
+    await page.keyboard.press("Shift+Tab");
+    await expect(closeButton).toBeFocused();
+
+    // The page behind the dialog cannot be reached while it is open
+    const behindIsInert = await page.evaluate(() =>
+      Array.from(document.querySelectorAll(".photo-viewer-header, .photo-viewer-stage, .photo-thumbnail-panel")).every(
+        (element) => element.inert
+      )
+    );
+    expect(behindIsInert).toBe(true);
+
+    // Escape closes the dialog and gives the focus back to the Guide button
+    await page.keyboard.press("Escape");
+    await expect(guide).toBeHidden();
+    await expect(page.locator("#photoGuideButton")).toBeFocused();
+    await expect(page.locator("#photoGuideButton")).toHaveAttribute("aria-expanded", "false");
+  });
+
+  test("Quick Guidance dialog: the Guide button opens it again", async ({ page }) => {
+    await page.goto(PAGES.find((item) => item.name === "Photo viewer").path);
+    const guide = page.locator("#photoGuide");
+
+    await page.locator("#photoGuideClose").click();
+    await expect(guide).toBeHidden();
+
+    await page.locator("#photoGuideButton").click();
+    await expect(guide).toBeVisible();
+    await expect(page.locator("#photoGuideButton")).toHaveAttribute("aria-expanded", "true");
+    await expect(page.locator("#photoGuideClose")).toBeFocused();
+    await expect(page.locator("#photoGuideTitle")).toHaveText("Quick Guidance in the Photo Page");
+
+    await page.locator("#photoGuideClose").click();
+    await expect(guide).toBeHidden();
+    await expect(page.locator("#photoGuideButton")).toBeFocused();
   });
 });
 

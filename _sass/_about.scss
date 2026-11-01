@@ -360,3 +360,9 @@ i.fa-linkedin {
 .team-member-table tr[hidden] {
   display: none;
 }
+
+/* On the smallest phones (320px) the six team avatars are 8px too wide for one row and make the page scroll sideways,
+   so the gap between them is smaller there. */
+@media (max-width: 340px) {
+  .about-page-container .team-avatars { gap: 4px; }
+}
