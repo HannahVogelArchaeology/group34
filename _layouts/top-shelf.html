@@ -16,6 +16,7 @@ layout: default
   <section class="media-section" aria-label="Media gallery for {{ page.object_title | default: 'Object 1' | escape }}">
     <div class="hero-image-wrapper">
       {% assign top_gallery = page.gallery_images %}
+      {% assign top_hero_src = top_gallery[0].src %}
       <a
         class="shelf-photo-link"
         href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
@@ -35,12 +36,11 @@ layout: default
     <p class="image-caption" aria-label="Image caption">{{ top_gallery[0].caption }}</p>
 
     <div class="media-controls-bar" aria-label="Additional media controls">
-      <div class="thumbnail-list" role="list" aria-label="{{ page.object_title | default: 'Object 1' | escape }} additional photo views">
+      <div class="thumbnail-list" role="group" aria-label="{{ page.object_title | default: 'Object 1' | escape }} additional photo views">
         {% for image in top_gallery offset:1 %}
           {% assign image_index = forloop.index %}
           <a
             class="thumb-box"
-            role="listitem"
             href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index={{ image_index }}"
             aria-label="Open {{ image.label | escape }} view of {{ page.object_title | default: 'Object 1' | escape }}"
           >

@@ -174,7 +174,8 @@
     }
 
     .label-col {
-      color: #b5833f;
+      // Darkened from #b5833f so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+      color: #866428;
       width: 30%;
       font-weight: 400;
       vertical-align: top;
@@ -351,6 +352,8 @@ i.fa-linkedin {
 .about-page-container .about-toc h2 { margin-top: 0; font-size: 1.15rem; }
 .about-page-container .about-toc ul { display: flex; flex-direction: column; gap: .6rem; margin: 0; padding-left: 1.25rem; }
 .about-page-container .about-toc a { text-decoration: underline; text-underline-offset: .18em; }
+/* Links inside paragraphs are underlined so they are not told apart from the text by colour alone (WCAG 1.4.1). */
+.about-page-container p a { text-decoration: underline; text-underline-offset: 2px; }
 .about-page-container .tab-content { display: block !important; scroll-margin-top: 120px; }
 
 /* The Social row is hidden (attribute set by the About page script) for members without a LinkedIn address. */

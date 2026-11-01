@@ -165,7 +165,8 @@
       font-size: 1.3em;
       font-weight: 400;
       margin-bottom: 0.8em;
-      color: #a48352;
+      // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+      color: #866428;
     }
 
     .body-text {
@@ -236,7 +237,8 @@
           font-size: 1em;
 
           &.label {
-            color: #a48352;
+            // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+            color: #866428;
             width: 1%; /* Shrink the label column to its text so values can use the remaining width. */
             white-space: nowrap;
             padding-right: 1.5em;

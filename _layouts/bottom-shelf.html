@@ -30,10 +30,10 @@ layout: default
   <section class="object-explorer-carousel" aria-labelledby="bottom-shelf-explorer-heading">
     <h2 id="bottom-shelf-explorer-heading">Explore the objects</h2>
     <p class="carousel-instructions" id="bottom-carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
-    <div class="object-carousel-track" role="list" aria-label="Bottom Shelf Objects" aria-describedby="bottom-carousel-instructions">
+    <div class="object-carousel-track" role="group" aria-label="Bottom Shelf Objects" aria-describedby="bottom-carousel-instructions">
       {% for obj in page.objects %}
       {% assign obj_number = obj.slug | split: 'object' | last %}
-      <a class="object-carousel-card" role="listitem" href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" aria-label="View Object {{ obj_number }}: {{ obj.name | escape }}">
+      <a class="object-carousel-card" href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" aria-label="View Object {{ obj_number }}: {{ obj.name | escape }}">
         <span class="object-carousel-number" aria-hidden="true">{{ obj_number }}</span>
         <span class="object-carousel-image-wrap"><img src="{{ obj.image | relative_url }}" {% include responsive-attrs.html src=obj.image sizes="(max-width: 700px) 50vw, 400px" %} alt="{{ obj.alt | escape }}" loading="lazy" decoding="async"></span>
         <span class="object-carousel-copy">

@@ -9,7 +9,8 @@
 
   .back-link {
     display: inline-block;
-    color: #a48352;
+    // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+    color: #866428;
     text-decoration: none;
     font-size: 0.85em;
     font-weight: 500;
@@ -196,7 +197,8 @@
       margin-bottom: 2em;
 
       .overview-title {
-        color: #a48352;
+        // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+        color: #866428;
         font-size: 1.3em;
         margin-bottom: 0.4em;
       }
@@ -211,8 +213,11 @@
     .audio-section {
       margin-bottom: 2.5em;
 
-      h3 {
-        color: #a48352;
+      // This is an h2 so the heading order under the page h1 has no gap; margin-top keeps the old h3 spacing.
+      h2 {
+        margin-top: 1em;
+        // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+        color: #866428;
         font-size: 1.3em;
         font-weight: 400;
         margin-bottom: 0.8em;
@@ -266,8 +271,11 @@
     }
 
     .metadata-section {
-      h3 {
-        color: #a48352;
+      // This is an h2 so the heading order under the page h1 has no gap; margin-top keeps the old h3 spacing.
+      h2 {
+        margin-top: 1em;
+        // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+        color: #866428;
         font-size: 1.3em;
         font-weight: 400;
         margin-bottom: 0.8em;
@@ -285,7 +293,8 @@
             font-size: 1em;
 
             &.meta-label {
-              color: #a48352;
+              // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+              color: #866428;
               width: 1%; /* Shrink the label column to its text so values can use the remaining width. */
               white-space: nowrap;
               padding-right: 1.5em;
@@ -373,7 +382,8 @@
       .sub-label {
         font-size: 1em;
         letter-spacing: 0.1em;
-        color: #777;
+        // Darkened from #777 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+        color: #666;
         text-transform: uppercase;
       }
 
