@@ -13,6 +13,12 @@
     margin: 0 auto;
     padding-top: 20px;
 
+    .footer-left h2 {
+      font-size: 1em;
+      font-weight: bold;
+      margin: 1.33em 0;
+    }
+
     .social-icons {
       display: flex;
       gap: 15px;
@@ -168,8 +174,9 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
       input[type="range"] {
-        writing-mode: bt-lr; /* IE/Edge */
-        appearance: slider-vertical; /* Standard */
+        /* Vertical slider, minimum at the bottom (replaces the deprecated "appearance: slider-vertical") */
+        writing-mode: vertical-lr;
+        direction: rtl;
         width: 8px;
         height: 80px;
         accent-color: #fff;
