@@ -21,7 +21,7 @@ layout: default
         href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
         aria-label="Open {{ page.object_title | default: 'Object 1' | escape }} front image in the photo viewer"
       >
-        <img src="{{ top_gallery[0].src | relative_url }}" {% include responsive-attrs.html src=top_gallery[0].src sizes="(max-width: 1100px) 100vw, 1100px" %} alt="{{ top_gallery[0].alt | escape }}" class="hero-image" fetchpriority="high" />
+        <img src="{{ top_gallery[0].src | relative_url }}" {% include responsive-attrs.html src=top_hero_src sizes="(max-width: 1100px) 100vw, 1100px" %} alt="{{ top_gallery[0].alt | escape }}" class="hero-image" fetchpriority="high" />
       </a>
       <a
         class="expand-btn"
