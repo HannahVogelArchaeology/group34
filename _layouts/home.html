@@ -25,7 +25,9 @@ layout: default
     </div>
     <figure class="home-feature-media">
       {% if page.hero_image %}
-      <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 700px) 100vw, (max-width: 1400px) 55vw, 760px" %} alt="{{ page.hero_alt | escape }}" loading="eager" fetchpriority="high">
+      {% comment %} The width and height attributes let the browser reserve the image space before it loads, so the text below does not jump (layout shift). {% endcomment %}
+      {% include responsive-lookup.html src=page.hero_image %}
+      <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 700px) 100vw, (max-width: 1400px) 55vw, 760px" %}{% if ri_found %} width="{{ ri_w }}" height="{{ ri_h }}"{% endif %} alt="{{ page.hero_alt | escape }}" loading="eager" fetchpriority="high">
       <figcaption class="image-caption">{{ page.hero_image_caption }}</figcaption>
       {% else %}
       <div class="hero-media-placeholder" role="img" aria-label="Main page image placeholder">Main page image placeholder</div>
