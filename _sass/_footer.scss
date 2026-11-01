@@ -264,7 +264,8 @@
         font-size: 1em;
         line-height: 1.4;
         letter-spacing: 0.08em;
-        color: #777;
+        // Darkened from #777 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
+        color: #666;
         text-transform: uppercase;
         transition: color 160ms ease;
       }
