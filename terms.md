@@ -29,7 +29,7 @@ permalink: /terms/
     </section>
 
     <section id="introduction" class="policy-section">
-      <h2 class="section-title">Introduction and use of the exhibition</h2>
+      <h2 class="section-title">1. Introduction and use of the exhibition</h2>
       <p>Welcome to Disability Heritage: Archaeology with Difference, a digital exhibition exploring disability heritage through archaeological objects, historical interpretation and accessible storytelling.</p>
       <p>The exhibition provides educational and cultural resources intended to encourage public engagement, historical understanding and inclusive exploration of the past.</p>
       <p>These Terms &amp; Conditions explain the permitted use of the website and its materials, including text, photographs, illustrations, audio descriptions, Auslan videos and interactive resources.</p>
@@ -37,7 +37,7 @@ permalink: /terms/
     </section>
 
     <section id="copyright-and-credits" class="policy-section">
-      <h2 class="section-title">Copyright, credits and licensing</h2>
+      <h2 class="section-title">2. Copyright, credits and licensing</h2>
       <p>The exhibition brings together historical, archaeological and interpretive materials from a range of creators, contributors, collections and cultural institutions. Copyright and other intellectual property rights in these materials remain with their respective rights holders unless otherwise indicated.</p>
       <p>Every image, video, audio file, 3D model and piece of text is credited where it appears. For example, the caption under a photograph and the caption in the photo viewer give the credit line, such as "© Gale History Museum". The credit line names the rights holder. The rights in an item stay with the credited holder.</p>
       <p>Where available, image and object records identify relevant attribution and rights information, which may include:</p>
@@ -53,7 +53,7 @@ permalink: /terms/
     </section>
 
     <section id="reuse" class="policy-section">
-      <h2 class="section-title">Reuse of exhibition materials</h2>
+      <h2 class="section-title">3. Reuse of exhibition materials</h2>
       <p>Visitors may refer to exhibition materials for personal learning, study and research. Do not copy, reproduce, redistribute, change or use any item for commercial purposes without written permission from its credited rights holder, except where the law or an applicable licence allows it. This applies to images and photographs, audio descriptions, transcripts, the Auslan video, 3D models and written text such as overviews, narratives and captions.</p>
 
       <div class="subsection">
@@ -74,7 +74,7 @@ permalink: /terms/
     </section>
 
     <section id="accessibility" class="policy-section">
-      <h2 class="section-title">Accessibility and multimedia content</h2>
+      <h2 class="section-title">4. Accessibility and multimedia content</h2>
       <p>Accessibility is a central consideration in the presentation of Disability Heritage: Archaeology with Difference.</p>
       <p>The website provides features intended to support visitors with different access needs and preferences, including adjustable text size, audio descriptions, Auslan videos and written transcripts where available. The availability of particular formats may vary between individual objects and resources.</p>
       <p>Visitors may use these features for their intended accessibility and educational purposes. Copyright and licensing conditions continue to apply to the underlying content.</p>
@@ -82,14 +82,14 @@ permalink: /terms/
     </section>
 
     <section id="external-resources" class="policy-section">
-      <h2 class="section-title">External websites and resources</h2>
+      <h2 class="section-title">5. External websites and resources</h2>
       <p>The exhibition may provide links to external websites, digital collections, research resources and interactive platforms. These include the NIRA platform, which provides access to selected three-dimensional models of archaeological objects.</p>
       <p>External links are included to support further exploration and engagement with exhibition materials. Their inclusion does not necessarily imply endorsement of all content, services or views expressed by the external provider.</p>
       <p>Third-party websites operate under their own terms of use, copyright arrangements and privacy practices. Visitors should review those conditions before using external services or reusing their content. The exhibition does not control the continued availability, functionality or content of external websites.</p>
     </section>
 
     <section id="website-code" class="policy-section">
-      <h2 class="section-title">Website code, fonts and icons</h2>
+      <h2 class="section-title">6. Website code, fonts and icons</h2>
       <ul class="policy-list">
         <li><strong>Website code.</strong> The code is released under the MIT licence.</li>
         <li><strong>Fonts and icons.</strong> These come from other providers under their own licences: the SIL Open Font License 1.1, Creative Commons Attribution 4.0 and the Apache License 2.0. The website's source repository lists each one.</li>
@@ -97,7 +97,7 @@ permalink: /terms/
     </section>
 
     <section id="accuracy-and-disclaimer" class="policy-section">
-      <h2 class="section-title">Accuracy and disclaimer</h2>
+      <h2 class="section-title">7. Accuracy and disclaimer</h2>
       <p>The exhibition presents archaeological and historical material for cultural, educational and informational purposes. The content is for general information.</p>
       <p>Reasonable efforts are made to present accurate and appropriately contextualised information. However, historical and archaeological interpretations may develop as new evidence, research and perspectives become available. Visitors are encouraged to consult original sources and additional scholarly resources when using exhibition material for academic or professional research.</p>
       <p>Website content may be corrected, revised or updated to reflect new information or improvements to the exhibition.</p>
@@ -105,7 +105,7 @@ permalink: /terms/
     </section>
 
     <section id="enquiries" class="policy-section">
-      <h2 class="section-title">Enquiries and updates</h2>
+      <h2 class="section-title">8. Enquiries and updates</h2>
 
       <div class="subsection">
         <h3 class="subsection-title">8.1 Copyright and content enquiries</h3>
