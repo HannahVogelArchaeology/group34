@@ -10,3 +10,9 @@ tests/node_modules/
 tests/test-results/
 tests/playwright-report/
 .ruby-lsp/
+
+# Lighthouse CI local output
+.lighthouseci/
+
+# Node dependencies (root)
+node_modules/
