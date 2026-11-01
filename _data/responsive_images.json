@@ -1,4 +1,868 @@
 {
+ "/assets/images/1 Pelike_MU4759_back_Image3.jpg": {
+  "base": "/assets/images/responsive/1-Pelike_MU4759_back_Image3",
+  "h": 5455,
+  "w": 3638,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/1 Pelike_MU4759_front scene_Image2.jpg": {
+  "base": "/assets/images/responsive/1-Pelike_MU4759_front-scene_Image2",
+  "h": 4787,
+  "w": 7177,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/1 Pelike_MU4759_front_Image1.jpg": {
+  "base": "/assets/images/responsive/1-Pelike_MU4759_front_Image1",
+  "h": 4996,
+  "w": 7490,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/10 Spouted Vessel_MU0091_back_Image5.jpg": {
+  "base": "/assets/images/responsive/10-Spouted-Vessel_MU0091_back_Image5",
+  "h": 3278,
+  "w": 4915,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/10 Spouted Vessel_MU0091_bottom_Image7.jpg": {
+  "base": "/assets/images/responsive/10-Spouted-Vessel_MU0091_bottom_Image7",
+  "h": 3065,
+  "w": 4595,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/10 Spouted Vessel_MU0091_front angled_Image1.jpg": {
+  "base": "/assets/images/responsive/10-Spouted-Vessel_MU0091_front-angled_Image1",
+  "h": 3284,
+  "w": 4923,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/10 Spouted Vessel_MU0091_front_Image4.jpg": {
+  "base": "/assets/images/responsive/10-Spouted-Vessel_MU0091_front_Image4",
+  "h": 3284,
+  "w": 4924,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/10 Spouted Vessel_MU0091_left side_Image2.jpg": {
+  "base": "/assets/images/responsive/10-Spouted-Vessel_MU0091_left-side_Image2",
+  "h": 3277,
+  "w": 4913,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/10 Spouted Vessel_MU0091_right side_Image3.jpg": {
+  "base": "/assets/images/responsive/10-Spouted-Vessel_MU0091_right-side_Image3",
+  "h": 3327,
+  "w": 4988,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/10 Spouted Vessel_MU0091_top_Image6.jpg": {
+  "base": "/assets/images/responsive/10-Spouted-Vessel_MU0091_top_Image6",
+  "h": 3150,
+  "w": 4722,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_back left side_Image5.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_back-left-side_Image5",
+  "h": 2647,
+  "w": 3968,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_back right side_Image7.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_back-right-side_Image7",
+  "h": 2932,
+  "w": 4396,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_back_Image6.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_back_Image6",
+  "h": 2861,
+  "w": 4289,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_bottom_Image10.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_bottom_Image10",
+  "h": 2801,
+  "w": 4199,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_front left side_Image3.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_front-left-side_Image3",
+  "h": 2848,
+  "w": 4270,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_front_Image2.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_front_Image2",
+  "h": 2877,
+  "w": 4314,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_hero shot_Image1.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_hero-shot_Image1",
+  "h": 2841,
+  "w": 4260,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_left side_Image4.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_left-side_Image4",
+  "h": 2943,
+  "w": 4413,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_right side_Image8.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_right-side_Image8",
+  "h": 2759,
+  "w": 4137,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/11 Feeding Vessel_MU3368_top_Image9.jpg": {
+  "base": "/assets/images/responsive/11-Feeding-Vessel_MU3368_top_Image9",
+  "h": 2833,
+  "w": 4248,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/2 Reclining Figure_MU4249_back_Image2.jpg": {
+  "base": "/assets/images/responsive/2-Reclining-Figure_MU4249_back_Image2",
+  "h": 5464,
+  "w": 8192,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/2 Reclining Figure_MU4249_base_Image3.jpg": {
+  "base": "/assets/images/responsive/2-Reclining-Figure_MU4249_base_Image3",
+  "h": 5464,
+  "w": 8192,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/2 Reclining Figure_MU4249_front_Image1.jpg": {
+  "base": "/assets/images/responsive/2-Reclining-Figure_MU4249_front_Image1",
+  "h": 5464,
+  "w": 8192,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/3 Bronze Dancer_MU0101_back_Image2.jpg": {
+  "base": "/assets/images/responsive/3-Bronze-Dancer_MU0101_back_Image2",
+  "h": 4084,
+  "w": 6123,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/3 Bronze Dancer_MU0101_front_Image1.jpg": {
+  "base": "/assets/images/responsive/3-Bronze-Dancer_MU0101_front_Image1",
+  "h": 4089,
+  "w": 6130,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/3 Bronze Dancer_MU0101_left side back_Image4.jpg": {
+  "base": "/assets/images/responsive/3-Bronze-Dancer_MU0101_left-side-back_Image4",
+  "h": 4014,
+  "w": 6018,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/3 Bronze Dancer_MU0101_left side front_Image3.jpg": {
+  "base": "/assets/images/responsive/3-Bronze-Dancer_MU0101_left-side-front_Image3",
+  "h": 3899,
+  "w": 5845,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/3 Bronze Dancer_MU0101_right side back_Image6.jpg": {
+  "base": "/assets/images/responsive/3-Bronze-Dancer_MU0101_right-side-back_Image6",
+  "h": 4005,
+  "w": 6004,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/3 Bronze Dancer_MU0101_right side front_Image5.jpg": {
+  "base": "/assets/images/responsive/3-Bronze-Dancer_MU0101_right-side-front_Image5",
+  "h": 4191,
+  "w": 6284,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/4 Figure of a Musician_MU0086_back_Image8.jpg": {
+  "base": "/assets/images/responsive/4-Figure-of-a-Musician_MU0086_back_Image8",
+  "h": 3036,
+  "w": 4552,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/4 Figure of a Musician_MU0086_front left side_Image3.jpg": {
+  "base": "/assets/images/responsive/4-Figure-of-a-Musician_MU0086_front-left-side_Image3",
+  "h": 3245,
+  "w": 4865,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/4 Figure of a Musician_MU0086_front_Image1.jpg": {
+  "base": "/assets/images/responsive/4-Figure-of-a-Musician_MU0086_front_Image1",
+  "h": 3278,
+  "w": 4914,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/4 Figure of a Musician_MU0086_hero shot_Image2.jpg": {
+  "base": "/assets/images/responsive/4-Figure-of-a-Musician_MU0086_hero-shot_Image2",
+  "h": 3265,
+  "w": 4895,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/4 Figure of a Musician_MU0086_left side back_Image6.jpg": {
+  "base": "/assets/images/responsive/4-Figure-of-a-Musician_MU0086_left-side-back_Image6",
+  "h": 3309,
+  "w": 4961,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/4 Figure of a Musician_MU0086_left side_Image4.jpg": {
+  "base": "/assets/images/responsive/4-Figure-of-a-Musician_MU0086_left-side_Image4",
+  "h": 3200,
+  "w": 4797,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/4 Figure of a Musician_MU0086_right side back_Image7.jpg": {
+  "base": "/assets/images/responsive/4-Figure-of-a-Musician_MU0086_right-side-back_Image7",
+  "h": 3157,
+  "w": 4733,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/4 Figure of a Musician_MU0086_right side_Image5.jpg": {
+  "base": "/assets/images/responsive/4-Figure-of-a-Musician_MU0086_right-side_Image5",
+  "h": 3136,
+  "w": 4701,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/5 Seated Statuette_MU3735_back_Image5.jpg": {
+  "base": "/assets/images/responsive/5-Seated-Statuette_MU3735_back_Image5",
+  "h": 4690,
+  "w": 7032,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/5 Seated Statuette_MU3735_front left side_Image2.jpg": {
+  "base": "/assets/images/responsive/5-Seated-Statuette_MU3735_front-left-side_Image2",
+  "h": 4706,
+  "w": 7055,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/5 Seated Statuette_MU3735_front_Image1.jpg": {
+  "base": "/assets/images/responsive/5-Seated-Statuette_MU3735_front_Image1",
+  "h": 4603,
+  "w": 6901,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/5 Seated Statuette_MU3735_left side_Image3.jpg": {
+  "base": "/assets/images/responsive/5-Seated-Statuette_MU3735_left-side_Image3",
+  "h": 4668,
+  "w": 6999,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/5 Seated Statuette_MU3735_right side_Image4.jpg": {
+  "base": "/assets/images/responsive/5-Seated-Statuette_MU3735_right-side_Image4",
+  "h": 4602,
+  "w": 6899,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_back_Image3.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_back_Image3",
+  "h": 3899,
+  "w": 5845,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_bottom_Image9.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_bottom_Image9",
+  "h": 1331,
+  "w": 1996,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   1996
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_close up_Image2.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_close-up_Image2",
+  "h": 2495,
+  "w": 3741,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_front_Image1.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_front_Image1",
+  "h": 4115,
+  "w": 6170,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_left side front_Image6.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_left-side-front_Image6",
+  "h": 4097,
+  "w": 6143,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_left side_Image7.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_left-side_Image7",
+  "h": 4013,
+  "w": 6017,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_right side front_Image5.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_right-side-front_Image5",
+  "h": 4197,
+  "w": 6293,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_right side_Image4.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_right-side_Image4",
+  "h": 4124,
+  "w": 6183,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/6 Bronze Figurine of Priapus_MU4697_top_Image8.jpg": {
+  "base": "/assets/images/responsive/6-Bronze-Figurine-of-Priapus_MU4697_top_Image8",
+  "h": 1487,
+  "w": 2229,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2229
+  ]
+ },
+ "/assets/images/7 Terracotta Figurine_MU2676_back left side_Image6.jpg": {
+  "base": "/assets/images/responsive/7-Terracotta-Figurine_MU2676_back-left-side_Image6",
+  "h": 3113,
+  "w": 4667,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/7 Terracotta Figurine_MU2676_back right side_Image7.jpg": {
+  "base": "/assets/images/responsive/7-Terracotta-Figurine_MU2676_back-right-side_Image7",
+  "h": 3075,
+  "w": 4610,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/7 Terracotta Figurine_MU2676_back_Image8.jpg": {
+  "base": "/assets/images/responsive/7-Terracotta-Figurine_MU2676_back_Image8",
+  "h": 3013,
+  "w": 4518,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/7 Terracotta Figurine_MU2676_front left side_Image2.jpg": {
+  "base": "/assets/images/responsive/7-Terracotta-Figurine_MU2676_front-left-side_Image2",
+  "h": 3139,
+  "w": 4706,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/7 Terracotta Figurine_MU2676_front right side_Image3.jpg": {
+  "base": "/assets/images/responsive/7-Terracotta-Figurine_MU2676_front-right-side_Image3",
+  "h": 3104,
+  "w": 4654,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/7 Terracotta Figurine_MU2676_front_Image1.jpg": {
+  "base": "/assets/images/responsive/7-Terracotta-Figurine_MU2676_front_Image1",
+  "h": 2938,
+  "w": 4405,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/7 Terracotta Figurine_MU2676_left side_Image4.jpg": {
+  "base": "/assets/images/responsive/7-Terracotta-Figurine_MU2676_left-side_Image4",
+  "h": 3048,
+  "w": 4570,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/7 Terracotta Figurine_MU2676_right side_Image5.jpg": {
+  "base": "/assets/images/responsive/7-Terracotta-Figurine_MU2676_right-side_Image5",
+  "h": 3084,
+  "w": 4624,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/8 Amulet of Pataikos_MU0523_back_Image2.jpg": {
+  "base": "/assets/images/responsive/8-Amulet-of-Pataikos_MU0523_back_Image2",
+  "h": 3446,
+  "w": 5166,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/8 Amulet of Pataikos_MU0523_bottom_Image6.jpg": {
+  "base": "/assets/images/responsive/8-Amulet-of-Pataikos_MU0523_bottom_Image6",
+  "h": 1442,
+  "w": 2162,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2162
+  ]
+ },
+ "/assets/images/8 Amulet of Pataikos_MU0523_front_Image1.jpg": {
+  "base": "/assets/images/responsive/8-Amulet-of-Pataikos_MU0523_front_Image1",
+  "h": 3300,
+  "w": 4947,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/8 Amulet of Pataikos_MU0523_left side_Image4.jpg": {
+  "base": "/assets/images/responsive/8-Amulet-of-Pataikos_MU0523_left-side_Image4",
+  "h": 2900,
+  "w": 4348,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/8 Amulet of Pataikos_MU0523_right side_Image3.jpg": {
+  "base": "/assets/images/responsive/8-Amulet-of-Pataikos_MU0523_right-side_Image3",
+  "h": 2610,
+  "w": 3913,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/8 Amulet of Pataikos_MU0523_top_Image5.jpg": {
+  "base": "/assets/images/responsive/8-Amulet-of-Pataikos_MU0523_top_Image5",
+  "h": 1558,
+  "w": 2336,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2336
+  ]
+ },
+ "/assets/images/9 Feeding Cup_AHM1985053_back_image5.jpg": {
+  "base": "/assets/images/responsive/9-Feeding-Cup_AHM1985053_back_image5",
+  "h": 2807,
+  "w": 4209,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/9 Feeding Cup_AHM1985053_bottom_image7.jpg": {
+  "base": "/assets/images/responsive/9-Feeding-Cup_AHM1985053_bottom_image7",
+  "h": 2835,
+  "w": 4251,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/9 Feeding Cup_AHM1985053_front angled_image1.jpg": {
+  "base": "/assets/images/responsive/9-Feeding-Cup_AHM1985053_front-angled_image1",
+  "h": 2913,
+  "w": 4367,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/9 Feeding Cup_AHM1985053_front_image4.jpg": {
+  "base": "/assets/images/responsive/9-Feeding-Cup_AHM1985053_front_image4",
+  "h": 2951,
+  "w": 4424,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/9 Feeding Cup_AHM1985053_sideprofile with handle_image2.jpg": {
+  "base": "/assets/images/responsive/9-Feeding-Cup_AHM1985053_sideprofile-with-handle_image2",
+  "h": 2871,
+  "w": 4305,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/9 Feeding Cup_AHM1985053_sideprofile without handle_image3.jpg": {
+  "base": "/assets/images/responsive/9-Feeding-Cup_AHM1985053_sideprofile-without-handle_image3",
+  "h": 2916,
+  "w": 4372,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
+ "/assets/images/9 Feeding Cup_AHM1985053_top_image6.jpg": {
+  "base": "/assets/images/responsive/9-Feeding-Cup_AHM1985053_top_image6",
+  "h": 2920,
+  "w": 4378,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ },
  "/assets/images/Placeholder1_HomePageFullDisplay.jpeg": {
   "base": "/assets/images/responsive/Placeholder1_HomePageFullDisplay",
   "h": 4032,
