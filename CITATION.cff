@@ -3,9 +3,24 @@ message: "Please cite this student project using the metadata in this file."
 title: "Group 34 exhibition website sandbox"
 type: software
 authors:
-  # Replace this group placeholder with one entry per contributor, using each
-  # person's preferred public name and optional ORCID or profile URL.
-  - name: "Group 34 contributors"
+  - family-names: "Somo"
+    given-names: "Kamrul Hasan"
+    email: "kamrulhasan.somo@students.mq.edu.au"
+  - family-names: "Nguyen"
+    given-names: "Lam"
+    email: "lam.nguyen@students.mq.edu.au"
+  - family-names: "Camara"
+    given-names: "Ibrahim"
+    email: "ibrahim.camara@students.mq.edu.au"
+  - family-names: "Bark"
+    given-names: "Jooeun"
+    email: "jooeun.bark@students.mq.edu.au"
+  - family-names: "Hourigan"
+    given-names: "Declan"
+    email: "declan.hourigan@students.mq.edu.au"
+  - family-names: "Do"
+    given-names: "Tanya"
+    email: "tanya.do1@students.mq.edu.au"
 repository-code: "https://github.com/HannahVogelArchaeology/group34"
 url: "https://hannahvogelarchaeology.github.io/group34/"
 license: MIT

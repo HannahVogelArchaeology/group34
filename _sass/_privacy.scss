@@ -33,7 +33,7 @@
 }
 
 .toc-card {
-  background-color: #f7f6f4;
+  background-color: transparent;
   border-radius: 4px;
   padding: 24px 30px;
   margin-top: 20px;
@@ -96,6 +96,18 @@
     line-height: 1.6;
     color: #444;
     margin-bottom: 16px;
+  }
+
+  .policy-list {
+    margin: 0 0 16px;
+    padding-left: 1.4em;
+
+    li {
+      font-size: 0.95em;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 10px;
+    }
   }
 
   .subsection {

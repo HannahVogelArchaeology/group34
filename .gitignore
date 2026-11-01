@@ -4,3 +4,9 @@ _site/
 .sass-cache/
 vendor/
 __pycache__/
+
+# Test tooling output
+tests/node_modules/
+tests/test-results/
+tests/playwright-report/
+.ruby-lsp/

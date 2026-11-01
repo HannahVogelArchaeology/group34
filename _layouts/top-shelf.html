@@ -1,0 +1,98 @@
+---
+layout: default
+---
+
+<!-- Page summary: read first when a screen reader user lands on the main content. -->
+{% assign top_summary_title = page.object_title | default: "Object 1" %}
+<p class="sr-only page-summary">This is the Top Shelf page. The Top Shelf has one object: {% include object-title-spoken.html title=top_summary_title %}. In keyboard order, this page has the shelf title, the object title, photo, overview, audio description and object information, followed by the previous and next buttons.</p>
+
+<div class="top-shelf-container" role="region" aria-label="{{ page.shelf_title | default: 'Top Shelf' | escape }}">
+  <h1 class="shelf-title">{{ page.shelf_title | default: "TOP SHELF" }}</h1>
+
+  <!-- The only object on this shelf is named first, so visitors know what the photo and text describe. -->
+  <h2 class="object-heading">{% assign top_object_title = page.object_title | default: "Object 1" %}{% include object-title.html title=top_object_title %}</h2>
+  <p class="sr-only end-of-section">This is the end of section: object name.</p>
+
+  <section class="media-section" aria-label="Media gallery for {{ page.object_title | default: 'Object 1' | escape }}">
+    <div class="hero-image-wrapper">
+      {% assign top_gallery = page.gallery_images %}
+      <a
+        class="shelf-photo-link"
+        href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
+        aria-label="Open {{ page.object_title | default: 'Object 1' | escape }} front image in the photo viewer"
+      >
+        <img src="{{ top_gallery[0].src | relative_url }}" alt="{{ top_gallery[0].alt | escape }}" class="hero-image" />
+      </a>
+      <a
+        class="expand-btn"
+        href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
+        aria-label="Expand {{ page.object_title | default: 'Object 1' | escape }} front image to full screen in photo viewer"
+      >
+        <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <p class="image-caption" aria-label="Image caption">{{ top_gallery[0].caption }}</p>
+
+    <div class="media-controls-bar" aria-label="Additional media controls">
+      <div class="thumbnail-list" role="list" aria-label="{{ page.object_title | default: 'Object 1' | escape }} additional photo views">
+        {% for image in top_gallery offset:1 %}
+          {% assign image_index = forloop.index %}
+          <a
+            class="thumb-box"
+            role="listitem"
+            href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index={{ image_index }}"
+            aria-label="Open {{ image.label | escape }} view of {{ page.object_title | default: 'Object 1' | escape }}"
+          >
+            <img src="{{ image.src | relative_url }}" alt="{{ image.caption | escape }}" />
+          </a>
+        {% endfor %}
+      </div>
+      <button class="explore-3d-btn" type="button" aria-label="Explore a 3D model of {{ page.object_title | default: 'Object 1' | escape }}">
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+        <span aria-hidden="true">Explore in 3D</span>
+      </button>
+    </div>
+    <p class="sr-only end-of-section">This is the end of section: photo.</p>
+  </section>
+
+  <section class="shelf-section" aria-labelledby="top-shelf-overview-heading">
+    <h3 id="top-shelf-overview-heading">Overview Text</h3>
+    <p class="body-text">{{ page.overview | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, justo ac lacinia maximus, sed neque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula." }}</p>
+    <p class="sr-only end-of-section">This is the end of section: overview.</p>
+  </section>
+
+  <section class="shelf-section" aria-labelledby="top-shelf-audio-heading">
+    <h3 id="top-shelf-audio-heading">Listen to this story</h3>
+    <div class="audio-controls">
+      <button class="audio-play-btn" onclick="toggleAudioPlayer()" type="button" aria-label="Play audio description for {{ page.object_title | default: 'Object 1' | escape }}">
+        <i class="fa-solid fa-circle-play" aria-hidden="true"></i>
+        <span aria-hidden="true">Audio Description</span>
+      </button>
+    </div>
+    <div class="transcript-accordion" role="region" aria-label="Audio Transcript">
+      <div class="transcript-box">
+        <p class="body-text">{{ page.transcript_text | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }}</p>
+      </div>
+    </div>
+    <p class="sr-only end-of-section">This is the end of section: audio description and transcript.</p>
+  </section>
+
+  <section class="shelf-section" aria-labelledby="top-shelf-info-heading">
+    <h3 id="top-shelf-info-heading">Object Information</h3>
+    <table class="metadata-table" aria-label="Metadata for {{ page.object_title | default: 'Object 1' | escape }}">
+      <tbody>
+        <tr><td class="label"><span aria-hidden="true">Acq. No</span><span class="sr-only">Acquisition Number</span></td><td class="value">MU4759</td></tr>
+        <tr><td class="label">Material</td><td class="value">Ceramic</td></tr>
+        <tr><td class="label">Dimensions</td><td class="value">H: 344mm, W: 200mm</td></tr>
+        <tr class="meta-row-details"><td class="label">Details</td><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
+Purchase, 2013</td></tr>
+      </tbody>
+    </table>
+    <p class="sr-only end-of-section">This is the end of section: object information.</p>
+  </section>
+
+  <nav aria-label="Pagination Navigation">
+    {% include pagination.html %}
+  </nav>
+</div>

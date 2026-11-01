@@ -1,0 +1,6 @@
+{%- comment -%}
+  Object title with a screen reader friendly reading.
+  The visible title is hidden from assistive technology and replaced by the spoken form
+  ("Object number 3, Bronze dancer (replica)"). The visible text is not changed.
+{%- endcomment -%}
+<span aria-hidden="true">{{ include.title | escape }}</span><span class="sr-only">{% include object-title-spoken.html title=include.title %}</span>

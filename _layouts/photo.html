@@ -1,0 +1,183 @@
+---
+layout: default
+---
+
+<main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
+
+<!--
+  Photo gallery data is generated at build time to keep photo URLs short.
+  Objects and shelves are regular pages (not Jekyll collections), so they are read from site.pages.
+-->
+  {% assign object_pages = site.pages | where: "layout", "object" %}
+  {% assign shelf_pages = site.pages | where_exp: "item", "item.layout contains '-shelf'" %}
+  <script type="application/json" id="photoGalleryData">
+  [
+    {% for object in object_pages %}
+    {
+      "key": {{ object.url | relative_url | jsonify }},
+      "object": {{ object.title | jsonify }},
+      "museumNumber": {{ object.museum_number | default: object.acq_no | default: object.acquisition_number | jsonify }},
+      "return": {{ object.url | relative_url | jsonify }},
+      "images": [
+        {% for gallery_image in object.gallery_images %}
+          {% assign image_exists = false %}
+          {% for static_file in site.static_files %}
+            {% if static_file.path == gallery_image.src %}
+              {% assign image_exists = true %}
+            {% endif %}
+          {% endfor %}
+          {
+            "src": {% if image_exists %}{{ gallery_image.src | relative_url | jsonify }}{% else %}{{ object.image | relative_url | jsonify }}{% endif %},
+            "label": {{ gallery_image.label | jsonify }},
+            "caption": {{ gallery_image.caption | jsonify }},
+            "alt": {{ gallery_image.alt | default: gallery_image.caption | jsonify }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    },
+    {% endfor %}
+    {% for shelf in shelf_pages %}
+    {
+      "key": {{ shelf.url | relative_url | jsonify }},
+      "object": {{ shelf.object_title | default: shelf.shelf_title | jsonify }},
+      "museumNumber": {{ shelf.museum_number | default: shelf.acq_no | default: "" | jsonify }},
+      "return": {{ shelf.url | relative_url | jsonify }},
+      "images": [
+        {% if shelf.gallery_images %}
+          {% for image in shelf.gallery_images %}
+          {
+            "src": {{ image.src | relative_url | jsonify }},
+            "label": {{ image.label | jsonify }},
+            "caption": {{ image.caption | jsonify }},
+            "alt": {{ image.alt | default: image.caption | jsonify }}
+          }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        {% else %}
+          {
+            "src": {{ shelf.hero_image | relative_url | jsonify }},
+            "label": "HERO IMAGE",
+            "caption": {{ shelf.hero_caption | jsonify }},
+            "alt": {{ shelf.hero_alt | default: shelf.hero_caption | jsonify }}
+          }
+        {% endif %}
+      ]
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+  </script>
+
+<!-- TOP BAR -->
+<header class="photo-viewer-header" aria-label="Photo viewer controls">
+    <a id="photoBackLink" class="photo-back-link" href="#" aria-label="Go back to previous page"> &lt; BACK</a>
+    <span class="photo-counter" id="photoCounter" aria-live="polite" aria-label="Photo count"> 1 / 1 </span>
+    <div class="photo-header-actions" role="group" aria-label="Viewer utility actions">
+        <button class="photo-guide-btn" id="photoGuideButton" type="button" aria-haspopup="dialog" aria-controls="photoGuide" aria-label="Open photo viewer usage guide">
+            <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+            <span aria-hidden="true">Guide</span>
+        </button>
+        <button class="photo-close" id="photoClose" type="button" aria-label="Close photo viewer">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+</header>
+
+<!-- STAGE (MAIN DISPLAY) -->
+<section class="photo-viewer-stage" aria-label="Main photo display">
+    <figure class="photo-viewer-figure" id="photoFigure" tabindex="-1">
+        <div class="photo-caption-section" id="photoCaptionSection" aria-label="Photo caption">
+            <span class="sr-only">This is the caption: </span><span id="photoImageCaption">Image caption</span>
+        </div>
+        <span class="sr-only">This is the alternative text of the photo: <span id="photoAltText"></span></span>
+        <div class="photo-zoom-frame" id="photoZoomFrame" role="button" tabindex="0" aria-pressed="false" aria-label="Magnify photo. Select to zoom in or out.">
+            <img id="photoMainImage" src="" alt="" aria-hidden="true" draggable="false">
+            <!-- Mouse pointer icon: shown while the mouse is over the photo. Plus before zooming in, minus while zoomed in. -->
+            <span class="photo-zoom-pointer" id="photoZoomPointer" aria-hidden="true">
+                <i class="fa-solid fa-magnifying-glass-plus photo-zoom-pointer-in"></i>
+                <i class="fa-solid fa-magnifying-glass-minus photo-zoom-pointer-out"></i>
+            </span>
+        </div>
+        <figcaption aria-label="Object title and current view">
+            <span class="sr-only">This is the object title and the view: </span>
+            <span id="photoObjectName">Object Name</span>
+            <span aria-hidden="true"> • </span>
+            <span id="photoViewLabel">[Front View]</span>
+        </figcaption>
+    </figure>
+<!-- Keyboard and screen reader order: photo information, then Previous, then Next. The grid places them left and right. -->
+    <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">
+        <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+    </button>
+    <button class="photo-arrow photo-arrow-right" id="photoNext" type="button" aria-label="Next photo">
+        <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+    </button>
+</section>
+
+<!-- THUMBNAIL PANEL -->
+<aside class="photo-thumbnail-panel" aria-label="Thumbnail selector panel">
+    <div class="photo-thumbnail-handle" aria-hidden="true"></div>
+    <nav class="photo-thumbnails" id="photoThumbnails" aria-label="Photo views">
+    <!-- Thumbnails generated dynamically by JS -->
+    </nav>
+</aside>
+
+<!-- GUIDE (modal): shows what each part of this page does. Opens with the page and with the Guide button. -->
+<div class="photo-guide" id="photoGuide" role="dialog" aria-modal="true" aria-labelledby="photoGuideTitle" aria-describedby="photoGuideIntro" hidden>
+    <div class="photo-guide-sheet">
+        <div class="photo-guide-top">
+            <h2 id="photoGuideTitle">Quick Guidance in the Photo Page</h2>
+            <div class="sr-only" id="photoGuideIntro">
+                <p>This is the section that explains how to use the photo page, before you view the photos.</p>
+                <p>If you already understand all of the instructions, press the Close guide button.</p>
+            </div>
+            <button class="photo-guide-close" id="photoGuideClose" type="button" aria-label="Close quick guidance dialog">
+                <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+                <span aria-hidden="true">Close guide</span>
+            </button>
+        </div>
+
+        <ul class="photo-guide-items" aria-label="Photo viewer instructions">
+            <li class="guide-item guide-back">
+                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+                <span>To go back to the previous page, press the back button on the top left.</span>
+            </li>
+            <li class="guide-item guide-count">
+                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+                <span>The total number of the photos is listed on the top middle.</span>
+            </li>
+            <li class="guide-item guide-close-note">
+                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+                <span>To close the current page, press the close button on the top right.</span>
+            </li>
+            <li class="guide-item guide-caption">
+                <span>The caption of the photo is listed above the photo.</span>
+                <i class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>
+            </li>
+            <li class="guide-item guide-prev">
+                <i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i>
+                <span>Click the button on the left side of the photo to view the previous photo.</span>
+            </li>
+            <li class="guide-item guide-zoom">
+                <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+                <span>Click anywhere inside the frame to see more closely.</span>
+            </li>
+            <li class="guide-item guide-next">
+                <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
+                <span>Click the button on the right side of the photo to view the next photo.</span>
+            </li>
+            <li class="guide-item guide-meta">
+                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
+                <span>The number, object title, museum number, and viewpoint are listed under the photo.</span>
+            </li>
+            <li class="guide-item guide-wardrobe">
+                <i class="fa-solid fa-images" aria-hidden="true"></i>
+                <span>
+                    Click any photo you want to see from the wardrobe.
+                    <span class="guide-desktop-only">Scroll down to see more photos.</span>
+                    <span class="guide-mobile-only">Scroll left or right to see more photos.</span>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+</main>

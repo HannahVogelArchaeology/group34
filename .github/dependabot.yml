@@ -1,0 +1,21 @@
+# Keeps pinned versions current. A new release must be at least 14 days old before it is proposed.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 14
+  - package-ecosystem: bundler
+    directory: "/"
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 14
+  - package-ecosystem: npm
+    directory: "/tests"
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 14

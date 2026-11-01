@@ -1,0 +1,225 @@
+/* Middle shelf */
+
+.middle-shelf-container {
+  --shelf-accent: #71490d;
+  --shelf-accent-dark: #513409;
+  --shelf-focus: #174e77;
+  --shelf-text: #2f2d29;
+  --shelf-muted: #625e57;
+  --shelf-surface: #f8f6f1;
+  --shelf-surface-hover: #eee5d7;
+  --shelf-line: #c8b18e;
+  --shelf-image: #d8d0c4;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3em 1.5em 4em;
+  overflow-wrap: anywhere;
+  color: var(--shelf-text);
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  a,
+  button {
+    scroll-margin-block: 6rem;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 3px solid var(--shelf-focus);
+    outline-offset: 3px;
+  }
+
+  /* Title */
+  .shelf-v2-title {
+    margin: 0 0 2.5em;
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.35rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #27241f;
+  }
+
+  /* Hero image + numbered object list */
+
+  .hero-image-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #d2c6b5;
+    border-radius: 3px;
+    background-color: #e5e0d8;
+
+    > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .expand-btn {
+      position: absolute;
+      z-index: 2;
+      top: 14px;
+      left: 14px;
+      display: inline-flex;
+      text-decoration: none;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      box-sizing: border-box;
+      line-height: 0;
+      border: 1px solid rgba(113, 73, 13, 0.55);
+      border-radius: 4px;
+      background: rgba(248, 246, 241, 0.96);
+      color: var(--shelf-text);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 160ms ease, color 160ms ease,
+        border-color 160ms ease, box-shadow 160ms ease;
+
+      i {
+        display: block;
+        flex: 0 0 20px;
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      &:hover,
+      &:focus-visible {
+        border-color: var(--shelf-accent);
+        background: var(--shelf-accent);
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(81, 52, 9, 0.2);
+      }
+    }
+  }
+
+  /* Overview Section */
+  .shelf-overview-section {
+    margin-bottom: 4em;
+
+    h2 {
+      font-size: 1.3em;
+      font-weight: 400;
+      margin-bottom: 0.3em;
+      color: #a48352;
+    }
+
+    p {
+      line-height: 1.65;
+      color: #555;
+      font-size: 0.92em;
+    }
+  }
+
+  /* Responsive Styles */
+  @media (max-width: 700px) {
+    padding: 2.25em 1em 3em;
+
+    .shelf-v2-title {
+      margin-bottom: 1.8em;
+    }
+
+    .hero-image-wrapper {
+      width: min(100%, 520px);
+      margin: 0 auto;
+    }
+
+    .shelf-overview-section {
+      margin-bottom: 3em;
+    }
+    .image-caption {
+    margin: 0.65rem 0 0;
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .expand-btn {
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .expand-btn {
+      border: 1px solid CanvasText;
+    }
+  }
+}
+
+/* Keep the shelf image caption under the image while the object list stays on the right */
+
+  .shelf-photo-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-caption {
+    margin: 0.65rem 0 0;
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+/* Keep hero captions inside the same width as the image on narrow screens. */
+.shelf-hero-media {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.shelf-hero-media .image-caption {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0.65rem 0 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #555;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+@media (max-width: 700px) {
+  .shelf-hero-media {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .shelf-hero-media .image-caption {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Responsive hero and object carousel layout. */
+.middle-shelf-container .shelf-feature-layout { display: block; margin-bottom: 2rem; } /* Order: heading, hero image, caption, overview, objects. */
+.middle-shelf-container .hero-image-wrapper { aspect-ratio: 16 / 9; width: 100%; } /* Landscape hero image */
+.middle-shelf-container .shelf-overview-section { margin: 2rem 0 0; min-width: 0; }
+.middle-shelf-container .shelf-hero-media { min-width: 0; }
+.middle-shelf-container .shelf-hero-media .image-caption { max-width: 100%; overflow-wrap: anywhere; }

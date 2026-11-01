@@ -1,27 +1,32 @@
-<header class="pinned-header">
+<header class="pinned-header" role="banner" aria-label="Site Header">
   <div class="header-content">
     <div class="header-left">
-      <a href="{{ '/' | relative_url }}" class="exhibition-title">{{ site.title }}</a>
+      <a href="{{ '/' | relative_url }}" class="exhibition-title" aria-label="{{ site.title | escape }} - Return to Home Page">{{ site.title }}</a>
     </div>
     
-    <div class="header-center">
+    <div class="header-center" aria-live="polite">
       {% if page.object_name %}
-        <span class="active-object-name">{{ page.object_name }}</span>
+        <span class="active-object-name" aria-label="Current object: {{ page.object_name | escape }}">{% include object-title.html title=page.object_name %}</span>
       {% elsif page.title and page.title != "Home" %}
-        <span class="active-object-name">{{ page.title }}</span>
+        <span class="active-object-name" aria-label="Current page: {{ page.title | escape }}">{% include object-title.html title=page.title %}</span>
       {% endif %}
     </div>
 
-    <div class="header-right">
-      <div class="text-resizers">
-        <button onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">A -</button>
-        <button onclick="changeFontSize(0)" class="font-btn" aria-label="Reset font size">Reset</button>
-        <button onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">A +</button>
+    <div class="header-right" role="group" aria-label="Accessibility and navigation utilities">
+      <div class="text-resizers" role="group" aria-label="Text size controls">
+        <button type="button" onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">
+          <span aria-hidden="true">A -</span>
+        </button>
+        <button type="button" onclick="changeFontSize(0)" class="font-btn" aria-label="Reset text size to default">
+          <span aria-hidden="true">Reset</span>
+        </button>
+        <button type="button" onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">
+          <span aria-hidden="true">A +</span>
+        </button>
       </div>
-      <button class="menu-icon-btn" onclick="toggleSidebarMenu()" aria-label="Toggle Menu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false" aria-label="Toggle dark mode">Dark Mode</button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Open navigation menu">Navigation Menu</button>
     </div>
   </div>
 </header>
-

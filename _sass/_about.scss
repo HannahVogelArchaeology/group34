@@ -1,93 +1,61 @@
 /* About Page Styling */
+.page-wrapper > .page-title {
+  text-align: center;
+  color: $accent-dark-bronze;
+  font-family: $font-family-base;
+  font-size: 2.6em;
+  font-weight: 400;
+  margin: 85px 0 45px;
+}
+
 .about-page-container {
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 3em 1.5em;
-  color: #333;
+  padding: 40px 40px 80px;
+  box-sizing: border-box;
 
+  /* Page Title */
   .page-title {
     text-align: center;
+    color: $accent-dark-bronze;
+    font-family: $font-family-base;
     font-size: 2.6em;
     font-weight: 400;
-    margin-bottom: 2em;
+    margin: 45px 0 45px;
   }
 
-  /* Navigation Tabs */
-  .tab-navigation {
-    display: flex;
-    justify-content: center;
-    gap: 1.5em;
-    margin-bottom: 2.5em;
+  
 
-    .tab-btn {
-      padding: 1em 2.2em;
-      border: none;
-      text-align: center;
-      min-width: 260px;
-      background-color: #e2dcd2;
-      color: #b08d57;
-      font-size: 1.1em;
-      cursor: pointer;
-      transition: all 0.2s ease;
+  /*nTab Content Visibility */
 
-      &.active {
-        background-color: #b08d57;
-        color: #ffffff;
-      }
-
-      &:hover {
-      opacity: 0.9;
-    }
-    }
-  }
-
-  /* Quote Banner */
-  .quote-banner {
-    background: linear-gradient(90deg, #785a30 0%, #c39c5e 100%);
-    color: #fff;
-    text-align: center;
-    padding: 2.5em 1.5em;
-    margin-bottom: 3.5em;
-
-    h2 {
-      font-size: 1.4em;
-      font-weight: 400;
-      font-style: italic;
-      margin-bottom: 0.5em;
-    }
-
-    p {
-      font-size: 0.8em;
-      opacity: 0.85;
-      margin: 0;
-    }
-  }
-
-  /* Tab Content Visibility */
   .tab-content {
-    display: none;
 
     &.active {
       display: block;
     }
   }
 
+  /* Main Tab Title */
   .main-tab-title {
     font-size: 1.8em;
-    color: #b08d57;
+    color: #b5833f;
     font-weight: 400;
-    margin-bottom: 2em;
+    font-family: $font-family-base;
+    margin: 10px 0 45px;
   }
 
-  /* Content Sections */
+  /* General Content Sections */
+
   .content-section {
-    margin-bottom: 3em;
+    margin-bottom: 90px;
 
     .gold-heading {
-      color: #b08d57;
+      margin: 0 0 1.2em;
+      color: #b5833f;
       font-size: 1.5em;
       font-weight: 400;
-      margin-bottom: 1.2em;
+      font-family: $font-family-base;
     }
 
     .author-sub {
@@ -96,92 +64,165 @@
       margin-bottom: 0.8em;
     }
 
-    .sub-block {
-      margin-bottom: 2em;
-
-      .sub-title {
-        font-size: 1.3em;
-        font-weight: 400;
-        color: #444;
-        margin-bottom: 0.8em;
-      }
-
-      .section-desc {
-        margin-top: 1.2em;
-        line-height: 1.65;
-        color: #555;
-        font-size: 0.9em;
-      }
+    p {
+      line-height: 1.65;
+      color: $text-color-primary;
+      font-size: 1em;
+      font-family: $font-family-base;
     }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+    
+
+  /* Curator Profile */
+
+  .curator-profile {
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+    margin-bottom: 30px;
+  }
+
+  .curator-image {
+    width: 180px;
+    min-width: 180px;
+    flex: 0 0 180px;
+
+    img {
+      display: block;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 2px;
+    }
+  }
+
+  .curator-bio {
+    flex: 1;
+    min-width: 0;
 
     p {
       line-height: 1.65;
-      color: #555;
-      font-size: 0.9em;
+      color: $text-color-primary;
+      font-size: 1em;
+      font-family: $font-family-base;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+  }
+
+  
+
+  /* Sub Blocks */
+
+  .sub-block {
+    margin-bottom: 45px;
+
+    .sub-title {
+      font-size: 1.4em;
+      font-weight: 400;
+      color: $text-color-primary;
+      margin: 0 0 20px;
+    }
+
+    /* Same text style as the curator biography paragraphs (size, colour, line height and font). */
+    .section-desc {
+      margin-top: 28px;
+      line-height: 1.65;
+      color: $text-color-primary;
+      font-size: 1em;
+      font-family: $font-family-base;
+
+      li {
+        line-height: 1.65;
+        color: $text-color-primary;
+        font-size: 1em;
+        font-family: $font-family-base;
+      }
+    }
+
+    /* A list that follows its introduction paragraph sits close to it. */
+    ul.section-desc {
+      margin-top: 0;
     }
   }
 
   /* Data Tables */
+
   .info-table {
     width: 100%;
-    margin-top: 1em;
+    margin: 1em 0;
     border-collapse: collapse;
     background-color: transparent;
 
     td {
-      padding: 0.85em 1.2em;
+      padding: 12px 8px;
       font-size: 1em;
-      border-bottom: 1px solid #eae5dc;
+      font-family: $font-family-base;
+      line-height: 1.5;
+      border-bottom: 1px solid $border-color;
+      vertical-align: top;
     }
 
     .label-col {
-      color: #b08d57;
+      color: #b5833f;
       width: 30%;
       font-weight: 400;
       vertical-align: top;
     }
 
     .value-col {
-      color: #333;
+      color: $text-color-primary;
 
       &.hours-row {
         display: flex;
         justify-content: space-between;
+        gap: 30px;
         padding-right: 2em;
       }
     }
 
     .inline-link {
-      color: #333;
+      color: $text-color-primary;
       text-decoration: underline;
 
       &:hover {
-        color: #b08d57;
+        color: $accent-bronze;
       }
     }
   }
 
-  /* Team Avatars & Dynamic Progress Indicator */
+  /* Team Avatars */
   .team-avatars {
     display: flex;
     justify-content: space-between;
-    margin-top: 1.5em;
-    position: relative;
+    margin: 30px auto 15px;
+    align-items: center;
 
     .avatar {
       width: 52px;
       height: 52px;
+      padding: 0;
       border-radius: 50%;
-      background-color: #eae5dc;
+      background-color: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex: 0 0 52px;
       font-size: 0.85em;
-      color: #555;
-      border: 1px solid #d8d0c2;
+      font-family: $font-family-base;
+      color: $text-color-primary;
+      border: 1px solid $accent-bronze;
       cursor: pointer;
       user-select: none;
-      transition: all 0.2s ease;
+      transition:
+        all 0.2s ease;
 
       &:hover {
         border-color: #b08d57;
@@ -190,36 +231,126 @@
 
       &.active {
         border-color: #b08d57;
-        background-color: #e2d7c5;
+        background-color: $card-bg;
         color: #111;
         font-weight: 600;
-        box-shadow: 0 0 0 2px rgba(176, 141, 87, 0.2);
+        box-shadow:
+          0 0 0 2px
+          rgba(176, 141, 87, 0.2);
+      }
+
+      &:focus-visible {
+        outline: 3px solid #174e77;
+        outline-offset: 3px;
       }
     }
   }
+
+  /* Dynamic Pointer Line */
 
   .gold-divider-line {
     width: 100%;
     height: 4px;
     background-color: #b08d57;
-    margin: 1.2em 0 2em 0;
+    margin: 1.2em 0 2em;
     position: relative;
 
     .pointer-arrow {
       position: absolute;
       top: -8px;
-      left: 18px; /* Initial position aligned with 1st avatar */
+      left: 18px;
       width: 0;
       height: 0;
       border-left: 8px solid transparent;
       border-right: 8px solid transparent;
       border-bottom: 8px solid #b08d57;
-      transition: left 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      transition:
+        left 0.3s
+        cubic-bezier(0.25, 1, 0.5, 1);
     }
   }
 }
 
-// linkedin icon size up
-.value-col .inline-link i.fa-linkedin {
+/* LinkedIn Icon */
+
+.value-col
+.inline-link
+i.fa-linkedin {
   font-size: 2rem;
+}
+
+/* Responsive About Page */
+
+@media (max-width: 768px) {
+  .about-page-container {
+    padding:
+      30px
+      24px
+      60px;
+
+    .page-title {
+      font-size: 2.1em;
+      margin:
+        30px
+        0
+        35px;
+    }
+
+    .main-tab-title {
+      font-size: 1.5em;
+      margin-bottom: 35px;
+    }
+
+    .curator-profile {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .curator-image {
+      width: 150px;
+      min-width: 150px;
+      flex-basis: 150px;
+
+      img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    .info-table {
+      display: block;
+      overflow-x: auto;
+
+      .label-col {
+        width: 35%;
+      }
+
+      .value-col.hours-row {
+        min-width: 220px;
+      }
+    }
+
+    .team-avatars {
+      gap: 8px;
+
+      .avatar {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+        font-size: 0.75em;
+      }
+    }
+  }
+}
+
+/* Accessible vertical contents list; keep all sections visible for scrolling. */
+.about-page-container .about-toc { margin: 0 0 3rem; padding: 1rem 1.25rem; border-left: 4px solid #b5833f; background: #f6f3eb; }
+.about-page-container .about-toc h2 { margin-top: 0; font-size: 1.15rem; }
+.about-page-container .about-toc ul { display: flex; flex-direction: column; gap: .6rem; margin: 0; padding-left: 1.25rem; }
+.about-page-container .about-toc a { text-decoration: underline; text-underline-offset: .18em; }
+.about-page-container .tab-content { display: block !important; scroll-margin-top: 120px; }
+
+/* The Social row is hidden (attribute set by the About page script) for members without a LinkedIn address. */
+.team-member-table tr[hidden] {
+  display: none;
 }

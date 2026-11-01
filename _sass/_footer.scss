@@ -73,27 +73,22 @@
   }
 }
 
-
 /* Audio Player */
-
 .bottom-audio-bar {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  min-height: 60px;
-
   background: $footer-bg;
   color: $footer-text;
-
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 10px 20px;
+  flex-direction: column;
+  padding: 8px 20px 12px;
   box-sizing: border-box;
-
   z-index: 1000;
+
+  /* The player receives script focus when it opens, without a visible ring. */
+  &:focus { outline: none; }
 
   button {
     background: none;
@@ -101,6 +96,39 @@
     color: $footer-text;
     cursor: pointer;
     padding: 5px 10px;
+  }
+
+  .audio-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 6px;
+
+    span {
+      font-size: 0.8em;
+      min-width: 35px;
+      text-align: center;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      cursor: pointer;
+      accent-color: #fff;
+    }
+  }
+
+  .audio-controls-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .audio-left, .audio-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .audio-center {
@@ -118,52 +146,128 @@
     font-size: 0.75em;
     opacity: 0.75;
   }
-}
 
-
-/* Cookie Banner */
-
-.cookie-banner {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-
-  background: #FFF;
-  color: $text-color-primary;
-
-  border: 1px solid $border-color;
-  padding: 20px;
-  border-radius: 8px;
-
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-
-  z-index: 2000;
-
-  .cookie-buttons {
+  /* Vertical Volume Popup */
+  .volume-container {
+    position: relative;
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    align-items: center;
 
-    .btn-cookie-accept {
-      background: $accent-bronze;
-      color: #FFF;
-      border: none;
-      padding: 6px 12px;
-      cursor: pointer;
-    }
+    .volume-popup {
+      display: none;
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: $footer-bg;
+      padding: 12px 6px;
+      border-radius: 6px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
-    .btn-cookie-decline {
-      background: $card-bg;
-      border: none;
-      padding: 6px 12px;
-      cursor: pointer;
-    }
-
-    .cookie-close-icon {
-      background: none;
-      border: none;
-      font-size: 1.2em;
-      cursor: pointer;
+      input[type="range"] {
+        writing-mode: bt-lr; /* IE/Edge */
+        appearance: slider-vertical; /* Standard */
+        width: 8px;
+        height: 80px;
+        accent-color: #fff;
+      }
     }
   }
 }
+
+/* Pagination styles */
+.shelf-pagination {
+  display: flex;
+  max-width: 1200px;
+  justify-content: space-between;
+  gap: 1.5em;
+  margin-top: 5em;
+  padding-top: 2em;
+  border-top: 1px solid #e8e2d8;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  .nav-box {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 1.5em 2em;
+    border: 1px solid #c29b62;
+    border-radius: 4px;
+    background-color: #F8F6F1;
+    text-decoration: none;
+    color: #2b2b2b;
+    transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+
+    &:hover,
+    &:focus-visible {
+      border-color: #71490d;
+      background-color: #eee5d7;
+      color: #513409;
+      box-shadow: inset 0 -3px 0 #71490d;
+
+      .main-label,
+      .sub-label,
+      .arrow {
+        color: #513409;
+      }
+    }
+
+    &.nav-back {
+      justify-content: flex-start;
+
+      .arrow {
+        margin-right: 1.5em;
+      }
+
+      .nav-text {
+        text-align: left;
+      }
+    }
+
+    &.nav-next {
+      justify-content: flex-end;
+
+      .arrow {
+        margin-left: 1.5em;
+      }
+
+      .nav-text {
+        text-align: right;
+      }
+    }
+
+    .arrow {
+      font-size: 1.4em;
+      color: #333;
+      transition: color 160ms ease;
+    }
+
+    .nav-text {
+      display: flex;
+      flex-direction: column;
+
+      .sub-label {
+        font-size: 1em;
+        line-height: 1.4;
+        letter-spacing: 0.08em;
+        color: #777;
+        text-transform: uppercase;
+        transition: color 160ms ease;
+      }
+
+      .main-label {
+        font-size: 1.4em;
+        font-weight: 500;
+        line-height: 1.4;
+        letter-spacing: 0.03em;
+        margin-top: 0.2em;
+        color: #111;
+        transition: color 160ms ease;
+      }
+    }
+  }
+}
+

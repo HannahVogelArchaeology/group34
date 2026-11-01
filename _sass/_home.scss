@@ -1,228 +1,366 @@
-// Left-Aligned Dark Brown Hero Section
-.hero-section {
-  background-color: #382713; // Dark warm brown background
-  color: #ffffff;
-  padding: 80px 40px; // Left offset positioning
-  padding-top: 100px; // 60px (header) + ~40px (sub-nav)
+/* Shared Hero Container */
+.hero-container {
+width: 100%;
+max-width: 1000px;
+margin: 0 auto;
+padding: 0 40px;
+box-sizing: border-box;
+
+@media (max-width: 1024px) {
+padding: 0 30px;
+}
+}
+
+/* Hero Title Section */
+.hero-title-section {
+background-color: #382713;
+color: #ffffff;
+padding-top: clamp(34px, 5vw, 58px);
+padding-bottom: clamp(42px, 6vw, 68px);
+
+.hero-main-title {
+max-width: 760px;
+font-size: clamp(2.35rem, 6vw, 4.6rem);
+font-weight: 400;
+line-height: 1.02;
+letter-spacing: -0.025em;
+margin: 0;
+color: #ffffff;
+
+br {
   display: block;
-  text-align: left;
-  min-height: 65vh;
-  display: flex;
-  align-items: center;
-  padding: 120px 40px 80px 40px; // Increased top padding to accommodate the fixed header
-  box-sizing: border-box;
-
-  @media (max-width: 1024px) {
-    min-height: 65vh;
-    padding: 60px 30px;
-  }
-
-    .hero-container {
-    max-width: 1000px; // Matches .shelf-cards-container and .explorer-title max-width
-    margin: 0 auto;    // Centers the container grid
-  }
-
-  .hero-content {
-    max-width: 800px; // Keeps the paragraph width readable
-    margin: 0;
-
-    .hero-main-title {
-      font-size: 4.2em;
-      font-weight: 400;
-      line-height: 1.05;
-      margin: 0 0 36px 0;
-      color: #ffffff;
-    }
-
-    .narratives-label {
-      font-size: 1em;
-      margin-bottom: 8px;
-      color: #e0dcd3;
-    }
-
-    .hero-description {
-      font-size: 0.95em;
-      line-height: 1.65;
-      color: #e0dcd3;
-      margin: 0;
-    }
-  }
+}
 }
 
-// Light Background Content Section
+.hero-curator {
+margin: 22px 0 0;
+font-size: clamp(0.95rem, 1.6vw, 1.15rem);
+line-height: 1.4;
+color: #e0dcd3;
+}
+}
+
+/* Shelves Explorer */
 .shelves-explorer {
-  background-color: #f6f3eb;
-  padding: 50px 40px 80px 40px;
+background-color: #f6f3eb;
+padding: 50px 40px 80px 40px;
 
-  .explorer-title {
-    max-width: 1000px;
-    margin: 0 auto 36px auto;
-    font-size: 2.2em;
-    font-weight: 400;
-    color: #222222;
-  }
-
-  .shelf-cards-container {
-    display: flex;
-    gap: 24px;
-    max-width: 1000px;
-    margin: 0 auto;
-
-    .shelf-card {
-      background-color: #eae5d9;
-      border-radius: 2px;
-      padding: 16px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .card-header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 16px;
-        width: 100%;
-
-        .bookmark-icon {
-          display: inline-block;
-          width: 8px;
-          height: 12px;
-          background-color: #b5833f;
-          clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
-        }
-
-        .shelf-label {
-          font-size: 0.85em;
-          letter-spacing: 1px;
-          font-weight: 600;
-          color: #444444;
-        }
-      }
-
-      .card-img {
-        width: 100%;
-        height: 220px;
-        margin-bottom: 16px;
-        overflow: hidden;
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-
-      .caption {
-        font-size: 0.85em;
-        color: #555555;
-        margin: 0 0 16px 0;
-        text-align: center;
-      }
-
-      .view-button {
-        background-color: #b5833f;
-        color: #ffffff;
-        text-decoration: none;
-        padding: 6px 20px;
-        font-size: 0.75em;
-        letter-spacing: 1px;
-        border-radius: 2px;
-        font-weight: 600;
-        transition: background 0.2s ease;
-
-        &:hover {
-          background-color: #543b19;
-        }
-      }
-    }
-  }
+.explorer-title {
+max-width: 1000px;
+margin: 0 auto 36px auto;
+font-size: 2.2em;
+font-weight: 400;
+color: #222222;
 }
 
-// Quote Banner Section
-.quote-section {
-  background: linear-gradient(90deg, #785a30 30%, #c39c5e 100%);
-  padding: 50px 40px;
-  color: #ffffff;
+.shelf-cards-container {
+display: flex;
+gap: 24px;
+max-width: 1000px;
+margin: 0 auto;
 
-  .quote-container {
-    max-width: 1000px;
-    margin: 0 auto;
+.shelf-card {
+  background-color: #eae5d9;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+  border-radius: 2px;
+  padding: 16px;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+  .card-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
+    justify-content: center;
+    gap: 8px;
 
-  .quote-left {
-    max-width: 65%;
+    margin-bottom: 16px;
+    width: 100%;
 
-    .quote-text {
-      font-size: 1.5em;
-      font-style: normal;
-      margin: 0 0 10px 0;
-      color: #ffffff;
-    }
-
-    .quote-curator {
-      font-size: 0.9em;
-      color: #f0e6d2;
-      margin: 0;
-    }
-  }
-
-  .quote-right {
-    .btn-curator-bio {
-      display: inline-block;
-      border: 1px solid rgba(255, 255, 255, 0.6);
-      border-radius: 16px;
-      padding: 8px 20px;
-      color: #ffffff;
-      text-decoration: none;
+    .shelf-label {
       font-size: 0.85em;
-      background-color: rgba(255, 255, 255, 0.1);
-      transition: background 0.2s ease;
-
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.25);
-      }
-    }
-  }
-}
-
-// Acknowledgement Section
-.acknowledgement-section {
-  background-color: #f6f3eb;
-  padding: 80px 40px;
-
-  .acknowledgement-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    gap: 60px;
-  }
-
-  .ack-left {
-    width: 250px;
-    flex-shrink: 0;
-
-    h2 {
-      font-size: 0.9em;
-      letter-spacing: 1.5px;
-      color: #666666;
+      letter-spacing: 1px;
       font-weight: 600;
-      margin: 0;
+      color: #444444;
     }
   }
 
-  .ack-right {
-    flex-grow: 1;
+  .card-img {
+    width: 100%;
+    height: 220px;
+    margin-bottom: 16px;
+    overflow: hidden;
 
-    p {
-      font-size: 0.95em;
-      line-height: 1.7;
-      color: #444444;
-      margin: 0;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
+  }
+
+  .caption {
+    font-size: 0.85em;
+    color: #555555;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+
+  .view-button {
+    background-color: #b5833f;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 20px;
+    font-size: 0.75em;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+    pointer-events: none;
+
+    &:hover {
+      background-color: #543b19;
+    }
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: inherit;
+    text-decoration: none;
+    background-color: #e3ddcf;
+    box-shadow:
+      0 8px 20px rgba(81, 52, 9, 0.12);
+    transform: translateY(-2px);
+
+    .view-button {
+      background-color: #543b19;
+    }
+  }
+
+  &:focus-visible {
+    outline: 3px solid #174e77;
+    outline-offset: 4px;
   }
 }
+
+}
+}
+
+/* Auslan Video */
+.auslan-section {
+background-color: #f6f3eb;
+padding: 60px 40px 40px;
+}
+
+.auslan-container {
+max-width: 1000px;
+margin: 0 auto;
+}
+
+.auslan-title {
+font-size: 2.2em;
+font-weight: 400;
+color: #222222;
+margin: 0 0 32px;
+}
+
+.video-card {
+width: 100%;
+background-color: #eae5d9;
+padding: 12px;
+box-sizing: border-box;
+margin-bottom: 28px;
+}
+
+.auslan-video {
+display: block;
+width: 100%;
+height: auto;
+aspect-ratio: 16 / 9;
+object-fit: contain;
+background-color: #000000;
+}
+
+.auslan-caption {
+margin: 0 0 12px;
+font-size: 0.9em;
+line-height: 1.5;
+color: #555555;
+}
+
+.auslan-description {
+margin: 0;
+font-size: 0.95em;
+line-height: 1.7;
+color: #444444;
+}
+
+/* Acknowledgements */
+.acknowledgement-section {
+background-color: #f6f3eb;
+padding: 80px 40px;
+
+.acknowledgement-container {
+max-width: 1000px;
+margin: 0 auto;
+display: flex;
+gap: 60px;
+}
+
+.ack-left {
+width: 250px;
+flex-shrink: 0;
+
+h2 {
+  font-size: 0.9em;
+  letter-spacing: 1.5px;
+  color: #666666;
+  font-weight: 600;
+  margin: 0;
+}
+
+}
+
+.ack-right {
+flex-grow: 1;
+
+p {
+  font-size: 0.95em;
+  line-height: 1.7;
+  color: #444444;
+  margin: 0;
+}
+
+}
+}
+
+/* Main Page Image Captions */
+.hero-media-placeholder .image-caption {
+margin: 0.65rem 0 0;
+color: #555;
+font-size: 0.85rem;
+line-height: 1.45;
+}
+
+/* Responsive Homepage */
+@media (max-width: 768px) {
+
+.hero-title-section {
+padding-top: 30px;
+padding-bottom: 45px;
+
+.hero-main-title {
+  font-size: 2.8em;
+}
+}
+
+.hero-media-placeholder {
+padding: 24px;
+}
+
+.shelves-explorer {
+padding-left: 24px;
+padding-right: 24px;
+
+.shelf-cards-container {
+  flex-direction: column;
+}
+}
+
+.auslan-section {
+padding-left: 24px;
+padding-right: 24px;
+}
+
+.acknowledgement-section {
+padding-left: 24px;
+padding-right: 24px;
+
+.acknowledgement-container {
+  flex-direction: column;
+  gap: 25px;
+}
+
+.ack-left {
+  width: auto;
+}
+}
+}
+
+/* Main feature layout */
+.home-feature-container {
+  width: min(100%, 1200px);
+}
+
+/* The narrative text size. */
+.home-feature-narrative .hero-description { font-size: 1.2em; line-height: 1.7; }
+
+.home-feature-media .image-caption {
+  line-height: 1.45;
+}
+@media (max-width: 700px) {
+  .home-feature-narrative { grid-row: 2; }
+  .home-feature-narrative .btn-curator-bio { margin-top: 1.25rem; }
+}
+
+/* Main feature layout: narrative on the left, image and caption on the right. */
+.home-feature-section { padding: clamp(24px, 4vw, 56px); background: #f6f3eb; }
+.home-feature-container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 64px); align-items: stretch; max-width: 1400px; margin: 0 auto; }
+.home-feature-narrative { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; min-width: 0; }
+/* About Us button: one rule. The hover and focus colour matches the shelf card button (#543b19). */
+.home-feature-narrative .btn-curator-bio {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  min-height: 48px;
+  background: #8b5d24;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+.home-feature-narrative .btn-curator-bio:hover,
+.home-feature-narrative .btn-curator-bio:focus-visible {
+  background: #543b19;
+}
+.home-feature-media { margin: 0; min-width: 0; display: flex; flex-direction: column; }
+.home-feature-media img { display: block; width: 100%; height: auto; max-height: 650px; object-fit: contain; }
+.home-feature-media .image-caption { text-align: left; overflow-wrap: anywhere; margin: 10px 0 0; }
+.object-explorer-carousel { padding: 2rem 0 3rem; background: transparent; } /* No side padding: aligns with the hero image above. */
+.object-explorer-carousel h2 { margin-top: 0; }
+.carousel-instructions { margin-bottom: 1.25rem; }
+/* All cards share the row width, so no horizontal scrollbar is needed. The hovered card grows and comes forward. */
+.object-carousel-track { display: flex; align-items: stretch; gap: 0; overflow: visible; padding: 1.5rem 0 2rem; isolation: isolate; }
+.object-carousel-card { position: relative; flex: 1 1 0; min-width: 0; min-height: 360px; margin-left: -1rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: 10px; color: #fff; text-decoration: none; background: #d6d1c7; box-shadow: 0 8px 22px rgba(0,0,0,.14); z-index: 0; /* Own stacking context: a neighbour's number block can never paint over the hovered card's outline. */ transition: transform .7s ease, flex-grow .7s ease, box-shadow .7s ease, outline-color .7s ease; }
+.object-carousel-card:first-child { margin-left: 0; }
+.object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 2.4; transform: translateY(-8px) scale(1.03); z-index: 5; box-shadow: 0 16px 34px rgba(0,0,0,.22); outline: 3px solid #8b5d24; outline-offset: 0; /* No gap: the outline sits flush against the card edge. */ }
+/* The shelf pages set a 3px offset on all keyboard-focused links; the object cards override it so the focus outline is flush too. */
+.object-explorer-carousel .object-carousel-card:focus-visible { outline-offset: 0; }
+/* Number block in the top-left corner of each object card */
+.object-carousel-number { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 2; display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 3px; background: #f8f6f1; color: #3b2a14; font-size: 1rem; font-weight: 700; line-height: 1; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); pointer-events: none; }
+.object-carousel-image-wrap { position: absolute; inset: 0; background: #d6d1c7; }
+.object-carousel-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; color: transparent; font-size: 0; } /* Hides broken-image alt text overlay while placeholders are empty; alt text is still read by screen readers. */
+.object-carousel-copy { position: relative; z-index: 1; display: flex; flex-direction: column; gap: .45rem; padding: .85rem; background: linear-gradient(transparent, rgba(20,20,20,.88)); min-height: 110px; justify-content: flex-end; }
+.object-carousel-title { font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; }
+.object-carousel-caption { font-size: .8rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.object-carousel-card:hover .object-carousel-caption, .object-carousel-card:focus-visible .object-carousel-caption { font-size: .9rem; -webkit-line-clamp: unset; display: block; }
+@media (max-width: 700px) { .home-feature-container { grid-template-columns: 1fr; } .home-feature-media { grid-row: 1; } .home-feature-narrative { min-height: 220px; } .object-carousel-track { flex-wrap: wrap; gap: .75rem; } .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; } .object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 0; transform: none; } }
+
+/* Narrow desktop windows (sidebar visible): seven cards in one row would be too small, so they wrap. */
+@media (min-width: 701px) and (max-width: 900px) {
+  .object-carousel-track { flex-wrap: wrap; gap: .75rem; }
+  .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; }
+  .object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 0; transform: none; }
+}
+

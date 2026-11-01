@@ -1,0 +1,297 @@
+.top-shelf-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5em 1.5em;
+  color: #333;
+
+  .shelf-title {
+    text-align: center;
+    font-size: clamp(1.8rem, 4vw, 2.35rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    margin-bottom: 2.5em;
+  }
+
+/* Media Section */
+  .media-section {
+    margin-bottom: 3em;
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background-color: #dcd7ce;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .expand-btn {
+        position: absolute;
+        z-index: 2;
+        top: 16px;
+        left: 16px;
+        display: inline-flex;
+        width: 46px;
+        height: 46px;
+        box-sizing: border-box;
+        background: rgba(248, 246, 241, 0.96);
+        border: 1px solid rgba(113, 73, 13, 0.55);
+        color: var(--shelf-text);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        text-decoration: none;
+        padding: 0;
+        line-height: 0;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+
+        i {
+        display: block;
+        flex: 0 0 20px;
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        }
+
+        &:hover {
+        border-color: #71490d;
+        background: #71490d;
+        color: #fff;
+        box-shadow: 0 4px 12px rgba(81, 52, 9, 0.2);
+        }
+      }
+    }
+
+    /* Same gallery controls as the object pages: 80px thumbnails on the left, 3D button on the right. */
+    .media-controls-bar {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 0.75em;
+      min-width: 0;
+      margin-top: 0.65em;
+      box-sizing: border-box;
+
+      .thumbnail-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 80px);
+        min-width: 0;
+        width: fit-content;
+        max-width: 100%;
+        gap: 0.5em;
+        overflow: visible;
+        padding-bottom: 2px;
+
+        .thumb-box {
+          display: block;
+          width: 80px;
+          height: 80px;
+          border: 1px solid #ccc;
+          background-color: #f5f3ef;
+          cursor: pointer;
+          text-decoration: none;
+          overflow: hidden;
+          padding: 0;
+          box-sizing: border-box;
+
+          img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+
+          &.active {
+            border-color: #a48352;
+          }
+
+          &:focus-visible {
+            outline: 3px solid #174e77;
+            outline-offset: 3px;
+          }
+        }
+      }
+
+      .explore-3d-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4em;
+        flex: 0 0 auto;
+        white-space: nowrap;
+        border: 1px solid #ccc;
+        padding: 0.4em 0.8em;
+        font-size: 0.85em;
+        color: #444;
+        cursor: pointer;
+        background-color: rgba(248, 246, 241, 0.96);
+        box-sizing: border-box;
+
+        &:hover {
+          border-color: #b08d57;
+          color: #b08d57;
+        }
+      }
+    }
+  }
+
+/* Content Sections */
+  .object-heading {
+    font-size: 2em;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 1.5em;
+  }
+
+  .shelf-section {
+    margin-bottom: 4em;
+
+    h3 {
+      font-size: 1.3em;
+      font-weight: 400;
+      margin-bottom: 0.8em;
+      color: #a48352;
+    }
+
+    .body-text {
+      line-height: 1.65;
+      color: #555;
+      font-size: 1em;
+    }
+
+/* Audio Controls */
+    .audio-controls {
+      display: flex;
+      align-items: center;
+      gap: 2em;
+      margin-top: 1em;
+      margin-bottom: 1em;
+
+      .audio-play-btn {
+        display: flex;
+        align-items: center;
+        gap: 0.6em;
+        background: none;
+        border: none;
+        font-size: 0.9em;
+        color: #333;
+        cursor: pointer;
+        padding: 0;
+      }
+    }
+
+/* Transcript Accordion (Dropdown Container) */
+    .transcript-accordion {
+      margin-top: 1em;
+
+/* No triangle symbol... */
+      summary::-webkit-details-marker {
+        display: none;
+      }
+
+      
+
+/* Dropdown box */
+      .transcript-box {
+        background-color: #eae5d9;
+        border: 1px solid #e0d9cd;
+        border-radius: 4px;
+        padding: 28px 32px;
+        box-sizing: border-box;
+
+        .body-text {
+          margin: 0;
+          line-height: 1.7;
+          color: #444444;
+          font-size: 0.95em;
+        }
+      }
+    }
+
+/* Metadata Table: same look as the Object Information table on the object pages */
+    .metadata-table {
+      width: 100%;
+      border-collapse: collapse;
+
+      tr {
+        border-bottom: 1px solid #e0dad0;
+
+        td {
+          padding: 0.75em 0;
+          font-size: 1em;
+
+          &.label {
+            color: #a48352;
+            width: 1%; /* Shrink the label column to its text so values can use the remaining width. */
+            white-space: nowrap;
+            padding-right: 1.5em;
+            vertical-align: top;
+          }
+
+          &.value {
+            text-align: right;
+            color: #333;
+            white-space: pre-line;
+            overflow-wrap: anywhere;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/* Image captions and photo links */
+.top-shelf-container {
+  .shelf-photo-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+  }
+
+  .image-caption {
+    margin: 0.65rem 0 0;
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  .thumbnail-list {
+    display: flex;
+    gap: 0.5rem;
+    min-width: 0;
+    overflow-x: auto;
+  }
+
+  .thumb-box {
+    display: block;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+  }
+
+  .thumb-box img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
