@@ -27,7 +27,7 @@ body.dark-mode {
 
     /* Accent headings and labels keep a (lighter) gold */
     /* The "Acq. No" label is wrapped in a span, and the generic span rule above would turn it light, so the spans inside the labels are listed too. */
-    @each $selector in ".overview-title", ".audio-section h2", ".metadata-section h2", ".meta-label",
+    @each $selector in ".overview-title", ".audio-section h2", ".metadata-section h2", ".object-section-heading", ".object-explorer-carousel h2", ".meta-label",
       ".meta-label span", ".shelf-section h3", ".shelf-overview-section h2", ".gold-heading",
       ".main-tab-title", ".label-col", ".about-toc h2", "td.label", "td.label span" {
       #{$selector} { color: #e0bd82 !important; }

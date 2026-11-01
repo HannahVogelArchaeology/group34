@@ -346,6 +346,9 @@ padding-right: 24px;
 .home-feature-media .image-caption { text-align: left; overflow-wrap: anywhere; margin: 10px 0 0; }
 .object-explorer-carousel { padding: 2rem 0 3rem; background: transparent; } /* No side padding: aligns with the hero image above. */
 .object-explorer-carousel h2 { margin-top: 0; }
+/* "Explore the objects" on the middle and bottom shelf: regular weight and the theme brown, like the other gold headings (#866428 is 5:1 on the cream background, WCAG AA). */
+.middle-shelf-container .object-explorer-carousel h2,
+.bottom-shelf-container .object-explorer-carousel h2 { font-weight: 400; color: #866428; }
 .carousel-instructions { margin-bottom: 1.25rem; }
 /* All cards share the row width, so no horizontal scrollbar is needed. The hovered card grows and comes forward. */
 .object-carousel-track { display: flex; align-items: stretch; gap: 0; overflow: visible; padding: 1.5rem 0 2rem; isolation: isolate; }

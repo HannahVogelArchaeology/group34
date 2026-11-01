@@ -213,16 +213,6 @@
     .audio-section {
       margin-bottom: 2.5em;
 
-      // This is an h2 so the heading order under the page h1 has no gap; margin-top keeps the old h3 spacing.
-      h2 {
-        margin-top: 1em;
-        // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
-        color: #866428;
-        font-size: 1.3em;
-        font-weight: 400;
-        margin-bottom: 0.8em;
-      }
-
       .audio-actions {
         display: flex;
         align-items: center;
@@ -271,16 +261,6 @@
     }
 
     .metadata-section {
-      // This is an h2 so the heading order under the page h1 has no gap; margin-top keeps the old h3 spacing.
-      h2 {
-        margin-top: 1em;
-        // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
-        color: #866428;
-        font-size: 1.3em;
-        font-weight: 400;
-        margin-bottom: 0.8em;
-      }
-
       .object-meta-table {
         width: 100%;
         border-collapse: collapse;
@@ -478,4 +458,14 @@
     .media-column .media-controls:has(.explore-3d-btn) { grid-template-columns: minmax(0, 1fr); }
     .media-column .media-controls .explore-3d-btn { justify-self: start; }
   }
+}
+
+/* Section headings on the object pages ("Listen to this story", "Object Information").
+   They are h2 elements so the heading order under the page title has no gap. This rule gives them the same
+   look as the other gold headings: regular weight, theme brown (#866428 has a 5:1 contrast ratio on the cream background, WCAG AA). */
+.object-detail-container .object-section-heading {
+  margin: 1em 0 0.8em;
+  color: #866428;
+  font-size: 1.3em;
+  font-weight: 400;
 }
