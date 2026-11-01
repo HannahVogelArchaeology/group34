@@ -1,3 +1,6 @@
+// Make the shared colour/font variables available in this file (replaces the global @import).
+@use "variables" as *;
+
 .site-footer {
   background-color: $footer-bg;
   color: $footer-text;

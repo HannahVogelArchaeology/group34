@@ -1,17 +1,18 @@
 ---
 ---
 
-@import "variables";
-@import "base";
-@import "header";
-@import "home";
-@import "about";
-@import "top-shelf";
-@import "middle-shelf";
-@import "bottom-shelf";
-@import "object";
-@import "photo";
-@import "privacy";
-@import "footer";
-@import "responsive";
-@import "dark-mode";
+// @use replaces the deprecated @import (removed in Dart Sass 3.0); the file order is unchanged, so the CSS cascade is identical.
+// "variables" is loaded by the partials that need it (base, header, about, footer).
+@use "base";
+@use "header";
+@use "home";
+@use "about";
+@use "top-shelf";
+@use "middle-shelf";
+@use "bottom-shelf";
+@use "object";
+@use "photo";
+@use "privacy";
+@use "footer";
+@use "responsive";
+@use "dark-mode";

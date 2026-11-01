@@ -1,3 +1,6 @@
+// Make the shared colour/font variables available in this file (replaces the global @import).
+@use "variables" as *;
+
 body {
   font-family: $font-family-base;
   background-color: $bg-color-default;
