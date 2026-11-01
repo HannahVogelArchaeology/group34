@@ -117,6 +117,7 @@ margin: 0 auto;
   }
 
   .view-button {
+    /* Darkened from #b5833f so white 12px text reaches a 4.62:1 contrast ratio (WCAG AA needs 4.5:1) */
     background-color: #9c6b2a;
     color: #ffffff;
     text-decoration: none;

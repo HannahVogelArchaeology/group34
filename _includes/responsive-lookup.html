@@ -1,0 +1,33 @@
+{%- comment -%}
+  Looks up an image in _data/responsive_images.json (written by scripts/make-responsive-images.py).
+  Input:   include.src   the site path of the original image, for example /assets/images/photo.jpg
+  Output:  ri_found      true when smaller WebP copies exist; false means the original file is used, as before
+           ri_srcset     the "srcset" value (WebP copies with their widths)
+           ri_thumb      the smallest copy, for small thumbnails
+           ri_w, ri_h    the original width and height in pixels
+{%- endcomment -%}
+{%- assign ri_found = false -%}
+{%- assign ri_srcset = "" -%}
+{%- assign ri_thumb = "" -%}
+{%- assign ri_w = 0 -%}
+{%- assign ri_h = 0 -%}
+{%- assign ri_key = include.src | strip -%}
+{%- if ri_key != "" -%}
+  {%- assign ri_first = ri_key | slice: 0 -%}
+  {%- if ri_first != "/" -%}
+    {%- assign ri_key = ri_key | prepend: "/" -%}
+  {%- endif -%}
+  {%- assign ri_entry = site.data.responsive_images[ri_key] -%}
+  {%- if ri_entry and ri_entry.widths.size > 0 -%}
+    {%- assign ri_found = true -%}
+    {%- assign ri_w = ri_entry.w -%}
+    {%- assign ri_h = ri_entry.h -%}
+    {%- capture ri_srcset -%}
+      {%- for ri_width in ri_entry.widths -%}
+        {{ ri_entry.base | append: "-" | append: ri_width | append: ".webp" | relative_url }} {{ ri_width }}w{% unless forloop.last %}, {% endunless %}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- assign ri_first_width = ri_entry.widths | first -%}
+    {%- assign ri_thumb = ri_entry.base | append: "-" | append: ri_first_width | append: ".webp" | relative_url -%}
+  {%- endif -%}
+{%- endif -%}

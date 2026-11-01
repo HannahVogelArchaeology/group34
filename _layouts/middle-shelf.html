@@ -11,7 +11,7 @@ layout: default
     <div class="shelf-hero-media" role="region" aria-label="Middle Shelf Featured Image">
       <div class="hero-image-wrapper">
         <a class="shelf-photo-link" href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0" aria-label="Open Middle Shelf hero image in the photo viewer">
-          <img src="{{ page.hero_image | relative_url }}" alt="Middle Shelf hero image" loading="eager">
+          <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 1100px) 100vw, 1100px" %} alt="Middle Shelf hero image" loading="eager" fetchpriority="high">
         </a>
         <a class="expand-btn" href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0" aria-label="Expand Middle Shelf hero image to full screen in the photo viewer">
           <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
@@ -35,7 +35,7 @@ layout: default
       {% assign obj_number = obj.slug | split: 'object' | last %}
       <a class="object-carousel-card" role="listitem" href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" aria-label="View Object {{ obj_number }}: {{ obj.name | escape }}">
         <span class="object-carousel-number" aria-hidden="true">{{ obj_number }}</span>
-        <span class="object-carousel-image-wrap"><img src="{{ obj.image | relative_url }}" alt="{{ obj.alt | escape }}" loading="lazy"></span>
+        <span class="object-carousel-image-wrap"><img src="{{ obj.image | relative_url }}" {% include responsive-attrs.html src=obj.image sizes="(max-width: 700px) 50vw, 400px" %} alt="{{ obj.alt | escape }}" loading="lazy" decoding="async"></span>
         <span class="object-carousel-copy">
           <span class="object-carousel-title">{{ obj.name }}</span>
           <span class="object-carousel-caption">{{ obj.caption }}</span>

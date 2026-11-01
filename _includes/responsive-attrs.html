@@ -1,0 +1,7 @@
+{%- comment -%}
+  Adds the "srcset" and "sizes" attributes to an <img> tag when smaller WebP copies exist.
+  Usage:  <img src="..." {% include responsive-attrs.html src=PATH sizes="..." %} alt="...">
+  Without copies this prints nothing, so the page behaves exactly as before.
+{%- endcomment -%}
+{%- include responsive-lookup.html src=include.src -%}
+{%- if ri_found -%}srcset="{{ ri_srcset }}" sizes="{{ include.sizes }}"{%- endif -%}

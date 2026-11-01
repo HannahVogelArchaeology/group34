@@ -34,13 +34,16 @@ Font Awesome icons are licensed CC BY 4.0, which requires attribution. The attri
 | base64                                                                       | 0.3.0                     | Ruby licence or BSD-2-Clause |
 | bigdecimal                                                                   | 4.1.2                     | Ruby licence or BSD-2-Clause |
 | tzinfo-data                                                                  | 1.2026.3                  | MIT                          |
+| Pillow (Python library, used only by `scripts/make-responsive-images.py`)    | not in `Gemfile.lock`     | HPND (MIT-style)             |
 
 Each gem ships its own licence file. Run `bundle exec gem contents <gem name>` to read it.
 
+Pillow is installed with `pip install Pillow`. It is run on a team member's computer to make the smaller photo copies and is not part of the repository or the published pages. Its licence (HPND) is a permissive licence that allows commercial use. The photo copies it writes carry no Pillow licence terms.
+
 ## The team's own code
 
-The code written or changed by the team (`assets/js/main.js`, the styles in `_sass/`, and the changes to the layouts and includes) is released under the MIT licence in `LICENSE`. The project's IT consultant confirmed that MIT and Apache 2.0 are both acceptable for this project. To release the team's own code under Apache 2.0 instead, replace `LICENSE` with `LICENSES/Apache-2.0.txt` for those files, keep the MIT notice for the Minima-derived files, and change `license:` in `CITATION.cff`.
+The code written or changed by the team (`assets/js/main.js`, the styles in `_sass/`, the changes to the layouts and includes, `scripts/make-responsive-images.py`, `_includes/responsive-lookup.html` and `_includes/responsive-attrs.html`) is released under the MIT licence in `LICENSE`. The project's IT consultant confirmed that MIT and Apache 2.0 are both acceptable for this project. To release the team's own code under Apache 2.0 instead, replace `LICENSE` with `LICENSES/Apache-2.0.txt` for those files, keep the MIT notice for the Minima-derived files, and change `license:` in `CITATION.cff`.
 
 ## Content and media
 
-Images, audio, video, 3D assets and text on the site are supplied by the client. They are not covered by the code licences above. The rights and the required credit for each item are recorded beside that item.
+Images, audio, video, 3D assets and text on the site are supplied by the client. They are not covered by the code licences above. The rights and the required credit for each item are recorded beside that item. The smaller copies of images in `assets/images/responsive/` (WebP files made by `scripts/make-responsive-images.py`) are the same works as the originals, so the same rights and the same required credit apply to them.

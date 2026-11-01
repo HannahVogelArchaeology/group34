@@ -1,0 +1,14 @@
+{
+ "/assets/images/Placeholder1_HomePageFullDisplay.jpeg": {
+  "base": "/assets/images/responsive/Placeholder1_HomePageFullDisplay",
+  "h": 4032,
+  "w": 3024,
+  "widths": [
+   480,
+   800,
+   1200,
+   1600,
+   2400
+  ]
+ }
+}

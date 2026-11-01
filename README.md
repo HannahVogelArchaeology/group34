@@ -32,6 +32,22 @@ Edit Markdown pages at the repository root. Site-wide values are in
 Read `AGENTS.md` before using an AI coding assistant. Add preferred contributor
 names to `team.md` and `CITATION.cff` rather than inferring them from accounts.
 
+## Photos: smaller copies for each screen
+
+The original photos in `assets/images/` are never changed. To keep the pages fast, a script writes smaller WebP copies
+of them into `assets/images/responsive/` and a list of them into `_data/responsive_images.json`. The pages then give each
+screen the copy that fits it, and the photo viewer loads the original file when a visitor zooms in.
+
+Run this once after adding or replacing photos, then commit the new files:
+
+```text
+pip install Pillow
+python scripts/make-responsive-images.py
+```
+
+Empty (0 KB) placeholder files and very small images are skipped and keep using the original file. Options such as
+`--quality` and `--force` are described at the top of `scripts/make-responsive-images.py`.
+
 ## Licence and attribution
 
 The code is derived from the MIT-licensed Minima theme. See `LICENSE` and

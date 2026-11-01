@@ -26,8 +26,14 @@ layout: default
               {% assign image_exists = true %}
             {% endif %}
           {% endfor %}
+          {% if image_exists %}{% assign viewer_src = gallery_image.src %}{% else %}{% assign viewer_src = object.image %}{% endif %}
+          {% include responsive-lookup.html src=viewer_src %}
           {
             "src": {% if image_exists %}{{ gallery_image.src | relative_url | jsonify }}{% else %}{{ object.image | relative_url | jsonify }}{% endif %},
+            "srcset": {{ ri_srcset | jsonify }},
+            "thumb": {{ ri_thumb | jsonify }},
+            "width": {{ ri_w }},
+            "height": {{ ri_h }},
             "label": {{ gallery_image.label | jsonify }},
             "caption": {{ gallery_image.caption | jsonify }},
             "alt": {{ gallery_image.alt | default: gallery_image.caption | jsonify }}
@@ -45,16 +51,26 @@ layout: default
       "images": [
         {% if shelf.gallery_images %}
           {% for image in shelf.gallery_images %}
+          {% include responsive-lookup.html src=image.src %}
           {
             "src": {{ image.src | relative_url | jsonify }},
+            "srcset": {{ ri_srcset | jsonify }},
+            "thumb": {{ ri_thumb | jsonify }},
+            "width": {{ ri_w }},
+            "height": {{ ri_h }},
             "label": {{ image.label | jsonify }},
             "caption": {{ image.caption | jsonify }},
             "alt": {{ image.alt | default: image.caption | jsonify }}
           }{% unless forloop.last %},{% endunless %}
           {% endfor %}
         {% else %}
+          {% include responsive-lookup.html src=shelf.hero_image %}
           {
             "src": {{ shelf.hero_image | relative_url | jsonify }},
+            "srcset": {{ ri_srcset | jsonify }},
+            "thumb": {{ ri_thumb | jsonify }},
+            "width": {{ ri_w }},
+            "height": {{ ri_h }},
             "label": "HERO IMAGE",
             "caption": {{ shelf.hero_caption | jsonify }},
             "alt": {{ shelf.hero_alt | default: shelf.hero_caption | jsonify }}

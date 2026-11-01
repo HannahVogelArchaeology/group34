@@ -95,6 +95,7 @@ endif %}
           href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
           aria-label="Open {{ page.title }} front image in the photo viewer">
           <img src="{{ first_gallery_src | relative_url }}"
+            {% include responsive-attrs.html src=first_gallery_src sizes="(max-width: 850px) 100vw, 550px" %} fetchpriority="high"
             alt="{{ page.gallery_images[0].caption | default: page.title | escape }}" class="main-img">
         </a>
 
@@ -120,8 +121,10 @@ endif %}
           <a class="thumb-box"
             href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index={{ forloop.index }}"
             aria-label="Open {{ gallery_image.label }} of {{ page.title }}">
+            {% if gallery_image_exists %}{% assign thumb_src = gallery_image.src %}{% else %}{% assign thumb_src = page.image %}{% endif %}
             <img
               src="{% if gallery_image_exists %}{{ gallery_image.src | relative_url }}{% else %}{{ page.image | relative_url }}{% endif %}"
+              {% include responsive-attrs.html src=thumb_src sizes="80px" %}
               alt="{{ gallery_image.caption | default: gallery_image.label | escape }}" loading="lazy">
           </a>
           {% endfor %}

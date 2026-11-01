@@ -467,6 +467,11 @@ function initialisePhotoViewer() {
   }
 
   const images = galleryImages.length ? galleryImages : [currentImage];
+
+  /* Optional smaller WebP copies, written by scripts/make-responsive-images.py.
+     Each entry can have srcset, thumb, width and height (the original file's size in pixels). */
+  const imageInfo = galleryEntry ? galleryEntry.images : [];
+  const VIEWER_IMAGE_SIZES = "(max-width: 700px) 100vw, 900px";
   let currentIndex = galleryEntry
     ? Math.min(Math.max(0, requestedIndex), images.length - 1)
     : Math.max(0, images.indexOf(currentImage));
@@ -482,6 +487,30 @@ function initialisePhotoViewer() {
   const previousButton = document.getElementById("photoPrev");
   const nextButton = document.getElementById("photoNext");
   const zoomFrame = document.getElementById("photoZoomFrame");
+
+  /* Zooming in loads the original file: the screen-sized WebP copy would look soft at the magnified size. */
+  function loadFullResolution() {
+    const info = imageInfo[currentIndex] || {};
+
+    if (!info.srcset || !mainImage) {
+      return;
+    }
+
+    const indexAtRequest = currentIndex;
+    const original = new Image();
+
+    original.onload = () => {
+      // Ignore the result when another photo was chosen while the original was loading.
+      if (indexAtRequest !== currentIndex) {
+        return;
+      }
+
+      // Without srcset the image uses its src, which is the original file.
+      mainImage.removeAttribute("srcset");
+      mainImage.removeAttribute("sizes");
+    };
+    original.src = images[currentIndex];
+  }
 
   /* Magnify: select the photo (click, tap, Enter or Space) to zoom in; move the pointer to pan; select again to zoom out */
   const ZOOM_SCALE = 2.5;
@@ -509,6 +538,7 @@ function initialisePhotoViewer() {
     zoomFrame.setAttribute("aria-pressed", String(enabled));
 
     if (enabled) {
+      loadFullResolution();
       panZoom(event);
       mainImage.style.transform = `scale(${ZOOM_SCALE})`;
     } else {
@@ -550,8 +580,11 @@ function initialisePhotoViewer() {
       return;
     }
 
-    const width = mainImage.naturalWidth;
-    const height = mainImage.naturalHeight;
+    // Use the original file's size when it is known, so the frame is the same whichever copy is showing.
+    const info = imageInfo[currentIndex] || {};
+    const loaded = mainImage.naturalWidth > 0;
+    const width = loaded && info.width > 0 ? info.width : mainImage.naturalWidth;
+    const height = loaded && info.height > 0 ? info.height : mainImage.naturalHeight;
 
     if (width > 0 && height > 0) {
       zoomFrame.style.setProperty("--photo-ratio", String(width / height));
@@ -628,6 +661,15 @@ function initialisePhotoViewer() {
     const caption = getCaption(currentIndex);
 
     if (mainImage) {
+      // Show a screen-sized WebP copy when one exists; the original is loaded when the visitor zooms in.
+      const info = imageInfo[currentIndex] || {};
+      if (info.srcset) {
+        mainImage.sizes = VIEWER_IMAGE_SIZES;
+        mainImage.srcset = info.srcset;
+      } else {
+        mainImage.removeAttribute("srcset");
+        mainImage.removeAttribute("sizes");
+      }
       mainImage.src = images[currentIndex];
       mainImage.alt = caption;
     }
@@ -674,7 +716,8 @@ function initialisePhotoViewer() {
       button.setAttribute("aria-label", `View ${getLabel(index)}`);
 
       const image = document.createElement("img");
-      image.src = src;
+      // Thumbnails use the smallest WebP copy when one exists.
+      image.src = (imageInfo[index] && imageInfo[index].thumb) || src;
       image.alt = getCaption(index);
 
       const label = document.createElement("span");

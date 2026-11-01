@@ -137,6 +137,7 @@ layout: default
         <div class="curator-image" aria-hidden="true">
         <img
             src="{{ page.curator_image | relative_url }}"
+            {% include responsive-attrs.html src=page.curator_image sizes="(max-width: 700px) 100vw, 320px" %}
             alt="{{ page.curator_image_alt | escape }}">
         </div>
     {% endif %}
