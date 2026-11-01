@@ -1,10 +1,12 @@
 title: "Disability Heritage: Archaeology with Difference"
 description: "Digital Exhibition"
-
+lang: en-AU
 baseurl: "/group34"
-url: ""
-
+url: "https://hannahvogelarchaeology.github.io"
+repository: HannahVogelArchaeology/group34
 markdown: kramdown
+
+author: Group 34
 
 sass:
   sass_dir: _sass
@@ -39,3 +41,9 @@ exclude:
   - tests
   - scripts
   - TESTING.md
+  # Internal project files that should not be published on the website
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
+  - NOTICE.md
+  - CITATION.cff
