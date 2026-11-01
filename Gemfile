@@ -2,7 +2,7 @@ source "https://rubygems.org", cooldown: 14
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-gem "jekyll", "~> 4.3.2"
+gem "jekyll", "~> 4.4.1"
 
 gem "csv"
 gem "base64"
