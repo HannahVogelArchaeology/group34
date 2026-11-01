@@ -5,7 +5,7 @@ name: Browser and device matrix
 
 on:
   push:
-    branches: [main]
+    branches: [main, lighthouse-test]
   pull_request:
   workflow_dispatch:
 
