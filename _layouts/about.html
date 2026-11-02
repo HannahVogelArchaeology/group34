@@ -39,7 +39,13 @@ layout: default
     </table>
 
     <p class="section-desc" aria-label="Website description">
-        This website offers several accessibility features to enhance usability for all users. Features include high colour contrast, sans-serif typefaces, adjustable text size, dark mode, and reduced motion effects for a more comfortable visual experience. ARIA labels and states support screen-reader users, and keyboard navigation enables access to all website features, including audio playback controls. A photo viewer guidance feature assists users in navigating the photo viewer. It also provides curator-supplied videos with closed captions, audio-visual descriptions, transcripts, and alternative text for images to further improve accessibility.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Proin eget justo ac tortor maximus scelerisque.
+        Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis,
+        ac laoreet turpis est sed ligula.
+        Nulla ante felis, ultrices sit amet magna nec,
+        efficitur porta purus.
+        Nulla posuere posuere tellus, dictum dictum diam pharetra ac.
     </p>
 </div>
 
@@ -374,6 +380,53 @@ const teamMembers = [
     }
     ];
 
+  /* Details of the other team members.
+     Only the selected member's table is shown, so a reader view (for example the reading mode of Chrome) would miss
+     the other members. A visually hidden copy of their tables keeps every member's details in the page, once each. */
+function buildMemberTable(data) {
+    const hasLink = Boolean(data.link) && data.link !== '#';
+    const table = document.createElement('table');
+    table.className = 'info-table team-member-table';
+    table.setAttribute('aria-label', 'Team member information: ' + data.name);
+
+    const social = hasLink
+        ? '<tr><td class="value-col">Social: <a class="inline-link" target="_blank" rel="noopener noreferrer" href="' + data.link +
+          '" aria-label="Visit ' + data.name + '\'s LinkedIn">LinkedIn</a></td></tr>'
+        : '';
+
+    table.innerHTML =
+        '<tbody>' +
+        '<tr><td class="label-col">Name</td><td class="value-col">' + data.name + '</td></tr>' +
+        '<tr><td class="label-col">Macquarie University</td><td class="value-col">' + data.degree + '</td></tr>' +
+        '<tr><td class="label-col">Role</td><td class="value-col">' + data.role + '</td></tr>' +
+        '<tr><td class="label-col" rowspan="' + (hasLink ? 2 : 1) + '">Contact</td><td class="value-col">' + data.email + '</td></tr>' +
+        social +
+        '</tbody>';
+
+    return table;
+}
+
+function renderOtherMembers(selectedIndex) {
+    const liveRegion = document.getElementById('member-name').closest('table').parentNode;
+    let box = document.getElementById('team-other-members');
+
+    if (!box) {
+        box = document.createElement('div');
+        box.id = 'team-other-members';
+        box.className = 'sr-only';
+        box.setAttribute('role', 'group');
+        box.setAttribute('aria-label', 'Details of the other team members');
+        liveRegion.parentNode.insertBefore(box, liveRegion.nextSibling);
+    }
+
+    box.textContent = '';
+    teamMembers.forEach(function (member, index) {
+        if (index !== selectedIndex) {
+            box.appendChild(buildMemberTable(member));
+        }
+    });
+}
+
   /* Team Member Selection */
 function selectMember(index, element) {
     document
@@ -433,6 +486,8 @@ function selectMember(index, element) {
     if (contactLabel) {
         contactLabel.rowSpan = hasLink ? 2 : 1;
     }
+
+    renderOtherMembers(index);
     }
 
   /* Page Initialisation */
