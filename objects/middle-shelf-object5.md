@@ -29,9 +29,9 @@ acq_no: "MU3735"
 material: "Ceramic"
 dimensions: "H: 200mm, W: 95mm, D: 47mm"
 details: >-
-  Mesopotamia, Greek seated figurine, c.3000 B.C.E.
+  Seated statuette Greek, c. 5th century BCE or Mesopotamia, c.3000 B.C.E.
 
-  Purchased in 2003.
+  MU3735 Purchase, 2003 
 overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula."
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
