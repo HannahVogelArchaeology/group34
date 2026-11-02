@@ -268,11 +268,14 @@
         tr {
           border-bottom: 1px solid #e0dad0;
 
-          td {
+          td,
+          th {
             padding: 0.75em 0;
             font-size: 1em;
 
             &.meta-label {
+              font-weight: 400; /* The label cell is a row header (th); keep it looking like the other cells. */
+              text-align: left;
               // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
               color: #866428;
               width: 1%; /* Shrink the label column to its text so values can use the remaining width. */

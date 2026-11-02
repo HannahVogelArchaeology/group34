@@ -33,14 +33,16 @@ layout: default
     <div class="object-carousel-track" role="group" aria-label="Bottom Shelf Objects" aria-describedby="bottom-carousel-instructions">
       {% for obj in page.objects %}
       {% assign obj_number = obj.slug | split: 'object' | last %}
-      <a class="object-carousel-card" href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" aria-label="View Object {{ obj_number }}: {{ obj.name | escape }}">
+      {% comment %} The card is a div. An empty link, named by aria-label, is laid over the whole card, so the card is still one click or one Tab stop. The title and caption are plain text beside it, so a reader view that skips link text still shows them. {% endcomment %}
+      <div class="object-carousel-card">
+        <a class="object-carousel-link" href="{{ '/objects/' | append: obj.slug | append: '/' | relative_url }}" aria-label="View Object {{ obj_number }}: {{ obj.name | escape }}"></a>
         <span class="object-carousel-number" aria-hidden="true">{{ obj_number }}</span>
         <span class="object-carousel-image-wrap"><img src="{{ obj.image | relative_url }}" {% include responsive-attrs.html src=obj.image sizes="(max-width: 700px) 50vw, 400px" %} alt="{{ obj.alt | escape }}" loading="lazy" decoding="async"></span>
         <span class="object-carousel-copy">
           <span class="object-carousel-title">{{ obj.name }}</span>
           <span class="object-carousel-caption">{{ obj.caption }}</span>
         </span>
-      </a>
+      </div>
       {% endfor %}
     </div>
     <p class="sr-only end-of-section">This is the end of section: Explore the objects.</p>

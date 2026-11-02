@@ -354,23 +354,26 @@ padding-right: 24px;
 .object-carousel-track { display: flex; align-items: stretch; gap: 0; overflow: visible; padding: 1.5rem 0 2rem; isolation: isolate; }
 .object-carousel-card { position: relative; flex: 1 1 0; min-width: 0; min-height: 360px; margin-left: -1rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: 10px; color: #fff; text-decoration: none; background: #d6d1c7; box-shadow: 0 8px 22px rgba(0,0,0,.14); z-index: 0; /* Own stacking context: a neighbour's number block can never paint over the hovered card's outline. */ transition: transform .7s ease, flex-grow .7s ease, box-shadow .7s ease, outline-color .7s ease; }
 .object-carousel-card:first-child { margin-left: 0; }
-.object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 2.4; transform: translateY(-8px) scale(1.03); z-index: 5; box-shadow: 0 16px 34px rgba(0,0,0,.22); outline: 3px solid #8b5d24; outline-offset: 0; /* No gap: the outline sits flush against the card edge. */ }
+.object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 2.4; transform: translateY(-8px) scale(1.03); z-index: 5; box-shadow: 0 16px 34px rgba(0,0,0,.22); outline: 3px solid #8b5d24; outline-offset: 0; /* No gap: the outline sits flush against the card edge. */ }
 /* The shelf pages set a 3px offset on all keyboard-focused links; the object cards override it so the focus outline is flush too. */
-.object-explorer-carousel .object-carousel-card:focus-visible { outline-offset: 0; }
+.object-explorer-carousel .object-carousel-card:has(.object-carousel-link:focus-visible) { outline-offset: 0; }
 /* Number block in the top-left corner of each object card */
 .object-carousel-number { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 2; display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 3px; background: #f8f6f1; color: #3b2a14; font-size: 1rem; font-weight: 700; line-height: 1; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); pointer-events: none; }
+/* The empty link that covers the whole card (see the shelf layouts). The card shows the focus outline, so the link itself has none. */
+.object-carousel-link { position: absolute; inset: 0; z-index: 3; border-radius: inherit; }
+.object-explorer-carousel .object-carousel-link:focus-visible { outline: none; }
 .object-carousel-image-wrap { position: absolute; inset: 0; background: #d6d1c7; }
 .object-carousel-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; color: transparent; font-size: 0; } /* Hides broken-image alt text overlay while placeholders are empty; alt text is still read by screen readers. */
 .object-carousel-copy { position: relative; z-index: 1; display: flex; flex-direction: column; gap: .45rem; padding: .85rem; background: linear-gradient(transparent, rgba(20,20,20,.88)); min-height: 110px; justify-content: flex-end; }
 .object-carousel-title { font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; }
 .object-carousel-caption { font-size: .8rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.object-carousel-card:hover .object-carousel-caption, .object-carousel-card:focus-visible .object-carousel-caption { font-size: .9rem; -webkit-line-clamp: unset; display: block; }
-@media (max-width: 700px) { .home-feature-container { grid-template-columns: 1fr; } .home-feature-media { grid-row: 1; } .home-feature-narrative { min-height: 220px; } .object-carousel-track { flex-wrap: wrap; gap: .75rem; } .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; } .object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 0; transform: none; } }
+.object-carousel-card:hover .object-carousel-caption, .object-carousel-card:has(.object-carousel-link:focus-visible) .object-carousel-caption { font-size: .9rem; -webkit-line-clamp: unset; display: block; }
+@media (max-width: 700px) { .home-feature-container { grid-template-columns: 1fr; } .home-feature-media { grid-row: 1; } .home-feature-narrative { min-height: 220px; } .object-carousel-track { flex-wrap: wrap; gap: .75rem; } .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; } .object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 0; transform: none; } }
 
 /* Narrow desktop windows (sidebar visible): seven cards in one row would be too small, so they wrap. */
 @media (min-width: 701px) and (max-width: 900px) {
   .object-carousel-track { flex-wrap: wrap; gap: .75rem; }
   .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; }
-  .object-carousel-card:hover, .object-carousel-card:focus-visible { flex-grow: 0; transform: none; }
+  .object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 0; transform: none; }
 }
 
