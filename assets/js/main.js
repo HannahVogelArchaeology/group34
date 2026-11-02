@@ -124,11 +124,18 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+/* The header button offers the mode that a click switches to: "Light Mode" while dark mode is on, "Dark Mode" otherwise. */
+function updateDarkModeButton(enabled) {
+  const button = document.querySelector(".dark-mode-btn");
+  if (!button) return;
+  button.setAttribute("aria-pressed", String(enabled));
+  button.textContent = enabled ? "Light Mode" : "Dark Mode";
+}
+
 function toggleDarkMode() {
   const enabled = document.body.classList.toggle("dark-mode");
   try { localStorage.setItem("darkMode", enabled ? "enabled" : "disabled"); } catch (error) { /* Storage may be unavailable. */ }
-  const button = document.querySelector(".dark-mode-btn");
-  if (button) button.setAttribute("aria-pressed", String(enabled));
+  updateDarkModeButton(enabled);
 }
 
 
@@ -834,8 +841,7 @@ document.addEventListener("DOMContentLoaded", () => {
   try {
     if (localStorage.getItem("darkMode") === "enabled") {
       document.body.classList.add("dark-mode");
-      const darkButton = document.querySelector(".dark-mode-btn");
-      if (darkButton) darkButton.setAttribute("aria-pressed", "true");
+      updateDarkModeButton(true);
     }
   } catch (error) { /* Storage may be unavailable. */ }
 
