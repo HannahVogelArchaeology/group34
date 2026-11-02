@@ -55,12 +55,6 @@ body.dark-mode {
     &:focus-visible { background-color: #4a4b51 !important; }
   }
 
-  .mobile-menu-btn {
-    background-color: #7a5420 !important;
-    border-color: #c9a063 !important;
-    color: #ffffff;
-  }
-
   /* Home page */
 
   .home-feature-section,
@@ -191,8 +185,7 @@ body.dark-mode {
 
   /* Header buttons: bright text on dark buttons */
   .pinned-header .font-btn,
-  .pinned-header .dark-mode-btn,
-  .pinned-header .mobile-menu-btn { color: #ece8de !important; }
+  .pinned-header .dark-mode-btn { color: #ece8de !important; }
 
   /* Same colours as the floating Back to top button in dark mode */
   .pinned-header .header-top-btn {
@@ -200,8 +193,6 @@ body.dark-mode {
     border-color: #c9a063 !important;
     color: #ffffff !important;
   }
-
-  .pinned-header .mobile-menu-btn { color: #ffffff !important; }
 
   .pinned-header .header-left,
   .pinned-header .header-center .active-object-name { border-bottom-color: #45474c !important; }
