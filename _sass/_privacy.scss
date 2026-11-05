@@ -40,8 +40,8 @@
   margin-bottom: 40px;
 
   .toc-title {
-    font-size: 1.25em;
-    font-weight: 500;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin-top: 0;
     margin-bottom: 20px;
     color: #111;
@@ -63,8 +63,9 @@
         display: flex;
         align-items: center;
         text-decoration: none;
-        color: #444;
-        font-size: 0.95em;
+        color: #2b2418;
+        font-size: 1.125rem;
+        line-height: 1.5;
 
         &:hover {
           color: #b37b3b;
@@ -84,7 +85,7 @@
   margin-bottom: 40px;
 
   .section-title {
-    font-size: 1.25em;
+    font-size: 1.6rem;
     font-weight: 600;
     margin-top: 0;
     margin-bottom: 16px;
@@ -92,10 +93,10 @@
   }
 
   p {
-    font-size: 0.95em;
-    line-height: 1.6;
-    color: #444;
-    margin-bottom: 16px;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #2b2418;
+    margin-bottom: 18px;
   }
 
   .policy-list {
@@ -103,9 +104,9 @@
     padding-left: 1.4em;
 
     li {
-      font-size: 0.95em;
-      line-height: 1.6;
-      color: #444;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: #2b2418;
       margin-bottom: 10px;
     }
   }
@@ -115,10 +116,60 @@
     margin-bottom: 20px;
 
     .subsection-title {
-      font-size: 1em;
+      font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 8px;
       color: #222;
+    }
+  }
+}
+
+/* Licence tables on the Terms & Conditions page. No horizontal scrollbar: the columns share the width and long words wrap. */
+.policy-section .licence-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 0 0 18px;
+  font-size: 1.05rem;
+  line-height: 1.55;
+
+  th,
+  td {
+    padding: 10px 12px;
+    border: 1px solid #d6d1c7;
+    text-align: left;
+    vertical-align: top;
+    color: #333;
+    overflow-wrap: anywhere;
+  }
+
+  thead th {
+    background-color: #eae5d9;
+    font-weight: 600;
+  }
+
+  tbody th {
+    font-weight: 600;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  code {
+    font-size: 0.95em;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 600px) {
+  .policy-section .licence-table {
+    font-size: 0.82em;
+
+    th,
+    td {
+      padding: 8px 6px;
     }
   }
 }

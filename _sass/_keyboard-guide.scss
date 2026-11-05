@@ -1,0 +1,291 @@
+/* Keyboard Guide: keycap badges drawn over the page while the mode is on (see assets/js/keyboard-guide.js). */
+/* The panel is added above the page content. Without this, the browser keeps the content where it was and scrolls the page past the panel. */
+body.keyboard-guide-on {
+  overflow-anchor: none;
+}
+
+.kg-layer {
+  --kg-key-bg: #382713;
+  --kg-key-text: #f6f3eb;
+  --kg-key-edge: #1d1308;
+  --kg-pill-bg: #f6f3eb;
+  --kg-pill-edge: #8b5d24;
+  --kg-label: #543b19;
+  --kg-accent: #8b5d24;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  z-index: 5000;
+  pointer-events: none;
+}
+
+/* The script gives this layer the height of the page. Clipping keeps a badge from adding scrollable space below the footer. */
+.kg-layer-doc {
+  overflow: hidden;
+}
+
+.kg-layer-fixed {
+  position: fixed;
+  inset: 0;
+  width: auto;
+  height: auto;
+}
+
+.kg-target-box {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px dashed var(--kg-accent);
+  border-radius: 4px;
+}
+
+.kg-badge {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  box-sizing: border-box;
+  max-width: min(260px, calc(100vw - 8px));
+  padding: 5px 8px 6px;
+  border: 1.5px solid var(--kg-pill-edge);
+  border-radius: 8px;
+  background: var(--kg-pill-bg);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
+  font-size: 0.75rem;
+  line-height: 1.25;
+}
+
+/* A narrower badge, chosen by the script where the page is crowded: its text wraps onto more lines. */
+.kg-narrow {
+  max-width: 150px;
+}
+
+.kg-compact {
+  padding: 3px 5px;
+}
+
+.kg-tail {
+  position: absolute;
+  width: 2px;
+  background: var(--kg-accent);
+}
+
+/* A thin line from a badge to its element (drawn by the script). */
+.kg-tail-line {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+
+  line {
+    stroke: var(--kg-accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+}
+
+.kg-keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px;
+}
+
+.kg-key {
+  display: inline-block;
+  min-width: 1.9em;
+  padding: 0.4em 0.65em;
+  border-radius: 5px;
+  background: var(--kg-key-bg);
+  box-shadow: 0 2px 0 var(--kg-key-edge);
+  color: var(--kg-key-text);
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.kg-compact .kg-key {
+  min-width: 0;
+  padding: 0.35em 0.5em;
+  font-size: 0.62rem;
+}
+
+.kg-then,
+.kg-or {
+  color: var(--kg-label);
+  font-weight: 700;
+}
+
+.kg-label {
+  color: var(--kg-label);
+  font-weight: 600;
+}
+
+/* Explanation panel at the top of the page content */
+.kg-legend {
+  --kg-key-bg: #382713;
+  --kg-key-text: #f6f3eb;
+  --kg-key-edge: #1d1308;
+  --kg-label: #543b19;
+
+  box-sizing: border-box;
+  width: min(100% - var(--kg-side, 0px) - 2 * clamp(24px, 4vw, 56px), 1200px);
+  margin: 0 auto;
+  padding: 16px 20px 18px;
+  border: 2px solid #8b5d24;
+  border-radius: 10px;
+  background: #f6f3eb;
+  color: #3b2a14;
+}
+
+/* Beside the sidebar the badges use the right part of the page, so the panel stays on the left of them. */
+.kg-legend[data-side] {
+  margin-left: clamp(24px, 4vw, 56px);
+  margin-right: 0;
+}
+
+.kg-legend-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+}
+
+.kg-legend-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #3b2a14;
+}
+
+.kg-legend-off {
+  min-height: 40px;
+  padding: 6px 16px;
+  border: 1px solid #6d491b;
+  border-radius: 4px;
+  background: #8b5d24;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background: #543b19;
+  }
+}
+
+.kg-legend-intro {
+  margin: 10px 0 14px;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.kg-legend-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* The buttons beside the sidebar, listed under the general keys. */
+.kg-legend-sidebar {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--kg-accent);
+}
+
+.kg-legend-sub {
+  margin: 0 0 10px;
+  color: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.kg-legend-item {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  align-items: center;
+  gap: 6px 16px;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.kg-legend-keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+
+.kg-legend .kg-key {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 600px) {
+  .kg-legend-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The band around the panel */
+.kg-legend-wrap {
+  box-sizing: border-box;
+  padding: 16px 0;
+}
+
+@media print {
+  .kg-layer,
+  .kg-legend-wrap,
+  .kg-legend {
+    display: none !important;
+  }
+}
+
+/* Dark mode */
+body.dark-mode .kg-layer {
+  --kg-key-bg: #e0bd82;
+  --kg-key-text: #1b1c1e;
+  --kg-key-edge: #8b6a2f;
+  --kg-pill-bg: #26272a;
+  --kg-pill-edge: #c9a063;
+  --kg-label: #e0bd82;
+  --kg-accent: #e0bd82;
+}
+
+body.dark-mode .kg-legend {
+  --kg-key-bg: #e0bd82;
+  --kg-key-text: #1b1c1e;
+  --kg-key-edge: #8b6a2f;
+  --kg-label: #e0bd82;
+
+  border-color: #c9a063;
+  background: #26272a;
+}
+
+/* The page text rules of dark mode colour every p, li, h2, span and button inside the content, so the panel is listed with a longer selector. */
+body.dark-mode .main-content .kg-legend .kg-legend-title,
+body.dark-mode .main-content .kg-legend .kg-legend-sub,
+body.dark-mode .main-content .kg-legend .kg-legend-intro,
+body.dark-mode .main-content .kg-legend .kg-legend-text {
+  color: #ece8de !important;
+}
+
+body.dark-mode .main-content .kg-legend .kg-or {
+  color: #e0bd82 !important;
+}
+
+body.dark-mode .main-content .kg-legend .kg-legend-off {
+  border-color: #c9a063;
+  background: #7a5420;
+  color: #ffffff !important;
+}
+

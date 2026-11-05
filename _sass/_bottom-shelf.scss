@@ -1,5 +1,4 @@
 /* Bottom shelf */
-
 .bottom-shelf-container {
   --shelf-accent: #71490d;
   --shelf-accent-dark: #513409;
@@ -47,7 +46,6 @@
   }
 
   /* Hero image + numbered object list */
-
   .hero-image-wrapper {
     position: relative;
     display: flex;
@@ -118,7 +116,6 @@
       font-size: 1.3em;
       font-weight: 400;
       margin-bottom: 0.3em;
-      // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
       color: #866428;
     }
 
@@ -130,7 +127,7 @@
   }
 
   /* Responsive behaviour */
-  @media (max-width: 700px) {
+  @media (max-width: 779px) {
     padding: 2.25em 1em 3em;
 
     .shelf-v2-title {
@@ -183,7 +180,7 @@
 
   .image-caption {
     margin: 0.65rem 0 0;
-    color: #555;
+    color: #000000;
     font-size: 0.85rem;
     line-height: 1.45;
   }
@@ -204,7 +201,7 @@
   margin: 0.65rem 0 0;
   padding: 0;
   box-sizing: border-box;
-  color: #555;
+  color: #000000;
   font-size: 0.85rem;
   line-height: 1.45;
   text-align: left;
@@ -213,7 +210,7 @@
   word-break: break-word;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 779px) {
   .shelf-hero-media {
     width: 100%;
     max-width: 100%;
@@ -226,8 +223,8 @@
 }
 
 /* Responsive hero and object carousel layout. */
-.bottom-shelf-container .shelf-feature-layout { display: block; margin-bottom: 2rem; } /* Order: heading, hero image, caption, overview, objects. */
-.bottom-shelf-container .hero-image-wrapper { aspect-ratio: 16 / 9; width: 100%; } /* Landscape hero image */
+.bottom-shelf-container .shelf-feature-layout { display: block; margin-bottom: 2rem; }
+.bottom-shelf-container .hero-image-wrapper { aspect-ratio: 16 / 9; width: 100%; }
 .bottom-shelf-container .shelf-overview-section { margin: 2rem 0 0; min-width: 0; }
 .bottom-shelf-container .shelf-hero-media { min-width: 0; }
 .bottom-shelf-container .shelf-hero-media .image-caption { max-width: 100%; overflow-wrap: anywhere; }

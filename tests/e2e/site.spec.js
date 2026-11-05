@@ -4,6 +4,7 @@ const { test, expect } = require("@playwright/test");
 const PAGES = [
   { name: "Home", path: "./" },
   { name: "About Us", path: "about/" },
+  { name: "Accessibility", path: "accessibility/" },
   { name: "Top Shelf", path: "shelves/top-shelf/" },
   { name: "Middle Shelf", path: "shelves/middle-shelf/" },
   { name: "Bottom Shelf", path: "shelves/bottom-shelf/" },
@@ -95,9 +96,19 @@ test.describe("Site structure", () => {
   test("dark mode can be switched on and off", async ({ page }) => {
     await page.goto("about/");
     const button = page.locator(".dark-mode-btn").first();
+    const settingsButton = page.locator(".settings-btn");
 
+    // On phones (700px and narrower) Dark Mode is inside the panel that the "Aa" button opens.
+    const openSettings = async () => {
+      if (await settingsButton.isVisible() && (await settingsButton.getAttribute("aria-expanded")) !== "true") {
+        await settingsButton.click();
+      }
+    };
+
+    await openSettings();
     await button.click();
     await expect(page.locator("body")).toHaveClass(/dark-mode/);
+    await openSettings();
     await button.click();
     await expect(page.locator("body")).not.toHaveClass(/dark-mode/);
   });

@@ -47,8 +47,8 @@ jobs:
           - { project: iphone, browser: webkit }
           - { project: ipad, browser: webkit }
           # Layout breakpoint (700px) and the smallest supported phone width
-          - { project: width-700-drawer, browser: chromium }
-          - { project: width-701-sidebar, browser: chromium }
+          - { project: width-779-drawer, browser: chromium }
+          - { project: width-780-sidebar, browser: chromium }
           - { project: width-320-small-phone, browser: chromium }
     steps:
       - name: Check out repository

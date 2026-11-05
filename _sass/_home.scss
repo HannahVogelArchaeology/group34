@@ -1,45 +1,3 @@
-/* Shared Hero Container */
-.hero-container {
-width: 100%;
-max-width: 1000px;
-margin: 0 auto;
-padding: 0 40px;
-box-sizing: border-box;
-
-@media (max-width: 1024px) {
-padding: 0 30px;
-}
-}
-
-/* Hero Title Section */
-.hero-title-section {
-background-color: #382713;
-color: #ffffff;
-padding-top: clamp(34px, 5vw, 58px);
-padding-bottom: clamp(42px, 6vw, 68px);
-
-.hero-main-title {
-max-width: 760px;
-font-size: clamp(2.35rem, 6vw, 4.6rem);
-font-weight: 400;
-line-height: 1.02;
-letter-spacing: -0.025em;
-margin: 0;
-color: #ffffff;
-
-br {
-  display: block;
-}
-}
-
-.hero-curator {
-margin: 22px 0 0;
-font-size: clamp(0.95rem, 1.6vw, 1.15rem);
-line-height: 1.4;
-color: #e0dcd3;
-}
-}
-
 /* Shelves Explorer */
 .shelves-explorer {
 background-color: #f6f3eb;
@@ -60,19 +18,15 @@ max-width: 1000px;
 margin: 0 auto;
 
 .shelf-card {
-  background-color: #eae5d9;
   color: inherit;
   text-decoration: none;
   cursor: pointer;
 
-  border-radius: 2px;
-  padding: 16px;
 
   flex: 1;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   transition:
     transform 0.2s ease,
@@ -82,23 +36,13 @@ margin: 0 auto;
   .card-header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
 
     margin-bottom: 16px;
-    width: 100%;
 
-    .shelf-label {
-      font-size: 0.85em;
-      letter-spacing: 1px;
-      font-weight: 600;
-      color: #444444;
-    }
   }
 
   .card-img {
     width: 100%;
-    height: 220px;
     margin-bottom: 16px;
     overflow: hidden;
 
@@ -109,22 +53,9 @@ margin: 0 auto;
     }
   }
 
-  .caption {
-    font-size: 0.85em;
-    color: #555555;
-    margin: 0 0 16px 0;
-    text-align: center;
-  }
 
   .view-button {
-    /* Darkened from #b5833f so white 12px text reaches a 4.62:1 contrast ratio (WCAG AA needs 4.5:1) */
-    background-color: #9c6b2a;
-    color: #ffffff;
     text-decoration: none;
-    padding: 6px 20px;
-    font-size: 0.75em;
-    letter-spacing: 1px;
-    border-radius: 2px;
     font-weight: 600;
     transition: background 0.2s ease;
     pointer-events: none;
@@ -138,20 +69,9 @@ margin: 0 auto;
   &:focus-visible {
     color: inherit;
     text-decoration: none;
-    background-color: #e3ddcf;
-    box-shadow:
-      0 8px 20px rgba(81, 52, 9, 0.12);
-    transform: translateY(-2px);
 
-    .view-button {
-      background-color: #543b19;
-    }
   }
 
-  &:focus-visible {
-    outline: 3px solid #174e77;
-    outline-offset: 4px;
-  }
 }
 
 }
@@ -241,7 +161,6 @@ p {
   color: #444444;
   margin: 0;
 
-  /* Links inside body text are underlined so they do not rely on colour alone (WCAG 1.4.1) */
   a {
     text-decoration: underline;
     text-underline-offset: 2px;
@@ -254,22 +173,13 @@ p {
 /* Main Page Image Captions */
 .hero-media-placeholder .image-caption {
 margin: 0.65rem 0 0;
-color: #555;
+color: #000000;
 font-size: 0.85rem;
 line-height: 1.45;
 }
 
 /* Responsive Homepage */
 @media (max-width: 768px) {
-
-.hero-title-section {
-padding-top: 30px;
-padding-bottom: 45px;
-
-.hero-main-title {
-  font-size: 2.8em;
-}
-}
 
 .hero-media-placeholder {
 padding: 24px;
@@ -279,9 +189,6 @@ padding: 24px;
 padding-left: 24px;
 padding-right: 24px;
 
-.shelf-cards-container {
-  flex-direction: column;
-}
 }
 
 .auslan-section {
@@ -310,70 +217,294 @@ padding-right: 24px;
 }
 
 /* The narrative text size. */
-.home-feature-narrative .hero-description { font-size: 1.2em; line-height: 1.7; }
 
 .home-feature-media .image-caption {
   line-height: 1.45;
 }
-@media (max-width: 700px) {
-  .home-feature-narrative { grid-row: 2; }
-  .home-feature-narrative .btn-curator-bio { margin-top: 1.25rem; }
+
+/* Main feature layout: the title and the Explore button on the left, the image and caption on the right. The narrative and the About Us button follow below. */
+.home-feature-section { padding: clamp(24px, 4vw, 56px) clamp(24px, 4vw, 56px) clamp(24px, 3vw, 40px); background: #f6f3eb; }
+.home-feature-container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 64px); align-items: center; max-width: 1400px; margin: 0 auto; }
+.home-hero-text { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-width: 0; }
+.home-hero-text .hero-main-title {
+  margin: 0;
+  max-width: 760px;
+  font-weight: 400;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  color: #222222;
+}
+.home-hero-text .hero-curator {
+  margin: 22px 0 1.75rem;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  color: #222222;
 }
 
-/* Main feature layout: narrative on the left, image and caption on the right. */
-.home-feature-section { padding: clamp(24px, 4vw, 56px); background: #f6f3eb; }
-.home-feature-container { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(24px, 4vw, 64px); align-items: stretch; max-width: 1400px; margin: 0 auto; }
-.home-feature-narrative { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; min-width: 0; }
-/* About Us button: one rule. The hover and focus colour matches the shelf card button (#543b19). */
-.home-feature-narrative .btn-curator-bio {
-  margin-top: auto;
+.home-hero-text .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 0; }
+.home-hero-text .btn-explore-exhibition,
+.home-hero-text .btn-curator-bio {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 22px;
-  min-height: 48px;
-  background: #8b5d24;
-  color: #fff;
+  gap: 10px;
+  padding: 0 28px;
+  min-height: 52px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
-.home-feature-narrative .btn-curator-bio:hover,
-.home-feature-narrative .btn-curator-bio:focus-visible {
+/* Explore the exhibition button */
+.home-hero-text .btn-explore-exhibition {
+  background: #382713;
+  color: #fff;
+  border: 2px solid #382713;
+  box-shadow: 0 8px 20px rgba(56, 39, 19, 0.28);
+}
+.home-hero-text .btn-explore-exhibition:hover,
+.home-hero-text .btn-explore-exhibition:focus-visible {
   background: #543b19;
+  border-color: #543b19;
 }
+/* About Us button */
+.home-hero-text .btn-curator-bio {
+  background: transparent;
+  color: #5c3a1e;
+  border: 2px solid #5c3a1e;
+}
+.home-hero-text .btn-curator-bio:hover,
+.home-hero-text .btn-curator-bio:focus-visible {
+  background: #543b19;
+  border-color: #543b19;
+  color: #fff;
+}
+.home-hero-text .btn-explore-exhibition:focus-visible,
+.home-hero-text .btn-curator-bio:focus-visible { outline: 3px solid #174e77; outline-offset: 3px; }
+
+.shelves-explorer { scroll-margin-top: 24px; }
+
+/* Narrative section: full width, under Explore the exhibition. */
+.home-narrative-section { padding: 0 clamp(24px, 4vw, 56px) clamp(32px, 5vw, 64px); background: #f6f3eb; }
+.home-narrative-container { display: flex; flex-direction: column; align-items: flex-start; width: min(100%, 1200px); max-width: 1400px; margin: 0 auto; }
+.home-narrative-container .hero-description { width: 100%; }
 .home-feature-media { margin: 0; min-width: 0; display: flex; flex-direction: column; }
-.home-feature-media img { display: block; width: 100%; height: auto; max-height: 650px; object-fit: contain; }
-.home-feature-media .image-caption { text-align: left; overflow-wrap: anywhere; margin: 10px 0 0; }
-.object-explorer-carousel { padding: 2rem 0 3rem; background: transparent; } /* No side padding: aligns with the hero image above. */
+
+/* The photo keeps its own proportions (it is never cropped). */
+.home-feature-media .hero-photo-frame { position: relative; align-self: flex-start; max-width: 100%; }
+.home-feature-media img { position: relative; display: block; width: auto; max-width: 100%; height: auto; max-height: 650px; border-radius: 8px; }
+
+/* The caption starts at the left edge of the photo. */
+/* The figure is as wide as the photo, and the caption wraps inside that width (width: 0 with min-width: 100% keeps the long caption from widening the figure). */
+.home-feature-media { width: fit-content; max-width: 100%; justify-self: start; }
+.home-feature-media .image-caption { width: 0; min-width: 100%; text-align: left; overflow-wrap: anywhere; margin: 14px 0 0; color: #000000; }
+.object-explorer-carousel { padding: 2rem 0 3rem; background: transparent; }
 .object-explorer-carousel h2 { margin-top: 0; }
-/* "Explore the objects" on the middle and bottom shelf: regular weight and the theme brown, like the other gold headings (#866428 is 5:1 on the cream background, WCAG AA). */
+
 .middle-shelf-container .object-explorer-carousel h2,
 .bottom-shelf-container .object-explorer-carousel h2 { font-weight: 400; color: #866428; }
 .carousel-instructions { margin-bottom: 1.25rem; }
-/* All cards share the row width, so no horizontal scrollbar is needed. The hovered card grows and comes forward. */
+
+
 .object-carousel-track { display: flex; align-items: stretch; gap: 0; overflow: visible; padding: 1.5rem 0 2rem; isolation: isolate; }
-.object-carousel-card { position: relative; flex: 1 1 0; min-width: 0; min-height: 360px; margin-left: -1rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: 10px; color: #fff; text-decoration: none; background: #d6d1c7; box-shadow: 0 8px 22px rgba(0,0,0,.14); z-index: 0; /* Own stacking context: a neighbour's number block can never paint over the hovered card's outline. */ transition: transform .7s ease, flex-grow .7s ease, box-shadow .7s ease, outline-color .7s ease; }
+.object-carousel-card { position: relative; flex: 1 1 0; min-width: 0; min-height: 360px; margin-left: -1rem; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; border-radius: 10px; color: #fff; text-decoration: none; background: #d6d1c7; box-shadow: 0 8px 22px rgba(0,0,0,.14); z-index: 0; transition: transform .7s ease, flex-grow .7s ease, box-shadow .7s ease, outline-color .7s ease; }
 .object-carousel-card:first-child { margin-left: 0; }
-.object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 2.4; transform: translateY(-8px) scale(1.03); z-index: 5; box-shadow: 0 16px 34px rgba(0,0,0,.22); outline: 3px solid #8b5d24; outline-offset: 0; /* No gap: the outline sits flush against the card edge. */ }
+.object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 2.4; transform: translateY(-8px) scale(1.03); z-index: 5; box-shadow: 0 16px 34px rgba(0,0,0,.22); outline: 3px solid #8b5d24; outline-offset: 0; }
+
 /* The shelf pages set a 3px offset on all keyboard-focused links; the object cards override it so the focus outline is flush too. */
 .object-explorer-carousel .object-carousel-card:has(.object-carousel-link:focus-visible) { outline-offset: 0; }
+
 /* Number block in the top-left corner of each object card */
 .object-carousel-number { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 2; display: grid; place-items: center; width: 2.1rem; height: 2.1rem; border-radius: 3px; background: #f8f6f1; color: #3b2a14; font-size: 1rem; font-weight: 700; line-height: 1; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); pointer-events: none; }
+
 /* The empty link that covers the whole card (see the shelf layouts). The card shows the focus outline, so the link itself has none. */
 .object-carousel-link { position: absolute; inset: 0; z-index: 3; border-radius: inherit; }
 .object-explorer-carousel .object-carousel-link:focus-visible { outline: none; }
 .object-carousel-image-wrap { position: absolute; inset: 0; background: #d6d1c7; }
-.object-carousel-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; color: transparent; font-size: 0; } /* Hides broken-image alt text overlay while placeholders are empty; alt text is still read by screen readers. */
+.object-carousel-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; color: transparent; font-size: 0; } 
+
 .object-carousel-copy { position: relative; z-index: 1; display: flex; flex-direction: column; gap: .45rem; padding: .85rem; background: linear-gradient(transparent, rgba(20,20,20,.88)); min-height: 110px; justify-content: flex-end; }
 .object-carousel-title { font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; }
 .object-carousel-caption { font-size: .8rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .object-carousel-card:hover .object-carousel-caption, .object-carousel-card:has(.object-carousel-link:focus-visible) .object-carousel-caption { font-size: .9rem; -webkit-line-clamp: unset; display: block; }
-@media (max-width: 700px) { .home-feature-container { grid-template-columns: 1fr; } .home-feature-media { grid-row: 1; } .home-feature-narrative { min-height: 220px; } .object-carousel-track { flex-wrap: wrap; gap: .75rem; } .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; } .object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 0; transform: none; } }
+@media (max-width: 779px) { .home-feature-container { grid-template-columns: minmax(0, 1fr); } .home-feature-media { width: 100%; max-width: 100%; justify-self: stretch; } .home-feature-media .hero-photo-frame { align-self: stretch; width: 100%; } .home-feature-media img { width: 100%; max-width: 100%; max-height: none; } .home-feature-media .image-caption { width: 100%; min-width: 0; } .home-hero-text .hero-main-title { font-size: clamp(2.4rem, 11vw, 3.2rem); } .shelves-explorer { scroll-margin-top: 220px; } .object-carousel-track { flex-wrap: wrap; gap: .75rem; } .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; } .object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 0; transform: none; } }
 
 /* Narrow desktop windows (sidebar visible): seven cards in one row would be too small, so they wrap. */
-@media (min-width: 701px) and (max-width: 900px) {
+@media (min-width: 780px) and (max-width: 900px) {
   .object-carousel-track { flex-wrap: wrap; gap: .75rem; }
   .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; }
   .object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 0; transform: none; }
 }
 
+
+/* Shelf cards */
+.shelves-explorer .shelf-cards-container .shelf-card .caption { flex: 1 1 auto; }
+.shelves-explorer .shelf-cards-container .shelf-card .view-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35em;
+  margin-top: auto;
+  text-align: center;
+}
+
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 769px) {
+    .shelves-explorer .shelf-cards-container {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      column-gap: 24px;
+      row-gap: 0;
+    }
+
+    .shelves-explorer .shelf-cards-container .shelf-card {
+      display: grid;
+      grid-row: span 4;
+      grid-template-rows: subgrid;
+      justify-items: center;
+      align-items: start;
+    }
+
+    .shelves-explorer .shelf-cards-container .shelf-card .card-header { align-self: end; }
+    .shelves-explorer .shelf-cards-container .shelf-card .view-button { align-self: end; margin-top: 0; }
+  }
+}
+
+/* Acknowledgements */
+.acknowledgement-section .ack-right { min-width: 0; }
+.acknowledgement-section .ack-right p { overflow-wrap: anywhere; }
+
+@media (max-width: 1000px) {
+  .acknowledgement-section .acknowledgement-container { flex-direction: column; gap: 25px; }
+  .acknowledgement-section .ack-left { width: auto; }
+}
+
+/* Home feature (title + photo) */
+.home-feature-section { container-type: inline-size; }
+.home-hero-text .hero-main-title { font-size: clamp(2.35rem, 6.2cqw, 4.6rem); overflow-wrap: anywhere; }
+
+@container (max-width: 780px) {
+  .home-feature-container { grid-template-columns: minmax(0, 1fr); }
+  /* One column: the title grows with the column, so its first line reaches close to the right edge and no empty strip is left beside it. */
+  .home-hero-text .hero-main-title { font-size: clamp(2.4rem, 11.5cqw, 6rem); max-width: none; }
+  .home-hero-text .hero-actions { margin-top: 4px; }
+  /* One column: the photo uses the whole column width, so there is no empty strip beside it. */
+  .home-feature-media .hero-photo-frame { align-self: stretch; }
+  .home-feature-media img { width: 100%; max-height: none; }
+  /* The figure (photo and caption) */
+  .home-feature-media { width: 100%; justify-self: stretch; }
+  .home-feature-media .image-caption { width: 100%; min-width: 0; }
+}
+
+/* Shelf cards (Explore the exhibition) */
+.shelves-explorer .shelf-cards-container .shelf-card {
+  padding: 0;
+  overflow: hidden;
+  align-items: stretch;
+  justify-items: stretch;
+  border: 1px solid #d9ccb2;
+  border-radius: 12px;
+  background-color: #eae5d9;
+  box-shadow: 0 8px 22px rgba(60, 40, 10, 0.12);
+}
+.shelves-explorer .shelf-cards-container .shelf-card .card-header {
+  justify-content: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 16px;
+  width: auto;
+  box-sizing: border-box;
+  min-width: 0;
+  flex-wrap: wrap; 
+  row-gap: 8px;
+}
+.shelves-explorer .shelf-cards-container .shelf-card .shelf-icon { flex: 0 0 auto; color: #5c3a1e; }
+.shelves-explorer .shelf-cards-container .shelf-card .card-header .shelf-label {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: #5c3a1e;
+  text-align: left;
+  flex: 1 1 7rem;
+  min-width: 0;
+  overflow-wrap: anywhere; /* A very long label breaks rather than leaving the card. */
+}
+.shelves-explorer .shelf-cards-container .shelf-card .shelf-count {
+  margin-left: auto;
+  padding: 3px 11px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  color: #3a2a14;
+  background: #f6f3eb;
+  border: 1px solid #d0bf9c;
+  border-radius: 999px;
+}
+.shelves-explorer .shelf-cards-container .shelf-card .card-img { height: 250px; margin: 0; }
+.shelves-explorer .shelf-cards-container .shelf-card .card-img img { transition: transform 0.3s ease; }
+.shelves-explorer .shelf-cards-container .shelf-card .caption {
+  margin: 0;
+  padding: 14px 18px 18px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: left;
+  color: #222222;
+}
+.shelves-explorer .shelf-cards-container .shelf-card .view-button {
+  width: 100%;
+  min-height: 52px;
+  padding: 10px 16px;
+  box-sizing: border-box;
+  border-radius: 0;
+  white-space: normal;
+  line-height: 1.25;
+  background-color: #382713;
+  color: #ffffff;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+.shelves-explorer .shelf-cards-container .shelf-card:hover,
+.shelves-explorer .shelf-cards-container .shelf-card:focus-visible {
+  background-color: #e3ddcf;
+  border-color: #c9a063;
+  box-shadow: 0 18px 38px rgba(60, 40, 10, 0.26);
+  transform: translateY(-4px);
+}
+.shelves-explorer .shelf-cards-container .shelf-card:hover .card-img img,
+.shelves-explorer .shelf-cards-container .shelf-card:focus-visible .card-img img { transform: scale(1.04); }
+.shelves-explorer .shelf-cards-container .shelf-card:hover .view-button,
+.shelves-explorer .shelf-cards-container .shelf-card:focus-visible .view-button { background-color: #543b19; }
+.shelves-explorer .shelf-cards-container .shelf-card:focus-visible { outline: 3px solid #174e77; outline-offset: 4px; }
+@media (prefers-reduced-motion: reduce) {
+  .shelves-explorer .shelf-cards-container .shelf-card,
+  .shelves-explorer .shelf-cards-container .shelf-card .card-img img { transition: none; }
+  .shelves-explorer .shelf-cards-container .shelf-card:hover,
+  .shelves-explorer .shelf-cards-container .shelf-card:focus-visible { transform: none; }
+  .shelves-explorer .shelf-cards-container .shelf-card:hover .card-img img,
+  .shelves-explorer .shelf-cards-container .shelf-card:focus-visible .card-img img { transform: none; }
+}
+
+/* Narratives: styling only */
+.home-narrative-section { padding-top: clamp(28px, 4vw, 48px); }
+.home-narrative-container .hero-description { max-width: none; font-size: 1.15rem; line-height: 1.8; }
+.home-narrative-container .hero-description::before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 0 0 clamp(22px, 3vw, 34px);
+  background: #c9a063;
+}
+.home-narrative-container .hero-description p { margin: 0 0 1.2em; font-weight: 400; }
+
+/* All the narrative paragraphs in the same size */
+.home-narrative-container .hero-description p {
+  font-size: clamp(1.35rem, 0.9rem + 1.6vw, 1.7rem);
+  line-height: 1.6;
+}
+.home-narrative-container .hero-description p:nth-of-type(1),
+.home-narrative-container .hero-description p:nth-of-type(2) {
+  margin-bottom: 1.1em;
+  font-weight: 500;
+  line-height: 1.45;
+}

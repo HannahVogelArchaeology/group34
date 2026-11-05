@@ -17,8 +17,7 @@ These are not copied into the repository. They are requested from the CDN named 
 | Component                              | Version                          | Licence                                         | Copyright and source                                                                                                                             |
 | -------------------------------------- | -------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Font Awesome Free (CSS and icon fonts) | 6.4.0                            | Icons: CC BY 4.0. Fonts: SIL OFL 1.1. Code: MIT | Copyright 2023 Fonticons, Inc. <https://fontawesome.com/license/free> (served by cdnjs)                                                          |
-| Manrope (font)                         | Google Fonts, weights 300 to 800 | SIL OFL 1.1                                     | Copyright The Manrope Project Authors. <https://fonts.google.com/specimen/Manrope> (exact copyright line: see the font's `OFL.txt` on that page) |
-| Material Icons (icon font)             | Google Fonts, latest             | Apache License 2.0                              | Copyright Google LLC. <https://developers.google.com/fonts/docs/material_icons>                                                                  |
+| Manrope (font)                         | Google Fonts, weights 400 to 800 | SIL OFL 1.1                                     | Copyright The Manrope Project Authors. <https://fonts.google.com/specimen/Manrope> (exact copyright line: see the font's `OFL.txt` on that page) |
 
 Font Awesome icons are licensed CC BY 4.0, which requires attribution. The attribution is the notice above and the licence header that Font Awesome's own CSS file carries.
 
@@ -33,7 +32,10 @@ Font Awesome icons are licensed CC BY 4.0, which requires attribution. The attri
 | csv                                                                          | 3.3.6                     | Ruby licence or BSD-2-Clause |
 | base64                                                                       | 0.3.0                     | Ruby licence or BSD-2-Clause |
 | bigdecimal                                                                   | 4.1.2                     | Ruby licence or BSD-2-Clause |
+| rexml                                                                        | 3.4.4                     | BSD-2-Clause                 |
+| webrick                                                                      | 1.9.2                     | BSD-2-Clause                 |
 | tzinfo-data                                                                  | 1.2026.3                  | MIT                          |
+| Playwright Test (`@playwright/test`, used only by the checks in `tests/`)    | 1.63.0 (`tests/package.json`) | Apache License 2.0       |
 | Pillow (Python library, used only by `scripts/make-responsive-images.py`)    | not in `Gemfile.lock`     | HPND (MIT-style)             |
 
 Each gem ships its own licence file. Run `bundle exec gem contents <gem name>` to read it.

@@ -48,10 +48,22 @@ layout: default
           </a>
         {% endfor %}
       </div>
-      <button class="explore-3d-btn" type="button" aria-label="Explore a 3D model of {{ page.object_title | default: 'Object 1' | escape }}">
-        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-        <span aria-hidden="true">Explore in 3D</span>
-      </button>
+      {%- comment -%} Same as the other object pages: the button opens the 3D model in a new tab. Add the link as "3d_link" in the front matter of this page; until then the button has no link yet. {%- endcomment -%}
+      {% assign three_d_link = page['3d_link'] %}
+      <div class="explore-3d-wrap">
+        {% if three_d_link %}
+        <a href="{{ three_d_link | escape }}" target="_blank" rel="noopener noreferrer" class="explore-3d-btn">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <span aria-hidden="true">Explore in 3D</span><span class="sr-only">Explore a 3D model of {{ page.object_title | default: 'Object 1' | escape }} (opens in a new tab)</span>
+        </a>
+        {% else %}
+        <button class="explore-3d-btn" type="button" aria-label="Explore a 3D model of {{ page.object_title | default: 'Object 1' | escape }}">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+          <span aria-hidden="true">Explore in 3D</span>
+        </button>
+        {% endif %}
+        <span class="explore-3d-note" aria-hidden="true">Opens in a new tab</span>
+      </div>
     </div>
     <p class="sr-only end-of-section">This is the end of section: photo.</p>
   </section>
@@ -82,10 +94,10 @@ layout: default
     <h3 id="top-shelf-info-heading">Object Information</h3>
     <table class="metadata-table" aria-label="Metadata for {{ page.object_title | default: 'Object 1' | escape }}">
       <tbody>
-        <tr><td class="label"><span aria-hidden="true">Acq. No</span><span class="sr-only">Acquisition Number</span></td><td class="value">MU4759</td></tr>
-        <tr><td class="label">Material</td><td class="value">Ceramic</td></tr>
-        <tr><td class="label">Dimensions</td><td class="value">H: 344mm, W: 200mm</td></tr>
-        <tr class="meta-row-details"><td class="label">Details</td><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
+        <tr><th scope="row" class="label"><span aria-hidden="true">Acq. No</span><span class="sr-only">Acquisition Number</span></th><td class="value">MU4759</td></tr>
+        <tr><th scope="row" class="label">Material</th><td class="value">Ceramic</td></tr>
+        <tr><th scope="row" class="label">Dimensions</th><td class="value">H: 344mm, W: 200mm</td></tr>
+        <tr class="meta-row-details"><th scope="row" class="label">Details</th><td class="value">Painter of Bari 8010, Southern Italy, 350-340 B.C.E. 
 Purchase, 2013</td></tr>
       </tbody>
     </table>

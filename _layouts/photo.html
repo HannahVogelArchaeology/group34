@@ -84,15 +84,20 @@ layout: default
 
 <!-- TOP BAR -->
 <header class="photo-viewer-header" aria-label="Photo viewer controls">
-    <a id="photoBackLink" class="photo-back-link" href="#" aria-label="Go back to previous page"> &lt; BACK</a>
-    <span class="photo-counter" id="photoCounter" aria-live="polite" aria-label="Photo count"> 1 / 1 </span>
+    {%- comment -%} The Guide button takes the place of the old Back link: Back and Close went to the same page. {%- endcomment -%}
+    <button class="photo-guide-btn" id="photoGuideButton" type="button" aria-haspopup="dialog" aria-controls="photoGuide" aria-label="Open photo viewer usage guide">
+        <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+        <span aria-hidden="true">Guide</span>
+    </button>
+    {%- comment -%} The photo count is no longer shown here (the view number is under the photo); screen readers still hear it. {%- endcomment -%}
+    <span class="sr-only" id="photoCounter" aria-live="polite" aria-label="Photo count"> 1 / 1 </span>
+    <button class="photo-expand" id="photoExpand" type="button" aria-label="Show the photo full screen">
+        <i class="fa-solid fa-expand" aria-hidden="true"></i>
+    </button>
     <div class="photo-header-actions" role="group" aria-label="Viewer utility actions">
-        <button class="photo-guide-btn" id="photoGuideButton" type="button" aria-haspopup="dialog" aria-controls="photoGuide" aria-label="Open photo viewer usage guide">
-            <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
-            <span aria-hidden="true">Guide</span>
-        </button>
         <button class="photo-close" id="photoClose" type="button" aria-label="Close photo viewer">
-            <span aria-hidden="true">×</span>
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            <span aria-hidden="true">Close</span>
         </button>
     </div>
 </header>
@@ -106,7 +111,8 @@ layout: default
         <span class="sr-only">This is the alternative text of the photo: <span id="photoAltText"></span></span>
         <div class="photo-zoom-frame" id="photoZoomFrame" role="button" tabindex="0" aria-pressed="false" aria-label="Magnify photo. Select to zoom in or out.">
             <img id="photoMainImage" src="" alt="" aria-hidden="true" draggable="false">
-            <!-- Mouse pointer icon: shown while the mouse is over the photo. Plus before zooming in, minus while zoomed in. -->
+
+            <!-- Mouse pointer icon: Plus before zooming in, minus while zoomed in. -->
             <span class="photo-zoom-pointer" id="photoZoomPointer" aria-hidden="true">
                 <i class="fa-solid fa-magnifying-glass-plus photo-zoom-pointer-in"></i>
                 <i class="fa-solid fa-magnifying-glass-minus photo-zoom-pointer-out"></i>
@@ -114,29 +120,37 @@ layout: default
         </div>
         <figcaption aria-label="Object title and current view">
             <span class="sr-only">This is the object title and the view: </span>
-            <span id="photoObjectName">Object Name</span>
-            <span aria-hidden="true"> • </span>
-            <span id="photoViewLabel">[Front View]</span>
+            <span class="photo-object-name" id="photoObjectName">Object Name</span>
+            <span class="photo-view-sep" aria-hidden="true"> • </span>
+            <span class="photo-view-count" id="photoViewCount" aria-hidden="true">View 1 of 1</span>
+            <span class="photo-view-label" id="photoViewLabel">Front View</span>
         </figcaption>
     </figure>
-<!-- Keyboard and screen reader order: photo information, then Previous, then Next. The grid places them left and right. -->
+
+<!-- Keyboard and screen reader order: photo information, then Previous, then Next. They sit in the bottom bar, Previous before Next. -->
     <button class="photo-arrow photo-arrow-left" id="photoPrev" type="button" aria-label="Previous photo">
         <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
+        <span aria-hidden="true">Previous</span>
     </button>
     <button class="photo-arrow photo-arrow-right" id="photoNext" type="button" aria-label="Next photo">
+        <span aria-hidden="true">Next</span>
         <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
     </button>
 </section>
 
-<!-- THUMBNAIL PANEL -->
+<!-- THUMBNAIL STRIP (one row along the bottom; scrolls sideways when there are more photos than fit) -->
 <aside class="photo-thumbnail-panel" aria-label="Thumbnail selector panel">
-    <div class="photo-thumbnail-handle" aria-hidden="true"></div>
     <nav class="photo-thumbnails" id="photoThumbnails" aria-label="Photo views">
     <!-- Thumbnails generated dynamically by JS -->
     </nav>
 </aside>
 
-<!-- GUIDE (modal): shows what each part of this page does. Opens with the page and with the Guide button. -->
+<!-- EXPANDED VIEW: the X button that leaves full screen (Esc does the same). It is shown only while the photo is expanded. -->
+<button class="photo-expand-exit" id="photoExpandExit" type="button" aria-label="Exit full screen" hidden>
+    <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+</button>
+
+<!-- GUIDE modal: shows what each part of this page does. Opens with the page and with the Guide button. -->
 <div class="photo-guide" id="photoGuide" role="dialog" aria-modal="true" aria-labelledby="photoGuideTitle" aria-describedby="photoGuideIntro" hidden>
     <div class="photo-guide-sheet">
         <div class="photo-guide-top">
@@ -152,45 +166,41 @@ layout: default
         </div>
 
         <ul class="photo-guide-items" aria-label="Photo viewer instructions">
-            <li class="guide-item guide-back">
+            <li class="guide-item guide-guide">
                 <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
-                <span>To go back to the previous page, press the back button on the top left.</span>
+                <span>After closing this guide, press the Guide button on the top left to open it again.</span>
             </li>
             <li class="guide-item guide-count">
                 <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
-                <span>The total number of the photos is listed on the top middle.</span>
+                <span>Expand (top middle) shows the photo full screen. Press Esc, or the X button, to leave full screen.</span>
             </li>
             <li class="guide-item guide-close-note">
                 <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
-                <span>To close the current page, press the close button on the top right.</span>
+                <span>Close guide (top right) closes this guide. After that, the Close button in the same place leaves the photo page and goes back to the previous page.</span>
             </li>
             <li class="guide-item guide-caption">
-                <span>The caption of the photo is listed above the photo.</span>
+                <span>The caption of the photo is shown above the photo.</span>
                 <i class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>
-            </li>
-            <li class="guide-item guide-prev">
-                <i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i>
-                <span>Click the button on the left side of the photo to view the previous photo.</span>
             </li>
             <li class="guide-item guide-zoom">
                 <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
-                <span>Click anywhere inside the frame to see more closely.</span>
-            </li>
-            <li class="guide-item guide-next">
-                <i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i>
-                <span>Click the button on the right side of the photo to view the next photo.</span>
+                <span>Click anywhere on the photo to see it larger. Click again, or press Esc, to go back.</span>
             </li>
             <li class="guide-item guide-meta">
-                <i class="fa-solid fa-arrow-up-long" aria-hidden="true"></i>
-                <span>The number, object title, museum number, and viewpoint are listed under the photo.</span>
+                <span>The viewpoint of the photo and its position in the set are shown under the photo.</span>
+                <i class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>
+            </li>
+            <li class="guide-item guide-prev">
+                <span>Press Previous, or the Left Arrow key, to view the previous photo.</span>
+                <i class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>
+            </li>
+            <li class="guide-item guide-next">
+                <span>Press Next, or the Right Arrow key, to view the next photo.</span>
+                <i class="fa-solid fa-arrow-down-long" aria-hidden="true"></i>
             </li>
             <li class="guide-item guide-wardrobe">
                 <i class="fa-solid fa-images" aria-hidden="true"></i>
-                <span>
-                    Click any photo you want to see from the wardrobe.
-                    <span class="guide-desktop-only">Scroll down to see more photos.</span>
-                    <span class="guide-mobile-only">Scroll left or right to see more photos.</span>
-                </span>
+                <span>Click a small photo in the row at the bottom to see it. Move the row sideways with the mouse wheel or by swiping to see more photos.</span>
             </li>
         </ul>
     </div>

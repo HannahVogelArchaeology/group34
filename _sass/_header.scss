@@ -100,7 +100,7 @@
 
   
 
-  @media (max-width: 700px) {
+  @media (max-width: 779px) {
     min-height: 96px;
     padding: 12px 12px;
 
@@ -192,7 +192,7 @@
   right: -380px;
   width: 380px;
   height: 100vh;
-  background-color: #53391b;
+  background-color: #2a211b;
   color: #ffffff;
   z-index: 1100;
   transition: right 0.3s ease-in-out;
@@ -222,7 +222,7 @@
     flex-direction: column;
     width: 100%;
 
-    /* Labels are written in normal case in the HTML (so screen readers say "Us", not "U.S.") and capitalised here. */
+    /* Labels are written in normal case in the HTML ("Us", not "U.S.") and capitalised here. */
     .main-link span { text-transform: uppercase; }
 
     .main-link {
@@ -345,7 +345,7 @@
    Navigation (sidebar)
    - Desktop: always visible, fixed to the right edge, full height.
      Width, text size and padding use the original design values.
-   - Mobile (max-width: 700px): collapsed drawer opened with the
+   - Mobile (max-width: 779px): collapsed drawer opened with the
      "Navigation Menu" text button.
    ------------------------------------------------------------------ */
 :root { --sidebar-w: clamp(280px, 30vw, 380px); }
@@ -407,7 +407,7 @@
 }
 .outdated-browser .browser-warning a { color: #174e77; font-weight: 700; text-decoration: underline; }
 
-@media (min-width: 701px) {
+@media (min-width: 780px) {
   .sidebar-overlay { display: none !important; }
 
   .sidebar-menu {
@@ -416,7 +416,7 @@
     transition: none;
     overflow-x: hidden;
     overflow-y: auto;
-    scrollbar-width: none; /* Scrolls with the wheel or keyboard if the window is short, without a visible scrollbar. */
+    scrollbar-width: none;
 
     &::-webkit-scrollbar { display: none; }
 
@@ -425,7 +425,6 @@
 
   /* The header and page content sit beside the sidebar. */
   .pinned-header {
-    width: calc(100% - var(--sidebar-w));
 
     .header-content {
       grid-template-columns: minmax(120px, 0.6fr) minmax(100px, 1.5fr) auto;
@@ -436,8 +435,7 @@
   .site-footer { margin-right: var(--sidebar-w); }
 }
 
-/* Stacked header (title, object name, buttons). Used on phones and on narrow desktop windows, where the
-   header only has the width that is left beside the fixed sidebar. */
+/* Stacked header (title, object name, buttons). Used on phones and on narrow desktop windows  */
 @mixin stacked-header {
   .pinned-header {
     position: fixed;
@@ -501,21 +499,14 @@
 }
 
 /* Narrow desktop windows (sidebar visible): the buttons would cover the object name in one row. */
-@media (min-width: 701px) and (max-width: 1000px) {
+@media (min-width: 780px) and (max-width: 1000px) {
   @include stacked-header;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 779px) {
   @include stacked-header;
 
-  .pinned-header {
-    /* Left group: text size buttons + Dark Mode. Right group: Back to top + Navigation Menu. */
-    .header-top-btn { display: inline-flex; align-items: center; margin-left: auto; }
-    .mobile-menu-btn { margin-left: 0; }
-  }
-
-  /* The floating button is replaced by the one in the header. */
-  .back-to-top { display: none; }
+  .pinned-header .header-top-btn { display: none; }
 
   .mobile-menu-btn { display: inline-flex; align-items: center; }
 
@@ -547,11 +538,15 @@
   }
 }
 
-/* Scroll hint at the bottom of the navigation menu: a floating, non-clickable circle-arrow icon.
-   It is shown on every screen size while the menu does not fit on one screen. */
+/* Scroll arrows of the navigation menu: floating circle-arrow icons that can be clicked */
 @keyframes sidebar-hint-bob {
-  0%, 100% { transform: translateY(-100%); }
-  50% { transform: translateY(calc(-100% + 6px)); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes sidebar-hint-bob-up {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 .sidebar-menu .sidebar-scroll-hint {
@@ -561,91 +556,1094 @@
   z-index: 5;
   height: 0;
   text-align: center;
-  pointer-events: none; /* Not clickable */
+  pointer-events: none;
   opacity: 0;
-  transition: opacity 0.25s ease;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s;
 
-  &.is-visible { opacity: 1; }
+  &.is-visible { opacity: 1; visibility: visible; }
+
+  .sidebar-scroll-btn {
+    display: inline-block;
+    padding: 4px 8px;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff;
+    line-height: 1;
+    cursor: pointer;
+    pointer-events: auto;
+    transform: translateY(-100%);
+  }
 
   i {
-    display: inline-block;
-    transform: translateY(-100%);
-    color: #ffffff;
+    display: block;
     font-size: 2.2rem;
     line-height: 1;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
     animation: sidebar-hint-bob 1.4s ease-in-out infinite;
   }
+
+  .sidebar-scroll-btn:hover i,
+  .sidebar-scroll-btn:focus-visible i { animation: none; transform: scale(1.12); }
+}
+
+/* The up arrow: sticks to the top of the menu and points upwards */
+.sidebar-menu .sidebar-scroll-up {
+  bottom: auto;
+  top: 8px;
+
+  .sidebar-scroll-btn { transform: none; }
+  i { animation-name: sidebar-hint-bob-up; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sidebar-menu .sidebar-scroll-hint i { animation: none; }
 }
 
-/* Phone header: the exhibition title always fills two lines. The longest line, "Archaeology with Difference", is about
-   13.7 times the font size wide, so the size follows the header width (divided by 14.4) and the line never breaks.
-   The cqw lines use the header width, which is also right beside the sidebar on narrow desktop windows. The vw line
-   before it is for browsers that do not know cqw. */
+
 @media (max-width: 1000px) {
   .pinned-header { container-type: inline-size; }
 }
 
-@media (max-width: 700px) {
+/* ------------------------------------------------------------------
+   Phone header (779px and narrower)
+   Row 1: exhibition title, text size and dark mode panel and "Menu".
+   Row 2: where the visitor is: "Shelf name > object name" (or the page name).
+   ------------------------------------------------------------------ */
+.settings-btn,
+.header-shelf-name,
+.header-crumb-sep,
+.settings-heading,
+.dark-mode-btn i { display: none; }
+
+/* Wider than a phone, the panel only groups the buttons, so it takes no box of its own. */
+.display-settings { display: contents; }
+
+@media (max-width: 779px) {
+  body .pinned-header {
+    min-height: 0;
+    padding: 0;
+    background-color: #f7f5f0;
+    border-bottom: 1px solid #d9ccb2;
+
+    .header-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0;
+      padding: 0;
+    }
+
+    .header-left {
+      order: 1;
+      flex: 1 1 144px;
+      min-width: 0;
+      padding: 8px 8px 8px 16px;
+      border-bottom: 0;
+    }
+
+    /* Visual order: 1. the exhibition title (largest and heaviest), 2. the page name in the strip, 3. the buttons. */
+    .header-left .exhibition-title {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #1a1006;
+    }
+
+    .header-right {
+      order: 2;
+      flex: 0 0 auto;
+      margin-left: auto;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 8px 12px 8px 0;
+    }
+
+    /* "You are here" strip, centred */
+    .header-center {
+      order: 3;
+      flex: 1 1 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0 8px;
+      min-height: 44px;
+      padding: 6px 16px;
+      text-align: center;
+      background-color: #eee8d8;
+      border-top: 1px solid #d9ccb2;
+    }
+
+    .header-center:not(:has(.active-object-name)) { display: none; }
+
+    .header-center .active-object-name {
+      display: inline;
+      padding: 0;
+      border: 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      line-height: 1.3;
+      color: #2b2418;
+      text-align: center;
+    }
+
+    /* The shelf name is plain text */
+    .header-shelf-name {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.3;
+      color: #5c3a1e;
+    }
+
+    .header-crumb-sep {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: #8a6a3a;
+    }
+
+    /* "Accessibility button" and "Menu": at least 44px high, with a visible text label. */
+    .header-right .settings-btn,
+    .header-right .mobile-menu-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      box-sizing: border-box;
+      min-width: 48px;
+      min-height: 48px;
+      margin: 0;
+      padding: 0 14px;
+      border-radius: 8px;
+      font: inherit;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      cursor: pointer;
+
+      &:focus-visible {
+        outline: 3px solid #174e77;
+        outline-offset: 2px;
+      }
+    }
+
+    /* The accessibility icon */
+    .header-right .settings-btn i { font-size: 22px; }
+
+    .header-right .settings-btn {
+      order: 1;
+      border: 2px solid #5c3a1e;
+      background: transparent;
+      color: #5c3a1e;
+
+      &[aria-expanded="true"] {
+        background: #382713;
+        border-color: #382713;
+        color: #ffffff;
+      }
+    }
+
+    .header-right .mobile-menu-btn {
+      order: 2;
+      border: 2px solid #382713;
+      background: #382713;
+      color: #ffffff;
+
+      i { font-size: 17px; }
+    }
+
+    /* The panel opened by Accessibility button */
+    .display-settings {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 12px;
+      width: min(300px, calc(100vw - 24px));
+      padding: 14px;
+      box-sizing: border-box;
+      background-color: #efe9d9;
+      border: 1px solid #cdbf9f;
+      border-radius: 12px;
+      box-shadow: 0 14px 34px rgba(60, 40, 10, 0.3);
+
+      &.open { display: block; }
+    }
+
+    .settings-heading {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin: 0 0 8px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #5c3a1e;
+
+      /* Current text size, on the right of the "Text size" heading */
+      .settings-value {
+        letter-spacing: 0.02em;
+        color: #2c2825;
+      }
+
+      & + .text-resizers + .settings-heading { margin-top: 14px; }
+    }
+
+    .display-settings .text-resizers {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(min-content, 1fr));
+      gap: 8px;
+    }
+
+    .display-settings .font-btn,
+    .display-settings .dark-mode-btn,
+    .display-settings .keyboard-guide-toggle {
+      min-width: 0;
+      width: 100%;
+      min-height: 44px;
+      margin: 0;
+      padding: 4px 8px;
+      border: 1px solid #bfae88;
+      border-radius: 8px;
+      background-color: #e4dcc8;
+      color: #2b2418;
+      font: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.1;
+      white-space: normal;
+    }
+
+    .display-settings .dark-mode-btn {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      padding: 4px 14px;
+      text-align: left;
+
+      i { display: inline-block; width: 1.2em; text-align: center; }
+
+      /* Switch, as in the menu and on the desktop sidebar: track = ::after, thumb = its background. */
+      &::after {
+        content: "";
+        flex: none;
+        width: 44px;
+        height: 26px;
+        margin-left: auto;
+        border-radius: 13px;
+        background: radial-gradient(circle at 13px 50%, #f8f6f1 10px, transparent 10.5px), #a89c82;
+      }
+
+      &.is-dark {
+        background-color: #382713;
+        border-color: #382713;
+        color: #ffffff;
+
+        &::after {
+          background: radial-gradient(circle at 31px 50%, #382713 10px, transparent 10.5px), #e0bd82;
+        }
+      }
+    }
+
+    /* Keyboard Guide */
+    .display-settings .keyboard-guide-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      margin-top: 8px;
+      padding: 4px 14px;
+      text-align: left;
+      cursor: pointer;
+
+      i { display: inline-block; width: 1.2em; text-align: center; }
+
+      .kg-toggle-state {
+        position: relative;
+        flex: none;
+        width: 44px;
+        height: 26px;
+        margin-left: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 13px;
+        background: #a89c82;
+        color: transparent;
+        font-size: 0;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: 3px;
+          left: 3px;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #f8f6f1;
+          transition: left 0.15s ease;
+        }
+      }
+
+      &[aria-pressed="true"] {
+        background-color: #382713;
+        border-color: #382713;
+        color: #ffffff;
+
+        .kg-toggle-state {
+          background: #e0bd82;
+
+          &::after {
+            left: 21px;
+            background: #382713;
+          }
+        }
+      }
+    }
+
+    .display-settings .font-btn:focus-visible,
+    .display-settings .dark-mode-btn:focus-visible,
+    .display-settings .keyboard-guide-toggle:focus-visible {
+      outline: 3px solid #174e77;
+      outline-offset: 2px;
+    }
+  }
+
+  /* Floating "Back to top": a round icon button that main.js shows while the visitor scrolls up */
+  body .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 900;
+    width: 48px;
+    height: 48px;
+    min-height: 0;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 1.15rem;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+
+    &.is-visible {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.2s ease;
+    }
+  }
+}
+
+/* Navigation (phone drawer and desktop sidebar) */
+.sidebar-menu .sidebar-nav {
+  a[aria-current="page"] {
+    background-color: rgba(255, 255, 255, 0.16) !important;
+    box-shadow: inset 5px 0 0 #e0bd82;
+
+    .object-title,
+    .shelf-label { font-weight: 800 !important; }
+
+    /* Number and name share the first line */
+    &.object-item,
+    .object-item {
+      flex-wrap: wrap;
+      row-gap: 4px;
+    }
+
+    .object-title {
+      flex: 1 1 calc(100% - 34px);
+      min-width: 0;
+    }
+  }
+
+  .here-badge {
+    margin-left: 34px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: #e0bd82;
+    color: #2b1d0c;
+    font-size: 0.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 779px) and (prefers-reduced-motion: reduce) {
+  body .back-to-top,
+  body .back-to-top.is-visible { transition: none; }
+}
+
+@media (min-width: 780px) and (max-width: 1000px) {
   .pinned-header .header-left .exhibition-title {
-    font-size: min(1.75rem, calc((100vw - 28px) / 14.4));
     font-size: min(1.75rem, calc((100cqw - 28px) / 14.4));
   }
+}
 
-  /* Slightly less padding around the title and the buttons keeps the pinned header as low as possible. */
-  .pinned-header .header-left { padding-top: 8px; padding-bottom: 8px; }
-
-  /* Two columns, two rows. Left: the three text size buttons, with Dark Mode under them.
-     Right: Navigation Menu, with Back to top under it. Each button fills its cell. */
-  .pinned-header .header-right {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: stretch;
-    gap: 4px 8px;
-    padding: 6px 10px;
+@media (min-width: 780px) {
+  .pinned-header {
+    container-type: normal;
+    right: 0;
+    left: auto;
+    width: var(--sidebar-w);
+    min-height: 0;
+    padding: 24px 20px 18px;
+    background-color: #41342a;
+    border-bottom: 2px solid #e8d3a0;
+    box-shadow: none;
+    color: #f6f0e6;
+    z-index: 1200;
   }
 
-  .pinned-header .header-right .font-btn,
-  .pinned-header .header-right .dark-mode-btn,
-  .pinned-header .header-right .header-top-btn,
+  .pinned-header .header-content {
+    display: block;
+    max-width: none;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pinned-header .header-left,
+  .pinned-header .header-center,
   .pinned-header .header-right .mobile-menu-btn {
-    min-height: 40px;
+    display: none;
   }
 
-  /* Reset used to be clipped: the buttons had a fixed 26px width. They now grow with their text. */
-  .pinned-header .header-right .text-resizers .font-btn {
+  .pinned-header .header-right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 10px;
+    padding: 0;
+  }
+
+  .pinned-header .header-right .text-resizers {
+    display: flex;
+    gap: 6px;
+  }
+
+  /* Buttons in the sidebar style */
+  .pinned-header .header-right .text-resizers .font-btn,
+  .pinned-header .header-right .dark-mode-btn,
+  .pinned-header .header-right .header-top-btn {
     width: auto;
     min-width: 44px;
-    padding: 4px 10px;
-    font-size: 0.8rem;
-    flex: 1 1 auto;
+    min-height: 40px;
+    margin: 0;
+    padding: 6px 12px;
+    border: 0 !important;
+    border-radius: 4px;
+    background: #3a302a !important;
+    color: #f6f0e6 !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .pinned-header .header-right .text-resizers .font-btn:hover,
+  .pinned-header .header-right .text-resizers .font-btn:focus-visible,
+  .pinned-header .header-right .dark-mode-btn:hover,
+  .pinned-header .header-right .dark-mode-btn:focus-visible,
+  .pinned-header .header-right .header-top-btn:hover,
+  .pinned-header .header-right .header-top-btn:focus-visible {
+    background: rgba(246, 243, 235, 0.2) !important;
+  }
+
+  .pinned-header .header-right .text-resizers .font-btn:focus-visible,
+  .pinned-header .header-right .dark-mode-btn:focus-visible,
+  .pinned-header .header-right .header-top-btn:focus-visible {
+    outline: 3px solid #f6f0e6;
+    outline-offset: 2px;
+  }
+
+  .pinned-header .header-right .dark-mode-btn.is-dark {
+    background: #e8d3a0 !important;
+    border-color: #e8d3a0 !important;
+    color: #2a211b !important;
+  }
+
+  /* Wide sidebar */
+  .pinned-header .header-right .dark-mode-btn { margin-left: auto; }
+
+  .pinned-header .header-right .header-top-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 100%;
+    background: #e8d3a0 !important;
+    border-color: #e8d3a0 !important;
+    color: #2a211b !important;
+  }
+
+  .pinned-header .header-right .header-top-btn:hover,
+  .pinned-header .header-right .header-top-btn:focus-visible {
+    background: #f3e3b8 !important;
+  }
+
+  /* No bar above the content any more. */
+  .main-content { padding-top: 0; }
+
+  /* The sidebar has its own Back to top button, so the floating one is hidden here */
+  body .back-to-top { display: none; }
+}
+
+
+@media (min-width: 780px) and (max-width: 1199px) {
+  .pinned-header .header-right .text-resizers {
+    flex: 1 1 100%;
+  }
+
+  .pinned-header .header-right .text-resizers .font-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 44px;
+    font-size: 0.95rem;
   }
 
   .pinned-header .header-right .dark-mode-btn,
-  .pinned-header .header-right .header-top-btn,
-  .pinned-header .header-right .mobile-menu-btn {
-    justify-content: center;
+  .pinned-header .header-right .header-top-btn {
+    flex: 1 1 100%;
+    min-height: 44px;
+    margin-left: 0;
+    font-size: 0.95rem;
+  }
+}
+
+
+/* ------------------------------------------------------------------
+   Sidebar: one design for the phone drawer (779px and narrower) and the desktop sidebar (780px and wider)
+   ------------------------------------------------------------------ */
+.sidebar-title { display: none; }
+
+body .sidebar-menu {
+  background-color: #2a211b;
+  color: #f6f0e6;
+  box-shadow: none;
+
+  .sidebar-nav {
+    padding: 6px 0 0;
+
+    /* Home, About Us, Accessibility and the Keyboard guide switch. */
+    .main-link {
+      display: flex !important;
+      align-items: center !important;
+      gap: 14px;
+      min-height: 56px;
+      margin: 0 !important;
+      padding: 0 20px !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      color: #f6f0e6 !important;
+      font-size: 1.2rem !important;
+      font-weight: 500 !important;
+    }
+
+    .main-link span { text-transform: none; }
+
+    .main-link i {
+      width: 22px !important;
+      height: auto !important;
+      margin: 0 !important;
+      font-size: 1.3rem !important;
+      text-align: center;
+      color: #e8d3a0;
+    }
+
+    .shelf-group {
+      padding: 0 !important;
+      border-bottom: 0 !important;
+    }
+
+    .shelf-group:first-of-type {
+      margin-top: 10px;
+      padding-top: 4px !important;
+      border-top: 1px solid rgba(246, 243, 235, 0.18);
+    }
+
+    .shelf-block-link,
+    .shelf-label-link { width: 100% !important; }
+
+    .shelf-label {
+      margin: 0 !important;
+      padding: 16px 20px 6px !important;
+      font-size: 1.1rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.1em;
+      color: #e8d3a0 !important;
+    }
+
+    .object-item {
+      flex-wrap: nowrap;
+      align-items: center !important;
+      gap: 12px;
+      min-height: 54px;
+      margin: 0 !important;
+      padding: 6px 14px 6px 38px !important;
+      box-sizing: border-box;
+    }
+
+    .object-title {
+      flex: 1 1 0;
+      min-width: 0;
+      font-size: 1.12rem !important;
+      font-weight: 400 !important;
+      line-height: 1.3;
+      color: #f6f0e6 !important;
+    }
+
+    .num-box {
+      width: 26px !important;
+      height: auto !important;
+      margin: 0 !important;
+      border: 0;
+      border-radius: 0 !important;
+      background-color: transparent !important;
+      color: #cdbf9f !important;
+      font-size: 1.05rem !important;
+      font-weight: 800 !important;
+    }
+
+    a {
+      color: #f6f0e6 !important;
+      border-radius: 0;
+
+      &:hover,
+      &:focus-visible {
+        color: #ffffff !important;
+        background-color: #4a3b2d !important;
+        box-shadow: inset 3px 0 0 rgba(232, 211, 160, 0.55);
+
+        .shelf-label { color: #f3e3b8 !important; }
+        .object-title { color: #ffffff !important; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1.5px; }
+      }
+
+      &:focus-visible {
+        outline: 3px solid #f6f0e6;
+        outline-offset: -3px;
+      }
+    }
+
+    /* The page the visitor is on: tinted row, bronze bar, filled number badge, "You are here" label on the right. */
+    a[aria-current="page"] {
+      background-color: #5f4b33 !important;
+      box-shadow: inset 6px 0 0 #e8d3a0;
+
+      /* If the name and the label do not fit on one line (large text), the label moves under the name instead of covering it. */
+      &.object-item,
+      .object-item { flex-wrap: wrap; row-gap: 4px; }
+      .object-title { flex: 1 1 6rem; min-width: min-content; font-weight: 800 !important; }
+      .shelf-label { color: #f7e6bb !important; }
+      .num-box {
+        background-color: transparent !important;
+        border-color: transparent;
+        color: #e8d3a0 !important;
+      }
+    }
+
+    .here-badge {
+      flex: none;
+      margin-left: auto;
+      padding: 3px 10px;
+      font-size: 0.85rem;
+      background: #e8d3a0;
+      color: #2a211b;
+    }
+  }
+
+  /* The scroll arrows are cream on the brown sheet. */
+  .sidebar-scroll-hint .sidebar-scroll-btn { color: #f6f0e6; }
+
+  .sidebar-scroll-hint i { text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5); }
+}
+
+/* Phones */
+@media (max-width: 779px) {
+  body .sidebar-menu {
+    padding: 0 0 24px;
+
+    .sidebar-head {
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 12px 10px 20px;
+      background-color: #2a211b;
+      border-bottom: 1px solid rgba(246, 243, 235, 0.18);
+    }
+
+    .sidebar-title {
+      display: block;
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #f6f0e6;
+    }
+
+    .close-sidebar {
+      display: inline-flex !important;
+      flex-direction: row;
+      align-items: center;
+      gap: 7px;
+      min-height: 44px;
+      margin: 0;
+      padding: 0 14px;
+      border: 2px solid #f6f0e6;
+      border-radius: 8px;
+      background: transparent;
+      color: #f6f0e6;
+      font-size: 0.95rem;
+      font-weight: 700;
+
+      &:focus-visible {
+        outline: 3px solid #f6f0e6;
+        outline-offset: 2px;
+      }
+    }
+
+    .sidebar-scroll-up { top: 5rem; }
+
+    /* Keyboard focus never stops behind the sticky title bar (WCAG 2.4.11). */
+    scroll-padding-top: 6rem;
+    scroll-padding-bottom: 1rem;
+  }
+}
+
+
+/* ------------------------------------------------------------------
+   Desktop sidebar (780px and wider)
+   ------------------------------------------------------------------ */
+
+@media (min-width: 780px) {
+  /* ---- Fixed tools area ---- */
+  body .pinned-header .header-right {
+    gap: 8px;
+  }
+
+  body .pinned-header .header-right .settings-heading {
+    display: flex;
+    flex: 1 1 100%;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 4px 0 0;
+    color: #e8d3a0;
+    font-size: 15.2px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
+    text-transform: uppercase;
+
+    .settings-value {
+      color: #f6f0e6;
+      font-size: 16.8px;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  body .pinned-header .header-right .text-resizers {
+    flex: 1 1 100%;
+    gap: 6px;
+  }
+
+  body .pinned-header .header-right .text-resizers .font-btn {
+    flex: 1 1 auto;
     min-width: 0;
+    min-height: 48px;
+    padding: 0 4px;
+    border: 0 !important;
+    border-radius: 8px;
+    background: #3a302a !important;
+    color: #f6f0e6 !important;
+    font-size: 16px;
+    font-weight: 700;
+    white-space: nowrap;
+
+    @media (min-width: 1130px) { font-size: 18.4px; }
+
+    &[aria-disabled="true"] {
+      border-style: dashed !important;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  /* Dark Mode */
+  body .pinned-header .header-right .dark-mode-btn {
+    display: flex;
+    flex: 1 1 100%;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 56px;
     margin: 0;
-    text-align: center;
-    white-space: normal; /* At the largest text size a label may use two lines instead of being cut off. */
+    padding: 6px 10px;
+    box-sizing: border-box;
+    border: 0 !important;
+    border-radius: 10px;
+    background: #3a302a !important;
+    font-size: 16.8px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+
+    /* The wider sidebar has room for the larger label. The label may wrap onto two lines instead of pushing the switch out. */
+    @media (min-width: 1130px) {
+      gap: 12px;
+      padding: 6px 14px;
+      font-size: 19.2px;
+    }
+
+    i {
+      display: inline-block;
+      width: 24px;
+      color: #e8d3a0;
+      font-size: 20.8px;
+      text-align: center;
+    }
+
+    /* Switch: track = ::after, thumb = its background. */
+    &::after {
+      content: "";
+      flex: none;
+      width: 44px;
+      height: 26px;
+      margin-left: auto;
+      border-radius: 13px;
+      background: radial-gradient(circle at 13px 50%, #f6f0e6 10px, transparent 10.5px), #968160;
+    }
+
+    &.is-dark {
+      border-color: #e8d3a0 !important;
+      background: #e8d3a0 !important;
+      color: #2a211b !important;
+    }
+
+    &.is-dark i { color: #2a211b; }
+
+    &.is-dark::after {
+      background: radial-gradient(circle at 31px 50%, #201915 10px, transparent 10.5px), #e8d3a0;
+    }
+  }
+
+  /* Keyboard Guide */
+  body .pinned-header .header-right .keyboard-guide-toggle {
+    display: flex;
+    flex: 1 1 100%;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    min-height: 56px;
+    margin: 0;
+    padding: 6px 10px;
+    box-sizing: border-box;
+    border: 0 !important;
+    border-radius: 10px;
+    background: #3a302a !important;
+    color: #f6f0e6 !important;
+    font: inherit;
+    font-size: 16.8px;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: left;
+    cursor: pointer;
+
+    @media (min-width: 1130px) {
+      gap: 12px;
+      padding: 6px 14px;
+      font-size: 19.2px;
+    }
+
+    i {
+      display: inline-block;
+      width: 24px;
+      color: #e8d3a0;
+      font-size: 20.8px;
+      text-align: center;
+    }
+
+    .kg-toggle-state {
+      position: relative;
+      flex: none;
+      width: 44px;
+      height: 26px;
+      margin-left: auto;
+      padding: 0;
+      border: 0 !important;
+      border-radius: 13px;
+      background: #968160 !important;
+      color: transparent !important;
+      font-size: 0 !important;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #f6f0e6;
+        transition: left 0.15s ease;
+      }
+    }
+
+    &[aria-pressed="true"] {
+      border-color: #e8d3a0 !important;
+      background: #e8d3a0 !important;
+      color: #2a211b !important;
+    }
+
+    &[aria-pressed="true"] i { color: #2a211b; }
+
+    &[aria-pressed="true"] .kg-toggle-state {
+      background: #e8d3a0 !important;
+
+      &::after {
+        left: 21px;
+        background: #201915;
+      }
+    }
+  }
+
+  body .pinned-header .header-right .header-top-btn {
+    min-height: 48px;
+    border: 1.5px solid rgba(246, 240, 230, 0.55) !important;
+    border-radius: 8px;
+    background: transparent !important;
+    color: #f6f0e6 !important;
+    font-size: 18.4px;
+    font-weight: 700;
+
+    &:hover,
+    &:focus-visible { background: #4d4037 !important; border-color: #f6f0e6 !important; }
+  }
+
+  body .pinned-header .header-right {
+    .font-btn:focus-visible,
+    .dark-mode-btn:focus-visible,
+    .keyboard-guide-toggle:focus-visible,
+    .header-top-btn:focus-visible {
+      outline: 3px solid #f6f0e6;
+      outline-offset: 2px;
+    }
+  }
+
+  /* ---- Navigation list ---- */
+  body .sidebar-menu {
+    padding: var(--header-h, 84px) 0 24px;
+
+    .sidebar-nav {
+      .main-link { font-size: 19.2px !important; }
+      .main-link i { font-size: 20.8px !important; }
+      .shelf-label { font-size: 18.4px !important; }
+      .object-title { font-size: 17.92px !important; }
+      .num-box { font-size: 16.8px !important; }
+      .here-badge { font-size: 13.6px; }
+    }
+
+    .sidebar-scroll-hint i { animation: none !important; font-size: 35px; }
   }
 }
 
-/* On the smallest phones the text size buttons are a little narrower, so "Navigation Menu" keeps one line. */
-@media (max-width: 340px) {
-  .pinned-header .header-right .text-resizers .font-btn {
-    min-width: 40px;
-    padding: 4px 6px;
+/* Desktop tools area in the style of the list below it: no boxes. Text size is one outlined strip with dividers; Dark Mode,
+   Keyboard Guide and Back to top are plain rows (icon, name, switch) separated by hairlines. */
+@media (min-width: 780px) {
+  html body .pinned-header .header-right { gap: 0; }
+
+  html body .pinned-header .header-right .settings-heading { margin-bottom: 8px; }
+
+  html body .pinned-header .header-right .text-resizers {
+    gap: 0;
+    margin: 6px 0 14px;
+    border: 1px solid rgba(246, 240, 230, 0.6);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  html body .pinned-header .header-right .text-resizers .font-btn {
+    border: 0 !important;
+    border-radius: 0;
+    background: transparent !important;
+    color: #f6f0e6 !important;
+
+    & + .font-btn { border-left: 1px solid rgba(246, 240, 230, 0.6) !important; }
+
+    &:hover,
+    &:focus-visible { background: #5a4838 !important; text-decoration: underline; text-underline-offset: 4px; }
+    &:focus-visible { outline-offset: -3px; }
+  }
+
+  html body .pinned-header .header-right .settings-heading + .dark-mode-btn,
+  html body .pinned-header .header-right .dark-mode-btn,
+  html body .pinned-header .header-right .keyboard-guide-toggle,
+  html body .pinned-header .header-right .header-top-btn {
+    min-height: 52px;
+    padding: 6px 4px !important;
+    border: 0 !important;
+    border-top: 1px solid rgba(246, 240, 230, 0.22) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: #f6f0e6 !important;
+    font-weight: 500;
+
+    &:hover,
+    &:focus-visible { background: #5a4838 !important; }
+    &:focus-visible { outline-offset: -3px; }
+  }
+
+  html body .pinned-header .header-right .dark-mode-btn.is-dark,
+  html body .pinned-header .header-right .keyboard-guide-toggle[aria-pressed="true"] {
+    background: transparent !important;
+    color: #f6f0e6 !important;
+    border-top: 1px solid rgba(246, 240, 230, 0.16) !important;
+
+    i { color: #e8d3a0; }
+  }
+
+  /* Back to top */
+  html body .pinned-header .header-right .header-top-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 1 1 100%;
+    gap: 8px;
+    font-size: 16.8px;
+    font-weight: 500;
+    border-bottom: 0 !important;
+    text-align: left;
+
+    @media (min-width: 1130px) { gap: 12px; font-size: 19.2px; }
+
+    i { display: inline-block; width: 24px; color: #e8d3a0; font-size: 20.8px; text-align: center; }
   }
 }
 
-@media (min-width: 701px) and (max-width: 1000px) {
-  .pinned-header .header-left .exhibition-title {
-    font-size: min(1.75rem, calc((100cqw - 28px) / 14.4));
+/* Keyboard focus */
+@media (min-width: 780px) {
+  body .sidebar-menu {
+    scroll-padding-top: calc(var(--header-h, 84px) + 8px);
+    scroll-padding-bottom: 8px;
   }
+}
+
+/* Low windows (a wide screen with the page zoomed in to 150% or 200%): the tools area is more compact, so the list keeps room. */
+@media (min-width: 780px) and (max-height: 620px) {
+  html body .pinned-header { padding: 12px 20px 8px; }
+  html body .pinned-header .header-right .settings-heading { margin-top: 0; margin-bottom: 4px; }
+  html body .pinned-header .header-right .text-resizers { margin: 2px 0 8px; }
+  html body .pinned-header .header-right .text-resizers .font-btn { min-height: 44px; }
+  html body .pinned-header .header-right .dark-mode-btn,
+  html body .pinned-header .header-right .keyboard-guide-toggle,
+  html body .pinned-header .header-right .header-top-btn { min-height: 44px; padding-top: 2px !important; padding-bottom: 2px !important; }
 }

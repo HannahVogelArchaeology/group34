@@ -1,51 +1,87 @@
+/* Photo viewer: always the dark charcoal palette, whatever the site's light or dark mode is. A dark surround keeps the
+   attention on the object. The photo itself has no shadow, no rounded corners and no border. */
 .photo-viewer-page {
+  --pv-bg: #2c2825;
+  --pv-bar: #231f1c;
+  --pv-line: rgba(243, 237, 224, 0.22);
+  --pv-text: #f3ede0;
+  --pv-muted: #cfc7b6;
+  --pv-outline: rgba(243, 237, 224, 0.65);
+  --pv-hover: rgba(243, 237, 224, 0.12);
+  --pv-accent: #e0bd82;
+  --pv-accent-text: #2b1d0c;
+  --pv-btn-bg: rgba(224, 189, 130, 0.12);
+  --pv-tile: #3a3531;
+  --pv-tile-line: rgba(243, 237, 224, 0.5);
+  --pv-focus: #f3ede0;
+  --pv-bar-h: 5.25rem;
+  --pv-btn-w: 8.5rem;
+
   position: fixed;
   inset: 0;
   z-index: 2000;
   display: flex;
   flex-direction: column;
-  background: #454545;
-  color: #fff;
+  background: var(--pv-bg);
+  color: var(--pv-text);
 }
 
-/* Top bar*/
+/* Top bar */
 .photo-viewer-header {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  min-height: 58px;
-  padding: 0 1.25rem;
-  background: #f8f6f1;
-  color: #222;
+  gap: 0.5rem;
+  min-height: 4rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--pv-bar);
+  border-bottom: 1px solid var(--pv-line);
+  color: var(--pv-text);
 }
 
-.photo-back-link {
-  justify-self: start;
+/* Guide and Close */
+.photo-guide-btn,
+.photo-close,
+.photo-expand {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
   min-height: 44px;
-  color: inherit;
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.photo-counter {
-  justify-self: center;
-  font-size: 0.9rem;
-  letter-spacing: 0.04em;
-}
-
-.photo-close {
-  justify-self: end;
-  min-width: 44px;
-  min-height: 44px;
-  border: 0;
+  padding: 0 1rem;
+  border: 2px solid var(--pv-outline);
+  border-radius: 8px;
   background: transparent;
-  color: #222;
-  font-size: 2rem;
+  color: var(--pv-text);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
+
+  &:hover { background: var(--pv-hover); }
+
+  &:focus-visible {
+    outline: 3px solid var(--pv-focus);
+    outline-offset: 2px;
+  }
+}
+
+.photo-guide-btn { justify-self: start; }
+
+/* Expand */
+.photo-expand {
+  justify-self: center;
+  justify-content: center;
+  width: 44px;
+  padding: 0;
+  font-size: 1.15rem;
+}
+
+
+.photo-header-actions {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* Main photo */
@@ -53,15 +89,28 @@
   position: relative;
   flex: 1;
   min-height: 0;
-  display: grid;
-  grid-template-columns: minmax(44px, 1fr) minmax(0, 900px) minmax(44px, 1fr);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem 1.5rem 0.5rem;
+  justify-content: center;
+  padding: 1rem 1.5rem calc(var(--pv-bar-h) + 0.75rem);
+}
+
+/* The bar under the photo */
+.photo-viewer-stage::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: var(--pv-bar-h);
+  background: var(--pv-bar);
+  border-top: 1px solid var(--pv-line);
 }
 
 .photo-viewer-figure {
   margin: 0;
+  width: 100%;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -77,25 +126,29 @@
    The vh values below are only the starting values used until the script has measured the stage. */
 .photo-zoom-frame {
   --photo-ratio: 1.5; /* Used until a photo has loaded, or if it fails to load. */
-  --photo-natural-w: 900px;
-  --photo-max-h: min(60vh, 600px);
+  --photo-natural-w: 1600px;
+  --photo-max-h: min(72vh, 1000px);
   display: block;
   box-sizing: border-box;
-  width: min(100%, 900px, var(--photo-natural-w), calc(var(--photo-max-h) * var(--photo-ratio)));
+  width: min(100%, var(--photo-natural-w), calc(var(--photo-max-h) * var(--photo-ratio)));
   aspect-ratio: var(--photo-ratio);
   overflow: hidden;
-  background: #f1eee6;
-  color: #2c2825;
+  background: #2c2d31;
+  color: #ece8de;
   position: relative;
-  cursor: zoom-in; /* Fallback. While the mouse is over the photo, the pointer icon below is used instead. */
+  cursor: zoom-in; /* Fallback */
 
+  /* Zoomed in */
   &.is-zoomed {
+    width: 100%;
+    height: var(--photo-max-h);
+    aspect-ratio: auto;
     cursor: zoom-out;
     touch-action: none;
   }
 
   &:focus-visible {
-    outline: 3px solid #c39c5e;
+    outline: 3px solid var(--pv-focus);
     outline-offset: 3px;
   }
 
@@ -111,8 +164,7 @@
   }
 }
 
-/* Magnifier pointer: Font Awesome icons that follow the mouse inside the frame.
-   The real pointer is hidden only while the icon is shown (mouse or pen over the photo). */
+/* Magnifier pointer: Font Awesome icons */
 .photo-zoom-frame.has-pointer-icon { cursor: none; }
 
 .photo-zoom-pointer {
@@ -130,7 +182,6 @@
   color: #ffffff;
   font-size: 1.25rem;
   pointer-events: none;
-  /* The centre of the icon sits on the pointer position set by main.js. */
   transform: translate(calc(var(--pointer-x, 0px) - 50%), calc(var(--pointer-y, 0px) - 50%));
 
   .photo-zoom-pointer-out { display: none; }
@@ -140,64 +191,144 @@
 .photo-zoom-frame.is-zoomed .photo-zoom-pointer-in { display: none; }
 .photo-zoom-frame.is-zoomed .photo-zoom-pointer-out { display: inline-block; }
 
-/* Touch screens have no hover pointer, so no icon is drawn. */
 @media (hover: none) {
   .photo-zoom-frame.has-pointer-icon { cursor: zoom-in; }
   .photo-zoom-frame.has-pointer-icon .photo-zoom-pointer { display: none; }
 }
 
-/* The arrows come after the photo in the HTML (reading order) but keep their left and right columns on screen. */
-.photo-arrow-left { grid-column: 1; grid-row: 1; }
-.photo-viewer-figure { grid-column: 2; grid-row: 1; }
-.photo-arrow-right { grid-column: 3; grid-row: 1; }
+/* Previous and Next */
+.photo-arrow {
+  position: absolute;
+  bottom: calc((var(--pv-bar-h) - 3.25rem) / 2);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: var(--pv-btn-w);
+  height: 3.25rem;
+  padding: 0 1rem;
+  border: 2px solid var(--pv-accent);
+  border-radius: 8px;
+  background: var(--pv-btn-bg);
+  color: var(--pv-text);
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover { background: var(--pv-hover); }
+
+  &:focus-visible {
+    outline: 3px solid var(--pv-focus);
+    outline-offset: 2px;
+  }
+}
+
+.photo-arrow-right { right: 1.125rem; }
+.photo-arrow-left { left: 1.125rem; }
 
 /* The photo block can receive script focus (after a thumbnail is chosen) without a visible ring. */
 .photo-viewer-figure:focus { outline: none; }
 
-/* Arrows (back/next) */
-.photo-arrow {
-  width: 56px;
-  height: 56px;
-  justify-self: center;
-  border: 0;
-  border-radius: 50%;
-  background: transparent;
-  color: #fff;
-  font-size: 3.5rem;
-  line-height: 1;
-  cursor: pointer;
+/* Caption section above the photo */
+.photo-caption-section {
+  width: min(100%, 1200px);
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 0 0.35rem;
+  box-sizing: border-box;
+  color: var(--pv-text);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+/* View name in the middle of the bar, right under the photo: "VIEW 3 OF 7" and the name of the view, between Previous
+   and Next. The object title and the bullet stay in the page for screen readers only (the same words are in the
+   caption above the photo). */
+.photo-viewer-figure figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: calc(100% - 2 * var(--pv-btn-w) - 4.5rem);
+  height: var(--pv-bar-h);
+  transform: translateX(-50%);
+  text-align: center;
+  color: var(--pv-text);
+  overflow-wrap: anywhere;
 }
 
-.photo-arrow:hover,
-.photo-arrow:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
+.photo-object-name,
+.photo-view-sep {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
-/* Thumbnail panel */
+.photo-view-count {
+  display: block;
+  color: var(--pv-muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.photo-view-label {
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Thumbnail strip */
 .photo-thumbnail-panel {
-  padding: 0.7rem 1rem 1rem;
-  background: #f8f6f1;
-  color: #222;
-}
+  position: relative;
+  padding: 0.6rem 1rem 0.75rem;
+  background: var(--pv-bar);
+  border-top: 1px solid var(--pv-line);
+  color: var(--pv-text);
 
-.photo-thumbnail-handle {
-  width: 44px;
-  height: 4px;
-  margin: 0 auto 0.7rem;
-  border-radius: 4px;
-  background: #999;
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 2.25rem;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &::before { left: 0; background: linear-gradient(to right, var(--pv-bar), transparent); }
+  &::after { right: 0; background: linear-gradient(to left, var(--pv-bar), transparent); }
+  &.has-more-left::before,
+  &.has-more-right::after { opacity: 1; }
 }
 
 .photo-thumbnails {
+  position: relative;
   display: flex;
   justify-content: flex-start;
-  gap: 0.8rem;
-  padding: 6px; /* Room for the hover glow */
+  gap: 0.6rem;
+  padding: 6px 4px;
   overflow-x: auto;
-  overflow-y: hidden; 
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+
   /* Centre the thumbnails only while they fit; start at the edge when they overflow,
      so the first thumbnail is never cut off. */
   > :first-child { margin-left: auto; }
@@ -206,180 +337,192 @@
 
 .photo-thumbnail {
   position: relative;
-  flex: 0 0 auto;
-  width: 96px;
-  height: 80px;
+  flex: 1 1 0;
+  min-width: 5.4rem;
+  max-width: 7.4rem;
   box-sizing: border-box;
-  padding: 4px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  background: #b8b4ab;
-  color: #2c2825; /* Dark alt text on the light thumbnail */
-  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  flex-direction: column-reverse;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid var(--pv-tile-line);
+  border-radius: 0;
+  background: var(--pv-tile);
+  color: var(--pv-text);
+  cursor: pointer;
+  scroll-snap-align: center;
 
   img {
     display: block;
-    flex: 1 1 0;
     width: 100%;
-    height: 0;
-    min-height: 0;
-    object-fit: contain;   }
-}
-
-.photo-thumbnail.is-active {
-  border-color: #c39c5e;
-}
-
-/* Desktop Sidebar Layout Adjustment */
-@media (min-width: 992px) {
-  .photo-viewer-stage {
-    grid-template-columns: 44px minmax(0, 1fr) 44px;
-    /* Keep the right arrow as far from the thumbnail panel as the left arrow is from the screen edge (1.5rem).
-       The panel is 240px wide plus 1rem padding on each side, and 20px from the right edge. */
-    padding-right: calc(20px + 240px + 2rem + 1.5rem);
+    height: 4rem;
+    object-fit: contain;
   }
 
-  .photo-thumbnail-panel {
-    position: absolute;
-    right: 20px;
-    top: 80px;
-    bottom: 20px;
-    width: 240px;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+  &:hover { border-color: var(--pv-accent); }
+
+  &:focus-visible {
+    outline: 3px solid var(--pv-focus);
+    outline-offset: 2px;
   }
-
-  .photo-thumbnails {
-    flex: 1 1 auto;
-    min-height: 0;
-    flex-direction: column;
-    justify-content: flex-start;
-    overflow-y: auto;
-    overflow-x: hidden;
-    gap: 1rem;
-
-    > :first-child { margin-left: 0; margin-top: auto; }
-    > :last-child { margin-right: 0; margin-bottom: auto; }
-  }
-
-  .photo-thumbnail {
-    flex: 0 0 110px;
-    width: 100%;
-    height: 110px;
-  }
-}
-
-/* Mobile responsive */
-@media (max-width: 700px) {
-  .photo-viewer-stage {
-    grid-template-columns: 44px minmax(0, 1fr) 44px;
-    gap: 0.25rem;
-    padding: 1rem 0.5rem 0.5rem;
-  }
-
-  .photo-zoom-frame {
-    --photo-max-h: min(44vh, 500px);
-  }
-
-  .photo-viewer-stage { overflow: hidden; }
-  .photo-thumbnail-panel { flex: 0 0 auto; }
-
-  .photo-arrow {
-    width: 44px;
-    height: 44px;
-    font-size: 2.8rem;
-  }
-}
-
-/* Caption section displayed above the existing object/view line */
-.photo-caption-section {
-  width: min(100%, 900px);
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0 0 0.55rem;
-  box-sizing: border-box;
-  color: #fff;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  text-align: center;
-  overflow-wrap: anywhere;
-}
-
-.photo-viewer-figure figcaption {
-  min-height: 1.5em;
-  font-size: 1.1rem;
-  text-align: center;
-  color: #fff;
 }
 
 .photo-thumb-label {
-  display: block;
-  margin-bottom: 0.2rem;
-  font-size: 0.7rem;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-/* Short screens (for example a phone held sideways): keep everything inside the viewport. */
-@media (max-width: 991px) and (max-height: 520px) {
-  .photo-zoom-frame { --photo-max-h: 32vh; }
-  .photo-thumbnail { width: 80px; height: 64px; }
-}
-
-/* Thumbnail hover: glowing border and a tint over the image */
-.photo-thumbnail::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.18);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
-}
-
-.photo-thumbnail:hover,
-.photo-thumbnail:focus-visible {
-  border-color: #f0b84f;
-  box-shadow: 0 0 0 2px rgba(240, 184, 79, 0.55), 0 0 12px 3px rgba(240, 184, 79, 0.6);
-}
-
-.photo-thumbnail:hover::after,
-.photo-thumbnail:focus-visible::after { opacity: 1; }
-
-/* Guide button in the top bar (next to the close button) */
-.photo-header-actions {
-  justify-self: end;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  min-height: 2.7rem;
+  padding: 0.25rem 0.3rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.15;
+  text-align: center;
 }
 
-.photo-guide-btn {
+/* The photo on view: a frame, a check mark and a filled label */
+.photo-thumbnail.is-active {
+  border-color: var(--pv-accent);
+  box-shadow: 0 0 0 1px var(--pv-accent);
+
+  .photo-thumb-label {
+    background: var(--pv-accent);
+    color: var(--pv-accent-text);
+  }
+
+  &::before {
+    content: "\2713";
+    content: "\2713" / "";
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 2;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 50%;
+    background: var(--pv-accent);
+    color: var(--pv-accent-text);
+    font-size: 0.8rem;
+    font-weight: 900;
+    line-height: 1.3rem;
+    text-align: center;
+  }
+}
+
+/* Zoomed in */
+.photo-viewer-page.is-zoom-view {
+  .photo-viewer-header,
+  .photo-caption-section,
+  .photo-thumbnail-panel { display: none; }
+
+  .photo-viewer-stage { padding: 0.5rem 0.5rem calc(var(--pv-bar-h) + 0.5rem); }
+}
+
+/* Expanded (the expand button): everything else is ignored and the photo fills the whole screen (the whole photo, never
+   cropped). Esc or the X button leaves it. The caption stays for screen readers only. */
+.photo-expand-exit {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 10;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  min-height: 44px;
-  padding: 0 0.85rem;
-  border: 1px solid #bdb7a8;
-  border-radius: 4px;
-  background: transparent;
-  color: #222;
-  font: inherit;
-  font-size: 0.85rem;
-  font-weight: 600;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid var(--pv-text);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--pv-text);
+  font-size: 1.3rem;
   cursor: pointer;
 
-  &:hover,
-  &:focus-visible { background: #e8e3d5; }
+  &[hidden] { display: none; }
+
+  &:hover { background: #000000; }
+
+  &:focus-visible {
+    outline: 3px solid var(--pv-focus);
+    outline-offset: 3px;
+  }
 }
 
-/* Guide (modal): a dark, semi-transparent layer that explains each part of the photo page */
+.photo-viewer-page.is-expanded {
+  background: #000000;
+
+  .photo-viewer-header,
+  .photo-thumbnail-panel,
+  .photo-arrow,
+  .photo-viewer-figure figcaption { display: none; }
+
+  .photo-viewer-stage::after { display: none; }
+
+  .photo-caption-section {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  .photo-viewer-stage { padding: 0; }
+
+  .photo-zoom-frame {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    background: #000000;
+    cursor: default;
+
+    &.has-pointer-icon { cursor: default; }
+    .photo-zoom-pointer { display: none !important; }
+  }
+}
+
+/* Phones: Previous and Next share one row under the view name. */
+@media (max-width: 779px) {
+  .photo-viewer-page { --pv-bar-h: 9rem; --pv-btn-w: 0; }
+
+  .photo-viewer-header { padding: 0.5rem 0.75rem; }
+
+  .photo-viewer-stage { padding: 0.75rem 0.5rem calc(var(--pv-bar-h) + 0.5rem); overflow: hidden; }
+
+  .photo-zoom-frame { --photo-max-h: min(44vh, 500px); }
+
+  .photo-viewer-figure figcaption {
+    right: 0.75rem;
+    bottom: 5rem;
+    left: 0.75rem;
+    width: auto;
+    height: auto;
+    transform: none;
+  }
+
+  .photo-view-label { font-size: 1.45rem; }
+
+  .photo-arrow {
+    bottom: 0.75rem;
+    width: calc(50% - 1.125rem);
+    min-width: 0;
+  }
+
+  .photo-arrow-left { right: auto; left: 0.75rem; }
+  .photo-arrow-right { right: 0.75rem; }
+}
+
+/* Short screens */
+@media (max-width: 991px) and (max-height: 520px) {
+  .photo-zoom-frame { --photo-max-h: 32vh; }
+  .photo-thumbnail { min-width: 5rem; }
+  .photo-thumbnail img { height: 2.6rem; }
+}
+
+/* Guide (modal) */
 .photo-guide {
   position: fixed;
   inset: 0;
@@ -391,20 +534,23 @@
   &[hidden] { display: none; }
 }
 
+/* The notes sit where the parts of the photo page are. main.js measures the real header, bar and thumbnail row and sets
+   --gd-head, --gd-bar and --gd-panel (in px)
+   top notes under the header, bottom notes above the Previous / Next bar, and the thumbnail note over the thumbnail row. */
 .photo-guide-sheet {
   box-sizing: border-box;
   min-height: 100%;
   display: grid;
-  gap: 0.9rem 1rem;
-  padding: 1rem 1.25rem 1.5rem;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
-  grid-template-rows: auto auto auto 1fr auto auto;
+  gap: 0.75rem 1rem;
+  padding: 0 1.25rem 0.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: var(--gd-head, 4.25rem) auto auto minmax(6rem, 1fr) auto auto;
   grid-template-areas:
     "title title title"
-    "back count close"
+    "guide count close"
     "caption caption caption"
-    "prev zoom next"
-    "meta meta meta"
+    "zoom zoom zoom"
+    "prev meta next"
     "wardrobe wardrobe wardrobe";
 }
 
@@ -414,9 +560,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  padding: 0.25rem 0 0;
 
   h2 {
     margin: 0;
+    padding: 0.15rem 0.75rem 0.15rem 0;
+    background: #17120d;
     color: #ffffff;
     font-size: clamp(1.35rem, 3.2vw, 2.1rem);
     font-weight: 600;
@@ -445,7 +594,7 @@
 }
 
 .photo-guide-items {
-  display: contents; /* The list items are placed directly on the grid. */
+  display: contents;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -466,21 +615,21 @@
   }
 }
 
-.guide-back { grid-area: back; align-items: flex-start; }
+.guide-guide { grid-area: guide; align-items: flex-start; }
 .guide-count { grid-area: count; align-items: center; text-align: center; }
 .guide-close-note { grid-area: close; align-items: flex-end; text-align: right; }
 .guide-caption { grid-area: caption; align-items: center; text-align: center; }
-.guide-prev { grid-area: prev; align-self: center; align-items: flex-start; }
-.guide-next { grid-area: next; align-self: center; align-items: flex-end; text-align: right; }
-.guide-meta { grid-area: meta; align-items: center; text-align: center; }
+.guide-prev { grid-area: prev; align-items: flex-start; justify-content: flex-end; }
+.guide-next { grid-area: next; align-items: flex-end; justify-content: flex-end; text-align: right; }
+.guide-meta { grid-area: meta; align-items: center; justify-content: flex-end; text-align: center; }
 
 .guide-zoom {
   grid-area: zoom;
   align-self: stretch;
   align-items: center;
   justify-content: center;
-  min-height: 8rem;
-  padding: 1rem;
+  min-height: 4rem;
+  padding: 0.5rem 1rem;
   border: 2px dashed rgba(255, 255, 255, 0.6);
   border-radius: 6px;
   text-align: center;
@@ -490,30 +639,152 @@
 .guide-wardrobe {
   grid-area: wardrobe;
   align-items: flex-start;
-  padding: 1rem;
+  box-sizing: border-box;
+  height: calc(var(--gd-panel, 8rem) - 0.5rem); /* The same height as the real thumbnail row under it. */
+  margin-top: var(--gd-bar, 5.25rem); /* The Previous / Next bar stays visible between the notes and this box. */
+  padding: 0.75rem 1rem;
   border: 2px solid rgba(255, 255, 255, 0.35);
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(24, 19, 13, 0.94); /* Mostly solid, so the note is easy to read over the thumbnails behind it. */
 }
 
-.guide-desktop-only { display: none; }
-
-/* Wide screens: the layout follows the real page (wardrobe panel on the right) */
-@media (min-width: 992px) {
+/* Phones. The notes under the top bar flow from the top (Guide and Close guide side by side, then Expand and the caption), and the
+   photo note fills the space down to the bottom edge of the real photo. The notes below the photo are placed from the measured
+   positions of the real parts (main.js sets --gd-frame-bottom, --gd-meta-top, --gd-btn-top and --gd-panel-top, in px):
+   the view note just above the bar under the photo, the Previous and Next notes over their two buttons, and the thumbnail note
+   over the thumbnail row. */
+@media (max-width: 779px) {
   .photo-guide-sheet {
-    padding: 1rem 20px 20px;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 3fr) minmax(0, 1fr) 240px;
-    grid-template-rows: auto auto auto 1fr auto;
+    min-height: 0;
+    height: var(--gd-frame-bottom, 60vh);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: var(--gd-head, 4.25rem) auto auto auto minmax(4.5rem, 1fr);
     grid-template-areas:
-      "title title title title"
-      "back count count close"
-      ".    caption .    wardrobe"
-      "prev zoom  next wardrobe"
-      ".    meta   .    wardrobe";
+      "title title"
+      "guide close"
+      "count count"
+      "caption caption"
+      "zoom zoom";
+    gap: 0.4rem 0.75rem;
+    padding-bottom: 0;
   }
 
-  .guide-desktop-only { display: inline; }
-  .guide-mobile-only { display: none; }
+  /* Compact notes, so the whole guide fits one phone screen. */
+  .photo-guide-top h2 { font-size: 1.25rem; }
+  .guide-item { gap: 0.2rem; font-size: 0.85rem; line-height: 1.25; }
+  .guide-zoom { min-height: 4.5rem; gap: 0.35rem; font-size: 0.9rem; }
+  .guide-zoom > i { font-size: 1.3em; }
+
+  /* The notes under the photo lie over the parts they explain. */
+  .guide-meta,
+  .guide-prev,
+  .guide-next,
+  .guide-wardrobe {
+    position: absolute;
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  /* View note: just above the bar under the photo, with its arrow pointing down at the view name. */
+  .guide-meta {
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: calc(100% - var(--gd-meta-top, 70%) + 0.25rem);
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    background: #17120d;
+  }
+
+  /* Previous and Next notes: over the two buttons. The arrow points the way the button goes. */
+  .guide-prev,
+  .guide-next {
+    top: var(--gd-btn-top, 80%);
+    height: calc(var(--gd-panel-top, 90%) - var(--gd-btn-top, 80%) - 0.25rem);
+    width: calc(50% - 1.25rem - 0.375rem);
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    background: #17120d;
+    font-size: 0.8rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .guide-prev { left: 1.25rem; }
+  .guide-next { right: 1.25rem; }
+  .guide-prev > i,
+  .guide-next > i { font-size: 1.2em; }
+  .guide-prev > i { transform: rotate(90deg); }
+  .guide-next > i { transform: rotate(-90deg); }
+
+  /* Thumbnail note: the same place and height as the real thumbnail row. */
+  .guide-wardrobe {
+    left: 1.25rem;
+    right: 1.25rem;
+    top: var(--gd-panel-top, 85%);
+    height: calc(var(--gd-panel, 8rem) - 0.5rem);
+    padding: 0.5rem 0.75rem;
+    align-items: flex-start;
+  }
+}
+
+/* Phones with less height: the view note lies over the view name itself instead of above it (main.js adds .is-meta-over), and it has
+   no arrow then. */
+.photo-guide.is-meta-over {
+  .guide-meta {
+    top: var(--gd-meta-top, 70%);
+    bottom: auto;
+    height: calc(var(--gd-btn-top, 80%) - var(--gd-meta-top, 70%));
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .guide-meta > i { display: none; }
+}
+
+/* Phones where the notes do not fit over their own parts (a short screen, or large text): main.js adds .is-flow, and the notes
+   follow each other instead (the guide scrolls if it is taller than the screen). */
+.photo-guide.is-flow {
+  .photo-guide-sheet {
+    height: auto;
+    min-height: 100%;
+    grid-template-rows: var(--gd-head, 4.25rem) auto auto auto auto auto auto auto;
+    grid-template-areas:
+      "title title"
+      "guide close"
+      "count count"
+      "caption caption"
+      "zoom zoom"
+      "meta meta"
+      "prev next"
+      "wardrobe wardrobe";
+    padding-bottom: 0.5rem;
+  }
+
+  .guide-zoom { min-height: 3rem; }
+
+  .guide-meta,
+  .guide-prev,
+  .guide-next,
+  .guide-wardrobe {
+    position: static;
+    width: auto;
+    height: auto;
+  }
+}
+
+/* Short screens: no arrows under the notes and a smaller middle frame, so the guide stays on one screen. */
+@media (min-width: 780px) and (max-height: 760px) {
+  .photo-guide-sheet { grid-template-rows: var(--gd-head, 4.25rem) auto auto minmax(3rem, 1fr) auto auto; gap: 0.4rem 1rem; }
+  .guide-caption > i,
+  .guide-prev > i,
+  .guide-next > i,
+  .guide-meta > i { display: none; }
+  .guide-item { gap: 0.15rem; }
+  .guide-zoom { min-height: 3rem; }
+  .guide-zoom > i { display: none; }
+  .guide-wardrobe > i { display: none; }
 }
 
 @media (prefers-reduced-motion: no-preference) {

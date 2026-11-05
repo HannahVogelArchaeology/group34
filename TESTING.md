@@ -14,8 +14,8 @@ rows are checked by a person before a release, because a robot cannot hear a scr
 | `android-phone` | Chromium | Pixel 7 (touch) | Android Chrome |
 | `iphone` | WebKit | iPhone 14 (touch) | iOS Safari |
 | `ipad` | WebKit | iPad (gen 7) (touch) | Tablet, wide drawer layout |
-| `width-701-sidebar` | Chromium | 701 px wide | Narrowest width that still shows the sidebar |
-| `width-700-drawer` | Chromium | 700 px wide | Widest width that uses the drawer menu |
+| `width-780-sidebar` | Chromium | 780 px wide | Narrowest width that still shows the sidebar |
+| `width-779-drawer` | Chromium | 779 px wide | Widest width that uses the drawer menu |
 | `width-320-small-phone` | Chromium | 320 px wide | Smallest phone width (WCAG reflow) |
 
 Every row runs the same checks on the Home, About Us, Top, Middle and Bottom Shelf, an object page,
@@ -61,7 +61,7 @@ WebKit on the CI runner is Playwright's WebKit build. It is close to Safari but 
 - Each one carries an `integrity` hash and `crossorigin="anonymous"`.
 - The check `scripts/check-cdn-integrity.mjs` fails the build when a URL has no exact version or no hash,
   and in CI (`--verify`) it downloads each file and confirms that the hash is correct.
-- Google Fonts (the Manrope font and Material Icons) are the exception. Google returns different CSS for
+- Google Fonts (the Manrope font) are the exception. Google returns different CSS for
   each browser, so one hash cannot match. They are listed in the script as exempt.
 - GitHub Actions are pinned to full commit hashes. `.github/dependabot.yml` proposes updates only for
   releases at least 14 days old.

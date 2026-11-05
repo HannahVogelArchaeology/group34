@@ -8,6 +8,10 @@ body {
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 a {
@@ -21,10 +25,11 @@ a {
 .main-content {
   padding-top: 88px;
   min-height: calc(100vh - 250px);
+  flex: 1 0 auto;
   box-sizing: border-box;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 779px) {
   .main-content {
     padding-top: 96px;
   }
@@ -37,7 +42,6 @@ a {
 }
 
 /* Hide the unused breadcrumb component without affecting page back-navigation links. */
-
 .info-table, .metadata-table {
   width: 100%;
   border-collapse: collapse;
@@ -56,14 +60,18 @@ a {
 }
 
 /* Persistent return-to-top control. */
-.back-to-top { position: fixed; right: calc(var(--sidebar-w, 0px) + 1rem); bottom: calc(1rem + var(--audio-bar-h, 0px) + var(--footer-overlap, 0px)); /* --footer-overlap is set by JS so the button rests above the footer */ z-index: 1500; min-height: 44px; padding: .65rem .9rem; border: 1px solid #6d491b; border-radius: 4px; background: #8b5d24; color: #fff; font: inherit; font-size: .85rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+.back-to-top { position: fixed; right: calc(var(--sidebar-w, 0px) + 1rem); bottom: calc(1rem + var(--audio-bar-h, 0px) + var(--footer-overlap, 0px));
+
+/* --footer-overlap is set by JS so the button rests above the footer */
+z-index: 1500; min-height: 44px; padding: .65rem .9rem; border: 1px solid #6d491b; border-radius: 4px; background: #8b5d24; color: #fff; font: inherit; font-size: .85rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.2); }
+
 /* Lift the button above the open volume slider (the slider rises about 5rem above the audio bar). */
 body.volume-popup-open .back-to-top { bottom: calc(1rem + var(--audio-bar-h, 0px) + var(--footer-overlap, 0px) + 6.5rem); }
 .back-to-top:focus-visible { outline: 3px solid #174e77; outline-offset: 3px; }
 body.dark-mode .back-to-top { background: #7a5420; border-color: #c9a063; color: #ffffff; }
 
-/* On mobile the menu is not a side column, so the button returns to the screen edge. */
-@media (max-width: 700px) { .back-to-top { right: 1rem; } }
+/* On mobile menu */
+@media (max-width: 779px) { .back-to-top { right: 1rem; } }
 
 /* Font Awesome icon sizing inside the expand and audio buttons */
 .expand-btn i { font-size: 1.15rem; line-height: 20px; text-align: center; color: inherit; }

@@ -26,9 +26,9 @@ module.exports = defineConfig({
     { name: "iphone", use: { ...devices["iPhone 14"] } },
     { name: "ipad", use: { ...devices["iPad (gen 7)"] } },
 
-    // The sidebar changes at 700px, so test both sides of that breakpoint.
-    { name: "width-700-drawer", use: { ...devices["Desktop Chrome"], viewport: { width: 700, height: 900 } } },
-    { name: "width-701-sidebar", use: { ...devices["Desktop Chrome"], viewport: { width: 701, height: 900 } } },
+    // The sidebar changes at 780px, so test both sides of that breakpoint.
+    { name: "width-779-drawer", use: { ...devices["Desktop Chrome"], viewport: { width: 779, height: 900 } } },
+    { name: "width-780-sidebar", use: { ...devices["Desktop Chrome"], viewport: { width: 780, height: 900 } } },
     { name: "width-320-small-phone", use: { ...devices["Desktop Chrome"], viewport: { width: 320, height: 640 }, hasTouch: true } }
   ]
 });

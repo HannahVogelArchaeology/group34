@@ -25,11 +25,9 @@ body.dark-mode {
       #{$tag} { color: #ece8de !important; }
     }
 
-    /* Accent headings and labels keep a (lighter) gold */
-    /* The "Acq. No" label is wrapped in a span, and the generic span rule above would turn it light, so the spans inside the labels are listed too. */
     @each $selector in ".overview-title", ".audio-section h2", ".metadata-section h2", ".object-section-heading", ".object-explorer-carousel h2", ".meta-label",
       ".meta-label span", ".shelf-section h3", ".shelf-overview-section h2", ".gold-heading",
-      ".main-tab-title", ".label-col", ".about-toc h2", "td.label", "td.label span" {
+      ".main-tab-title", ".label-col", ".about-toc h2", "td.label", "td.label span", "th.label", "th.label span" {
       #{$selector} { color: #e0bd82 !important; }
     }
   }
@@ -45,8 +43,18 @@ body.dark-mode {
     .active-object-name { color: #ece8de; }
   }
 
+  /* Desktop */
+  @media (min-width: 780px) {
+    .pinned-header {
+      background-color: #41342a !important;
+      border-bottom-color: #e8d3a0 !important;
+      box-shadow: none;
+    }
+  }
+
   .font-btn,
-  .dark-mode-btn {
+  .dark-mode-btn,
+  .pinned-header .keyboard-guide-toggle {
     background-color: #3a3b40 !important;
     border-color: #5a5c62 !important;
     color: #ece8de;
@@ -56,8 +64,8 @@ body.dark-mode {
   }
 
   /* Home page */
-
   .home-feature-section,
+  .home-narrative-section,
   .shelves-explorer,
   .auslan-section,
   .acknowledgement-section { background-color: #232427 !important; }
@@ -77,10 +85,25 @@ body.dark-mode {
     &:focus-visible .view-button { background-color: #5b3d17 !important; }
   }
 
-  .btn-curator-bio { background-color: #7a5420 !important; color: #ffffff !important; }
+  /* Shelf card parts in dark mode: gold label and icon, light caption, dark count chip. */
+  .shelf-card { border-color: #45474c !important; }
+  .shelf-card .shelf-label,
+  .shelf-card .shelf-icon { color: #e0bd82 !important; }
+  .shelf-card .caption { color: #ece8de !important; }
+  .shelf-card .shelf-count { color: #ece8de !important; background-color: #3a3b40 !important; border-color: #5a5c62 !important; }
+
+  /* Narratives: the highlighted second line uses the dark mode gold. */
+  .home-narrative-container .hero-description p:nth-of-type(2) { color: #e0bd82 !important; }
+
+  /* About Us is the outlined button on the home page: light gold outline in dark mode, filled brown on hover and focus. */
+  .btn-curator-bio { background-color: transparent !important; border-color: #e0bd82 !important; color: #e0bd82 !important; }
+  .btn-explore-exhibition { background-color: #4a3318 !important; color: #ffffff !important; }
+  .btn-explore-exhibition:hover,
+  .btn-explore-exhibition:focus-visible { background-color: #5b3d17 !important; }
+
   /* Dark mode hover and focus: darker than the resting colour, using the same brown as the dark shelf card button. */
   .btn-curator-bio:hover,
-  .btn-curator-bio:focus-visible { background-color: #5b3d17 !important; }
+  .btn-curator-bio:focus-visible { background-color: #7a5420 !important; border-color: #7a5420 !important; color: #ffffff !important; }
 
   /* Image boxes, thumbnails and buttons on images */
   .main-image-wrapper,
@@ -152,21 +175,15 @@ body.dark-mode {
     border-left-color: #e0bd82 !important;
   }
 
-  .avatar {
-
-  }
 
   .toc-card { background-color: transparent !important; }
 
-  /* Photo page */
-  .photo-viewer-header,
-  .photo-thumbnail-panel {
-    background: #26272a !important;
-    color: #ece8de;
-  }
+  /* Licence tables (Terms & Conditions) */
+  .licence-table th,
+  .licence-table td { border-color: #45474c !important; }
+  .licence-table thead th { background-color: #303135 !important; }
 
-  .photo-thumbnail-handle { background: #6a6c72 !important; }
-  .photo-thumbnail { background: #3a3b40 !important; }
+  /* Photo page: the colours of the viewer are set by the --pv-* variables in _photo.scss (body.dark-mode). */
   .photo-zoom-frame { background: #2c2d31 !important; }
 
   /* Team initials (About page) */
@@ -185,7 +202,8 @@ body.dark-mode {
 
   /* Header buttons: bright text on dark buttons */
   .pinned-header .font-btn,
-  .pinned-header .dark-mode-btn { color: #ece8de !important; }
+  .pinned-header .dark-mode-btn,
+  .pinned-header .keyboard-guide-toggle { color: #ece8de !important; }
 
   /* Same colours as the floating Back to top button in dark mode */
   .pinned-header .header-top-btn {
@@ -197,7 +215,50 @@ body.dark-mode {
   .pinned-header .header-left,
   .pinned-header .header-center .active-object-name { border-bottom-color: #45474c !important; }
 
-  /* Home page shelf cards: the image area is dark, so its alt text stays readable */
+
+  /* Phone header */
+  @media (max-width: 779px) {
+    .pinned-header .header-center { background-color: #303135; border-top-color: #45474c; }
+    .pinned-header .header-left .exhibition-title { color: #ffffff; }
+    .pinned-header .header-center .active-object-name { color: #ece8de; }
+    .pinned-header .header-shelf-name,
+    .pinned-header .header-crumb-sep { color: #e0bd82; }
+
+    .pinned-header .header-right .settings-btn {
+      border-color: #e0bd82;
+      color: #e0bd82;
+
+      &[aria-expanded="true"] {
+        background: #7a5420;
+        border-color: #7a5420;
+        color: #ffffff;
+      }
+    }
+
+    .pinned-header .header-right .mobile-menu-btn {
+      background: #7a5420;
+      border-color: #7a5420;
+      color: #ffffff;
+    }
+
+    .pinned-header .display-settings {
+      background-color: #2b2c30;
+      border-color: #55575c;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.6);
+    }
+
+    .pinned-header .settings-heading { color: #e0bd82; }
+    .pinned-header .settings-heading .settings-value { color: #ece8de; }
+
+    .pinned-header .display-settings .dark-mode-btn.is-dark,
+    .pinned-header .display-settings .keyboard-guide-toggle[aria-pressed="true"] {
+      background-color: #7a5420 !important;
+      border-color: #e0bd82 !important;
+      color: #ffffff !important;
+    }
+  }
+
+  /* Home page shelf cards */
   .shelf-card .card-img,
   .shelf-card .card-img img {
     background-color: #3a3b40 !important;
@@ -210,20 +271,14 @@ body.dark-mode {
     color: #ffffff !important;
   }
 
-  /* Photo page: bright alt text on dark frame and thumbnails */
+  /* Photo page */
   .photo-zoom-frame { color: #ece8de; }
-  .photo-thumbnail { color: #ece8de; }
-
-  .photo-thumbnail::after,
   .thumb-box::after { background: rgba(255, 255, 255, 0.16) !important; }
 
-  /* Photo page: Guide button and guide modal */
-  .photo-guide-btn {
-    border-color: #5a5c62 !important;
+  /* Photo page: the label of the photo on view is dark on the gold tile (the light text rule above would make it unreadable). */
+  .main-content .photo-thumbnail.is-active .photo-thumb-label { color: #2b1d0c !important; }
 
-    &:hover,
-    &:focus-visible { background-color: #3a3b40 !important; }
-  }
+  /* Photo page: guide modal */
 
   .main-content .photo-guide-close,
   .main-content .photo-guide-close span {

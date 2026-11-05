@@ -94,6 +94,75 @@ permalink: /terms/
         <li><strong>Website code.</strong> The code is released under the MIT licence.</li>
         <li><strong>Fonts and icons.</strong> These come from other providers under their own licences: the SIL Open Font License 1.1, Creative Commons Attribution 4.0 and the Apache License 2.0. The website's source repository lists each one.</li>
       </ul>
+
+      <p>The tables below list every licence named in the website's source repository, what it covers and where its full text is kept. They repeat the information in the repository files <code>THIRD_PARTY_NOTICES.md</code>, <code>NOTICE.md</code> and <code>README.md</code>.</p>
+
+      <div class="subsection">
+        <h3 class="subsection-title">6.1 Licences used by the website</h3>
+        <table class="licence-table">
+          <caption class="sr-only">Licences used by the website, what each one covers and where its full text is kept</caption>
+          <thead>
+            <tr><th scope="col">Licence</th><th scope="col">What it covers</th><th scope="col">Full text</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">MIT: the team's own code</th><td><code>assets/js/main.js</code>, the styles in <code>_sass/</code>, the changes to the layouts and includes, <code>scripts/make-responsive-images.py</code>, <code>_includes/responsive-lookup.html</code> and <code>_includes/responsive-attrs.html</code>.</td><td><a href="https://github.com/HannahVogelArchaeology/group34/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">LICENSE</a><span class="sr-only"> (opens in a new tab)</span></td></tr>
+            <tr><th scope="row">MIT: Minima</th><td>The Minima templates and styles vendored into the repository. Copyright (c) 2016-present Parker Moore and the minima contributors. The Minima gem on RubyGems lists Joel Glovier as its author.</td><td><a href="https://github.com/HannahVogelArchaeology/group34/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">LICENSE</a><span class="sr-only"> (opens in a new tab)</span></td></tr>
+            <tr><th scope="row">MIT: Font Awesome code</th><td>The code in Font Awesome Free. Copyright 2023 Fonticons, Inc.</td><td><a href="https://fontawesome.com/license/free" target="_blank" rel="noopener noreferrer">fontawesome.com/license/free</a><span class="sr-only"> (opens in a new tab)</span></td></tr>
+            <tr><th scope="row">MIT: build tools</th><td>The Jekyll, kramdown, sass-embedded and tzinfo-data tools used to build the site.</td><td>Shipped with each tool.</td></tr>
+            <tr><th scope="row">Apache License 2.0</th><td>Playwright Test, the tool that runs the website's automated checks. It is not part of the published pages.</td><td><a href="https://github.com/HannahVogelArchaeology/group34/blob/main/LICENSES/Apache-2.0.txt" target="_blank" rel="noopener noreferrer">LICENSES/Apache-2.0.txt</a><span class="sr-only"> (opens in a new tab)</span></td></tr>
+            <tr><th scope="row">SIL Open Font License 1.1</th><td>The Manrope font and the Font Awesome fonts.</td><td><a href="https://github.com/HannahVogelArchaeology/group34/blob/main/LICENSES/OFL-1.1.txt" target="_blank" rel="noopener noreferrer">LICENSES/OFL-1.1.txt</a><span class="sr-only"> (opens in a new tab)</span></td></tr>
+            <tr><th scope="row">Creative Commons Attribution 4.0 International (CC BY 4.0)</th><td>The Font Awesome icons. This licence requires attribution. The attribution is the notice in table 6.2 and the licence header in Font Awesome's own CSS file.</td><td><a href="https://github.com/HannahVogelArchaeology/group34/blob/main/LICENSES/CC-BY-4.0.txt" target="_blank" rel="noopener noreferrer">LICENSES/CC-BY-4.0.txt</a><span class="sr-only"> (opens in a new tab)</span></td></tr>
+            <tr><th scope="row">BSD-2-Clause</th><td>The rexml and webrick Ruby gems, used to build the site.</td><td>Shipped with each gem.</td></tr>
+            <tr><th scope="row">Ruby licence or BSD-2-Clause</th><td>The csv, base64 and bigdecimal Ruby gems, used to build the site.</td><td>Shipped with each gem.</td></tr>
+            <tr><th scope="row">HPND (MIT-style)</th><td>Pillow, a Python library used on a team member's computer to make the smaller copies of photographs. It is not part of the repository or the published pages. The photo copies it writes carry no Pillow licence terms.</td><td>Shipped with Pillow.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">6.2 Fonts and icons loaded from other providers</h3>
+        <p>These are not copied into the repository. A visitor's browser requests them from the provider named below when a page opens.</p>
+        <table class="licence-table">
+          <caption class="sr-only">Fonts and icons loaded from other providers, with version, licence, copyright and source</caption>
+          <thead>
+            <tr><th scope="col">Component and version</th><th scope="col">Licence</th><th scope="col">Copyright and source</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Font Awesome Free 6.4.0 (CSS and icon fonts)</th><td>Icons: CC BY 4.0. Fonts: SIL OFL 1.1. Code: MIT.</td><td>Copyright 2023 Fonticons, Inc. <a href="https://fontawesome.com/license/free" target="_blank" rel="noopener noreferrer">fontawesome.com/license/free</a><span class="sr-only"> (opens in a new tab)</span> (served by cdnjs).</td></tr>
+            <tr><th scope="row">Manrope (font), Google Fonts, weights 400 to 800</th><td>SIL OFL 1.1.</td><td>Copyright The Manrope Project Authors. <a href="https://fonts.google.com/specimen/Manrope" target="_blank" rel="noopener noreferrer">fonts.google.com/specimen/Manrope</a><span class="sr-only"> (opens in a new tab)</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">6.3 Tools used to build the website</h3>
+        <p>These tools build the site and are not part of the published pages. The versions are those recorded in the repository's <code>Gemfile.lock</code>.</p>
+        <table class="licence-table">
+          <caption class="sr-only">Tools used to build the website, with version and licence</caption>
+          <thead>
+            <tr><th scope="col">Component</th><th scope="col">Version</th><th scope="col">Licence</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Jekyll</th><td>4.3.4</td><td>MIT</td></tr>
+            <tr><th scope="row">Minima (templates and styles vendored into the repository)</th><td>2.5.2</td><td>MIT. Copyright (c) 2016-present Parker Moore and the minima contributors. The Minima gem on RubyGems lists Joel Glovier as its author.</td></tr>
+            <tr><th scope="row">kramdown</th><td>2.5.2</td><td>MIT</td></tr>
+            <tr><th scope="row">sass-embedded (Dart Sass)</th><td>1.102.0</td><td>MIT</td></tr>
+            <tr><th scope="row">csv</th><td>3.3.6</td><td>Ruby licence or BSD-2-Clause</td></tr>
+            <tr><th scope="row">base64</th><td>0.3.0</td><td>Ruby licence or BSD-2-Clause</td></tr>
+            <tr><th scope="row">bigdecimal</th><td>4.1.2</td><td>Ruby licence or BSD-2-Clause</td></tr>
+            <tr><th scope="row">rexml</th><td>3.4.4</td><td>BSD-2-Clause</td></tr>
+            <tr><th scope="row">webrick</th><td>1.9.2</td><td>BSD-2-Clause</td></tr>
+            <tr><th scope="row">tzinfo-data</th><td>1.2026.3</td><td>MIT</td></tr>
+            <tr><th scope="row">Playwright Test (<code>@playwright/test</code>)</th><td>1.63.0, recorded in <code>tests/package.json</code></td><td>Apache License 2.0</td></tr>
+            <tr><th scope="row">Pillow (Python library)</th><td>Not in <code>Gemfile.lock</code></td><td>HPND (MIT-style)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="subsection">
+        <h3 class="subsection-title">6.4 Content and media</h3>
+        <p>The images, audio, video, 3D assets and text on the website are not covered by the code licences above. The rights and the required credit for each item are recorded beside that item, as described in section 2. The smaller copies of images in <code>assets/images/responsive/</code> are the same works as the originals, so the same rights and the same required credit apply to them.</p>
+      </div>
     </section>
 
     <section id="accuracy-and-disclaimer" class="policy-section">

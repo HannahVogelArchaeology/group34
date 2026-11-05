@@ -3,31 +3,32 @@ layout: default
 ---
 
 <!-- Page summary: read first when a screen reader user lands on the main content. -->
-<p class="sr-only page-summary">This is the main page. In keyboard order, this page has the exhibition title, the narratives, a photo, and Explore the exhibition, where you can choose one of three shelves: Top Shelf, Middle Shelf or Bottom Shelf. Below that are the Auslan video and the acknowledgements.</p>
+<p class="sr-only page-summary">This is the main page. In keyboard order, this page has the exhibition title, the Explore the exhibition button, the About Us button and a photo, followed by the narratives. Below that is Explore the exhibition, where you can choose one of three shelves: Top Shelf, Middle Shelf or Bottom Shelf. Then come the Auslan video and the acknowledgements.</p>
 
-<!-- Exhibition Title Section -->
-<section class="hero-title-section">
-  <div class="hero-container">
-    <h1 class="hero-main-title">{{ page.hero_title | strip | newline_to_br }}</h1>
-    <p class="hero-curator">Curated by Hannah Vogel</p>
-  </div>
-  <p class="sr-only end-of-section">This is the end of section: exhibition title.</p>
-</section>
+{%- comment -%} Object counts per shelf, used by the end-of-section announcement in Explore the exhibition. {%- endcomment -%}
+{% assign all_object_pages = site.pages | where: "layout", "object" %}
+{% assign middle_object_count = all_object_pages | where: "shelf_url", "/shelves/middle-shelf/" | size %}
+{% assign bottom_object_count = all_object_pages | where: "shelf_url", "/shelves/bottom-shelf/" | size %}
 
-<!-- Main feature: narrative on the left, image and caption on the right. -->
+<!-- Main feature: the title and the two buttons on the left, image and caption on the right. -->
 <section class="home-feature-section">
   <div class="home-feature-container">
-    <div class="home-feature-narrative">
-      <p class="sr-only narratives-label">Narratives Here:</p>
-      <div class="hero-description">{{ page.hero_text | markdownify }}</div>
-      <a href="{{ '/about/' | relative_url }}" class="btn-curator-bio"><span aria-hidden="true">&gt; </span>About Us</a>
-      <p class="sr-only end-of-section">This is the end of section: narrative.</p>
+    <div class="home-hero-text">
+      <h1 class="hero-main-title">{{ page.hero_title | strip | newline_to_br }}</h1>
+      <p class="hero-curator">Curated by Hannah Vogel</p>
+      <div class="hero-actions">
+        <a href="#explore-the-exhibition" class="btn-explore-exhibition">Explore the exhibition <span aria-hidden="true">&rarr;</span></a>
+        <a href="{{ '/about/' | relative_url }}" class="btn-curator-bio">About Us</a>
+      </div>
+      <p class="sr-only end-of-section">This is the end of section: exhibition title.</p>
     </div>
     <figure class="home-feature-media">
       {% if page.hero_image %}
       {% comment %} The width and height attributes let the browser reserve the image space before it loads, so the text below does not jump (layout shift). {% endcomment %}
       {% include responsive-lookup.html src=page.hero_image %}
-      <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 700px) 100vw, (max-width: 1400px) 55vw, 760px" %}{% if ri_found %} width="{{ ri_w }}" height="{{ ri_h }}"{% endif %} alt="{{ page.hero_alt | escape }}" loading="eager" fetchpriority="high">
+      <div class="hero-photo-frame">
+        <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 700px) 100vw, (max-width: 1400px) 55vw, 760px" %}{% if ri_found %} width="{{ ri_w }}" height="{{ ri_h }}"{% endif %} alt="{{ page.hero_alt | escape }}" loading="eager" fetchpriority="high">
+      </div>
       <figcaption class="image-caption">{{ page.hero_image_caption }}</figcaption>
       {% else %}
       <div class="hero-media-placeholder" role="img" aria-label="Main page image placeholder">Main page image placeholder</div>
@@ -37,13 +38,18 @@ layout: default
   </div>
 </section>
 
-<!-- Shelves Explorer Section -->
-{%- comment -%} Object counts per shelf, used by the end-of-section announcement below. {%- endcomment -%}
-{% assign all_object_pages = site.pages | where: "layout", "object" %}
-{% assign middle_object_count = all_object_pages | where: "shelf_url", "/shelves/middle-shelf/" | size %}
-{% assign bottom_object_count = all_object_pages | where: "shelf_url", "/shelves/bottom-shelf/" | size %}
+<!-- Narrative section: full width. -->
+<section class="home-narrative-section">
+  <div class="home-narrative-container">
+    <p class="sr-only narratives-label">Narratives Here:</p>
+    <div class="hero-description">{{ page.hero_text | markdownify }}</div>
+    <p class="sr-only end-of-section">This is the end of section: narrative.</p>
+  </div>
+</section>
 
-<section class="shelves-explorer">
+<!-- Shelves Explorer Section -->
+
+<section class="shelves-explorer" id="explore-the-exhibition">
   <h2 class="explorer-title">Explore the exhibition</h2>
 
   <div class="shelf-cards-container">
@@ -51,7 +57,9 @@ layout: default
     <!-- Top Shelf -->
     <a href="{{ '/shelves/top-shelf/' | relative_url }}" class="shelf-card" aria-label="View Top Shelf">
       <div class="card-header">
+        <svg class="shelf-icon" width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><rect x="3" y="2" width="24" height="26" rx="2" stroke-width="1.6"/><line x1="3" x2="27" y1="7" y2="7" stroke-width="4"/><line x1="3" x2="27" y1="16" y2="16" stroke-width="1.6" opacity="0.35"/><line x1="3" x2="27" y1="25" y2="25" stroke-width="1.6" opacity="0.35"/></svg>
         <span class="shelf-label">TOP SHELF</span>
+        <span class="shelf-count">1 object</span>
       </div>
 
       <div class="card-img">
@@ -61,14 +69,16 @@ layout: default
       <p class="caption">Pelike, MU4759, front view © Gale History Museum</p>
 
       <span class="view-button" aria-hidden="true">
-        VIEW &rarr;
+        View Top Shelf&nbsp;&rarr;
       </span>
     </a>
 
     <!-- Middle Shelf -->
     <a href="{{ '/shelves/middle-shelf/' | relative_url }}" class="shelf-card" aria-label="View Middle Shelf">
       <div class="card-header">
+        <svg class="shelf-icon" width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><rect x="3" y="2" width="24" height="26" rx="2" stroke-width="1.6"/><line x1="3" x2="27" y1="7" y2="7" stroke-width="1.6" opacity="0.35"/><line x1="3" x2="27" y1="16" y2="16" stroke-width="4"/><line x1="3" x2="27" y1="25" y2="25" stroke-width="1.6" opacity="0.35"/></svg>
         <span class="shelf-label">MIDDLE SHELF</span>
+        <span class="shelf-count">{{ middle_object_count }} object{% if middle_object_count != 1 %}s{% endif %}</span>
       </div>
 
       <div class="card-img">
@@ -78,14 +88,16 @@ layout: default
       <p class="caption">4. Figure of a Musician, MU0086, front-right side view © Gale History Museum</p>
 
       <span class="view-button" aria-hidden="true">
-        VIEW &rarr;
+        View Middle Shelf&nbsp;&rarr;
       </span>
     </a>
 
     <!-- Bottom Shelf -->
     <a href="{{ '/shelves/bottom-shelf/' | relative_url }}" class="shelf-card" aria-label="View Bottom Shelf">
       <div class="card-header">
+        <svg class="shelf-icon" width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><rect x="3" y="2" width="24" height="26" rx="2" stroke-width="1.6"/><line x1="3" x2="27" y1="7" y2="7" stroke-width="1.6" opacity="0.35"/><line x1="3" x2="27" y1="16" y2="16" stroke-width="1.6" opacity="0.35"/><line x1="3" x2="27" y1="25" y2="25" stroke-width="4"/></svg>
         <span class="shelf-label">BOTTOM SHELF</span>
+        <span class="shelf-count">{{ bottom_object_count }} object{% if bottom_object_count != 1 %}s{% endif %}</span>
       </div>
 
       <div class="card-img">
@@ -95,7 +107,7 @@ layout: default
       <p class="caption">11. Feeding vessel, MU3368, front angled view © Gale History Museum</p>
 
       <span class="view-button" aria-hidden="true">
-        VIEW &rarr;
+        View Bottom Shelf&nbsp;&rarr;
       </span>
     </a>
   </div>

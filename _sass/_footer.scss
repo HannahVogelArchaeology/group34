@@ -13,7 +13,6 @@
     margin: 0 auto;
     padding-top: 20px;
 
-    /* The heading is an h2 (it follows the h2 sections); these values keep the previous h4 appearance */
     .footer-left h2 {
       font-size: 1em;
       font-weight: bold;
@@ -264,7 +263,6 @@
         font-size: 1em;
         line-height: 1.4;
         letter-spacing: 0.08em;
-        // Darkened from #777 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
         color: #666;
         text-transform: uppercase;
         transition: color 160ms ease;

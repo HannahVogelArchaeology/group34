@@ -9,7 +9,6 @@
 
   .back-link {
     display: inline-block;
-    // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
     color: #866428;
     text-decoration: none;
     font-size: 0.85em;
@@ -31,7 +30,6 @@
 
     @media (max-width: 850px) {
       grid-template-columns: 1fr;
-      gap: 2em;
     }
   }
 
@@ -103,10 +101,7 @@
       }
     }
 
-    /*
-     * Keep the gallery controls below the main image.
-     * The thumbnail strip stays on the left and the 3D button stays on the right.
-     */
+
     .media-controls {
       position: static;
       width: 100%;
@@ -118,7 +113,7 @@
       margin-top: 0.65em;
       box-sizing: border-box;
 
-      &:has(.explore-3d-btn) {
+      &:has(.explore-3d-wrap) {
         grid-template-columns: minmax(0, 1fr) auto;
       }
       
@@ -161,6 +156,23 @@
         }
       }
 
+      /* The 3D button */
+      .explore-3d-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+        flex: 0 0 auto;
+      }
+
+      .explore-3d-note {
+        font-size: 0.8em;
+        line-height: 1.3;
+        text-align: center;
+        white-space: nowrap;
+        color: #2b2b2b;
+      }
+
       .explore-3d-btn {
         display: flex;
         align-items: center;
@@ -197,7 +209,6 @@
       margin-bottom: 2em;
 
       .overview-title {
-        // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
         color: #866428;
         font-size: 1.3em;
         margin-bottom: 0.4em;
@@ -274,11 +285,10 @@
             font-size: 1em;
 
             &.meta-label {
-              font-weight: 400; /* The label cell is a row header (th); keep it looking like the other cells. */
+              font-weight: 400;
               text-align: left;
-              // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
               color: #866428;
-              width: 1%; /* Shrink the label column to its text so values can use the remaining width. */
+              width: 1%;
               white-space: nowrap;
               padding-right: 1.5em;
               vertical-align: top;
@@ -301,83 +311,16 @@
 
 /* Pagination Navigation Styling */
 .shelf-pagination {
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between;
-  gap: 1.5em;
-  margin-top: 5em;
-  padding-top: 2em;
-  border-top: 1px solid #e8e2d8;
 
-  @media (max-width: 600px) {
-    flex-direction: column;
-  }
 
   .nav-box {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    padding: 1.5em 2em;
-    border: 1px solid #c29b62;
-    background-color: #F8F6F1;
-    text-decoration: none;
-    color: #2b2b2b;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
 
     &:hover {
       background-color: #dcd7ce;
       border-color: #71490d;
     }
 
-    &.nav-back {
-      justify-content: flex-start;
 
-      .arrow {
-        margin-right: 1.5em;
-      }
-
-      .nav-text {
-        text-align: left;
-      }
-    }
-
-    &.nav-next {
-      justify-content: flex-end;
-
-      .arrow {
-        margin-left: 1.5em;
-      }
-
-      .nav-text {
-        text-align: right;
-      }
-    }
-
-    .arrow {
-      font-size: 1.4em;
-      color: #333;
-    }
-
-    .nav-text {
-      display: flex;
-      flex-direction: column;
-
-      .sub-label {
-        font-size: 1em;
-        letter-spacing: 0.1em;
-        // Darkened from #777 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
-        color: #666;
-        text-transform: uppercase;
-      }
-
-      .main-label {
-        font-size: 1.3em;
-        font-weight: 500;
-        letter-spacing: 0.05em;
-        margin-top: 0.2em;
-        color: #111;
-      }
-    }
   }
 }
 
@@ -415,20 +358,20 @@
   }
 
   .image-caption {
-    color: #555;
+    color: #000000;
     font-size: 0.85rem;
     line-height: 1.45;
   }
 }
 
-/* Object page order. The heading is a direct child of the grid so it can sit above the photo on mobile. */
+/* Object page order */
 .object-detail-container {
   .object-hero-grid {
     grid-template-areas:
       "media title"
       "media info";
     grid-template-rows: auto 1fr;
-    row-gap: 0; /* No extra space between the object name and the overview */
+    row-gap: 0;
 
     @media (max-width: 850px) {
       grid-template-areas:
@@ -455,17 +398,9 @@
 
   .media-column { grid-area: media; min-width: 0; }
   .info-column { grid-area: info; min-width: 0; }
-
-  /* On narrow screens the thumbnails and the Explore in 3D button stack in that order. */
-  @media (max-width: 850px) {
-    .media-column .media-controls:has(.explore-3d-btn) { grid-template-columns: minmax(0, 1fr); }
-    .media-column .media-controls .explore-3d-btn { justify-self: start; }
-  }
 }
 
-/* Section headings on the object pages ("Listen to this story", "Object Information").
-   They are h2 elements so the heading order under the page title has no gap. This rule gives them the same
-   look as the other gold headings: regular weight, theme brown (#866428 has a 5:1 contrast ratio on the cream background, WCAG AA). */
+/* Section headings on the object pages ("Listen to this story", "Object Information") */
 .object-detail-container .object-section-heading {
   margin: 1em 0 0.8em;
   color: #866428;

@@ -1,85 +1,106 @@
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebarMenu()" aria-hidden="true"></div>
 <aside class="sidebar-menu" id="sidebarMenu" aria-label="Main Exhibition Navigation Drawer" aria-hidden="true">
-  <button class="close-sidebar" type="button" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
-    <i class="fa-solid fa-xmark" aria-hidden="true"></i><span aria-hidden="true">Close</span>
-  </button>
+  <div class="sidebar-scroll-hint sidebar-scroll-up" aria-hidden="true"><button type="button" class="sidebar-scroll-btn" data-scroll="top" tabindex="-1"><i class="fa-solid fa-circle-chevron-up" aria-hidden="true"></i></button></div>
+  {%- comment -%} Phones only (see _header.scss): the drawer gets a title bar with "Menu" and the Close button. {%- endcomment -%}
+  <div class="sidebar-head">
+    <span class="sidebar-title" aria-hidden="true">Menu</span>
+    <button class="close-sidebar" type="button" onclick="toggleSidebarMenu()" aria-label="Close navigation menu">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i><span aria-hidden="true">Close</span>
+    </button>
+  </div>
   
   <nav class="sidebar-nav" id="sidebarNav" tabindex="-1" aria-label="Exhibition Sections and Objects">
     <!-- Top Direct Links -->
-    <a href="{{ '/' | relative_url }}" class="nav-item main-link" aria-label="Go to Home page">
+    <a href="{{ '/' | relative_url }}" class="nav-item main-link" aria-label="Go to Home page"{% if page.url == '/' %} aria-current="page"{% endif %}>
       <i class="fa-solid fa-landmark" aria-hidden="true"></i>
-      <span>HOME</span>
+      <span>Home</span>
     </a>
     
-    <a href="{{ '/about/' | relative_url }}" class="nav-item main-link" aria-label="Go to About Us page">
+    <a href="{{ '/about/' | relative_url }}" class="nav-item main-link" aria-label="Go to About Us page"{% if page.url == '/about/' %} aria-current="page"{% endif %}>
       <i class="fa fa-search" aria-hidden="true"></i>
       <span>About Us</span>
     </a>
 
+    <a href="{{ '/accessibility/' | relative_url }}" class="nav-item main-link" aria-label="Go to Accessibility page"{% if page.url == '/accessibility/' %} aria-current="page"{% endif %}>
+      <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+      <span>Accessibility</span>
+    </a>
+
     <!-- Top Shelf Group (Same Link for Shelf Label & Object) -->
     <div class="shelf-group" role="group" aria-label="Top Shelf">
-      <a href="{{ '/shelves/top-shelf/' | relative_url }}" class="nav-item shelf-block-link" aria-label="Top Shelf: Object 1, Pelike">
-        <span class="shelf-label" aria-hidden="true">TOP SHELF</span>
+      <a href="{{ '/shelves/top-shelf/' | relative_url }}" class="nav-item shelf-block-link" aria-label="Top Shelf: Object 1, Pelike"{% if page.url == '/shelves/top-shelf/' %} aria-current="page"{% endif %}>
+        <span class="shelf-label" aria-hidden="true">Top Shelf</span>
         <div class="object-item" aria-hidden="true">
           <span class="num-box">1</span>
           <span class="object-title">Pelike</span>
+          {% if page.url == '/shelves/top-shelf/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
         </div>
       </a>
     </div>
 
     <!-- Middle Shelf Group -->
     <div class="shelf-group" role="group" aria-label="Middle Shelf and Objects">
-      <a href="{{ '/shelves/middle-shelf/' | relative_url }}" class="shelf-label-link" aria-label="View Middle Shelf Overview">
-        <span class="shelf-label">MIDDLE SHELF</span>
+      <a href="{{ '/shelves/middle-shelf/' | relative_url }}" class="shelf-label-link" aria-label="View Middle Shelf Overview"{% if page.url == '/shelves/middle-shelf/' %} aria-current="page"{% endif %}>
+        <span class="shelf-label">Middle Shelf</span>
       </a>
-      <a href="{{ '/objects/middle-shelf-object2/' | relative_url }}" class="nav-item object-item" aria-label="Object 2: Reclining Figure">
+      <a href="{{ '/objects/middle-shelf-object2/' | relative_url }}" class="nav-item object-item" aria-label="Object 2: Reclining Figure"{% if page.url == '/objects/middle-shelf-object2/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">2</span>
         <span class="object-title">Reclining Figure</span>
+        {% if page.url == '/objects/middle-shelf-object2/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
-      <a href="{{ '/objects/middle-shelf-object3/' | relative_url }}" class="nav-item object-item" aria-label="Object 3: Bronze dancer (replica)">
+      <a href="{{ '/objects/middle-shelf-object3/' | relative_url }}" class="nav-item object-item" aria-label="Object 3: Bronze dancer (replica)"{% if page.url == '/objects/middle-shelf-object3/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">3</span>
         <span class="object-title">Bronze dancer (replica)</span>
+        {% if page.url == '/objects/middle-shelf-object3/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
-      <a href="{{ '/objects/middle-shelf-object4/' | relative_url }}" class="nav-item object-item" aria-label="Object 4: Figure of a musician">
+      <a href="{{ '/objects/middle-shelf-object4/' | relative_url }}" class="nav-item object-item" aria-label="Object 4: Figure of a musician"{% if page.url == '/objects/middle-shelf-object4/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">4</span>
         <span class="object-title">Figure of a musician</span>
+        {% if page.url == '/objects/middle-shelf-object4/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
-      <a href="{{ '/objects/middle-shelf-object5/' | relative_url }}" class="nav-item object-item" aria-label="Object 5: Seated statuette">
+      <a href="{{ '/objects/middle-shelf-object5/' | relative_url }}" class="nav-item object-item" aria-label="Object 5: Seated statuette"{% if page.url == '/objects/middle-shelf-object5/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">5</span>
         <span class="object-title">Seated statuette</span>
+        {% if page.url == '/objects/middle-shelf-object5/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
-      <a href="{{ '/objects/middle-shelf-object6/' | relative_url }}" class="nav-item object-item" aria-label="Object 6: Bronze figure of Priapus">
+      <a href="{{ '/objects/middle-shelf-object6/' | relative_url }}" class="nav-item object-item" aria-label="Object 6: Bronze figure of Priapus"{% if page.url == '/objects/middle-shelf-object6/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">6</span>
         <span class="object-title">Bronze figure of Priapus</span>
+        {% if page.url == '/objects/middle-shelf-object6/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
-      <a href="{{ '/objects/middle-shelf-object7/' | relative_url }}" class="nav-item object-item" aria-label="Object 7: Terracotta figurine">
+      <a href="{{ '/objects/middle-shelf-object7/' | relative_url }}" class="nav-item object-item" aria-label="Object 7: Terracotta figurine"{% if page.url == '/objects/middle-shelf-object7/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">7</span>
         <span class="object-title">Terracotta figurine</span>
+        {% if page.url == '/objects/middle-shelf-object7/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
-      <a href="{{ '/objects/middle-shelf-object8/' | relative_url }}" class="nav-item object-item" aria-label="Object 8: Amulet of Pataikos">
+      <a href="{{ '/objects/middle-shelf-object8/' | relative_url }}" class="nav-item object-item" aria-label="Object 8: Amulet of Pataikos"{% if page.url == '/objects/middle-shelf-object8/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">8</span>
         <span class="object-title">Amulet of Pataikos</span>
+        {% if page.url == '/objects/middle-shelf-object8/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
     </div>
 
     <!-- Bottom Shelf Group -->
     <div class="shelf-group" role="group" aria-label="Bottom Shelf and Objects">
-      <a href="{{ '/shelves/bottom-shelf/' | relative_url }}" class="shelf-label-link" aria-label="View Bottom Shelf Overview">
-        <span class="shelf-label">BOTTOM SHELF</span>
+      <a href="{{ '/shelves/bottom-shelf/' | relative_url }}" class="shelf-label-link" aria-label="View Bottom Shelf Overview"{% if page.url == '/shelves/bottom-shelf/' %} aria-current="page"{% endif %}>
+        <span class="shelf-label">Bottom Shelf</span>
       </a>
-      <a href="{{ '/objects/bottom-shelf-object9/' | relative_url }}" class="nav-item object-item" aria-label="Object 9: Feeding cup">
+      <a href="{{ '/objects/bottom-shelf-object9/' | relative_url }}" class="nav-item object-item" aria-label="Object 9: Feeding cup"{% if page.url == '/objects/bottom-shelf-object9/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">9</span>
         <span class="object-title">Feeding cup</span>
+        {% if page.url == '/objects/bottom-shelf-object9/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
-      <a href="{{ '/objects/bottom-shelf-object10/' | relative_url }}" class="nav-item object-item" aria-label="Object 10: Spouted Vessel">
+      <a href="{{ '/objects/bottom-shelf-object10/' | relative_url }}" class="nav-item object-item" aria-label="Object 10: Spouted Vessel"{% if page.url == '/objects/bottom-shelf-object10/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">10</span>
         <span class="object-title">Spouted Vessel</span>
+        {% if page.url == '/objects/bottom-shelf-object10/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
-      <a href="{{ '/objects/bottom-shelf-object11/' | relative_url }}" class="nav-item object-item" aria-label="Object 11: Feeding Vessel">
+      <a href="{{ '/objects/bottom-shelf-object11/' | relative_url }}" class="nav-item object-item" aria-label="Object 11: Feeding Vessel"{% if page.url == '/objects/bottom-shelf-object11/' %} aria-current="page"{% endif %}>
         <span class="num-box" aria-hidden="true">11</span>
         <span class="object-title">Feeding Vessel</span>
+        {% if page.url == '/objects/bottom-shelf-object11/' %}<span class="here-badge" aria-hidden="true">You are here</span>{% endif %}
       </a>
     </div>
   </nav>
-  <div class="sidebar-scroll-hint" aria-hidden="true"><i class="fa-solid fa-circle-chevron-down" aria-hidden="true"></i></div>
+  <div class="sidebar-scroll-hint sidebar-scroll-down" aria-hidden="true"><button type="button" class="sidebar-scroll-btn" data-scroll="bottom" tabindex="-1"><i class="fa-solid fa-circle-chevron-down" aria-hidden="true"></i></button></div>
 </aside>

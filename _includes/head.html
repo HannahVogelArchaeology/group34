@@ -1,15 +1,15 @@
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta
     http-equiv="Content-Security-Policy"
     content="default-src 'self';
     script-src 'self' 'unsafe-inline';
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com;
     font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com;
-    img-src 'self' data:; media-src 'self' https:; connect-src 'self'; frame-src 'none';
-    object-src 'none'; base-uri 'self'; form-action 'self'"
+    img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src 'none';
+    object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
   >
   <title>{% if page.title %}{{ page.title | escape }} | {% endif %}{{ site.title | escape }}</title>
   <meta name="description" content="{{ page.description | default: site.description | escape }}">
@@ -25,8 +25,8 @@
   <!-- The three external stylesheets below load without blocking the first paint: media="print" lets the
        page draw first, and onload switches the sheet on as soon as it has arrived. The noscript copy keeps
        them working when JavaScript is off. -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet"></noscript>
   
   <!-- Font Awesome icons (version pinned to 6.4.0) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -35,12 +35,6 @@
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></noscript>
-  <!-- The URL is pinned to an exact version and the integrity hash is checked in GitHub Actions
-       (scripts/check-cdn-integrity.mjs). Google Fonts serve different CSS per browser, so they cannot carry a hash. -->
-
-  <!-- Material Icons CDN -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></noscript>
 
   <!-- Loading screen: shown only if the page takes longer than 2 seconds to load, and removed as soon as it has loaded -->
   <script>
@@ -138,9 +132,7 @@
   })();
 </script>
 
-<!-- Outdated browser check. It tests for the features the site needs instead of reading the browser name.
-     It is written in plain old JavaScript (no arrow functions, const or template strings) so that old browsers can run it.
-     When a feature is missing it adds the class "outdated-browser" to <html>, which shows the warning in _layouts/default.html. -->
+<!-- Outdated browser check -->
 <script>
 (function () {
   var supported = false;

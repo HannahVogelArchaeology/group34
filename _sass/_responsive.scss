@@ -14,7 +14,7 @@
 }
 
 /* The audio bar stops at the sidebar so its volume and close buttons stay clickable. */
-@media (min-width: 701px) {
+@media (min-width: 780px) {
   .bottom-audio-bar { width: calc(100% - var(--sidebar-w, 0px)); }
 }
 

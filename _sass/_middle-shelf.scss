@@ -47,7 +47,6 @@
   }
 
   /* Hero image + numbered object list */
-
   .hero-image-wrapper {
     position: relative;
     display: flex;
@@ -118,7 +117,6 @@
       font-size: 1.3em;
       font-weight: 400;
       margin-bottom: 0.3em;
-      // Darkened from #a48352 so this text reaches a 4.5:1 contrast ratio on the cream background (WCAG AA).
       color: #866428;
     }
 
@@ -130,7 +128,7 @@
   }
 
   /* Responsive Styles */
-  @media (max-width: 700px) {
+  @media (max-width: 779px) {
     padding: 2.25em 1em 3em;
 
     .shelf-v2-title {
@@ -147,7 +145,7 @@
     }
     .image-caption {
     margin: 0.65rem 0 0;
-    color: #555;
+    color: #000000;
     font-size: 0.85rem;
     line-height: 1.45;
   }
@@ -167,7 +165,6 @@
   }
 }
 
-/* Keep the shelf image caption under the image while the object list stays on the right */
 
   .shelf-photo-link {
     display: block;
@@ -177,46 +174,13 @@
 
   .image-caption {
     margin: 0.65rem 0 0;
-    color: #555;
+    color: #000000;
     font-size: 0.85rem;
     line-height: 1.45;
   }
 
 /* Keep hero captions inside the same width as the image on narrow screens. */
-.shelf-hero-media {
-  min-width: 0;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-}
 
-.shelf-hero-media .image-caption {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  margin: 0.65rem 0 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: #555;
-  font-size: 0.85rem;
-  line-height: 1.45;
-  text-align: left;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-@media (max-width: 700px) {
-  .shelf-hero-media {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .shelf-hero-media .image-caption {
-    width: 100%;
-    max-width: 100%;
-  }
-}
 
 /* Responsive hero and object carousel layout. */
 .middle-shelf-container .shelf-feature-layout { display: block; margin-bottom: 2rem; } /* Order: heading, hero image, caption, overview, objects. */

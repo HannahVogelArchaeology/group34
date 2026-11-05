@@ -131,10 +131,14 @@ endif %}
         </div>
         
         {% if three_d_link %}
-          <a href="{{ three_d_link | escape }}" target="_blank" rel="noopener noreferrer" class="explore-3d-btn">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-            Explore in 3D
-          </a>
+          {%- comment -%} The link opens in a new tab: the note under the button and the arrow icon tell sighted visitors before they click, and screen readers hear the same in the link text. {%- endcomment -%}
+          <div class="explore-3d-wrap">
+            <a href="{{ three_d_link | escape }}" target="_blank" rel="noopener noreferrer" class="explore-3d-btn">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+              Explore in 3D<span class="sr-only"> (opens in a new tab)</span>
+            </a>
+            <span class="explore-3d-note" aria-hidden="true">Opens in a new tab</span>
+          </div>
         {% endif %}
       </div>
 

@@ -32,8 +32,25 @@ function syncAudioBarOffset() {
   document.documentElement.style.setProperty("--audio-bar-h", isOpen ? `${bar.offsetHeight}px` : "0px");
 }
 
+/* Show the current text size and mark the A - / A + button that has reached its limit (70% / 150%). */
+function updateFontControls(size) {
+  const value = document.getElementById("textSizeValue");
+  if (value) value.textContent = `${size}%`;
+
+  document.querySelectorAll(".font-btn").forEach((button) => {
+    const label = button.getAttribute("aria-label") || "";
+    const atLimit = (label.indexOf("Decrease") === 0 && size <= 70) || (label.indexOf("Increase") === 0 && size >= 150);
+    if (atLimit) {
+      button.setAttribute("aria-disabled", "true");
+    } else {
+      button.removeAttribute("aria-disabled");
+    }
+  });
+}
+
 function applyFontSize(size) {
   document.documentElement.style.fontSize = `${size}%`;
+  updateFontControls(size);
   syncHeaderHeight();
   syncAudioBarOffset();
   updateSidebarScrollHint();
@@ -51,15 +68,17 @@ function changeFontSize(direction) {
 }
 
 
-/* Sidebar menu: always visible on desktop; collapsible drawer on mobile only (max-width: 700px) */
-const mobileMenuQuery = window.matchMedia("(max-width: 700px)");
+/* Sidebar menu: always visible on desktop; collapsible drawer on mobile only (max-width: 779px) */
+const mobileMenuQuery = window.matchMedia("(max-width: 779px)");
 
-/* Show the scroll hint only while the open menu is taller than the screen and is still at the top (any screen size) */
+/* The down arrow shows while the open menu is taller than the screen and is still at the top (any screen size).
+   Once the list has been scrolled down, the up arrow shows instead. Both are clickable for mouse and touch users. */
 function updateSidebarScrollHint() {
   const menu = document.getElementById("sidebarMenu");
-  const hint = menu ? menu.querySelector(".sidebar-scroll-hint") : null;
+  const down = menu ? menu.querySelector(".sidebar-scroll-down") : null;
+  const up = menu ? menu.querySelector(".sidebar-scroll-up") : null;
 
-  if (!menu || !hint) {
+  if (!menu || !down) {
     return;
   }
 
@@ -67,7 +86,25 @@ function updateSidebarScrollHint() {
   const atTop = menu.scrollTop <= 8;
   const isOpen = !mobileMenuQuery.matches || menu.classList.contains("active"); /* Always open on desktop */
 
-  hint.classList.toggle("is-visible", isOpen && canScroll && atTop);
+  down.classList.toggle("is-visible", isOpen && canScroll && atTop);
+
+  if (up) {
+    up.classList.toggle("is-visible", isOpen && canScroll && !atTop);
+  }
+}
+
+/* The arrows move the list to its end or back to its start (smoothly, unless the person prefers less motion). */
+function scrollSidebarMenu(direction) {
+  const menu = document.getElementById("sidebarMenu");
+
+  if (!menu) {
+    return;
+  }
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const top = direction === "top" ? 0 : menu.scrollHeight - menu.clientHeight;
+
+  menu.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
 }
 
 /* Keep the sidebar exposed to assistive technology and the keyboard only while it is visible:
@@ -94,8 +131,13 @@ function toggleSidebarMenu(forceState) {
   }
 
   const open = typeof forceState === "boolean" ? forceState : !menu.classList.contains("active");
+  const focusWasInside = menu.contains(document.activeElement);
 
   menu.classList.toggle("active", open);
+
+  if (open) {
+    closeDisplaySettings();
+  }
 
   if (overlay) {
     overlay.classList.toggle("active", open);
@@ -111,25 +153,96 @@ function toggleSidebarMenu(forceState) {
 
   syncSidebarAccessibility();
   updateSidebarScrollHint();
+
+  /* Closing the drawer (Close button, Escape or the dark area) must not drop the keyboard focus: it returns to the Menu button. */
+  if (!open && focusWasInside) {
+    const menuButton = document.querySelector(".mobile-menu-btn");
+    if (menuButton) { menuButton.focus(); }
+  }
+}
+
+/* "Aa" display settings panel (phones only): holds the text size buttons and the dark mode button.
+   The panel follows the "Aa" button in the page order, so keyboard users Tab straight into it. */
+function closeDisplaySettings() {
+  const panel = document.getElementById("displaySettings");
+  const button = document.querySelector(".settings-btn");
+
+  if (panel) {
+    panel.classList.remove("open");
+  }
+
+  if (button) {
+    button.setAttribute("aria-expanded", "false");
+  }
+}
+
+function toggleDisplaySettings(forceState) {
+  const panel = document.getElementById("displaySettings");
+  const button = document.querySelector(".settings-btn");
+
+  if (!panel || !button || !mobileMenuQuery.matches) {
+    return;
+  }
+
+  const open = typeof forceState === "boolean" ? forceState : !panel.classList.contains("open");
+
+  panel.classList.toggle("open", open);
+  button.setAttribute("aria-expanded", String(open));
 }
 
 /* Reset the drawer when the screen grows to desktop size, and close it with the Escape key */
 mobileMenuQuery.addEventListener("change", () => {
   toggleSidebarMenu(false);
+  closeDisplaySettings();
   syncSidebarAccessibility();
 });
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
+    const panel = document.getElementById("displaySettings");
+    const settingsButton = document.querySelector(".settings-btn");
+
+    // Escape closes the settings panel first and returns focus to the "Aa" button.
+    if (panel && panel.classList.contains("open")) {
+      closeDisplaySettings();
+
+      if (settingsButton) {
+        settingsButton.focus();
+      }
+
+      return;
+    }
+
     toggleSidebarMenu(false);
   }
 });
 
-/* The header button offers the mode that a click switches to: "Light Mode" while dark mode is on, "Dark Mode" otherwise. */
+/* A click or tap outside the settings panel closes it. */
+document.addEventListener("click", (event) => {
+  const panel = document.getElementById("displaySettings");
+
+  if (panel && panel.classList.contains("open") && !event.target.closest("#displaySettings, .settings-btn")) {
+    closeDisplaySettings();
+  }
+});
+
+/* The header button offers the mode that a click switches to: "Light Mode" (sun) while dark mode is on, "Dark Mode" (moon) otherwise.
+   The visible label is the button's name, so the spoken name, the voice command and the screen all agree. The label tells the state, so
+   the button has no aria-pressed (a pressed state plus a label that changes would read as a contradiction). The class "is-dark" is only for the switch drawn on it. */
 function updateDarkModeButton(enabled) {
   const button = document.querySelector(".dark-mode-btn");
   if (!button) return;
-  button.setAttribute("aria-pressed", String(enabled));
-  button.textContent = enabled ? "Light Mode" : "Dark Mode";
+  button.classList.toggle("is-dark", enabled);
+
+  const label = button.querySelector(".dark-mode-label");
+  const icon = button.querySelector("i");
+
+  if (label) {
+    label.textContent = enabled ? "Light Mode" : "Dark Mode";
+  }
+
+  if (icon) {
+    icon.className = enabled ? "fa-solid fa-sun" : "fa-solid fa-moon";
+  }
 }
 
 function toggleDarkMode() {
@@ -267,6 +380,8 @@ function openAudioPlayer() {
   bar.style.display = "flex";
   syncAudioBarOffset();
 
+  resetAudioSpeed();
+
   // Start playback (the pause icon shows after the first press).
   if (!audioIsPlaying) {
     toggleAudioPlay();
@@ -287,6 +402,7 @@ function closeAudioPlayer() {
     audio.pause();
     audio.currentTime = 0;
   }
+  resetAudioSpeed();
   setAudioPlayingState(false);
 
   const volumePopup = document.getElementById("volumePopup");
@@ -341,6 +457,17 @@ function toggleAudioPlay() {
   } else {
     audio.pause();
     setAudioPlayingState(false);
+  }
+}
+
+
+/* Every time the player starts, it plays at the normal speed: a speed chosen earlier (0.5x or 1.5x) is not remembered. */
+function resetAudioSpeed() {
+  const audio = document.getElementById("exhibitionAudio");
+
+  if (audio) {
+    audio.defaultPlaybackRate = 1;
+    audio.playbackRate = 1;
   }
 }
 
@@ -478,7 +605,7 @@ function initialisePhotoViewer() {
   /* Optional smaller WebP copies, written by scripts/make-responsive-images.py.
      Each entry can have srcset, thumb, width and height (the original file's size in pixels). */
   const imageInfo = galleryEntry ? galleryEntry.images : [];
-  const VIEWER_IMAGE_SIZES = "(max-width: 700px) 100vw, 900px";
+  const VIEWER_IMAGE_SIZES = "(max-width: 779px) 100vw, 900px";
   let currentIndex = galleryEntry
     ? Math.min(Math.max(0, requestedIndex), images.length - 1)
     : Math.max(0, images.indexOf(currentImage));
@@ -487,13 +614,15 @@ function initialisePhotoViewer() {
   const counter = document.getElementById("photoCounter");
   const objectName = document.getElementById("photoObjectName");
   const viewLabel = document.getElementById("photoViewLabel");
+  const viewCount = document.getElementById("photoViewCount");
   const imageCaption = document.getElementById("photoImageCaption");
   const thumbnails = document.getElementById("photoThumbnails");
-  const backLink = document.getElementById("photoBackLink");
   const closeButton = document.getElementById("photoClose");
   const previousButton = document.getElementById("photoPrev");
   const nextButton = document.getElementById("photoNext");
   const zoomFrame = document.getElementById("photoZoomFrame");
+  const expandButton = document.getElementById("photoExpand");
+  const expandExitButton = document.getElementById("photoExpandExit");
 
   /* Zooming in loads the original file: the screen-sized WebP copy would look soft at the magnified size. */
   function loadFullResolution() {
@@ -522,6 +651,7 @@ function initialisePhotoViewer() {
   /* Magnify: select the photo (click, tap, Enter or Space) to zoom in; move the pointer to pan; select again to zoom out */
   const ZOOM_SCALE = 2.5;
   let isZoomed = false;
+  let isExpanded = false;
 
   function panZoom(event) {
     if (!isZoomed || !zoomFrame || !mainImage) {
@@ -543,6 +673,10 @@ function initialisePhotoViewer() {
     isZoomed = enabled;
     zoomFrame.classList.toggle("is-zoomed", enabled);
     zoomFrame.setAttribute("aria-pressed", String(enabled));
+
+    // While zoomed in, the top bar, the caption and the thumbnail strip are hidden so the photo can use the whole screen.
+    viewer.classList.toggle("is-zoom-view", enabled);
+    limitFrameHeight();
 
     if (enabled) {
       loadFullResolution();
@@ -570,12 +704,14 @@ function initialisePhotoViewer() {
     zoomFrame.addEventListener("pointerenter", movePointerIcon);
     zoomFrame.addEventListener("pointermove", movePointerIcon);
     zoomFrame.addEventListener("pointerleave", () => zoomFrame.classList.remove("has-pointer-icon"));
-    zoomFrame.addEventListener("click", (event) => setZoom(!isZoomed, event));
+    zoomFrame.addEventListener("click", (event) => {
+      if (!isExpanded) { setZoom(!isZoomed, event); }
+    });
     zoomFrame.addEventListener("pointermove", panZoom);
     zoomFrame.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        setZoom(!isZoomed);
+        if (!isExpanded) { setZoom(!isZoomed); }
       }
     });
   }
@@ -619,7 +755,7 @@ function initialisePhotoViewer() {
     const otherHeight = photoFigure.offsetHeight - zoomFrame.offsetHeight;
 
     if (freeHeight > 0) {
-      zoomFrame.style.setProperty("--photo-max-h", `${Math.max(48, Math.min(600, freeHeight - otherHeight))}px`);
+      zoomFrame.style.setProperty("--photo-max-h", `${Math.max(48, Math.min(1400, freeHeight - otherHeight))}px`);
     }
   }
 
@@ -648,11 +784,13 @@ function initialisePhotoViewer() {
   };
 
   const getLabel = (index) => labels[index] || defaultLabel(index);
-  const getCaption = (index) => captions[index] || `${objectTitle} — ${getLabel(index)} image`;
 
-  if (backLink) {
-    backLink.href = returnUrl;
-  }
+  /* Labels typed in capitals ("HERO SHOT") are shown in sentence case ("Hero shot"). Mixed-case labels are left as they are. */
+  const displayLabel = (index) => {
+    const label = getLabel(index);
+    return label === label.toUpperCase() ? label.charAt(0).toUpperCase() + label.slice(1).toLowerCase() : label;
+  };
+  const getCaption = (index) => captions[index] || `${objectTitle} — ${getLabel(index)} image`;
 
   if (closeButton) {
     closeButton.addEventListener("click", () => {
@@ -690,7 +828,11 @@ function initialisePhotoViewer() {
     }
 
     if (viewLabel) {
-      viewLabel.textContent = `[${label}]`;
+      viewLabel.textContent = displayLabel(currentIndex);
+    }
+
+    if (viewCount) {
+      viewCount.textContent = `View ${currentIndex + 1} of ${images.length}`;
     }
 
     if (imageCaption) {
@@ -708,9 +850,61 @@ function initialisePhotoViewer() {
 
     if (thumbnails) {
       thumbnails.querySelectorAll(".photo-thumbnail").forEach((thumbnail, indexInGallery) => {
-        thumbnail.classList.toggle("is-active", indexInGallery === currentIndex);
+        const isActive = indexInGallery === currentIndex;
+        thumbnail.classList.toggle("is-active", isActive);
+
+        // The photo on view is marked for screen readers, and it is the strip's only Tab stop.
+        // The other photos are reached with Previous, Next or the left and right arrow keys.
+        if (isActive) {
+          thumbnail.setAttribute("aria-current", "true");
+        } else {
+          thumbnail.removeAttribute("aria-current");
+        }
+        thumbnail.tabIndex = isActive ? 0 : -1;
       });
+
+      centreActiveThumbnail();
     }
+  }
+
+  /* Thumbnail strip: keep the photo on view in the middle of the strip, and show a fade on the side that has more. */
+  const thumbnailPanel = thumbnails ? thumbnails.closest(".photo-thumbnail-panel") : null;
+
+  function updateThumbnailFades() {
+    if (!thumbnails || !thumbnailPanel) {
+      return;
+    }
+
+    const maxScroll = thumbnails.scrollWidth - thumbnails.clientWidth;
+    thumbnailPanel.classList.toggle("has-more-left", thumbnails.scrollLeft > 2);
+    thumbnailPanel.classList.toggle("has-more-right", maxScroll - thumbnails.scrollLeft > 2);
+  }
+
+  function centreActiveThumbnail() {
+    if (!thumbnails) {
+      return;
+    }
+
+    const active = thumbnails.querySelector(".photo-thumbnail.is-active");
+
+    if (active && thumbnails.scrollWidth > thumbnails.clientWidth) {
+      const left = active.offsetLeft - (thumbnails.clientWidth - active.offsetWidth) / 2;
+      thumbnails.scrollTo({ left: Math.max(0, left), behavior: "auto" });
+    }
+
+    updateThumbnailFades();
+  }
+
+  if (thumbnails) {
+    // The strip has no scrollbar: the mouse wheel moves it sideways while it overflows.
+    thumbnails.addEventListener("wheel", (event) => {
+      if (thumbnails.scrollWidth > thumbnails.clientWidth && Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
+        event.preventDefault();
+        thumbnails.scrollLeft += event.deltaY;
+      }
+    }, { passive: false });
+    thumbnails.addEventListener("scroll", updateThumbnailFades);
+    window.addEventListener("resize", centreActiveThumbnail);
   }
 
   if (thumbnails) {
@@ -729,7 +923,7 @@ function initialisePhotoViewer() {
 
       const label = document.createElement("span");
       label.className = "photo-thumb-label";
-      label.textContent = getLabel(index);
+      label.textContent = displayLabel(index);
 
       button.appendChild(label);
       button.appendChild(image);
@@ -760,11 +954,131 @@ function initialisePhotoViewer() {
   const guide = document.getElementById("photoGuide");
   const guideButton = document.getElementById("photoGuideButton");
   const guideCloseButton = document.getElementById("photoGuideClose");
+  /* Expand: the photo fills the whole screen and everything else is ignored. The browser's full screen mode is used when it is
+     available (the browser then also shows its own Esc hint). Esc or the X button leaves it. Where full screen mode is not
+     available (for example some phones), the photo still fills the page. */
+  function setExpanded(on) {
+    if (!viewer || on === isExpanded) {
+      return;
+    }
+
+    isExpanded = on;
+
+    if (on) {
+      setZoom(false);
+    }
+
+    viewer.classList.toggle("is-expanded", on);
+
+    if (expandExitButton) {
+      expandExitButton.hidden = !on;
+    }
+
+    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
+
+    if (on) {
+      const request = viewer.requestFullscreen || viewer.webkitRequestFullscreen;
+
+      if (request) {
+        try {
+          const result = request.call(viewer);
+          if (result && result.catch) { result.catch(() => {}); }
+        } catch (error) { /* Full screen was refused: the page-filling view still works. */ }
+      }
+
+      if (expandExitButton) { expandExitButton.focus(); }
+    } else {
+      if (fullscreenElement) {
+        const exit = document.exitFullscreen || document.webkitExitFullscreen;
+        if (exit) {
+          try {
+            const result = exit.call(document);
+            if (result && result.catch) { result.catch(() => {}); }
+          } catch (error) { /* Already out of full screen. */ }
+        }
+      }
+
+      if (expandButton) { expandButton.focus(); }
+    }
+
+    limitFrameHeight();
+  }
+
+  if (expandButton) {
+    expandButton.addEventListener("click", () => setExpanded(true));
+  }
+
+  if (expandExitButton) {
+    expandExitButton.addEventListener("click", () => setExpanded(false));
+  }
+
+  // The browser's own Esc leaves full screen mode: leave the expanded view with it.
+  const onFullscreenChange = () => {
+    if (isExpanded && !(document.fullscreenElement || document.webkitFullscreenElement)) {
+      setExpanded(false);
+    }
+  };
+  document.addEventListener("fullscreenchange", onFullscreenChange);
+  document.addEventListener("webkitfullscreenchange", onFullscreenChange);
+
   const guideBackground = document.querySelectorAll(".photo-viewer-header, .photo-viewer-stage, .photo-thumbnail-panel");
 
   function isGuideOpen() {
     return Boolean(guide) && !guide.hidden;
   }
+
+  /* The guide notes line up with the real parts of the page behind them: the height of the top bar, of the Previous / Next bar
+     and of the thumbnail row are measured and handed to the style sheet. */
+  function measureGuide() {
+    if (!guide || guide.hidden) {
+      return;
+    }
+
+    const header = document.querySelector(".photo-viewer-header");
+    const stage = document.querySelector(".photo-viewer-stage");
+    const panel = document.querySelector(".photo-thumbnail-panel");
+    const barHeight = stage ? parseFloat(window.getComputedStyle(stage, "::after").height) : NaN;
+
+    if (header) { guide.style.setProperty("--gd-head", `${header.getBoundingClientRect().height}px`); }
+    if (panel) { guide.style.setProperty("--gd-panel", `${panel.getBoundingClientRect().height}px`); }
+    if (!Number.isNaN(barHeight)) { guide.style.setProperty("--gd-bar", `${barHeight}px`); }
+
+    /* Positions of the real parts (px from the top of the window), used by the phone layout of the guide. */
+    const frame = document.getElementById("photoZoomFrame");
+    const viewName = document.querySelector(".photo-viewer-figure figcaption");
+
+    if (frame) { guide.style.setProperty("--gd-frame-bottom", `${frame.getBoundingClientRect().bottom}px`); }
+
+    if (viewName) {
+      const viewRect = viewName.getBoundingClientRect();
+      guide.style.setProperty("--gd-meta-top", `${viewRect.top}px`);
+      guide.style.setProperty("--gd-btn-top", `${viewRect.bottom}px`);
+    }
+
+    if (panel) { guide.style.setProperty("--gd-panel-top", `${panel.getBoundingClientRect().top}px`); }
+
+    /* Phone: the notes sit over their own parts when they fit. If the notes at the top reach down into the view note, that note
+       moves onto the view name; if they still do not fit, the notes follow each other instead (the guide scrolls). */
+    guide.classList.remove("is-meta-over", "is-flow");
+
+    if (window.matchMedia("(max-width: 779px)").matches) {
+      const zoomNote = guide.querySelector(".guide-zoom");
+      const viewNote = guide.querySelector(".guide-meta");
+
+      const reachesViewNote = () => viewNote.getBoundingClientRect().top < zoomNote.getBoundingClientRect().bottom + 2;
+
+      if (zoomNote && viewNote && reachesViewNote()) {
+        guide.classList.add("is-meta-over");
+
+        if (reachesViewNote()) {
+          guide.classList.remove("is-meta-over");
+          guide.classList.add("is-flow");
+        }
+      }
+    }
+  }
+
+  window.addEventListener("resize", measureGuide);
 
   function setGuideOpen(open) {
     if (!guide) {
@@ -772,6 +1086,7 @@ function initialisePhotoViewer() {
     }
 
     guide.hidden = !open;
+    measureGuide();
 
     /* The page behind the guide cannot be reached with the keyboard or a screen reader while it is open */
     guideBackground.forEach((element) => {
@@ -824,7 +1139,9 @@ function initialisePhotoViewer() {
     } else if (event.key === "ArrowRight") {
       renderPhoto(currentIndex + 1);
     } else if (event.key === "Escape") {
-      if (isZoomed) {
+      if (isExpanded) {
+        setExpanded(false);
+      } else if (isZoomed) {
         setZoom(false);
       } else {
         window.location.href = returnUrl;
@@ -833,7 +1150,20 @@ function initialisePhotoViewer() {
   });
 
   renderPhoto(currentIndex);
-  setGuideOpen(true); /* Show the guide every time the photo page opens */
+  /* The guide opens by itself the first time the photo page is visited. After that it opens only when the Guide button is selected. */
+  let guideSeen = false;
+
+  try {
+    guideSeen = localStorage.getItem("photoGuideSeen") === "yes";
+  } catch (error) { /* Storage may be unavailable: then the guide opens each time, which is the safe choice. */ }
+
+  if (!guideSeen) {
+    setGuideOpen(true);
+
+    try {
+      localStorage.setItem("photoGuideSeen", "yes");
+    } catch (error) { /* Storage may be unavailable. */ }
+  }
 }
 
 
@@ -848,7 +1178,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const topButton = document.createElement("button");
   topButton.type = "button";
   topButton.className = "back-to-top";
-  topButton.textContent = "Back to top";
+  const topIcon = document.createElement("i");
+  topIcon.className = "fa-solid fa-arrow-up";
+  topIcon.setAttribute("aria-hidden", "true");
+  topButton.appendChild(topIcon);
   topButton.setAttribute("aria-label", "Return to the top of this page");
   topButton.addEventListener("click", scrollToTop);
   document.body.appendChild(topButton);
@@ -866,7 +1199,47 @@ document.addEventListener("DOMContentLoaded", () => {
     document.documentElement.style.setProperty("--footer-overlap", overlap + "px");
   }
 
+  // On phones the round button only appears while the visitor scrolls up (they are heading back to the top).
+  // While scrolling down it stays hidden, so it never covers text such as the Back and Next buttons at the end of a page.
+  let lastScrollY = window.scrollY;
+  let topButtonTimer = null;
+
+  function hideTopButtonLater(delay) {
+    clearTimeout(topButtonTimer);
+    topButtonTimer = setTimeout(() => topButton.classList.remove("is-visible"), delay);
+  }
+
+  function updateTopButtonVisibility() {
+    const y = window.scrollY;
+
+    if (y <= 300) {
+      clearTimeout(topButtonTimer);
+      topButton.classList.remove("is-visible");
+    } else if (y < lastScrollY - 4) {
+      topButton.classList.add("is-visible");
+      hideTopButtonLater(3500);
+    } else if (y > lastScrollY + 4) {
+      clearTimeout(topButtonTimer);
+      topButton.classList.remove("is-visible");
+    }
+
+    if (Math.abs(y - lastScrollY) > 4) {
+      lastScrollY = y;
+    }
+  }
+
+  // Keyboard users: pressing Tab shows the button (below the first screen), and it stays while it has focus.
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Tab" && window.scrollY > 300) {
+      topButton.classList.add("is-visible");
+      hideTopButtonLater(8000);
+    }
+  });
+  topButton.addEventListener("focus", () => clearTimeout(topButtonTimer));
+  topButton.addEventListener("blur", () => hideTopButtonLater(1500));
+
   window.addEventListener("scroll", updateTopButtonOffset, { passive: true });
+  window.addEventListener("scroll", updateTopButtonVisibility, { passive: true });
   window.addEventListener("resize", updateTopButtonOffset);
   updateTopButtonOffset();
 
@@ -881,6 +1254,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (sidebarMenu) {
     sidebarMenu.addEventListener("scroll", updateSidebarScrollHint, { passive: true });
+    sidebarMenu.querySelectorAll(".sidebar-scroll-btn").forEach((button) => {
+      button.addEventListener("click", () => scrollSidebarMenu(button.dataset.scroll));
+    });
     window.addEventListener("resize", updateSidebarScrollHint);
     window.addEventListener("load", updateSidebarScrollHint);
     updateSidebarScrollHint();
@@ -936,3 +1312,65 @@ document.addEventListener("click", (event) => {
     event.stopPropagation();
   }
 });
+
+/* "Explore the exhibition" (main page): scroll down slowly instead of jumping.
+   The browser's own smooth scrolling takes about half a second, which is too fast to follow, so the page is moved by a script
+   over about 1.6 seconds, easing in and out. People who ask their system for less motion get the plain jump. Keyboard focus moves to the
+   section's heading at the end. Any wheel, touch or key press by the visitor stops the movement at once. */
+(function () {
+  const SLOW_SCROLL_MS = 1600;
+
+  document.addEventListener("click", function (event) {
+    const link = event.target.closest(".btn-explore-exhibition");
+    if (!link) { return; }
+
+    const target = document.getElementById("explore-the-exhibition");
+    if (!target) { return; }
+
+    event.preventDefault();
+
+    const heading = target.querySelector("h2") || target;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    const maxTop = document.documentElement.scrollHeight - window.innerHeight;
+    const destination = Math.max(0, Math.min(maxTop, target.getBoundingClientRect().top + window.scrollY - margin));
+
+    const finish = function () {
+      if (!heading.hasAttribute("tabindex")) { heading.setAttribute("tabindex", "-1"); }
+      heading.focus({ preventScroll: true });
+      try { history.replaceState(null, "", "#explore-the-exhibition"); } catch (error) { /* Not critical. */ }
+    };
+
+    if (reduce) {
+      window.scrollTo(0, destination);
+      finish();
+      return;
+    }
+
+    const start = window.scrollY;
+    const distance = destination - start;
+    const began = performance.now();
+    let stopped = false;
+
+    const stop = function () { stopped = true; };
+    const stopEvents = ["wheel", "touchstart", "keydown", "mousedown"];
+    stopEvents.forEach(function (name) { window.addEventListener(name, stop, { passive: true, once: true }); });
+
+    const ease = function (t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
+
+    const step = function (now) {
+      if (stopped) { return; }
+      const t = Math.min(1, (now - began) / SLOW_SCROLL_MS);
+      window.scrollTo(0, start + distance * ease(t));
+
+      if (t < 1) {
+        window.requestAnimationFrame(step);
+      } else {
+        stopEvents.forEach(function (name) { window.removeEventListener(name, stop); });
+        finish();
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  });
+})();

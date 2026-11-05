@@ -5,6 +5,10 @@
     </div>
     
     <div class="header-center" aria-live="polite">
+      {%- comment -%} Phones only (see _header.scss): "Shelf name > object name", so visitors always see where they are. The shelf name is plain text, because the page itself has the "Back to ... shelf" link. {%- endcomment -%}
+      {% if page.layout == "object" %}
+        <span class="header-shelf-name"><i class="fa-solid fa-layer-group" aria-hidden="true"></i><span>{{ page.shelf_title | default: 'Middle Shelf' | escape }}</span></span><i class="fa-solid fa-chevron-right header-crumb-sep" aria-hidden="true"></i>
+      {% endif %}
       {% if page.object_name %}
         <span class="active-object-name" aria-label="Current object: {{ page.object_name | escape }}">{% include object-title.html title=page.object_name %}</span>
       {% elsif page.title and page.title != "Home" %}
@@ -13,20 +17,31 @@
     </div>
 
     <div class="header-right" role="group" aria-label="Accessibility and navigation utilities">
-      <div class="text-resizers" role="group" aria-label="Text size controls">
-        <button type="button" onclick="changeFontSize(-1)" class="font-btn" aria-label="Decrease text size">
-          <span aria-hidden="true">A -</span>
-        </button>
-        <button type="button" onclick="changeFontSize(0)" class="font-btn" aria-label="Reset text size to default">
-          <span aria-hidden="true">Reset</span>
-        </button>
-        <button type="button" onclick="changeFontSize(1)" class="font-btn" aria-label="Increase text size">
-          <span aria-hidden="true">A +</span>
+      {%- comment -%} Phones only: the accessibility icon button opens the panel with the text size and dark mode controls. {%- endcomment -%}
+      <button class="settings-btn" type="button" onclick="toggleDisplaySettings()" aria-controls="displaySettings" aria-expanded="false" aria-label="Text size and display settings"><i class="fa-solid fa-universal-access" aria-hidden="true"></i></button>
+      <div class="display-settings" id="displaySettings">
+        <p class="settings-heading" aria-hidden="true">Text size<span class="settings-value" id="textSizeValue">100%</span></p>
+        <div class="text-resizers" role="group" aria-label="Text size controls">
+          <button type="button" onclick="changeFontSize(-1)" class="font-btn" aria-label="A minus, decrease text size">
+            <span aria-hidden="true">A -</span>
+          </button>
+          <button type="button" onclick="changeFontSize(0)" class="font-btn" aria-label="Reset text size to default">
+            <span aria-hidden="true">Reset</span>
+          </button>
+          <button type="button" onclick="changeFontSize(1)" class="font-btn" aria-label="A plus, increase text size">
+            <span aria-hidden="true">A +</span>
+          </button>
+        </div>
+        <p class="settings-heading" aria-hidden="true">Display</p>
+        <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()"><i class="fa-solid fa-moon" aria-hidden="true"></i><span class="dark-mode-label">Dark Mode</span></button>
+        <button type="button" class="keyboard-guide-toggle" id="keyboardGuideToggle" aria-pressed="false">
+          <i class="fa-regular fa-keyboard" aria-hidden="true"></i>
+          <span>Keyboard Guide</span>
+          <span class="kg-toggle-state" aria-hidden="true">Off</span>
         </button>
       </div>
-      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Open navigation menu">Navigation Menu</button>
-      <button class="dark-mode-btn" type="button" onclick="toggleDarkMode()" aria-pressed="false" aria-label="Toggle dark or light mode">Dark Mode</button>
-      <button class="header-top-btn" type="button" onclick="scrollToTop()" aria-label="Return to the top of this page">Back to top</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleSidebarMenu()" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Open navigation menu"><i class="fa-solid fa-bars" aria-hidden="true"></i><span>Menu</span></button>
+      <button class="header-top-btn" type="button" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up" aria-hidden="true"></i><span>Back to top</span></button>
     </div>
   </div>
 </header>
