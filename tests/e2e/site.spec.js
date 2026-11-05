@@ -14,7 +14,12 @@ const PAGES = [
   { name: "Terms and Conditions", path: "terms/" }
 ];
 
-const isDesktopWidth = (page) => (page.viewportSize() || { width: 0 }).width > 700;
+// The sidebar replaces the drawer from 780px (see the breakpoint in _sass/_header.scss).
+const isDesktopWidth = (page) => (page.viewportSize() || { width: 0 }).width >= 780;
+const isTabletWidth = (page) => {
+  const width = (page.viewportSize() || { width: 0 }).width;
+  return width > 700 && width < 780;
+};
 
 // Closes the Quick Guidance dialog on the photo viewer and moves the keyboard starting point back to the top of the page.
 const closeGuideAndRestartFocus = async (page) => {
@@ -161,8 +166,16 @@ test.describe("Object page", () => {
     await expect(page.locator("#playIcon")).toHaveClass(/fa-play/);
   });
 
-  test("Back to top stays above the footer (wide screens)", async ({ page }) => {
-    test.skip(!isDesktopWidth(page), "The floating button is hidden on narrow screens.");
+  test("Back to top: the sidebar has its own button on wide screens", async ({ page }) => {
+    test.skip(!isDesktopWidth(page), "Narrower screens use the floating button (next test).");
+
+    await page.goto("objects/middle-shelf-object3/");
+    await expect(page.locator(".back-to-top")).toBeHidden();
+    await expect(page.locator(".header-top-btn")).toBeVisible();
+  });
+
+  test("Back to top stays above the footer (tablet widths)", async ({ page }) => {
+    test.skip(!isTabletWidth(page), "The floating button is hidden on wide screens and appears only on scroll on phones.");
 
     await page.goto("objects/middle-shelf-object3/");
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));

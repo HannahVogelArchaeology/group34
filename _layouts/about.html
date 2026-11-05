@@ -34,7 +34,7 @@ layout: default
 
 <!-- On Campus -->
 <div class="sub-block" aria-label="On Campus Information">
-    <h4 class="sub-title">On Campus</h4>
+    <h3 class="sub-title">On Campus</h3>
 
     <table class="info-table visitor-info-table" aria-label="Campus location and opening hours">
         <tbody>
@@ -214,27 +214,27 @@ layout: default
 <!-- Interactive Avatars -->
     <div class="team-avatars" id="avatar-container" role="tablist" aria-label="Website development team members">
 
-    <button class="avatar active" type="button" role="tab" aria-selected="true" onclick="selectMember(0, this)" aria-label="Select Team member 1">
+    <button class="avatar active" type="button" role="tab" aria-selected="true" tabindex="0" onclick="selectMember(0, this)" aria-label="Select Team member 1">
     KHS
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(1, this)" aria-label="Select Team member 2">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(1, this)" aria-label="Select Team member 2">
     JB
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(2, this)" aria-label="Select Team member 3">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(2, this)" aria-label="Select Team member 3">
     TD
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(3, this)" aria-label="Select Team member 4">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(3, this)" aria-label="Select Team member 4">
     DH
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(4, this)" aria-label="Select Team member 5">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(4, this)" aria-label="Select Team member 5">
     LN
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" onclick="selectMember(5, this)" aria-label="Select Team member 6">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(5, this)" aria-label="Select Team member 6">
     IC
     </button>
 </div>
@@ -402,10 +402,12 @@ function selectMember(index, element) {
         .forEach(function (avatar) {
         avatar.classList.remove('active');
         avatar.setAttribute('aria-selected', 'false');
+        avatar.setAttribute('tabindex', '-1');
         });
 
     element.classList.add('active');
     element.setAttribute('aria-selected', 'true');
+    element.setAttribute('tabindex', '0');
 
     /* Move pointer under selected avatar */
     const pointer = document.getElementById('pointer-arrow');
@@ -465,6 +467,37 @@ window.addEventListener('DOMContentLoaded', function () {
 
     if (firstAvatar) {
         selectMember(0, firstAvatar);
+    }
+
+    /* Arrow keys, Home and End move between the team member tabs. Only the selected tab is a Tab stop. */
+    const avatarList = document.getElementById('avatar-container');
+
+    if (avatarList) {
+        avatarList.addEventListener('keydown', function (event) {
+            const avatars = Array.from(avatarList.querySelectorAll('.avatar'));
+            const current = avatars.indexOf(document.activeElement);
+            let target = -1;
+
+            if (current < 0) {
+                return;
+            }
+
+            if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+                target = (current + 1) % avatars.length;
+            } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+                target = (current - 1 + avatars.length) % avatars.length;
+            } else if (event.key === 'Home') {
+                target = 0;
+            } else if (event.key === 'End') {
+                target = avatars.length - 1;
+            }
+
+            if (target >= 0) {
+                event.preventDefault();
+                avatars[target].focus();
+                selectMember(target, avatars[target]);
+            }
+        });
     }
     });
 

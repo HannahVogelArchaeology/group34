@@ -122,6 +122,26 @@ function syncSidebarAccessibility() {
   menu.inert = !visible;
 }
 
+function setPageBehindDrawerInert(menu, inert) {
+  let node = menu;
+
+  while (node && node !== document.body) {
+    const parent = node.parentElement;
+
+    if (parent) {
+      Array.from(parent.children).forEach((sibling) => {
+        if (sibling === node || sibling.id === "sidebarOverlay" || sibling.tagName === "SCRIPT") {
+          return;
+        }
+
+        sibling.inert = inert;
+      });
+    }
+
+    node = parent;
+  }
+}
+
 function toggleSidebarMenu(forceState) {
   const menu = document.getElementById("sidebarMenu");
   const overlay = document.getElementById("sidebarOverlay");
@@ -153,6 +173,12 @@ function toggleSidebarMenu(forceState) {
 
   syncSidebarAccessibility();
   updateSidebarScrollHint();
+  setPageBehindDrawerInert(menu, open);
+
+  if (open) {
+    const closeButton = menu.querySelector(".close-sidebar");
+    if (closeButton) { closeButton.focus(); }
+  }
 
   /* Closing the drawer (Close button, Escape or the dark area) must not drop the keyboard focus: it returns to the Menu button. */
   if (!open && focusWasInside) {
@@ -192,11 +218,41 @@ function toggleDisplaySettings(forceState) {
 
 /* Reset the drawer when the screen grows to desktop size, and close it with the Escape key */
 mobileMenuQuery.addEventListener("change", () => {
+  const drawer = document.getElementById("sidebarMenu");
+
+  if (drawer) {
+    setPageBehindDrawerInert(drawer, false);
+  }
+
   toggleSidebarMenu(false);
   closeDisplaySettings();
   syncSidebarAccessibility();
 });
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Tab") {
+    const drawer = document.getElementById("sidebarMenu");
+
+    if (drawer && drawer.classList.contains("active")) {
+      const focusable = Array.from(drawer.querySelectorAll("a[href], button:not([tabindex='-1'])")).filter(
+        (element) => element.getClientRects().length > 0
+      );
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (first && last) {
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    return;
+  }
+
   if (event.key === "Escape") {
     const panel = document.getElementById("displaySettings");
     const settingsButton = document.querySelector(".settings-btn");
@@ -212,7 +268,18 @@ document.addEventListener("keydown", (event) => {
       return;
     }
 
-    toggleSidebarMenu(false);
+    const drawer = document.getElementById("sidebarMenu");
+
+    if (drawer && drawer.classList.contains("active")) {
+      toggleSidebarMenu(false);
+      return;
+    }
+
+    const audioBar = document.getElementById("bottomAudioBar");
+
+    if (audioBar && audioBar.style.display !== "none" && audioBar.style.display !== "") {
+      closeAudioPlayer();
+    }
   }
 });
 

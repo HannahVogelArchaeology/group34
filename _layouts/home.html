@@ -123,8 +123,9 @@ layout: default
     <h2 id="auslan-video-heading" class="auslan-title">Auslan Video</h2>
 
     <div class="video-card">
-      <video class="auslan-video" controls controlsList="nodownload" disablePictureInPicture preload="none" playsinline oncontextmenu="return false;" aria-describedby="auslan-video-description">
+      <video class="auslan-video" controls controlsList="nodownload" disablePictureInPicture preload="none" playsinline oncontextmenu="return false;" aria-label="{{ page.auslan_video_label | default: 'Auslan video introduction to the exhibition' | escape }}" aria-describedby="auslan-video-description">
         <source src="{{ page.auslan_video | relative_url }}" type="video/mp4">
+        <track kind="captions" srclang="en" label="English captions" src="{{ page.auslan_captions_file | default: '/assets/video/auslan-captions.vtt' | relative_url }}">
         Your browser does not support HTML5 video.
       </video>
     </div>
