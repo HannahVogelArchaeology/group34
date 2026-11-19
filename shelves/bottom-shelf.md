@@ -5,11 +5,21 @@ permalink: /shelves/bottom-shelf/
 
 shelf_title: "Bottom Shelf"
 
-hero_image: "/assets/images/BottomShelf_hero.jpg"
-hero_alt: "This is the alternative text area for the bottom shelf's hero image."
-hero_caption: "This is the caption area for the middle shelf's hero image."
+hero_image: "/assets/images/Bottom_shelf.jpg"
+hero_alt: "The bottom shelf of the display case, with three feeding vessels: a white porcelain feeding cup (9) with a long pouring spout and small handle, a ceramic spouted vessel (10) with a handle over the top of a flaring rim, and a small black ceramic feeding vessel (11) with an enclosed top, a narrow handle and a thin pouring spout."
+hero_caption: "Photograph of the bottom shelf of the display © Gale History Museum"
 
 # Keep placeholders until the approved object photographs are supplied.
+
+gallery_images:
+  - src: "/assets/images/Bottom_shelf.jpg"
+    label: "SHELF VIEW"
+    alt: "The bottom shelf of the display case, with three feeding vessels: a white porcelain feeding cup (9) with a long pouring spout and small handle, a ceramic spouted vessel (10) with a handle over the top of a flaring rim, and a small black ceramic feeding vessel (11) with an enclosed top, a narrow handle and a thin pouring spout."
+    caption: "Photograph of the bottom shelf of the display © Gale History Museum"
+  - src: "/assets/images/035A6990.jpg"
+    label: "FRONT VIEW"
+    alt: "A front view of the three feeding vessels on the bottom shelf: the white porcelain feeding cup (9), the ceramic spouted vessel (10) and the small black ceramic feeding vessel (11)."
+    caption: "Photograph of objects 9, 10 and 11 on the bottom shelf of the display © Gale History Museum"
 
 overview: >-
   These feeding vessels, despite differences in design over time, were made to support the needs of people. They represent difference, creating change in [material] culture.

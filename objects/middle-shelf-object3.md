@@ -28,7 +28,6 @@ gallery_images:
     label: "RIGHT SIDE BACK"
     alt: "Object 3. Bronze dancer (a replica), a metal figurine of a woman appearing to dance, fitted to a wooden base. The figurine is angled so the woman’s right side and back are visible."
     caption: "3 Bronze dancer, MU0101, right side back view © Gale History Museum"
-3d_link: ""
 acq_no: "MU0101"
 material: "Bronze"
 dimensions: "H: 154mm, W: 82mm, D: 45mm"
@@ -37,7 +36,6 @@ details: >-
   Purchased in 1997.
 
   Copy of Etruscan bronze, c.525-500 BCE, 01.7482, from the Museum of Fine Arts, Boston.
-overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula."
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
 transcript_text: "A bronze figurine of a woman, fixed to a modern wooden block base. The figure is wearing a long dress that is fitted to the body, and a headdress; the hood or hair is shaped to a rounded point behind her head. The figure’s arms are held out wide with sleeves flaring slightly at the elbows. The left hand is held up with the palm facing outwards; the right is also held away from the body, but the palm faces down. The figure’s left foot is further forward than the right, and the heel of the right foot is slightly lifted to give the impression they are moving. The fabric of their dress appears slightly stretched around the legs, and several incised lines detail the head, face, neckline and dress."

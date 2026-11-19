@@ -9,10 +9,7 @@ layout: default
 endif %}
 {% endfor %}
 {% endif %}
-{% assign three_d_link = page['3d_link'] %}
-
-<!-- Page summary: read first when a screen reader user lands on the main content (for example through "Skip to main content"). -->
-<p class="sr-only page-summary">This is the page of {% include object-title-spoken.html title=page.title %}, on the {{ page.shelf_title | default: 'Middle Shelf' | escape }}. In keyboard order, this page has a link back to the shelf, then the object title, overview, audio description, object information and photo, followed by the previous and next object buttons.</p>
+{% assign three_d_link = page['3d_link'] | strip %}
 
 <div class="object-detail-container">
 
@@ -26,20 +23,19 @@ endif %}
   <div class="object-hero-grid">
 
     <h1 class="object-heading">{% include object-title.html title=page.title %}</h1>
-    <p class="sr-only end-of-section">This is the end of section: object name.</p>
 
 
     <div class="info-column">
 
+      {%- comment -%} The Overview is shown only when the page has an "overview:" text in its front matter. {%- endcomment -%}
+      {% if page.overview %}
       <div class="overview-section">
         <p class="overview-title">Overview</p>
         <p class="overview-text">
-          {{ page.overview | default: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac
-          tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet
-          turpis est sed ligula.' }}
+          {{ page.overview }}
         </p>
       </div>
-      <p class="sr-only end-of-section">This is the end of section: overview.</p>
+      {% endif %}
 
       <div class="audio-section">
         <h2 class="object-section-heading">Listen to this story</h2>
@@ -60,7 +56,6 @@ endif %}
           </div>
         </div>
       </div>
-      <p class="sr-only end-of-section">This is the end of section: audio description and transcript.</p>
 
       <div class="metadata-section">
         <h2 class="object-section-heading">Object Information</h2>
@@ -84,53 +79,50 @@ endif %}
           </tr>
         </table>
       </div>
-      <p class="sr-only end-of-section">This is the end of section: object information.</p>
 
     </div>
 
-    <div class="media-column">
+    <div class="media-column" data-gallery>
 
       <div class="main-image-wrapper">
-        <a class="main-image-link"
+        <a class="main-image-link" data-gallery-link
           href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
           aria-label="Open {{ page.title }} front image in the photo viewer">
           <img src="{{ first_gallery_src | relative_url }}"
-            {% include responsive-attrs.html src=first_gallery_src sizes="(max-width: 850px) 100vw, 550px" %} fetchpriority="high"
-            alt="{{ page.gallery_images[0].caption | default: page.title | escape }}" class="main-img">
+            {% include responsive-attrs.html src=first_gallery_src sizes="(max-width: 779px) calc(100vw - 48px), (max-width: 850px) 62vw, (max-width: 1279px) 30vw, (max-width: 1599px) 33vw, 522px" %} fetchpriority="high"
+            alt="{{ page.gallery_images[0].caption | default: page.title | escape }}" class="main-img" data-gallery-img>
         </a>
 
-        <a class="expand-btn"
+        <a class="expand-btn" data-gallery-link
           href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
           aria-label="Open {{ page.title }} front image in the photo viewer">
           <i class="fa-solid fa-up-right-and-down-left-from-center" aria-hidden="true"></i>
         </a>
       </div>
 
-      <p class="image-caption object-main-caption">
+      <p class="image-caption object-main-caption" data-gallery-caption>
         {{ page.gallery_images[0].caption | default: page.title }}
       </p>
+      <span class="sr-only" role="status" data-gallery-status></span>
 
       <div class="media-controls">
 
-        <div class="thumbnails-row" aria-label="{{ page.title }} photo views">
-          {% for gallery_image in page.gallery_images offset:1 %}
+        {% if page.gallery_images.size > 1 %}
+        <div class="thumbnails-row" role="group" aria-label="{{ page.title }} photo views">
+          {%- comment -%} Every photo is a thumbnail, including the one shown large first. Pressing one shows it in the large frame; the photo viewer opens from the large photo. {%- endcomment -%}
+          {% for gallery_image in page.gallery_images %}
           {% assign gallery_image_exists = false %}
           {% for static_file in site.static_files %}
           {% if static_file.path == gallery_image.src %}{% assign gallery_image_exists = true %}{% endif %}
           {% endfor %}
-          <a class="thumb-box"
-            href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index={{ forloop.index }}"
-            aria-label="Open {{ gallery_image.label }} of {{ page.title }}">
-            {% if gallery_image_exists %}{% assign thumb_src = gallery_image.src %}{% else %}{% assign thumb_src = page.image %}{% endif %}
-            <img
-              src="{% if gallery_image_exists %}{{ gallery_image.src | relative_url }}{% else %}{{ page.image | relative_url }}{% endif %}"
-              {% include responsive-attrs.html src=thumb_src sizes="80px" %}
-              alt="{{ gallery_image.caption | default: gallery_image.label | escape }}" loading="lazy">
-          </a>
+          {% if gallery_image_exists %}{% assign thumb_src = gallery_image.src %}{% else %}{% assign thumb_src = page.image %}{% endif %}
+          {% assign thumb_alt = gallery_image.caption | default: gallery_image.label %}
+          {% include gallery-thumb.html src=thumb_src alt=thumb_alt caption=gallery_image.caption label=gallery_image.label index=forloop.index0 name=page.title %}
           {% endfor %}
         </div>
+        {% endif %}
         
-        {% if three_d_link %}
+        {% if three_d_link != "" %}
           {%- comment -%} The link opens in a new tab: the note under the button and the arrow icon tell sighted visitors before they click, and screen readers hear the same in the link text. {%- endcomment -%}
           <div class="explore-3d-wrap">
             <a href="{{ three_d_link | escape }}" target="_blank" rel="noopener noreferrer" class="explore-3d-btn">
@@ -144,7 +136,6 @@ endif %}
 
     
 
-      <p class="sr-only end-of-section">This is the end of section: photo of {{ page.title | escape }}.</p>
     </div>
 
   </div>

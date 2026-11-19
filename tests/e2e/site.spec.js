@@ -133,7 +133,7 @@ test.describe("Object page", () => {
     await expect(page.locator(".object-meta-table .sr-only").first()).toHaveText("Acquisition Number");
   });
 
-  test("keyboard order follows title, overview, audio, information, photo, pagination", async ({ page }) => {
+  test("keyboard order follows title, overview (when there is one), audio, information, photo, pagination", async ({ page }) => {
     await page.goto("objects/middle-shelf-object3/");
     const order = await page.evaluate(() => {
       const selectors = [
@@ -144,7 +144,7 @@ test.describe("Object page", () => {
         ".media-column",
         ".shelf-pagination"
       ];
-      const elements = selectors.map((selector) => document.querySelector(selector));
+      const elements = selectors.map((selector) => document.querySelector(selector)).filter(Boolean);
       return elements.map((element, index) => {
         const next = elements[index + 1];
         return !next || Boolean(element.compareDocumentPosition(next) & Node.DOCUMENT_POSITION_FOLLOWING);
@@ -164,6 +164,33 @@ test.describe("Object page", () => {
     await page.getByRole("button", { name: "Close audio player" }).click();
     await expect(bar).toBeHidden();
     await expect(page.locator("#playIcon")).toHaveClass(/fa-play/);
+  });
+
+  test("the Keyboard Guide script is downloaded only when the guide is turned on", async ({ page }) => {
+    const requested = [];
+    page.on("request", (request) => {
+      if (request.url().includes("keyboard-guide.js")) {
+        requested.push(request.url());
+      }
+    });
+
+    await page.goto("about/");
+    await page.waitForLoadState("load");
+    expect(requested).toHaveLength(0);
+
+    const toggle = page.locator("#keyboardGuideToggle");
+    await toggle.dispatchEvent("click");
+    await expect(page.locator("body")).toHaveClass(/keyboard-guide-on/);
+    await expect(toggle).toHaveAttribute("aria-pressed", "true");
+    expect(requested).toHaveLength(1);
+
+    await page.goto("accessibility/");
+    await expect(page.locator("body")).toHaveClass(/keyboard-guide-on/);
+    await expect(toggle).toHaveAttribute("aria-pressed", "true");
+
+    await toggle.dispatchEvent("click");
+    await expect(page.locator("body")).not.toHaveClass(/keyboard-guide-on/);
+    await expect(toggle).toHaveAttribute("aria-pressed", "false");
   });
 
   test("Back to top: the sidebar has its own button on wide screens", async ({ page }) => {

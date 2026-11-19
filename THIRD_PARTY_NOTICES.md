@@ -44,7 +44,7 @@ Pillow is installed with `pip install Pillow`. It is run on a team member's comp
 
 ## The team's own code
 
-The code written or changed by the team (`assets/js/main.js`, the styles in `_sass/`, the changes to the layouts and includes, `scripts/make-responsive-images.py`, `_includes/responsive-lookup.html` and `_includes/responsive-attrs.html`) is released under the MIT licence in `LICENSE`. The project's IT consultant confirmed that MIT and Apache 2.0 are both acceptable for this project. To release the team's own code under Apache 2.0 instead, replace `LICENSE` with `LICENSES/Apache-2.0.txt` for those files, keep the MIT notice for the Minima-derived files, and change `license:` in `CITATION.cff`.
+The code written or changed by the team (`assets/js/main.js`, `assets/js/audio.js`, `assets/js/photo-viewer.js`, the styles in `_sass/`, the changes to the layouts and includes, `scripts/make-responsive-images.py`, `_includes/responsive-lookup.html` and `_includes/responsive-attrs.html`) is released under the MIT licence in `LICENSE`. The project's IT consultant confirmed that MIT and Apache 2.0 are both acceptable for this project. To release the team's own code under Apache 2.0 instead, replace `LICENSE` with `LICENSES/Apache-2.0.txt` for those files, keep the MIT notice for the Minima-derived files, and change `license:` in `CITATION.cff`.
 
 ## Content and media
 

@@ -47,3 +47,9 @@ exclude:
   - README.md
   - NOTICE.md
   - CITATION.cff
+
+# Shown in the footer of the home page only (_includes/footer.html).
+acknowledgement_text: |
+  This research was undertaken on the lands of the Wallumatta of the Dharug Nation, whose cultures and customs have nurtured and continue to nurture this land, since the Dreaming.
+
+  This project is supported by the Commonwealth through an Australian Government Research Training Program Scholarship *[DOI: [https://doi.org/10.82133/C42F-K220](https://doi.org/10.82133/C42F-K220)]* and the National Disability Research Partnership Disability Leadership Program.

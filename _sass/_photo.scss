@@ -96,6 +96,15 @@
   padding: 1rem 1.5rem calc(var(--pv-bar-h) + 0.75rem);
 }
 
+/* main.js works out the size of the frame once the photo has loaded. Until then the stage and the thumbnails stay hidden
+   (they keep their space), so nothing visibly jumps. Without scripting nothing is hidden. */
+@media (scripting: enabled) {
+  .photo-viewer-page:not(.is-ready) {
+    .photo-viewer-stage,
+    .photo-thumbnail-panel { visibility: hidden; }
+  }
+}
+
 /* The bar under the photo */
 .photo-viewer-stage::after {
   content: "";

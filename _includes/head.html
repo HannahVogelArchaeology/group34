@@ -162,6 +162,17 @@
 <link rel="icon" type="image/svg+xml" href="{{ '/assets/favicon.svg' | relative_url }}">
 
 <!-- Style sheet -->
+{%- comment -%} Each page loads only the styles it uses (assets/css/bundle-<name>.scss; the "bundle-" prefix keeps these names different from the _sass partials, which Sass would otherwise load instead). Pages without their own file load assets/main.css, which has everything. {%- endcomment -%}
+{%- assign css_bundle = page.layout -%}
+{%- case page.path -%}
+  {%- when 'privacy.md' or 'terms.md' -%}{%- assign css_bundle = 'privacy' -%}
+  {%- when 'accessibility.md' -%}{%- assign css_bundle = 'about' -%}
+{%- endcase -%}
+{%- assign css_bundles = 'home,about,top-shelf,middle-shelf,bottom-shelf,object,photo,privacy' | split: ',' -%}
+{%- if css_bundles contains css_bundle -%}
+<link rel="stylesheet" href="{{ '/assets/css/bundle-' | append: css_bundle | append: '.css' | relative_url }}">
+{%- else -%}
 <link rel="stylesheet" href="{{ '/assets/main.css' | relative_url }}">
+{%- endif -%}
 
 </head>

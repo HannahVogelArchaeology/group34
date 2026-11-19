@@ -44,7 +44,6 @@ details: >-
   Greece, 7th-6th century B.C.E.
 
   Purchased in 1997.
-overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula."
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
 transcript_text: "A human figure kneeling and holding a drum with both hands at the front and centre of their body between waist and chest height. The figure is likely mould made and faces forward with the rendered impression of a human face. In several places, there are remnants of blue and black paint, with black lines concentrating around the top of the head, the neck and above the knees. The kilt-like skirt appears to have been painted to knee length with a large patch of blue pigment still extant below the waist."

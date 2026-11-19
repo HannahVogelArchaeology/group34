@@ -2,12 +2,13 @@
   {% if page.url == "/" or page.url == "/index.html" %}
   <div class="footer-top">
     <div class="footer-left" role="region" aria-labelledby="footer-connect-heading">
-      <h2 id="footer-connect-heading">Connect with us</h2>
-      <p>Stay updated with our latest archaeological discoveries and virtual exhibits. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, justo ac lacinia maximus, sed neque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula. Nulla amc ligula, ultrices ut amet magna nec, efficitur porta purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque.</p>
+      <h2 id="footer-connect-heading">Acknowledgements</h2>
+      {%- comment -%} Links in the acknowledgements (such as the DOI) open in a new browser tab, and screen readers are told so. {%- endcomment -%}
+      {% assign acknowledgement_html = site.acknowledgement_text | markdownify | replace: '<a href=', '<a target="_blank" rel="noopener noreferrer" href=' | replace: '</a>', '</a><span class="sr-only"> (opens in a new tab)</span>' %}
+      {{ acknowledgement_html }}
       <div class="social-icons" role="group" aria-label="Social media links">
-        <a href="#" aria-label="Visit our YouTube channel"><i class="fab fa-youtube" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Visit our LinkedIn page"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
-        <a href="#" aria-label="Visit our Instagram profile"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+        <a href="https://www.linkedin.com/in/hannah-vogel-216039149/" target="_blank" rel="noopener noreferrer" aria-label="Visit Hannah Vogel's LinkedIn profile (opens in a new tab)"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/hannah_the_archaeologist/" target="_blank" rel="noopener noreferrer" aria-label="Visit Hannah Vogel's Instagram profile (opens in a new tab)"><i class="fab fa-instagram" aria-hidden="true"></i></a>
       </div>
     </div>
     

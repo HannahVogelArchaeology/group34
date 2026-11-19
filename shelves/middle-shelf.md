@@ -5,10 +5,28 @@ permalink: /shelves/middle-shelf/
 
 shelf_title: "Middle Shelf"
 
-hero_image: "/assets/images/MiddleShelf_hero.jpg"
-hero_alt: "This is the alternative text area for the middle shelf's hero image."
-hero_caption: "This is the caption area for the middle shelf's hero image."
+hero_image: "/assets/images/Middle_shelf.jpg"
+hero_alt: "The middle shelf of the display case, with seven objects: a ceramic reclining figure (2), a bronze dancer replica (3), a ceramic figure of a musician (4), a ceramic seated statuette (5), a bronze figure of Priapus (6), a terracotta figurine (7) and a faience amulet of Pataikos (8)."
+hero_caption: "Photograph of the middle shelf of the display © Gale History Museum"
 
+
+gallery_images:
+  - src: "/assets/images/Middle_shelf.jpg"
+    label: "SHELF VIEW"
+    alt: "The middle shelf of the display case, with seven objects: a ceramic reclining figure (2), a bronze dancer replica (3), a ceramic figure of a musician (4), a ceramic seated statuette (5), a bronze figure of Priapus (6), a terracotta figurine (7) and a faience amulet of Pataikos (8)."
+    caption: "Photograph of the middle shelf of the display © Gale History Museum"
+  - src: "/assets/images/035A6985.jpg"
+    label: "OBJECTS 3, 4 AND 5"
+    alt: "Objects 3, 4 and 5 on the middle shelf. A bronze dancer replica (3), a metal figurine of a woman appearing to dance, fitted to a wooden base. A ceramic figure of a musician (4), kneeling and holding a drum with both hands. A ceramic seated statuette (5) wearing a large, tall circular headdress, placed on a (modern) black base."
+    caption: "Photograph of objects 3, 4 and 5 on the middle shelf of the display © Gale History Museum"
+  - src: "/assets/images/035A6994.jpg"
+    label: "OBJECTS 2, 3, 4 AND 6"
+    alt: "Objects 2, 3, 4, 6 and 7 on the middle shelf. A ceramic reclining figure (2), a bronze dancer replica (3), a ceramic figure of a musician (4), a bronze figure of the deity Priapus (6) and a terracotta figurine (7)."
+    caption: "Photograph of objects 2, 3, 4, 6 and 7 on the middle shelf of the display © Gale History Museum"
+  - src: "/assets/images/035A6983.jpg"
+    label: "OBJECT 8"
+    alt: "Object 8 on the middle shelf. An amulet of the ancient Egyptian deity Pataikos, moulded in faience, a teal-green glazed ceramic. The small standing figure has dwarfism, a large head and clenched fists. Behind the head, there is a loop for it to be worn."
+    caption: "Photograph of object 8 on the middle shelf of the display © Gale History Museum"
 
 overview: >-
   Figurines were made for various reasons and were often accessible to many people. These differently shaped bodies are votive offerings or amulets used for protection, ensuring health and/or fertility, invoking the divine, or for afterlife beliefs. These are an important reflection of the reality of diversity, rather than an ‘ideal’ body.  

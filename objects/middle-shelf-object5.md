@@ -32,7 +32,6 @@ details: >-
   Seated statuette Greek, c. 5th century BCE or Mesopotamia, c.3000 B.C.E.
 
   MU3735 Purchase, 2003 
-overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula."
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
 transcript_text: "A ceramic statuette of a seated human figure. The object is possibly mould-made and is placed on a (modern) black base. The figure wears a tall, circular headdress and soft moulding suggests facial features, but not in detail. The figure’s arms, torso and legs are shaped, although the object appears more worn from the waist down. The figure is seated upright. The top of the chair finishes just behind the figure's shoulders, touching the nape of the neck. The arms of the chair are shaped wide around the hips of the seated figure, before tapering in towards the base which finishes at the floor."

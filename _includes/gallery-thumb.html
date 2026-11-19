@@ -1,0 +1,11 @@
+{%- comment -%}
+  One thumbnail button of a photo gallery. Pressing it shows that photo in the large frame on the same page (assets/js/main.js does the swap).
+  The photo viewer opens only from the large photo or its expand button.
+  Inputs: src, alt, caption, label, index (0 is the photo shown first), name (the shelf or object, used in the button name).
+{%- endcomment -%}
+{%- include responsive-lookup.html src=include.src -%}
+{%- assign ri_pct = ri_w | times: 100 | divided_by: ri_h -%}
+{%- if ri_pct >= 136 -%}{%- assign fit = "cover" -%}{%- else -%}{%- assign fit = "contain" -%}{%- endif -%}
+<button type="button" class="thumb-box{% if include.index == 0 %} active{% endif %}" data-gallery-thumb data-index="{{ include.index }}" data-src="{{ include.src | relative_url }}" data-srcset="{{ ri_srcset | escape }}" data-width="{{ ri_w }}" data-height="{{ ri_h }}" data-fit="{{ fit }}" data-alt="{{ include.alt | escape }}" data-caption="{{ include.caption | escape }}" data-label="{{ include.label | escape }}" aria-pressed="{% if include.index == 0 %}true{% else %}false{% endif %}" aria-label="Show the {{ include.label | escape }} photo of {{ include.name | escape }} on this page">
+  <img src="{{ include.src | relative_url }}" {% include responsive-attrs.html src=include.src sizes="80px" %} alt="" loading="lazy" decoding="async">
+</button>

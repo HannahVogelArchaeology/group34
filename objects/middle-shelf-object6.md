@@ -48,7 +48,6 @@ details: >-
   Roman, c.1st-4th century C.E.
 
   Purchased in 2012.
-overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula."
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
 transcript_text: "A metal figurine of the deity Priapus. He is facing forward with an obviously enlarged and erect penis. He has a short beard and is wearing a toga-style draped tunic that is knee-length but gathers at the waist where it is held by both hands above the waist to expose the genitals. His legs are positioned together, and he is wearing shoes."

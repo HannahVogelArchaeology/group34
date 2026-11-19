@@ -319,47 +319,6 @@ function toggleDarkMode() {
 }
 
 
-/* Audio player */
-document.addEventListener("DOMContentLoaded", () => {
-    const audio = document.getElementById("exhibitionAudio");
-    const progressBar = document.getElementById("audioProgress");
-    const currentTimeEl = document.getElementById("currentTime");
-    const durationTimeEl = document.getElementById("durationTime");
-
-    if (!audio) {
-      return;
-    }
-
-    audio.addEventListener("loadedmetadata", () => {
-        if (durationTimeEl) {
-          durationTimeEl.textContent = formatTime(audio.duration);
-        }
-      }
-    );
-
-    audio.addEventListener("timeupdate", () => {
-        if (!isNaN(audio.duration)) {
-          if (progressBar) {
-            progressBar.value = (audio.currentTime / audio.duration) * 100;
-          }
-
-          if (currentTimeEl) {
-            currentTimeEl.textContent = formatTime(audio.currentTime);
-          }
-        }
-      }
-    );
-
-
-    // When playback finishes, return the button to the play icon.
-    audio.addEventListener("ended", () => {
-        setAudioPlayingState(false);
-      }
-    );
-  }
-);
-
-
 // Show an object title such as "3. Bronze dancer (replica)" unchanged on screen, while assistive
 // technology reads "Object number 3, Bronze dancer (replica)" so the number is not heard as a quantity.
 function renderObjectTitle(element, title, extra) {
@@ -383,855 +342,7 @@ function renderObjectTitle(element, title, extra) {
 }
 
 
-function formatTime(seconds) {
-  if (isNaN(seconds)) {
-    return "0:00";
-  }
-  const mins = Math.floor(seconds / 60);
-  const secs = Math.floor(seconds % 60);
-  return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
-}
 
-
-function seekAudio(value) {
-  const audio = document.getElementById("exhibitionAudio");
-  if (audio && !isNaN(audio.duration)) {
-    audio.currentTime = (value / 100) * audio.duration;
-  }
-}
-
-
-// UI play state. The icon follows this flag (not the audio events), so the
-// button always flips on a press, even while the audio file is still a
-// placeholder that the browser cannot actually play.
-let audioIsPlaying = false;
-
-
-// Switch the play button between the play and pause Font Awesome icons.
-function setAudioPlayingState(isPlaying) {
-  audioIsPlaying = isPlaying;
-  const playIcon = document.getElementById("playIcon");
-
-  if (playIcon) {
-    playIcon.className = isPlaying ? "fas fa-pause" : "fas fa-play";
-  }
-}
-
-
-// The button that opened the audio player, so focus can return to it when the player closes.
-let audioPlayerTrigger = null;
-
-
-// Show the audio player. It is placed right after the button that opened it, so the
-// keyboard and screen reader order is: Audio Description button, player controls, then
-// the rest of the page (the audio transcript first).
-function openAudioPlayer() {
-  const bar = document.getElementById("bottomAudioBar");
-
-  if (!bar) {
-    return;
-  }
-
-  const active = document.activeElement;
-  const trigger = active && active !== document.body && !bar.contains(active)
-    ? active
-    : document.querySelector("main .audio-play-btn");
-
-  audioPlayerTrigger = trigger || null;
-
-  const anchor = trigger ? trigger.closest(".audio-actions, .audio-controls") || trigger : null;
-  if (anchor) {
-    anchor.insertAdjacentElement("afterend", bar);
-  }
-
-  bar.style.display = "flex";
-  syncAudioBarOffset();
-
-  resetAudioSpeed();
-
-  // Start playback (the pause icon shows after the first press).
-  if (!audioIsPlaying) {
-    toggleAudioPlay();
-  }
-
-  // Move focus to the player itself (not to the seek bar, whose changing time would be read out
-  // every second). Screen readers announce the player and its instructions; Tab then reaches the controls.
-  bar.focus();
-}
-
-
-// Close the audio player: stop the audio, hide the player and return focus to the button that opened it.
-function closeAudioPlayer() {
-  const bar = document.getElementById("bottomAudioBar");
-  const audio = document.getElementById("exhibitionAudio");
-
-  if (audio) {
-    audio.pause();
-    audio.currentTime = 0;
-  }
-  resetAudioSpeed();
-  setAudioPlayingState(false);
-
-  const volumePopup = document.getElementById("volumePopup");
-  if (volumePopup) {
-    volumePopup.style.display = "none";
-  }
-  document.body.classList.remove("volume-popup-open");
-
-  if (bar) {
-    bar.style.display = "none";
-  }
-  syncAudioBarOffset();
-
-  if (audioPlayerTrigger && document.contains(audioPlayerTrigger)) {
-    audioPlayerTrigger.focus();
-  }
-}
-
-
-// The Audio Description button on the page opens the player, or closes it when it is already open.
-function toggleAudioPlayer() {
-  const bar = document.getElementById("bottomAudioBar");
-
-  if (!bar) {
-    return;
-  }
-
-  const isHidden = bar.style.display === "none" || bar.style.display === "";
-
-  if (isHidden) {
-    openAudioPlayer();
-  } else {
-    closeAudioPlayer();
-  }
-}
-
-
-function toggleAudioPlay() {
-  const audio = document.getElementById("exhibitionAudio");
-
-  if (!audio) {
-    return;
-  }
-
-  if (!audioIsPlaying) {
-    setAudioPlayingState(true);
-    const result = audio.play();
-    if (result && typeof result.catch === "function") {
-      // A rejected play() (for example a placeholder file) keeps the icon state.
-      result.catch(() => {});
-    }
-  } else {
-    audio.pause();
-    setAudioPlayingState(false);
-  }
-}
-
-
-/* Every time the player starts, it plays at the normal speed: a speed chosen earlier (0.5x or 1.5x) is not remembered. */
-function resetAudioSpeed() {
-  const audio = document.getElementById("exhibitionAudio");
-
-  if (audio) {
-    audio.defaultPlaybackRate = 1;
-    audio.playbackRate = 1;
-  }
-}
-
-
-function changeAudioSpeed(speed) {
-  const audio = document.getElementById("exhibitionAudio");
-  if (audio) {
-    audio.playbackRate = speed;
-  }
-}
-
-
-function toggleVolumePopup() {
-  const popup = document.getElementById("volumePopup");
-  if (popup) {
-    const willOpen = !(popup.style.display === "flex" || popup.style.display === "block");
-    popup.style.display = willOpen ? "block" : "none";
-    // While the volume slider is open, the Back to top button moves up so it never covers the slider.
-    document.body.classList.toggle("volume-popup-open", willOpen);
-  }
-}
-
-
-function setVolume(value) {
-  const audio = document.getElementById("exhibitionAudio");
-  const volumeIcon = document.getElementById("volumeIcon");
-
-  if (!audio) {
-    return;
-  }
-
-  audio.volume = value;
-  audio.muted = value == 0;
-
-  if (volumeIcon) {
-    if (value == 0) {
-      volumeIcon.className = "fas fa-volume-mute";
-    } else if (value < 0.5) {
-      volumeIcon.className = "fas fa-volume-down";
-    } else {
-      volumeIcon.className = "fas fa-volume-up";
-    }
-  }
-}
-
-/* Photo viewer page */
-
-function initialisePhotoViewer() {
-  const viewer = document.getElementById("photo-viewer");
-  if (!viewer) {
-    return;
-  }
-
-  const params = new URLSearchParams(window.location.search);
-
-  /* Short links (?key=...&index=...) read the gallery from the JSON block in photo.html,
-     which keeps the address short enough for any web server. Old long links still work. */
-  let galleryEntry = null;
-  const galleryKey = params.get("key");
-  const galleryDataElement = document.getElementById("photoGalleryData");
-
-  if (galleryKey && galleryDataElement) {
-    try {
-      galleryEntry = JSON.parse(galleryDataElement.textContent).find((item) => item.key === galleryKey) || null;
-    } catch (error) {
-      galleryEntry = null;
-    }
-  }
-
-  const requestedIndex = parseInt(params.get("index"), 10) || 0;
-  const objectTitle = galleryEntry ? galleryEntry.object || "Object" : params.get("object") || "Object";
-  const museumNumber = galleryEntry ? galleryEntry.museumNumber || "" : params.get("museum") || "";
-  const returnUrl = galleryEntry ? galleryEntry.return || "/" : params.get("return") || "/";
-  const currentImage = galleryEntry
-    ? ((galleryEntry.images[requestedIndex] || galleryEntry.images[0] || {}).src || "")
-    : params.get("image") || "";
-
-  const galleryImages = galleryEntry
-    ? galleryEntry.images.map((item) => item.src)
-    : (params.get("gallery") || currentImage)
-        .split(",")
-        .map((value) => value.trim())
-        .filter(Boolean);
-
-  /* Read gallery metadata by index so each caption remains paired with its image. */
-  const indexedValues = (prefix) => {
-    const values = [];
-
-    for (let index = 0; ; index += 1) {
-      const value = params.get(`${prefix}${index}`);
-
-      if (value === null) {
-        break;
-      }
-
-      values.push(value);
-    }
-
-    return values;
-  };
-
-  const labels = indexedValues("label");
-  const captions = indexedValues("caption");
-
-  /* Keep compatibility with older photo links that used pipe-separated metadata. */
-  if (!labels.length) {
-    labels.push(
-      ...(params.get("labels") || "")
-        .split("|")
-        .map((value) => value.trim())
-        .filter(Boolean)
-    );
-  }
-
-  if (!captions.length) {
-    captions.push(
-      ...(params.get("captions") || "")
-        .split("|")
-        .map((value) => value.trim())
-        .filter(Boolean)
-    );
-  }
-
-  if (galleryEntry) {
-    labels.length = 0;
-    captions.length = 0;
-    galleryEntry.images.forEach((item) => {
-      labels.push(item.label || "");
-      captions.push(item.caption || "");
-    });
-  }
-
-  const images = galleryImages.length ? galleryImages : [currentImage];
-
-  /* Optional smaller WebP copies, written by scripts/make-responsive-images.py.
-     Each entry can have srcset, thumb, width and height (the original file's size in pixels). */
-  const imageInfo = galleryEntry ? galleryEntry.images : [];
-  const VIEWER_IMAGE_SIZES = "(max-width: 779px) 100vw, 900px";
-  let currentIndex = galleryEntry
-    ? Math.min(Math.max(0, requestedIndex), images.length - 1)
-    : Math.max(0, images.indexOf(currentImage));
-
-  const mainImage = document.getElementById("photoMainImage");
-  const counter = document.getElementById("photoCounter");
-  const objectName = document.getElementById("photoObjectName");
-  const viewLabel = document.getElementById("photoViewLabel");
-  const viewCount = document.getElementById("photoViewCount");
-  const imageCaption = document.getElementById("photoImageCaption");
-  const thumbnails = document.getElementById("photoThumbnails");
-  const closeButton = document.getElementById("photoClose");
-  const previousButton = document.getElementById("photoPrev");
-  const nextButton = document.getElementById("photoNext");
-  const zoomFrame = document.getElementById("photoZoomFrame");
-  const expandButton = document.getElementById("photoExpand");
-  const expandExitButton = document.getElementById("photoExpandExit");
-
-  /* Zooming in loads the original file: the screen-sized WebP copy would look soft at the magnified size. */
-  function loadFullResolution() {
-    const info = imageInfo[currentIndex] || {};
-
-    if (!info.srcset || !mainImage) {
-      return;
-    }
-
-    const indexAtRequest = currentIndex;
-    const original = new Image();
-
-    original.onload = () => {
-      // Ignore the result when another photo was chosen while the original was loading.
-      if (indexAtRequest !== currentIndex) {
-        return;
-      }
-
-      // Without srcset the image uses its src, which is the original file.
-      mainImage.removeAttribute("srcset");
-      mainImage.removeAttribute("sizes");
-    };
-    original.src = images[currentIndex];
-  }
-
-  /* Magnify: select the photo (click, tap, Enter or Space) to zoom in; move the pointer to pan; select again to zoom out */
-  const ZOOM_SCALE = 2.5;
-  let isZoomed = false;
-  let isExpanded = false;
-
-  function panZoom(event) {
-    if (!isZoomed || !zoomFrame || !mainImage) {
-      return;
-    }
-
-    const rect = zoomFrame.getBoundingClientRect();
-    const x = event && typeof event.clientX === "number" ? ((event.clientX - rect.left) / rect.width) * 100 : 50;
-    const y = event && typeof event.clientY === "number" ? ((event.clientY - rect.top) / rect.height) * 100 : 50;
-
-    mainImage.style.transformOrigin = `${Math.min(100, Math.max(0, x))}% ${Math.min(100, Math.max(0, y))}%`;
-  }
-
-  function setZoom(enabled, event) {
-    if (!zoomFrame || !mainImage) {
-      return;
-    }
-
-    isZoomed = enabled;
-    zoomFrame.classList.toggle("is-zoomed", enabled);
-    zoomFrame.setAttribute("aria-pressed", String(enabled));
-
-    // While zoomed in, the top bar, the caption and the thumbnail strip are hidden so the photo can use the whole screen.
-    viewer.classList.toggle("is-zoom-view", enabled);
-    limitFrameHeight();
-
-    if (enabled) {
-      loadFullResolution();
-      panZoom(event);
-      mainImage.style.transform = `scale(${ZOOM_SCALE})`;
-    } else {
-      mainImage.style.transform = "";
-      mainImage.style.transformOrigin = "50% 50%";
-    }
-  }
-
-  /* The magnifier icon follows the mouse pointer inside the frame (not for touch). */
-  function movePointerIcon(event) {
-    if (!zoomFrame || event.pointerType === "touch") {
-      return;
-    }
-
-    const rect = zoomFrame.getBoundingClientRect();
-    zoomFrame.style.setProperty("--pointer-x", `${event.clientX - rect.left}px`);
-    zoomFrame.style.setProperty("--pointer-y", `${event.clientY - rect.top}px`);
-    zoomFrame.classList.add("has-pointer-icon");
-  }
-
-  if (zoomFrame) {
-    zoomFrame.addEventListener("pointerenter", movePointerIcon);
-    zoomFrame.addEventListener("pointermove", movePointerIcon);
-    zoomFrame.addEventListener("pointerleave", () => zoomFrame.classList.remove("has-pointer-icon"));
-    zoomFrame.addEventListener("click", (event) => {
-      if (!isExpanded) { setZoom(!isZoomed, event); }
-    });
-    zoomFrame.addEventListener("pointermove", panZoom);
-    zoomFrame.addEventListener("keydown", (event) => {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        if (!isExpanded) { setZoom(!isZoomed); }
-      }
-    });
-  }
-
-  /* Fit the frame to the photo: pass the file's own proportions and width to the CSS.
-     The CSS keeps the frame inside its column and below its maximum height. */
-  function fitFrameToPhoto() {
-    if (!zoomFrame || !mainImage) {
-      return;
-    }
-
-    // Use the original file's size when it is known, so the frame is the same whichever copy is showing.
-    const info = imageInfo[currentIndex] || {};
-    const loaded = mainImage.naturalWidth > 0;
-    const width = loaded && info.width > 0 ? info.width : mainImage.naturalWidth;
-    const height = loaded && info.height > 0 ? info.height : mainImage.naturalHeight;
-
-    if (width > 0 && height > 0) {
-      zoomFrame.style.setProperty("--photo-ratio", String(width / height));
-      zoomFrame.style.setProperty("--photo-natural-w", `${width}px`);
-    } else {
-      // The file did not load (or has no size): fall back to the default frame from the CSS.
-      zoomFrame.style.removeProperty("--photo-ratio");
-      zoomFrame.style.removeProperty("--photo-natural-w");
-    }
-  }
-
-  /* Limit the frame height to the space left in the stage after the caption, the title line and the gaps.
-     This keeps the frame clear of the top bar and the thumbnail panel, on desktop and on mobile. */
-  const photoStage = viewer.querySelector(".photo-viewer-stage");
-  const photoFigure = document.getElementById("photoFigure");
-
-  function limitFrameHeight() {
-    if (!zoomFrame || !photoStage || !photoFigure) {
-      return;
-    }
-
-    const stageStyle = window.getComputedStyle(photoStage);
-    const freeHeight =
-      photoStage.clientHeight - parseFloat(stageStyle.paddingTop) - parseFloat(stageStyle.paddingBottom);
-    const otherHeight = photoFigure.offsetHeight - zoomFrame.offsetHeight;
-
-    if (freeHeight > 0) {
-      zoomFrame.style.setProperty("--photo-max-h", `${Math.max(48, Math.min(1400, freeHeight - otherHeight))}px`);
-    }
-  }
-
-  if (mainImage) {
-    mainImage.addEventListener("load", () => {
-      fitFrameToPhoto();
-      limitFrameHeight();
-    });
-    mainImage.addEventListener("error", () => {
-      fitFrameToPhoto();
-      limitFrameHeight();
-    });
-  }
-
-  if (photoStage && "ResizeObserver" in window) {
-    new ResizeObserver(limitFrameHeight).observe(photoStage);
-  } else {
-    window.addEventListener("resize", limitFrameHeight);
-  }
-
-  const defaultLabel = (index) => {
-    if (index === 0) {
-      return "FRONT";
-    }
-    return `VIEW ${index + 1}`;
-  };
-
-  const getLabel = (index) => labels[index] || defaultLabel(index);
-
-  /* Labels typed in capitals ("HERO SHOT") are shown in sentence case ("Hero shot"). Mixed-case labels are left as they are. */
-  const displayLabel = (index) => {
-    const label = getLabel(index);
-    return label === label.toUpperCase() ? label.charAt(0).toUpperCase() + label.slice(1).toLowerCase() : label;
-  };
-  const getCaption = (index) => captions[index] || `${objectTitle} — ${getLabel(index)} image`;
-
-  if (closeButton) {
-    closeButton.addEventListener("click", () => {
-      window.location.href = returnUrl;
-    });
-  }
-
-  function renderPhoto(index) {
-    currentIndex = (index + images.length) % images.length;
-    setZoom(false);
-
-    const label = getLabel(currentIndex);
-    const caption = getCaption(currentIndex);
-
-    if (mainImage) {
-      // Show a screen-sized WebP copy when one exists; the original is loaded when the visitor zooms in.
-      const info = imageInfo[currentIndex] || {};
-      if (info.srcset) {
-        mainImage.sizes = VIEWER_IMAGE_SIZES;
-        mainImage.srcset = info.srcset;
-      } else {
-        mainImage.removeAttribute("srcset");
-        mainImage.removeAttribute("sizes");
-      }
-      mainImage.src = images[currentIndex];
-      mainImage.alt = caption;
-    }
-
-    if (counter) {
-      counter.textContent = `${currentIndex + 1} / ${images.length}`;
-    }
-
-    if (objectName) {
-      renderObjectTitle(objectName, objectTitle, museumNumber);
-    }
-
-    if (viewLabel) {
-      viewLabel.textContent = displayLabel(currentIndex);
-    }
-
-    if (viewCount) {
-      viewCount.textContent = `View ${currentIndex + 1} of ${images.length}`;
-    }
-
-    if (imageCaption) {
-      imageCaption.textContent = caption;
-    }
-
-    // Spoken, labelled copy of the alternative text (the image itself is hidden from screen readers).
-    const altText = document.getElementById("photoAltText");
-    if (altText) {
-      altText.textContent = caption;
-    }
-
-    // The caption may wrap to a different number of lines, so measure the free height again.
-    limitFrameHeight();
-
-    if (thumbnails) {
-      thumbnails.querySelectorAll(".photo-thumbnail").forEach((thumbnail, indexInGallery) => {
-        const isActive = indexInGallery === currentIndex;
-        thumbnail.classList.toggle("is-active", isActive);
-
-        // The photo on view is marked for screen readers, and it is the strip's only Tab stop.
-        // The other photos are reached with Previous, Next or the left and right arrow keys.
-        if (isActive) {
-          thumbnail.setAttribute("aria-current", "true");
-        } else {
-          thumbnail.removeAttribute("aria-current");
-        }
-        thumbnail.tabIndex = isActive ? 0 : -1;
-      });
-
-      centreActiveThumbnail();
-    }
-  }
-
-  /* Thumbnail strip: keep the photo on view in the middle of the strip, and show a fade on the side that has more. */
-  const thumbnailPanel = thumbnails ? thumbnails.closest(".photo-thumbnail-panel") : null;
-
-  function updateThumbnailFades() {
-    if (!thumbnails || !thumbnailPanel) {
-      return;
-    }
-
-    const maxScroll = thumbnails.scrollWidth - thumbnails.clientWidth;
-    thumbnailPanel.classList.toggle("has-more-left", thumbnails.scrollLeft > 2);
-    thumbnailPanel.classList.toggle("has-more-right", maxScroll - thumbnails.scrollLeft > 2);
-  }
-
-  function centreActiveThumbnail() {
-    if (!thumbnails) {
-      return;
-    }
-
-    const active = thumbnails.querySelector(".photo-thumbnail.is-active");
-
-    if (active && thumbnails.scrollWidth > thumbnails.clientWidth) {
-      const left = active.offsetLeft - (thumbnails.clientWidth - active.offsetWidth) / 2;
-      thumbnails.scrollTo({ left: Math.max(0, left), behavior: "auto" });
-    }
-
-    updateThumbnailFades();
-  }
-
-  if (thumbnails) {
-    // The strip has no scrollbar: the mouse wheel moves it sideways while it overflows.
-    thumbnails.addEventListener("wheel", (event) => {
-      if (thumbnails.scrollWidth > thumbnails.clientWidth && Math.abs(event.deltaY) > Math.abs(event.deltaX)) {
-        event.preventDefault();
-        thumbnails.scrollLeft += event.deltaY;
-      }
-    }, { passive: false });
-    thumbnails.addEventListener("scroll", updateThumbnailFades);
-    window.addEventListener("resize", centreActiveThumbnail);
-  }
-
-  if (thumbnails) {
-    thumbnails.innerHTML = "";
-
-    images.forEach((src, index) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "photo-thumbnail";
-      button.setAttribute("aria-label", `View ${getLabel(index)}`);
-
-      const image = document.createElement("img");
-      // Thumbnails use the smallest WebP copy when one exists.
-      image.src = (imageInfo[index] && imageInfo[index].thumb) || src;
-      image.alt = getCaption(index);
-
-      const label = document.createElement("span");
-      label.className = "photo-thumb-label";
-      label.textContent = displayLabel(index);
-
-      button.appendChild(label);
-      button.appendChild(image);
-      button.addEventListener("click", (event) => {
-        renderPhoto(index);
-
-        // Chosen with the keyboard: move to the photo information, so it is read in order
-        // (caption, alternative text, object title), then Previous and Next follow.
-        const photoFigure = document.getElementById("photoFigure");
-        if (event.detail === 0 && photoFigure) {
-          photoFigure.focus();
-        }
-      });
-
-      thumbnails.appendChild(button);
-    });
-  }
-
-  if (previousButton) {
-    previousButton.addEventListener("click", () => renderPhoto(currentIndex - 1));
-  }
-
-  if (nextButton) {
-    nextButton.addEventListener("click", () => renderPhoto(currentIndex + 1));
-  }
-
-  /* Guide (modal): opens together with the photo page and again with the Guide button */
-  const guide = document.getElementById("photoGuide");
-  const guideButton = document.getElementById("photoGuideButton");
-  const guideCloseButton = document.getElementById("photoGuideClose");
-  /* Expand: the photo fills the whole screen and everything else is ignored. The browser's full screen mode is used when it is
-     available (the browser then also shows its own Esc hint). Esc or the X button leaves it. Where full screen mode is not
-     available (for example some phones), the photo still fills the page. */
-  function setExpanded(on) {
-    if (!viewer || on === isExpanded) {
-      return;
-    }
-
-    isExpanded = on;
-
-    if (on) {
-      setZoom(false);
-    }
-
-    viewer.classList.toggle("is-expanded", on);
-
-    if (expandExitButton) {
-      expandExitButton.hidden = !on;
-    }
-
-    const fullscreenElement = document.fullscreenElement || document.webkitFullscreenElement;
-
-    if (on) {
-      const request = viewer.requestFullscreen || viewer.webkitRequestFullscreen;
-
-      if (request) {
-        try {
-          const result = request.call(viewer);
-          if (result && result.catch) { result.catch(() => {}); }
-        } catch (error) { /* Full screen was refused: the page-filling view still works. */ }
-      }
-
-      if (expandExitButton) { expandExitButton.focus(); }
-    } else {
-      if (fullscreenElement) {
-        const exit = document.exitFullscreen || document.webkitExitFullscreen;
-        if (exit) {
-          try {
-            const result = exit.call(document);
-            if (result && result.catch) { result.catch(() => {}); }
-          } catch (error) { /* Already out of full screen. */ }
-        }
-      }
-
-      if (expandButton) { expandButton.focus(); }
-    }
-
-    limitFrameHeight();
-  }
-
-  if (expandButton) {
-    expandButton.addEventListener("click", () => setExpanded(true));
-  }
-
-  if (expandExitButton) {
-    expandExitButton.addEventListener("click", () => setExpanded(false));
-  }
-
-  // The browser's own Esc leaves full screen mode: leave the expanded view with it.
-  const onFullscreenChange = () => {
-    if (isExpanded && !(document.fullscreenElement || document.webkitFullscreenElement)) {
-      setExpanded(false);
-    }
-  };
-  document.addEventListener("fullscreenchange", onFullscreenChange);
-  document.addEventListener("webkitfullscreenchange", onFullscreenChange);
-
-  const guideBackground = document.querySelectorAll(".photo-viewer-header, .photo-viewer-stage, .photo-thumbnail-panel");
-
-  function isGuideOpen() {
-    return Boolean(guide) && !guide.hidden;
-  }
-
-  /* The guide notes line up with the real parts of the page behind them: the height of the top bar, of the Previous / Next bar
-     and of the thumbnail row are measured and handed to the style sheet. */
-  function measureGuide() {
-    if (!guide || guide.hidden) {
-      return;
-    }
-
-    const header = document.querySelector(".photo-viewer-header");
-    const stage = document.querySelector(".photo-viewer-stage");
-    const panel = document.querySelector(".photo-thumbnail-panel");
-    const barHeight = stage ? parseFloat(window.getComputedStyle(stage, "::after").height) : NaN;
-
-    if (header) { guide.style.setProperty("--gd-head", `${header.getBoundingClientRect().height}px`); }
-    if (panel) { guide.style.setProperty("--gd-panel", `${panel.getBoundingClientRect().height}px`); }
-    if (!Number.isNaN(barHeight)) { guide.style.setProperty("--gd-bar", `${barHeight}px`); }
-
-    /* Positions of the real parts (px from the top of the window), used by the phone layout of the guide. */
-    const frame = document.getElementById("photoZoomFrame");
-    const viewName = document.querySelector(".photo-viewer-figure figcaption");
-
-    if (frame) { guide.style.setProperty("--gd-frame-bottom", `${frame.getBoundingClientRect().bottom}px`); }
-
-    if (viewName) {
-      const viewRect = viewName.getBoundingClientRect();
-      guide.style.setProperty("--gd-meta-top", `${viewRect.top}px`);
-      guide.style.setProperty("--gd-btn-top", `${viewRect.bottom}px`);
-    }
-
-    if (panel) { guide.style.setProperty("--gd-panel-top", `${panel.getBoundingClientRect().top}px`); }
-
-    /* Phone: the notes sit over their own parts when they fit. If the notes at the top reach down into the view note, that note
-       moves onto the view name; if they still do not fit, the notes follow each other instead (the guide scrolls). */
-    guide.classList.remove("is-meta-over", "is-flow");
-
-    if (window.matchMedia("(max-width: 779px)").matches) {
-      const zoomNote = guide.querySelector(".guide-zoom");
-      const viewNote = guide.querySelector(".guide-meta");
-
-      const reachesViewNote = () => viewNote.getBoundingClientRect().top < zoomNote.getBoundingClientRect().bottom + 2;
-
-      if (zoomNote && viewNote && reachesViewNote()) {
-        guide.classList.add("is-meta-over");
-
-        if (reachesViewNote()) {
-          guide.classList.remove("is-meta-over");
-          guide.classList.add("is-flow");
-        }
-      }
-    }
-  }
-
-  window.addEventListener("resize", measureGuide);
-
-  function setGuideOpen(open) {
-    if (!guide) {
-      return;
-    }
-
-    guide.hidden = !open;
-    measureGuide();
-
-    /* The page behind the guide cannot be reached with the keyboard or a screen reader while it is open */
-    guideBackground.forEach((element) => {
-      element.inert = open;
-    });
-
-    if (guideButton) {
-      guideButton.setAttribute("aria-expanded", String(open));
-    }
-
-    if (open && guideCloseButton) {
-      guideCloseButton.focus();
-    } else if (!open && guideButton) {
-      guideButton.focus();
-    }
-  }
-
-  if (guide) {
-    if (guideButton) {
-      guideButton.addEventListener("click", () => setGuideOpen(true));
-    }
-
-    if (guideCloseButton) {
-      guideCloseButton.addEventListener("click", () => setGuideOpen(false));
-    }
-
-    /* The close button is the only control inside the guide, so Tab keeps the focus on it */
-    guide.addEventListener("keydown", (event) => {
-      if (event.key === "Tab") {
-        event.preventDefault();
-
-        if (guideCloseButton) {
-          guideCloseButton.focus();
-        }
-      }
-    });
-  }
-
-  document.addEventListener("keydown", (event) => {
-    if (isGuideOpen()) {
-      if (event.key === "Escape") {
-        setGuideOpen(false);
-      }
-
-      return;
-    }
-
-    if (event.key === "ArrowLeft") {
-      renderPhoto(currentIndex - 1);
-    } else if (event.key === "ArrowRight") {
-      renderPhoto(currentIndex + 1);
-    } else if (event.key === "Escape") {
-      if (isExpanded) {
-        setExpanded(false);
-      } else if (isZoomed) {
-        setZoom(false);
-      } else {
-        window.location.href = returnUrl;
-      }
-    }
-  });
-
-  renderPhoto(currentIndex);
-  /* The guide opens by itself the first time the photo page is visited. After that it opens only when the Guide button is selected. */
-  let guideSeen = false;
-
-  try {
-    guideSeen = localStorage.getItem("photoGuideSeen") === "yes";
-  } catch (error) { /* Storage may be unavailable: then the guide opens each time, which is the safe choice. */ }
-
-  if (!guideSeen) {
-    setGuideOpen(true);
-
-    try {
-      localStorage.setItem("photoGuideSeen", "yes");
-    } catch (error) { /* Storage may be unavailable. */ }
-  }
-}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1328,7 +439,9 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("load", updateSidebarScrollHint);
     updateSidebarScrollHint();
   }
-  initialisePhotoViewer();
+  if (typeof initialisePhotoViewer === "function") {
+    initialisePhotoViewer();
+  }
 
   // Initial accessibility state of the sidebar.
   syncSidebarAccessibility();
@@ -1361,9 +474,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Auslan video download option disable
+// Introduction video download option disable
 document.addEventListener("DOMContentLoaded", function () {
-  const videos = document.querySelectorAll(".auslan-video");
+  const videos = document.querySelectorAll(".introduction-video");
 
   videos.forEach(function (video) {
     video.addEventListener("contextmenu", function (event) {
@@ -1388,7 +501,7 @@ document.addEventListener("click", (event) => {
   const SLOW_SCROLL_MS = 1600;
 
   document.addEventListener("click", function (event) {
-    const link = event.target.closest(".btn-explore-exhibition");
+    const link = event.target.closest(".btn-explore-exhibition, .scroll-cue");
     if (!link) { return; }
 
     const target = document.getElementById("explore-the-exhibition");
@@ -1441,3 +554,93 @@ document.addEventListener("click", (event) => {
     window.requestAnimationFrame(step);
   });
 })();
+
+/* Photo gallery: pressing a thumbnail shows that photo in the large frame on the same page.
+   The photo viewer opens only from the large photo or its expand button, so their links follow the photo shown. */
+document.addEventListener("click", function (event) {
+  const thumb = event.target.closest("[data-gallery-thumb]");
+  if (!thumb) { return; }
+  const gallery = thumb.closest("[data-gallery]");
+  if (!gallery) { return; }
+  const data = thumb.dataset;
+  const image = gallery.querySelector("[data-gallery-img]");
+  if (image) {
+    if (data.srcset) { image.setAttribute("srcset", data.srcset); } else { image.removeAttribute("srcset"); }
+    image.setAttribute("src", data.src);
+    image.setAttribute("alt", data.alt || "");
+    if (image.hasAttribute("width") && data.width && data.height) {
+      image.setAttribute("width", data.width);
+      image.setAttribute("height", data.height);
+    }
+  }
+  if (image && data.fit && image.hasAttribute("data-fit")) { image.setAttribute("data-fit", data.fit); }
+  const caption = gallery.querySelector("[data-gallery-caption]");
+  if (caption) { caption.textContent = data.caption || ""; }
+  gallery.querySelectorAll("[data-gallery-link]").forEach(function (link) {
+    link.setAttribute("href", link.getAttribute("href").replace(/index=\d+/, "index=" + data.index));
+    link.setAttribute("aria-label", "Open the " + (data.label || "").toLowerCase() + " photo in the photo viewer");
+  });
+  gallery.querySelectorAll("[data-gallery-thumb]").forEach(function (other) {
+    const isCurrent = other === thumb;
+    other.classList.toggle("active", isCurrent);
+    other.setAttribute("aria-pressed", isCurrent ? "true" : "false");
+  });
+  const status = gallery.querySelector("[data-gallery-status]");
+  if (status) { status.textContent = "Showing the " + (data.label || "").toLowerCase() + " photo."; }
+});
+
+/* Keyboard Guide: the script is downloaded only when the visitor turns the guide on, or when it was left on in an earlier visit. */
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("keyboardGuideToggle");
+
+  if (!toggle || !toggle.dataset.script) {
+    return;
+  }
+
+  let state = "idle";
+  let clickedWhileLoading = false;
+
+  function loadKeyboardGuide() {
+    if (state !== "idle") {
+      return;
+    }
+
+    state = "loading";
+    const script = document.createElement("script");
+    script.src = toggle.dataset.script;
+
+    script.addEventListener("load", () => {
+      state = "ready";
+      toggle.removeEventListener("click", onFirstClick);
+
+      if (clickedWhileLoading) {
+        toggle.click();
+      }
+    });
+
+    script.addEventListener("error", () => {
+      state = "idle";
+      clickedWhileLoading = false;
+      script.remove();
+    });
+
+    document.body.appendChild(script);
+  }
+
+  function onFirstClick() {
+    clickedWhileLoading = true;
+    loadKeyboardGuide();
+  }
+
+  toggle.addEventListener("click", onFirstClick);
+
+  let wasOn = false;
+  try { wasOn = localStorage.getItem("keyboardGuide") === "on"; } catch (error) { /* Storage may be unavailable. */ }
+
+  if (wasOn) {
+    toggle.setAttribute("aria-pressed", "true");
+    const stateLabel = toggle.querySelector(".kg-toggle-state");
+    if (stateLabel) { stateLabel.textContent = "On"; }
+    loadKeyboardGuide();
+  }
+});

@@ -48,6 +48,34 @@ python scripts/make-responsive-images.py
 Empty (0 KB) placeholder files and very small images are skipped and keep using the original file. Options such as
 `--quality` and `--force` are described at the top of `scripts/make-responsive-images.py`.
 
+## Photo viewer: one small data file per page
+
+The photo viewer reads the gallery of the page the visitor came from (the list of photos with captions and alternative
+text) from a small file in `photo-data/`, named after the page, for example `photo-data/middle-shelf-object3.json`. The
+content comes from that page's front matter, so photo changes need no extra step. When you add a **new object or shelf
+page**, copy any file in `photo-data/`, rename it, and change its `permalink` and the page address in the last line.
+
+## Handover: adding the Auslan video later
+
+The curator (Hannah Vogel) is producing a separate Auslan video and expected to send it by 27 November 2026, after the
+project ended. Nobody has decided yet where it will go on the site. The accessibility page and `terms.md` already
+mention Auslan videos, so that wording was kept on purpose. If the video never arrives, remove those mentions
+(`accessibility.md`, `terms.md`).
+
+At the moment the main page has one video only, the "Introduction Video" (`assets/video/introduction.mp4`), filled from
+the front matter of `index.md`:
+
+- `introduction_video`: the video file in `assets/video/`
+- `introduction_captions_file`: the captions file (default `assets/video/introduction-captions.vtt`)
+- `introduction_caption` and `introduction_transcript`: the text shown under the video
+
+When the Auslan video arrives, decide where it goes first. To show it next to the introduction, copy the video section
+in `_layouts/home.html` and give the copy its own front matter names, its own captions file and its own class names. The
+class names in that block start with `introduction-`, and their styles are in `_sass/_home.scss` and
+`_sass/_dark-mode.scss`, so copy those too. GitHub does not accept files over 100 MB in a normal repository, so compress
+a large video first (keep the 1920x1080 size and the original audio) and read the free-quota limits of Git LFS before
+using it.
+
 ## Licence and attribution
 
 The code is derived from the MIT-licensed Minima theme. See `LICENSE` and

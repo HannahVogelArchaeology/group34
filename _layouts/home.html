@@ -2,10 +2,7 @@
 layout: default
 ---
 
-<!-- Page summary: read first when a screen reader user lands on the main content. -->
-<p class="sr-only page-summary">This is the main page. In keyboard order, this page has the exhibition title, the Explore the exhibition button, the About Us button and a photo, followed by the narratives. Below that is Explore the exhibition, where you can choose one of three shelves: Top Shelf, Middle Shelf or Bottom Shelf. Then come the Auslan video and the acknowledgements.</p>
-
-{%- comment -%} Object counts per shelf, used by the end-of-section announcement in Explore the exhibition. {%- endcomment -%}
+{%- comment -%} Object counts per shelf, used in the introduction to Explore the exhibition. {%- endcomment -%}
 {% assign all_object_pages = site.pages | where: "layout", "object" %}
 {% assign middle_object_count = all_object_pages | where: "shelf_url", "/shelves/middle-shelf/" | size %}
 {% assign bottom_object_count = all_object_pages | where: "shelf_url", "/shelves/bottom-shelf/" | size %}
@@ -20,14 +17,13 @@ layout: default
         <a href="#explore-the-exhibition" class="btn-explore-exhibition">Explore the exhibition <span aria-hidden="true">&rarr;</span></a>
         <a href="{{ '/about/' | relative_url }}" class="btn-curator-bio">About Us</a>
       </div>
-      <p class="sr-only end-of-section">This is the end of section: exhibition title.</p>
     </div>
     <figure class="home-feature-media">
       {% if page.hero_image %}
       {% comment %} The width and height attributes let the browser reserve the image space before it loads, so the text below does not jump (layout shift). {% endcomment %}
       {% include responsive-lookup.html src=page.hero_image %}
       <div class="hero-photo-frame">
-        <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 700px) 100vw, (max-width: 1400px) 55vw, 760px" %}{% if ri_found %} width="{{ ri_w }}" height="{{ ri_h }}"{% endif %} alt="{{ page.hero_alt | escape }}" loading="eager" fetchpriority="high">
+        <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 779px) calc(100vw - 48px), (max-width: 1279px) 62vw, (max-width: 1599px) 33vw, 487px" %}{% if ri_found %} width="{{ ri_w }}" height="{{ ri_h }}"{% endif %} alt="{{ page.hero_alt | escape }}" loading="eager" fetchpriority="high">
       </div>
       <figcaption class="image-caption">{{ page.hero_image_caption }}</figcaption>
       {% else %}
@@ -41,9 +37,7 @@ layout: default
 <!-- Narrative section: full width. -->
 <section class="home-narrative-section">
   <div class="home-narrative-container">
-    <p class="sr-only narratives-label">Narratives Here:</p>
     <div class="hero-description">{{ page.hero_text | markdownify }}</div>
-    <p class="sr-only end-of-section">This is the end of section: narrative.</p>
   </div>
 </section>
 
@@ -51,6 +45,7 @@ layout: default
 
 <section class="shelves-explorer" id="explore-the-exhibition">
   <h2 class="explorer-title">Explore the exhibition</h2>
+  <p class="sr-only">In the linked shelves below, there is one object on the Top Shelf, {{ middle_object_count }} on the Middle Shelf and {{ bottom_object_count }} on the Bottom Shelf.</p>
 
   <div class="shelf-cards-container">
 
@@ -111,48 +106,32 @@ layout: default
       </span>
     </a>
   </div>
-  <p class="sr-only end-of-section">This is the end of section: Explore the exhibition. There are 3 shelves. Top Shelf has 1 object. Middle Shelf has {{ middle_object_count }} object{% if middle_object_count != 1 %}s{% endif %}. Bottom Shelf has {{ bottom_object_count }} object{% if bottom_object_count != 1 %}s{% endif %}.</p>
 </section>
 
-<!-- Auslan Video Section -->
-<section class="auslan-section" aria-labelledby="auslan-video-heading">
-  <p class="sr-only end-of-section">You are now entering the Auslan video section.</p>
+<!-- Introduction Video Section -->
+<section class="introduction-section" aria-labelledby="introduction-video-heading">
 
-  <div class="auslan-container">
+  <div class="introduction-container">
 
-    <h2 id="auslan-video-heading" class="auslan-title">Auslan Video</h2>
+    <h2 id="introduction-video-heading" class="introduction-title">Introduction Video</h2>
 
     <div class="video-card">
-      <video class="auslan-video" controls controlsList="nodownload" disablePictureInPicture preload="none" playsinline oncontextmenu="return false;" aria-label="{{ page.auslan_video_label | default: 'Auslan video introduction to the exhibition' | escape }}" aria-describedby="auslan-video-description">
-        <source src="{{ page.auslan_video | relative_url }}" type="video/mp4">
-        <track kind="captions" srclang="en" label="English captions" src="{{ page.auslan_captions_file | default: '/assets/video/auslan-captions.vtt' | relative_url }}">
+      <video class="introduction-video" controls controlsList="nodownload" disablePictureInPicture preload="none" playsinline oncontextmenu="return false;" aria-label="{{ page.introduction_video_label | default: 'Introduction video to the exhibition' | escape }}">
+        <source src="{{ page.introduction_video | relative_url }}" type="video/mp4">
+        <track kind="captions" srclang="en" label="English captions" src="{{ page.introduction_captions_file | default: '/assets/video/introduction-captions.vtt' | relative_url }}">
         Your browser does not support HTML5 video.
       </video>
     </div>
 
-    <p class="auslan-caption">
-      {{ page.auslan_caption | default: "Lorem ipsum caption here" }}
-    </p>
+    {%- if page.introduction_caption and page.introduction_caption != "" %}
+    <p class="introduction-caption">{{ page.introduction_caption }}</p>
+    {%- endif %}
 
-    <p id="auslan-video-description" class="auslan-description">
-      {{ page.auslan_text }}
-    </p>
+    {%- if page.introduction_transcript %}
+    <details class="video-transcript">
+      <summary>Transcript</summary>
+      <div class="video-transcript-text">{{ page.introduction_transcript | markdownify }}</div>
+    </details>
+    {%- endif %}
   </div>
-</section>
-
-<!-- Acknowledgement Section -->
-<section class="acknowledgement-section">
-
-  <div class="acknowledgement-container">
-    <div class="ack-left">
-      <h2>ACKNOWLEDGEMENTS</h2>
-    </div>
-
-    <div class="ack-right">
-      {%- comment -%} Links in the acknowledgements (such as the DOI) open in a new browser tab, and screen readers are told so. {%- endcomment -%}
-      {% assign acknowledgement_html = page.acknowledgement_text | markdownify | replace: '<a href=', '<a target="_blank" rel="noopener noreferrer" href=' | replace: '</a>', '</a><span class="sr-only"> (opens in a new tab)</span>' %}
-      <p>{{ acknowledgement_html }}</p>
-    </div>
-  </div>
-
 </section>

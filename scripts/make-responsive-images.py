@@ -36,7 +36,7 @@ MANIFEST = ROOT / "_data" / "responsive_images.json"
 URL_PREFIX = "/assets/images/"
 
 SOURCE_EXTENSIONS = {".jpg", ".jpeg", ".png"}
-STANDARD_WIDTHS = [480, 800, 1200, 1600, 2400]
+STANDARD_WIDTHS = [240, 480, 640, 800, 1200, 1600, 2400]
 MIN_ORIGINAL_WIDTH = 640  # smaller originals are already light enough to use as they are
 
 

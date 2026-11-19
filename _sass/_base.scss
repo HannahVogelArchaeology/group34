@@ -102,7 +102,7 @@ body.dark-mode .back-to-top { background: #7a5420; border-color: #c9a063; color:
 .thumb-box:hover::after,
 .thumb-box:focus-visible::after { opacity: 1; }
 
-/* Visually hidden text that stays available to screen readers (end-of-section announcements). */
+/* Visually hidden text that stays available to screen readers (for example the object number read out in full). */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -139,3 +139,7 @@ body.dark-mode .back-to-top { background: #7a5420; border-color: #c9a063; color:
 /* Programmatic focus targets of the skip links do not need a visible ring. */
 #main-content:focus,
 #sidebarNav:focus { outline: none; }
+
+/* Photo gallery thumbnails are buttons: pressing one shows that photo in the large frame. The photo shown is marked with a darker, thicker border. */
+button.thumb-box { appearance: none; font: inherit; cursor: pointer; }
+.thumb-box[aria-pressed="true"] { border-color: #7a5424 !important; box-shadow: 0 0 0 1px #7a5424; }

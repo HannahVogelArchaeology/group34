@@ -13,6 +13,8 @@
   <a class="skip-link" href="#sidebarNav" id="skipToNavigation">Go to navigation bar</a>
 
   {% include header.html %}
+  <!-- Measure the header now, before the first paint, so the sidebar and the page content do not move when main.js runs. -->
+  <script>(function () { var h = document.querySelector('.pinned-header'); if (h) { document.documentElement.style.setProperty('--header-h', h.offsetHeight + 'px'); } })();</script>
   {% include menu.html %}
 
   <main class="main-content" id="main-content" tabindex="-1" aria-label="Main exhibition content">
@@ -24,11 +26,16 @@
     {{ content }}
   </main>
 
-  {%- include audio-player.html -%}
+  {%- if page.audio_src -%}{%- include audio-player.html -%}{%- endif -%}
   {%- comment -%} The photo viewer fills the screen, so the footer is left out of that page. {%- endcomment -%}
   {% unless page.layout == "photo" %}{% include footer.html %}{% endunless %}
 
   <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
-  <script src="{{ '/assets/js/keyboard-guide.js' | relative_url }}"></script>
+  {%- if page.audio_src %}
+  <script src="{{ '/assets/js/audio.js' | relative_url }}"></script>
+  {%- endif %}
+  {%- if page.layout == "photo" %}
+  <script src="{{ '/assets/js/photo-viewer.js' | relative_url }}"></script>
+  {%- endif %}
 </body>
 </html>

@@ -43,7 +43,6 @@ details: >-
   Cyprus, c.7th century B.C.E.
 
   Purchased in 1986.
-overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula."
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
 transcript_text: "Humanoid clay figurine of beige colour. Modelling at the top of the head may represent either a short hairstyle or a headdress. The face is shaped with a long, pointed nose. Holes in the clay indicate eyes and a mouth. There is no indication of a chin; the head and neck seamlessly merge. The body is very loosely moulded, with the indication of arms and hands held inwards and against the body, made from pinched and folded clay. The lower body flares widely to an amorphous fluted shape. The object rests on a small black (modern) square plinth, held in place by short metal prongs on either side of the figurine base."

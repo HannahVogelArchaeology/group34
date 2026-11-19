@@ -67,11 +67,9 @@ body.dark-mode {
   .home-feature-section,
   .home-narrative-section,
   .shelves-explorer,
-  .auslan-section,
-  .acknowledgement-section { background-color: #232427 !important; }
+  .introduction-section { background-color: #232427 !important; }
 
-  .shelf-card,
-  .video-card { background-color: #303135 !important; }
+  .shelf-card { background-color: #303135 !important; }
 
   .shelf-card {
     &:hover,
@@ -100,6 +98,7 @@ body.dark-mode {
   .btn-explore-exhibition { background-color: #4a3318 !important; color: #ffffff !important; }
   .btn-explore-exhibition:hover,
   .btn-explore-exhibition:focus-visible { background-color: #5b3d17 !important; }
+  .btn-explore-exhibition:hover { background-color: #7a5424 !important; }
 
   /* Dark mode hover and focus: darker than the resting colour, using the same brown as the dark shelf card button. */
   .btn-curator-bio:hover,
@@ -156,6 +155,12 @@ body.dark-mode {
 
   .shelf-pagination { border-top-color: #45474c !important; }
 
+  /* The audio player bar: a gold line along its top edge and a soft gold glow above it, so it stands out from the dark page. */
+  .bottom-audio-bar {
+    border-top: 3px solid #e0bd82;
+    box-shadow: 0 -10px 24px rgba(224, 189, 130, 0.22);
+  }
+
   /* Previous / next buttons */
   .nav-box {
     background-color: #26272a !important;
@@ -166,6 +171,16 @@ body.dark-mode {
       background-color: #303135 !important;
       border-color: #e0bd82 !important;
       box-shadow: inset 0 -3px 0 #e0bd82;
+    }
+
+    &.is-disabled {
+      background-color: transparent !important;
+      border-color: #55565b !important;
+      box-shadow: none !important;
+
+      .main-label,
+      .sub-label,
+      .arrow { color: #9a9a9a !important; }
     }
   }
 

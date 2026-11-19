@@ -36,13 +36,11 @@ details: >-
   Egypt, Third Intermediate Period or Ptolemaic period, c. 1069 - 664 / 332 - 30 B.C.E.
 
   Donation, Prof. Naguib Kanawati, 1980.
-overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget justo ac tortor maximus scelerisque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula."
 shelf_title: "Middle Shelf"
 shelf_url: "/shelves/middle-shelf/"
 transcript_text: "Moulded in faience, a teal-green glazed ceramic, this small amuletic figure is of the ancient Egyptian deity Pataikos. Represented as a standing, naked human male with dwarfism, the figure has a large head, arms beside the torso, slightly bent at the elbows, clenched fists, and legs bent so they are slightly apart at the knees. There is a loop behind the figure’s head, indicating that it may have been suspended from a string."
 prev_url: "/objects/middle-shelf-object7/"
 prev_label: "OBJECT 7"
-next_url: "/shelves/bottom-shelf/"
-next_label: "BOTTOM SHELF"
+next_disabled: true
 audio_src: "/assets/audio/8. Amulet of Pataikos MU0523.m4a"
 ---

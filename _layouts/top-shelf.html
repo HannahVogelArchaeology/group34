@@ -2,30 +2,35 @@
 layout: default
 ---
 
-<!-- Page summary: read first when a screen reader user lands on the main content. -->
-{% assign top_summary_title = page.object_title | default: "Object 1" %}
-<p class="sr-only page-summary">This is the Top Shelf page. The Top Shelf has one object: {% include object-title-spoken.html title=top_summary_title %}. In keyboard order, this page has the shelf title, the object title, photo, overview, audio description and object information, followed by the previous and next buttons.</p>
-
 <div class="top-shelf-container" role="region" aria-label="{{ page.shelf_title | default: 'Top Shelf' | escape }}">
   <h1 class="shelf-title">{{ page.shelf_title | default: "TOP SHELF" }}</h1>
+  <p class="sr-only">There is one object on this shelf.</p>
 
   <!-- The only object on this shelf is named first, so visitors know what the photo and text describe. -->
   <h2 class="object-heading">{% assign top_object_title = page.object_title | default: "Object 1" %}{% include object-title.html title=top_object_title %}</h2>
-  <p class="sr-only end-of-section">This is the end of section: object name.</p>
 
-  <section class="media-section" aria-label="Media gallery for {{ page.object_title | default: 'Object 1' | escape }}">
+  <section class="media-section" data-gallery aria-label="Media gallery for {{ page.object_title | default: 'Object 1' | escape }}">
     <div class="hero-image-wrapper">
       {% assign top_gallery = page.gallery_images %}
       {% assign top_hero_src = top_gallery[0].src %}
+      {%- include responsive-lookup.html src=top_hero_src -%}
+      {%- assign ri_pct = ri_w | times: 100 | divided_by: ri_h -%}
+      {%- comment -%} The frame is 16:10 and a photo narrower than that is shown whole, so it only needs this share of the frame width: photo width / height x 5/8 (100 when it fills the frame). {%- endcomment -%}
+      {%- assign top_fill = ri_pct | times: 5 | divided_by: 8 -%}
+      {%- if ri_pct >= 136 or top_fill > 100 -%}{%- assign top_fill = 100 -%}{%- endif -%}
+      {%- assign top_fill_factor = top_fill | divided_by: 100.0 -%}
+      {%- capture top_hero_sizes -%}(max-width: 779px) calc((100vw - 48px) * {{ top_fill_factor }}), (max-width: 1279px) calc(66vw * {{ top_fill_factor }}), calc(min(1100px, 100vw - 428px) * {{ top_fill_factor }}){%- endcapture -%}
       <a
         class="shelf-photo-link"
+        data-gallery-link
         href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
         aria-label="Open {{ page.object_title | default: 'Object 1' | escape }} front image in the photo viewer"
       >
-        <img src="{{ top_gallery[0].src | relative_url }}" {% include responsive-attrs.html src=top_hero_src sizes="(max-width: 1100px) 100vw, 1100px" %} alt="{{ top_gallery[0].alt | escape }}" class="hero-image" fetchpriority="high" />
+        <img src="{{ top_gallery[0].src | relative_url }}" {% include responsive-attrs.html src=top_hero_src sizes=top_hero_sizes %} alt="{{ top_gallery[0].alt | escape }}" class="hero-image" data-gallery-img data-fit="{% if ri_pct >= 136 %}cover{% else %}contain{% endif %}" fetchpriority="high" />
       </a>
       <a
         class="expand-btn"
+        data-gallery-link
         href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index=0"
         aria-label="Expand {{ page.object_title | default: 'Object 1' | escape }} front image to full screen in photo viewer"
       >
@@ -33,45 +38,23 @@ layout: default
       </a>
     </div>
 
-    <p class="image-caption" aria-label="Image caption">{{ top_gallery[0].caption }}</p>
+    <p class="image-caption" aria-label="Image caption" data-gallery-caption>{{ top_gallery[0].caption }}</p>
+    <span class="sr-only" role="status" data-gallery-status></span>
 
     <div class="media-controls-bar" aria-label="Additional media controls">
       <div class="thumbnail-list" role="group" aria-label="{{ page.object_title | default: 'Object 1' | escape }} additional photo views">
-        {% for image in top_gallery offset:1 %}
-          {% assign image_index = forloop.index %}
-          <a
-            class="thumb-box"
-            href="{{ '/photo/' | relative_url }}?key={{ page.url | relative_url | uri_escape }}&index={{ image_index }}"
-            aria-label="Open {{ image.label | escape }} view of {{ page.object_title | default: 'Object 1' | escape }}"
-          >
-            <img src="{{ image.src | relative_url }}" {% include responsive-attrs.html src=image.src sizes="80px" %} alt="{{ image.caption | escape }}" loading="lazy" decoding="async" />
-          </a>
+        {% comment %} Every photo is a thumbnail, including the first one shown large above. {% endcomment %}
+        {% for image in top_gallery %}
+          {% assign image_index = forloop.index0 %}
+          {% include gallery-thumb.html src=image.src alt=image.alt caption=image.caption label=image.label index=image_index name=page.object_title %}
         {% endfor %}
       </div>
-      {%- comment -%} Same as the other object pages: the button opens the 3D model in a new tab. Add the link as "3d_link" in the front matter of this page; until then the button has no link yet. {%- endcomment -%}
-      {% assign three_d_link = page['3d_link'] %}
-      <div class="explore-3d-wrap">
-        {% if three_d_link %}
-        <a href="{{ three_d_link | escape }}" target="_blank" rel="noopener noreferrer" class="explore-3d-btn">
-          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-          <span aria-hidden="true">Explore in 3D</span><span class="sr-only">Explore a 3D model of {{ page.object_title | default: 'Object 1' | escape }} (opens in a new tab)</span>
-        </a>
-        {% else %}
-        <button class="explore-3d-btn" type="button" aria-label="Explore a 3D model of {{ page.object_title | default: 'Object 1' | escape }}">
-          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-          <span aria-hidden="true">Explore in 3D</span>
-        </button>
-        {% endif %}
-        <span class="explore-3d-note" aria-hidden="true">Opens in a new tab</span>
-      </div>
     </div>
-    <p class="sr-only end-of-section">This is the end of section: photo.</p>
   </section>
 
   <section class="shelf-section" aria-labelledby="top-shelf-overview-heading">
     <h3 id="top-shelf-overview-heading">Overview Text</h3>
     <p class="body-text">{{ page.overview | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas, justo ac lacinia maximus, sed neque. Cras ornare, ex et tempus sodales, risus libero ullamcorper turpis, ac laoreet turpis est sed ligula." }}</p>
-    <p class="sr-only end-of-section">This is the end of section: overview.</p>
   </section>
 
   <section class="shelf-section" aria-labelledby="top-shelf-audio-heading">
@@ -87,7 +70,6 @@ layout: default
         <p class="body-text">{{ page.transcript_text | default: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." }}</p>
       </div>
     </div>
-    <p class="sr-only end-of-section">This is the end of section: audio description and transcript.</p>
   </section>
 
   <section class="shelf-section" aria-labelledby="top-shelf-info-heading">
@@ -101,7 +83,6 @@ layout: default
 Purchase, 2013</td></tr>
       </tbody>
     </table>
-    <p class="sr-only end-of-section">This is the end of section: object information.</p>
   </section>
 
   <nav aria-label="Pagination Navigation">

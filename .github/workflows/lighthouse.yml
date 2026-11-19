@@ -35,6 +35,12 @@ jobs:
           bundler-cache: true
       - name: Build local audit target
         run: bundle exec jekyll build --destination "${RUNNER_TEMP}/site/group34"
+      - name: Minify JavaScript
+        run: |
+          for f in "${RUNNER_TEMP}/site/group34"/assets/js/*.js; do
+            npx --yes esbuild@0.28.2 "$f" --minify --allow-overwrite --outfile="$f" --log-level=warning \
+              || echo "::warning::Could not minify $f; the original file is deployed instead."
+          done
       - name: Serve local audit target
         run: |
           mkdir -p "${RUNNER_TEMP}/lighthouse"
@@ -45,6 +51,7 @@ jobs:
         run: |
           # One path per line. Add a page here to have it audited too (paths start after /group34).
           # The photo viewer needs its ?key=... address, so it is audited with a real object.
+          # guide=off keeps the Quick Guidance dialog from opening, so Lighthouse audits the photo itself.
           base="http://127.0.0.1:4173/group34"
           paths="/
           /about/
@@ -53,7 +60,7 @@ jobs:
           /shelves/bottom-shelf/
           /objects/middle-shelf-object3/
           /objects/bottom-shelf-object10/
-          /photo/?key=%2Fgroup34%2Fobjects%2Fmiddle-shelf-object3%2F&index=0
+          /photo/?key=%2Fgroup34%2Fobjects%2Fmiddle-shelf-object3%2F&index=0&guide=off
           /privacy/
           /terms/"
           urls=$(printf '%s\n' "$paths" | sed "s|^|${base}|" | paste -sd, -)

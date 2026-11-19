@@ -27,8 +27,8 @@
     { sel: ".btn-explore-exhibition", keys: LINK, label: "Go to the shelves" },
     { sel: ".btn-curator-bio", keys: LINK, label: "Open About Us" },
     { sel: ".shelf-card", keys: LINK, label: "Open this shelf", place: "above" },
-    { sel: ".auslan-video", keys: [["Tab"], ["Space"]], label: "Play or pause the video", place: "inside-tr" },
-    { sel: ".ack-right a", keys: LINK, label: "Open the link", first: true },
+    { sel: ".introduction-video", keys: [["Tab"], ["Space"]], label: "Play or pause the video", place: "inside-tr" },
+    { sel: ".footer-left a", keys: LINK, label: "Open the link", first: true },
     { sel: ".about-toc", keys: LINK, label: "Jump to a section", place: "inside-tr" },
     { sel: ".team-avatars", keys: BUTTON, label: "Choose a team member" },
     /* About Us: one badge for each table or paragraph that holds links (the other tables and paragraphs have none). */

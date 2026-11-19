@@ -2,85 +2,29 @@
 layout: default
 ---
 
-<main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer">
+<main class="photo-viewer-page" id="photo-viewer" aria-label="Photo viewer" data-gallery-folder="{{ '/photo-data/' | relative_url }}">
 
-<!--
-  Photo gallery data is generated at build time to keep photo URLs short.
-  Objects and shelves are regular pages (not Jekyll collections), so they are read from site.pages.
--->
-  {% assign object_pages = site.pages | where: "layout", "object" %}
-  {% assign shelf_pages = site.pages | where_exp: "item", "item.layout contains '-shelf'" %}
-  <script type="application/json" id="photoGalleryData">
-  [
-    {% for object in object_pages %}
-    {
-      "key": {{ object.url | relative_url | jsonify }},
-      "object": {{ object.title | jsonify }},
-      "museumNumber": {{ object.museum_number | default: object.acq_no | default: object.acquisition_number | jsonify }},
-      "return": {{ object.url | relative_url | jsonify }},
-      "images": [
-        {% for gallery_image in object.gallery_images %}
-          {% assign image_exists = false %}
-          {% for static_file in site.static_files %}
-            {% if static_file.path == gallery_image.src %}
-              {% assign image_exists = true %}
-            {% endif %}
-          {% endfor %}
-          {% if image_exists %}{% assign viewer_src = gallery_image.src %}{% else %}{% assign viewer_src = object.image %}{% endif %}
-          {% include responsive-lookup.html src=viewer_src %}
-          {
-            "src": {% if image_exists %}{{ gallery_image.src | relative_url | jsonify }}{% else %}{{ object.image | relative_url | jsonify }}{% endif %},
-            "srcset": {{ ri_srcset | jsonify }},
-            "thumb": {{ ri_thumb | jsonify }},
-            "width": {{ ri_w }},
-            "height": {{ ri_h }},
-            "label": {{ gallery_image.label | jsonify }},
-            "caption": {{ gallery_image.caption | jsonify }},
-            "alt": {{ gallery_image.alt | default: gallery_image.caption | jsonify }}
-          }{% unless forloop.last %},{% endunless %}
-        {% endfor %}
-      ]
-    },
-    {% endfor %}
-    {% for shelf in shelf_pages %}
-    {
-      "key": {{ shelf.url | relative_url | jsonify }},
-      "object": {{ shelf.object_title | default: shelf.shelf_title | jsonify }},
-      "museumNumber": {{ shelf.museum_number | default: shelf.acq_no | default: "" | jsonify }},
-      "return": {{ shelf.url | relative_url | jsonify }},
-      "images": [
-        {% if shelf.gallery_images %}
-          {% for image in shelf.gallery_images %}
-          {% include responsive-lookup.html src=image.src %}
-          {
-            "src": {{ image.src | relative_url | jsonify }},
-            "srcset": {{ ri_srcset | jsonify }},
-            "thumb": {{ ri_thumb | jsonify }},
-            "width": {{ ri_w }},
-            "height": {{ ri_h }},
-            "label": {{ image.label | jsonify }},
-            "caption": {{ image.caption | jsonify }},
-            "alt": {{ image.alt | default: image.caption | jsonify }}
-          }{% unless forloop.last %},{% endunless %}
-          {% endfor %}
-        {% else %}
-          {% include responsive-lookup.html src=shelf.hero_image %}
-          {
-            "src": {{ shelf.hero_image | relative_url | jsonify }},
-            "srcset": {{ ri_srcset | jsonify }},
-            "thumb": {{ ri_thumb | jsonify }},
-            "width": {{ ri_w }},
-            "height": {{ ri_h }},
-            "label": "HERO IMAGE",
-            "caption": {{ shelf.hero_caption | jsonify }},
-            "alt": {{ shelf.hero_alt | default: shelf.hero_caption | jsonify }}
-          }
-        {% endif %}
-      ]
-    }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ]
-  </script>
+{%- comment -%}
+  Start reading the gallery file now, while the page and photo-viewer.js are still loading, so the big photo does not wait for
+  them. photo-viewer.js uses window.photoGalleryRequest and asks for the file itself when this did not run (old browsers).
+{%- endcomment -%}
+<script>
+(function () {
+  try {
+    var key = new URLSearchParams(window.location.search).get("key");
+    if (!key) { return; }
+    var name = key.replace(/\/+$/, "").split("/").pop();
+    window.photoGalleryRequest = fetch("{{ '/photo-data/' | relative_url }}" + encodeURIComponent(name) + ".json")
+      .then(function (response) { return response.ok ? response.json() : null; })
+      .catch(function () { return null; });
+  } catch (error) { /* photo-viewer.js reads the file itself */ }
+})();
+</script>
+
+{%- comment -%}
+  The gallery of the page the visitor came from is read from /photo-data/<page name>.json (see photo-data/ and
+  _includes/photo-gallery-json.html), so this page stays small. A new object or shelf page needs its own small file there.
+{%- endcomment -%}
 
 <!-- TOP BAR -->
 <header class="photo-viewer-header" aria-label="Photo viewer controls">

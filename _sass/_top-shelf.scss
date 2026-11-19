@@ -29,7 +29,10 @@
       .hero-image {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        /* The whole photo shows. A photo only slightly narrower than the frame fills it (data-fit="cover"), so no thin strips show at the sides. */
+        object-fit: contain;
+
+        &[data-fit="cover"] { object-fit: cover; }
       }
 
       .expand-btn {

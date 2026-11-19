@@ -1,4 +1,15 @@
 <nav class="shelf-pagination" aria-label="Page navigation">
+  {%- if page.prev_disabled -%}
+  {%- comment -%} The first object of a shelf has nothing before it (and the last has nothing after it). The box stays so the two buttons keep their places, but it is not a link. {%- endcomment -%}
+  <div class="nav-box nav-back is-disabled">
+    <span class="sr-only">There is no previous object in this shelf.</span>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i></span>
+    <div class="nav-text" aria-hidden="true">
+      <span class="sub-label">BACK</span>
+      <span class="main-label">&mdash;</span>
+    </div>
+  </div>
+  {%- else -%}
   <a href="{{ page.prev_url | default: '/' | relative_url }}" class="nav-box nav-back" aria-label="Go back to {{ page.prev_label | default: 'Main Page' | escape }}">
     <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-left-long" aria-hidden="true"></i></span>
     <div class="nav-text" aria-hidden="true">
@@ -6,7 +17,18 @@
       <span class="main-label">{{ page.prev_label | default: 'MAIN PAGE' }}</span>
     </div>
   </a>
+  {%- endif -%}
 
+  {%- if page.next_disabled -%}
+  <div class="nav-box nav-next is-disabled">
+    <span class="sr-only">There is no next object in this shelf.</span>
+    <div class="nav-text" aria-hidden="true">
+      <span class="sub-label">NEXT</span>
+      <span class="main-label">&mdash;</span>
+    </div>
+    <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></span>
+  </div>
+  {%- else -%}
   <a href="{{ page.next_url | default: '/' | relative_url }}" class="nav-box nav-next" aria-label="Go next to {{ page.next_label | default: 'Main Page' | escape }}">
     <div class="nav-text" aria-hidden="true">
       <span class="sub-label">NEXT</span>
@@ -14,4 +36,5 @@
     </div>
     <span class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right-long" aria-hidden="true"></i></span>
   </a>
+  {%- endif -%}
 </nav>

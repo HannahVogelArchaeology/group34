@@ -1,0 +1,5 @@
+---
+layout: null
+permalink: /photo-data/middle-shelf.json
+---
+{% include photo-gallery-json.html url="/shelves/middle-shelf/" %}

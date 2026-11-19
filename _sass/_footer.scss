@@ -13,10 +13,28 @@
     margin: 0 auto;
     padding-top: 20px;
 
-    .footer-left h2 {
-      font-size: 1em;
-      font-weight: bold;
-      margin: 1.33em 0;
+    .footer-left {
+      flex: 1 1 auto;
+      min-width: 0;
+      margin-right: 40px;
+
+      h2 {
+        font-size: 1em;
+        font-weight: bold;
+        margin: 1.33em 0;
+      }
+
+      p {
+        margin: 0 0 1em;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+      }
+
+      p a {
+        color: $footer-text;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
     }
 
     .social-icons {
@@ -204,7 +222,8 @@
   }
 
   .nav-box {
-    flex: 1;
+    flex: 0 0 calc(50% - 0.75em);
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     padding: 1.5em 2em;
@@ -214,6 +233,11 @@
     text-decoration: none;
     color: #2b2b2b;
     transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+
+    @media (max-width: 600px) {
+      flex: 1 1 auto;
+      width: 100%;
+    }
 
     &:hover,
     &:focus-visible {
@@ -229,8 +253,26 @@
       }
     }
 
+    /* The first object has no Back and the last has no Next: the box stays (dashed and faded, not a link) so both buttons keep their places. */
+    &.is-disabled {
+      border-style: dashed;
+      border-color: #cdbfa6;
+      background-color: transparent;
+      color: #6f685c;
+      cursor: default;
+      pointer-events: none;
+      box-shadow: none;
+
+      .main-label,
+      .sub-label,
+      .arrow {
+        color: #6f685c;
+      }
+    }
+
     &.nav-back {
       justify-content: flex-start;
+      margin-right: auto;
 
       .arrow {
         margin-right: 1.5em;
@@ -243,6 +285,7 @@
 
     &.nav-next {
       justify-content: flex-end;
+      margin-left: auto;
 
       .arrow {
         margin-left: 1.5em;
@@ -284,4 +327,3 @@
     }
   }
 }
-
