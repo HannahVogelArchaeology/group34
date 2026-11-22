@@ -68,11 +68,22 @@
     }
   }
 
+  /* Narrower content (next to the sidebar, or a small window): the enquiry box goes under the text and uses the full width. */
+  @media (max-width: 1399.98px) {
+    .footer-top {
+      flex-direction: column;
+      gap: 20px;
+
+      .footer-left { margin-right: 0; }
+      .footer-right { width: 100%; }
+    }
+  }
+
   .footer-copyright {
     margin: 0;
     font-size: 0.85em;
     color: #FFF;
-    line-height: 1;
+    line-height: 1.5;
   }
 
   .footer-line {
@@ -83,13 +94,19 @@
 
   .footer-bottom {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: 12px 32px;
     max-width: 1200px;
     margin: 0 auto;
 
+    /* The copyright text takes the free space. When the links do not fit beside it, they move to their own line, so there is no empty strip at the right of the links. */
+    .copyright-area { flex: 1 1 280px; min-width: 0; }
+
     .legal-links {
       display: flex;
+      flex: 0 1 auto;
       flex-wrap: wrap;
       font-size: 0.85em;
       gap: 4px 20px;
@@ -162,20 +179,48 @@
     gap: 8px;
   }
 
+  /* The name and shelf take all the room between the buttons, so a long object name rarely needs a third line. */
   .audio-center {
     display: flex;
+    flex: 1 1 0;
+    min-width: 0;
     flex-direction: column;
     align-items: center;
+    padding: 0 8px;
     text-align: center;
   }
 
+  /* The play and pause icons have different widths. Both sit in the same fixed box, so pressing pause never moves the name
+     (the name used to wrap to a second line and make the bar taller). */
+  .audio-left #playIcon {
+    display: inline-block;
+    width: 1.25em;
+    text-align: center;
+  }
+
+  /* The speed button keeps its width when the text changes (1.0x, 1.5x, 0.5x). */
+  .audio-speed-btn {
+    min-width: 3.4em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* The name and the shelf are always one line each, so the bar has the same height for every object (a very long name ends in "...").
+     The full name is on the page above, and screen readers read it in full. */
   .audio-obj-name {
+    max-width: 100%;
+    overflow: hidden;
     font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .audio-shelf-label {
+    max-width: 100%;
+    overflow: hidden;
     font-size: 0.75em;
     opacity: 0.75;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   /* Vertical Volume Popup */
@@ -250,23 +295,6 @@
       .sub-label,
       .arrow {
         color: #513409;
-      }
-    }
-
-    /* The first object has no Back and the last has no Next: the box stays (dashed and faded, not a link) so both buttons keep their places. */
-    &.is-disabled {
-      border-style: dashed;
-      border-color: #cdbfa6;
-      background-color: transparent;
-      color: #6f685c;
-      cursor: default;
-      pointer-events: none;
-      box-shadow: none;
-
-      .main-label,
-      .sub-label,
-      .arrow {
-        color: #6f685c;
       }
     }
 

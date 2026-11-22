@@ -1,26 +1,24 @@
-<div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" aria-describedby="audioPlayerIntro" tabindex="-1" style="display: none;">
-  <!-- Spoken when the player opens (keyboard focus lands on the player itself, not on the time or seek bar). -->
-  <p class="sr-only" id="audioPlayerIntro">You are in the audio player. Press Tab to change the playback speed, play or pause, adjust the volume, or close the player.</p>
-
+<div class="bottom-audio-bar" id="bottomAudioBar" role="region" aria-label="Audio Description Player" tabindex="-1" style="display: none;">
   <!-- Bar with the time -->
   <div class="audio-progress-container" role="group" aria-label="Audio progress and seek bar">
-    <span id="currentTime" aria-label="Current audio time">0:00</span>
+    <span id="currentTime">0:00</span>
     <input type="range" id="audioProgress" value="0" min="0" max="100" step="0.1" aria-label="Audio Seek Bar" oninput="seekAudio(this.value)">
-    <span id="durationTime" aria-label="Total audio duration">0:00</span>
+    <span id="durationTime">0:00</span>
   </div>
 
   <div class="audio-controls-wrapper">
     <!-- Left control, speed and play button -->
     <div class="audio-left" role="group" aria-label="Playback speed and play controls">
-      <button type="button" onclick="changeAudioSpeed(0.5)" aria-label="Play audio at half speed (0.5x)">0.5x</button>
       <button type="button" onclick="toggleAudioPlay()" aria-label="Play or pause audio">
         <i class="fas fa-play" id="playIcon" aria-hidden="true"></i>
       </button>
-      <button type="button" onclick="changeAudioSpeed(1.5)" aria-label="Play audio at one and a half speed (1.5x)">1.5x</button>
+      {%- comment -%} One button changes the speed: 1.0x, then 1.5x, then 0.5x, then back to 1.0x (see cycleAudioSpeed in audio.js). {%- endcomment -%}
+      <button type="button" class="audio-speed-btn" id="audioSpeedBtn" onclick="cycleAudioSpeed()" aria-label="Playback speed: normal (1.0x). Press to play faster (1.5x)">1.0x</button>
+      <span class="sr-only" id="audioSpeedStatus" role="status"></span>
     </div>
 
     <!-- Center info -->
-    <div class="audio-center" aria-live="polite" aria-label="Currently playing track details">
+    <div class="audio-center" aria-live="polite">
       <span class="audio-obj-name">{% assign audio_bar_title = page.object_title | default: page.title %}{% include object-title.html title=audio_bar_title %}</span>
       <span class="audio-shelf-label">{{ page.shelf_title | default: page.title }}</span>
     </div>

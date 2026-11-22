@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ site.lang | default: 'en' }}">
 {% include head.html %}
-<body>
+<body{% if page.layout == "home" %} class="is-home"{% endif %}>
   <!-- Page start. Back to top moves keyboard focus here, so the next Tab always reaches the skip links.
        The text is announced to screen reader users at the start of every page. -->
   <div id="pageTop" tabindex="-1">
@@ -21,6 +21,7 @@
     <!-- Hidden unless the check in _includes/head.html finds that the browser is too old. -->
     <div class="browser-warning" role="alert">
       You are using an outdated browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.
+      This site works best in Chrome or Edge 105 or newer, Firefox 110 or newer, and Safari 16 or newer (iPhone and iPad: iOS 16 or newer).
     </div>
 
     {{ content }}

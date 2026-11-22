@@ -192,6 +192,8 @@ function resetAudioSpeed() {
     audio.defaultPlaybackRate = 1;
     audio.playbackRate = 1;
   }
+
+  showAudioSpeed(1, false);
 }
 
 
@@ -199,6 +201,35 @@ function changeAudioSpeed(speed) {
   const audio = document.getElementById("exhibitionAudio");
   if (audio) {
     audio.playbackRate = speed;
+  }
+
+  showAudioSpeed(speed, true);
+}
+
+/* One button changes the speed: 1.0x -> 1.5x -> 0.5x -> 1.0x. The last step takes the listener back to the normal speed. */
+function cycleAudioSpeed() {
+  const audio = document.getElementById("exhibitionAudio");
+  const current = audio ? audio.playbackRate : 1;
+  const next = current === 1 ? 1.5 : (current === 1.5 ? 0.5 : 1);
+
+  changeAudioSpeed(next);
+}
+
+/* The button shows the current speed. Its name tells what the next press does, and screen readers hear the new speed. */
+function showAudioSpeed(speed, announce) {
+  const button = document.getElementById("audioSpeedBtn");
+  const status = document.getElementById("audioSpeedStatus");
+  const names = { 0.5: "half speed (0.5x)", 1: "normal (1.0x)", 1.5: "fast (1.5x)" };
+  const next = speed === 1 ? 1.5 : (speed === 1.5 ? 0.5 : 1);
+  const nextText = { 0.5: "play slower (0.5x)", 1: "go back to normal speed (1.0x)", 1.5: "play faster (1.5x)" };
+
+  if (button) {
+    button.textContent = speed.toFixed(1) + "x";
+    button.setAttribute("aria-label", "Playback speed: " + names[speed] + ". Press to " + nextText[next]);
+  }
+
+  if (status) {
+    status.textContent = announce ? "Speed " + speed.toFixed(1) + "x" : "";
   }
 }
 

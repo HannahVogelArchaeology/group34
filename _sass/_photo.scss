@@ -494,7 +494,7 @@
 }
 
 /* Phones: Previous and Next share one row under the view name. */
-@media (max-width: 779px) {
+@media (max-width: 779.98px) {
   .photo-viewer-page { --pv-bar-h: 9rem; --pv-btn-w: 0; }
 
   .photo-viewer-header { padding: 0.5rem 0.75rem; }
@@ -662,7 +662,7 @@
    positions of the real parts (main.js sets --gd-frame-bottom, --gd-meta-top, --gd-btn-top and --gd-panel-top, in px):
    the view note just above the bar under the photo, the Previous and Next notes over their two buttons, and the thumbnail note
    over the thumbnail row. */
-@media (max-width: 779px) {
+@media (max-width: 779.98px) {
   .photo-guide-sheet {
     min-height: 0;
     height: var(--gd-frame-bottom, 60vh);

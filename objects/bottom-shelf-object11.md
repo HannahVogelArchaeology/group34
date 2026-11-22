@@ -53,6 +53,7 @@ shelf_url: "/shelves/bottom-shelf/"
 transcript_text: "A small, black ceramic vessel with an enclosed top featuring several perforated holes. The vessel features a narrow handle, thin pouring spout and a flat base.  In places, the applied black colouring is chipped, revealing orange coloured fired clay underneath."
 prev_url: "/objects/bottom-shelf-object10/"
 prev_label: "OBJECT 10"
-next_disabled: true
+next_url: "/about/"
+next_label: "ABOUT US"
 audio_src: "/assets/audio/11. Feeding vessel MU3368.m4a"
 ---

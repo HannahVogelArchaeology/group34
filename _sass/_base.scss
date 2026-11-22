@@ -1,6 +1,12 @@
 // Make the shared colour/font variables available in this file (replaces the global @import).
 @use "variables" as *;
 
+/* The very bottom of the window (under the footer and the sidebar) is the dark footer colour, so a thin light line can never show there
+   when the window height is not a whole number of pixels (some tablets and zoom levels). The body paints the page colour itself. */
+html {
+  background-color: #2c1e11;
+}
+
 body {
   font-family: $font-family-base;
   background-color: $bg-color-default;
@@ -29,7 +35,7 @@ a {
   box-sizing: border-box;
 }
 
-@media (max-width: 779px) {
+@media (max-width: 779.98px) {
   .main-content {
     padding-top: 96px;
   }
@@ -71,7 +77,7 @@ body.volume-popup-open .back-to-top { bottom: calc(1rem + var(--audio-bar-h, 0px
 body.dark-mode .back-to-top { background: #7a5420; border-color: #c9a063; color: #ffffff; }
 
 /* On mobile menu */
-@media (max-width: 779px) { .back-to-top { right: 1rem; } }
+@media (max-width: 779.98px) { .back-to-top { right: 1rem; } }
 
 /* Font Awesome icon sizing inside the expand and audio buttons */
 .expand-btn i { font-size: 1.15rem; line-height: 20px; text-align: center; color: inherit; }

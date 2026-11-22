@@ -9,7 +9,6 @@ hero_image: "/assets/images/Middle_shelf.jpg"
 hero_alt: "The middle shelf of the display case, with seven objects: a ceramic reclining figure (2), a bronze dancer replica (3), a ceramic figure of a musician (4), a ceramic seated statuette (5), a bronze figure of Priapus (6), a terracotta figurine (7) and a faience amulet of Pataikos (8)."
 hero_caption: "Photograph of the middle shelf of the display © Gale History Museum"
 
-
 gallery_images:
   - src: "/assets/images/Middle_shelf.jpg"
     label: "SHELF VIEW"

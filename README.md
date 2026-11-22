@@ -30,7 +30,24 @@ Edit Markdown pages at the repository root. Site-wide values are in
 `_sass` and `assets`.
 
 Read `AGENTS.md` before using an AI coding assistant. Add preferred contributor
-names to `team.md` and `CITATION.cff` rather than inferring them from accounts.
+names to `CITATION.cff` rather than inferring them from accounts.
+
+## Smaller files and unused-file check
+
+When the site is built by GitHub Actions (`pages.yml` for the live site, `lighthouse.yml` for the audit), the text files
+are made smaller before they are published:
+
+- CSS is compressed by Jekyll (`sass: style: compressed` in `_config.yml`).
+- JavaScript in `assets/js/` is minified with esbuild.
+- `scripts/minify-site.mjs` removes comments and indentation from the built HTML and the whitespace from the built JSON.
+  It leaves `<script>`, `<style>`, `<pre>` and `<textarea>` untouched. If it fails, the workflow shows a warning and
+  publishes the original files.
+- GitHub Pages then compresses text files for visitors (gzip). The Lighthouse workflow uses
+  `scripts/serve-compressed.mjs`, a small local server that compresses the same way, so the audit measures what
+  visitors receive.
+
+To find files in `assets/` that no page uses, run `node scripts/find-unused-assets.mjs` and check the list before
+deleting anything. When you delete a photo, also delete its smaller copies in `assets/images/responsive/`.
 
 ## Photos: smaller copies for each screen
 

@@ -20,7 +20,8 @@ layout: default
       {%- if page.gallery_images.size > 1 -%}
       <span class="sr-only" role="status" data-gallery-status></span>
       {%- assign thumb_name = "the bottom Shelf" -%}
-      <div class="shelf-thumbnails" role="group" aria-label="Bottom Shelf photo views">
+      {%- assign thumb_count = page.gallery_images.size -%}{%- if thumb_count > 5 -%}{%- assign thumb_cols = thumb_count | plus: 1 | divided_by: 2 -%}{%- else -%}{%- assign thumb_cols = thumb_count -%}{%- endif -%}
+      <div class="shelf-thumbnails" style="--thumb-cols: {{ thumb_cols }};" role="group" aria-label="Bottom Shelf photo views">
         {%- for image in page.gallery_images -%}
         {%- include gallery-thumb.html src=image.src alt=image.alt caption=image.caption label=image.label index=forloop.index0 name=thumb_name -%}
         {%- endfor -%}
@@ -36,7 +37,7 @@ layout: default
   <section class="object-explorer-carousel" aria-labelledby="bottom-shelf-explorer-heading">
     <h2 id="bottom-shelf-explorer-heading">Explore the objects</h2>
     <p class="sr-only">There {% if page.objects.size == 1 %}is 1 object{% else %}are {{ page.objects.size }} objects{% endif %} on this shelf.</p>
-    <p class="carousel-instructions" id="bottom-carousel-instructions">Hover over an object, or focus it with the keyboard, to bring it forward. Select an object to open its page.</p>
+    <p class="carousel-instructions" id="bottom-carousel-instructions"><span class="carousel-hint-hover">Hover over an object, or focus it with the keyboard, to bring it forward. </span>Select an object to open its page.</p>
     <div class="object-carousel-track" role="group" aria-label="Bottom Shelf Objects" aria-describedby="bottom-carousel-instructions">
       {% for obj in page.objects %}
       {% assign obj_number = obj.slug | split: 'object' | last %}

@@ -67,12 +67,6 @@ body.keyboard-guide-on {
   padding: 3px 5px;
 }
 
-.kg-tail {
-  position: absolute;
-  width: 2px;
-  background: var(--kg-accent);
-}
-
 /* A thin line from a badge to its element (drawn by the script). */
 .kg-tail-line {
   position: absolute;

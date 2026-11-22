@@ -6,6 +6,8 @@
 .middle-shelf-container .object-explorer-carousel h2,
 .bottom-shelf-container .object-explorer-carousel h2 { font-weight: 400; color: #866428; }
 .carousel-instructions { margin-bottom: 1.25rem; }
+/* The objects overlap and move forward on hover only on wide screens. On tablets and phones they are plain tiles, so that part of the sentence is hidden (and not read out either). */
+@media (max-width: 900px) { .carousel-hint-hover { display: none; } }
 
 
 .object-carousel-track { display: flex; align-items: stretch; gap: 0; overflow: visible; padding: 1.5rem 0 2rem; isolation: isolate; }
@@ -29,7 +31,7 @@
 .object-carousel-title { font-size: 1.05rem; font-weight: 600; overflow-wrap: anywhere; color: #ffffff; }
 .object-carousel-caption { color: #ffffff; font-size: .8rem; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .object-carousel-card:hover .object-carousel-caption, .object-carousel-card:has(.object-carousel-link:focus-visible) .object-carousel-caption { font-size: .9rem; -webkit-line-clamp: unset; display: block; }
-@media (max-width: 779px) {
+@media (max-width: 779.98px) {
   .object-carousel-track { flex-wrap: wrap; gap: .75rem; }
   .object-carousel-card { flex: 0 0 calc(50% - .375rem); margin-left: 0; min-height: 280px; }
   .object-carousel-card:hover, .object-carousel-card:has(.object-carousel-link:focus-visible) { flex-grow: 0; transform: none; }

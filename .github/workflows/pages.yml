@@ -38,6 +38,8 @@ jobs:
             npx --yes esbuild@0.28.2 "$f" --minify --allow-overwrite --outfile="$f" --log-level=warning \
               || echo "::warning::Could not minify $f; the original file is deployed instead."
           done
+      - name: Minify HTML and JSON
+        run: node scripts/minify-site.mjs _site || echo "::warning::Could not minify HTML/JSON; the original files are deployed instead."
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
 

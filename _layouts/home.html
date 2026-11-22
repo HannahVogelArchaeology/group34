@@ -13,6 +13,11 @@ layout: default
     <div class="home-hero-text">
       <h1 class="hero-main-title">{{ page.hero_title | strip | newline_to_br }}</h1>
       <p class="hero-curator">Curated by Hannah Vogel</p>
+      {%- comment -%} At a glance (shown on wide screens only, see _home.scss). The top shelf always has one object. {%- endcomment -%}
+      <ul class="hero-facts" aria-label="The exhibition at a glance">
+        <li>3 shelves</li>
+        <li>{{ middle_object_count | plus: bottom_object_count | plus: 1 }} objects</li>
+      </ul>
       <div class="hero-actions">
         <a href="#explore-the-exhibition" class="btn-explore-exhibition">Explore the exhibition <span aria-hidden="true">&rarr;</span></a>
         <a href="{{ '/about/' | relative_url }}" class="btn-curator-bio">About Us</a>
@@ -23,7 +28,7 @@ layout: default
       {% comment %} The width and height attributes let the browser reserve the image space before it loads, so the text below does not jump (layout shift). {% endcomment %}
       {% include responsive-lookup.html src=page.hero_image %}
       <div class="hero-photo-frame">
-        <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 779px) calc(100vw - 48px), (max-width: 1279px) 62vw, (max-width: 1599px) 33vw, 487px" %}{% if ri_found %} width="{{ ri_w }}" height="{{ ri_h }}"{% endif %} alt="{{ page.hero_alt | escape }}" loading="eager" fetchpriority="high">
+        <img src="{{ page.hero_image | relative_url }}" {% include responsive-attrs.html src=page.hero_image sizes="(max-width: 779px) calc(100vw - 48px), calc((100vw - clamp(280px, 30vw, 380px)) * 0.6)" %}{% if ri_found %} width="{{ ri_w }}" height="{{ ri_h }}"{% endif %} alt="{{ page.hero_alt | escape }}" loading="eager" fetchpriority="high">
       </div>
       <figcaption class="image-caption">{{ page.hero_image_caption }}</figcaption>
       {% else %}
@@ -50,7 +55,7 @@ layout: default
   <div class="shelf-cards-container">
 
     <!-- Top Shelf -->
-    <a href="{{ '/shelves/top-shelf/' | relative_url }}" class="shelf-card" aria-label="View Top Shelf">
+    <a href="{{ '/shelves/top-shelf/' | relative_url }}" class="shelf-card" aria-label="Top Shelf, 1 object, Photograph of the top shelf of the display © Gale History Museum, View Top Shelf">
       <div class="card-header">
         <svg class="shelf-icon" width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><rect x="3" y="2" width="24" height="26" rx="2" stroke-width="1.6"/><line x1="3" x2="27" y1="7" y2="7" stroke-width="4"/><line x1="3" x2="27" y1="16" y2="16" stroke-width="1.6" opacity="0.35"/><line x1="3" x2="27" y1="25" y2="25" stroke-width="1.6" opacity="0.35"/></svg>
         <span class="shelf-label">TOP SHELF</span>
@@ -58,10 +63,10 @@ layout: default
       </div>
 
       <div class="card-img">
-        <img src="{{ '/assets/images/1 Pelike_MU4759_front_Image1.jpg' | relative_url }}" {% include responsive-attrs.html src='/assets/images/1 Pelike_MU4759_front_Image1.jpg' sizes="(max-width: 768px) 100vw, 340px" %} loading="lazy" decoding="async" alt="Object 1. A Pelike. A large Greek-style vase. The scene depicts two men facing each other. One appears to use a staff, possibly as a mobility aid.">
+        <img src="{{ '/assets/images/Top_shelf.jpg' | relative_url }}" {% include responsive-attrs.html src='/assets/images/Top_shelf.jpg' sizes="(max-width: 768px) 100vw, 340px" %} loading="lazy" decoding="async" alt="The top shelf of the display case, with one object: a pelike, a large Greek-style vase.">
       </div>
 
-      <p class="caption">Pelike, MU4759, front view © Gale History Museum</p>
+      <p class="caption">Photograph of the top shelf of the display © Gale History Museum</p>
 
       <span class="view-button" aria-hidden="true">
         View Top Shelf&nbsp;&rarr;
@@ -69,7 +74,7 @@ layout: default
     </a>
 
     <!-- Middle Shelf -->
-    <a href="{{ '/shelves/middle-shelf/' | relative_url }}" class="shelf-card" aria-label="View Middle Shelf">
+    <a href="{{ '/shelves/middle-shelf/' | relative_url }}" class="shelf-card" aria-label="Middle Shelf, {{ middle_object_count }} object{% if middle_object_count != 1 %}s{% endif %}, Photograph of the middle shelf of the display © Gale History Museum, View Middle Shelf">
       <div class="card-header">
         <svg class="shelf-icon" width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><rect x="3" y="2" width="24" height="26" rx="2" stroke-width="1.6"/><line x1="3" x2="27" y1="7" y2="7" stroke-width="1.6" opacity="0.35"/><line x1="3" x2="27" y1="16" y2="16" stroke-width="4"/><line x1="3" x2="27" y1="25" y2="25" stroke-width="1.6" opacity="0.35"/></svg>
         <span class="shelf-label">MIDDLE SHELF</span>
@@ -77,10 +82,10 @@ layout: default
       </div>
 
       <div class="card-img">
-        <img src="{{ '/assets/images/4 Figure of a Musician_MU0086_hero shot_Image2.jpg' | relative_url }}" {% include responsive-attrs.html src='/assets/images/4 Figure of a Musician_MU0086_hero shot_Image2.jpg' sizes="(max-width: 768px) 100vw, 340px" %} loading="lazy" decoding="async" alt="Object 4. Figure of a Musician. A carved figure kneeling, holding a drum with both hands. The figure is angled so the drummer’s front-right side is visible.">
+        <img src="{{ '/assets/images/Middle_shelf.jpg' | relative_url }}" {% include responsive-attrs.html src='/assets/images/Middle_shelf.jpg' sizes="(max-width: 768px) 100vw, 340px" %} loading="lazy" decoding="async" alt="The middle shelf of the display case, with seven objects: figures, figurines, statuettes and an amulet.">
       </div>
 
-      <p class="caption">4. Figure of a Musician, MU0086, front-right side view © Gale History Museum</p>
+      <p class="caption">Photograph of the middle shelf of the display © Gale History Museum</p>
 
       <span class="view-button" aria-hidden="true">
         View Middle Shelf&nbsp;&rarr;
@@ -88,7 +93,7 @@ layout: default
     </a>
 
     <!-- Bottom Shelf -->
-    <a href="{{ '/shelves/bottom-shelf/' | relative_url }}" class="shelf-card" aria-label="View Bottom Shelf">
+    <a href="{{ '/shelves/bottom-shelf/' | relative_url }}" class="shelf-card" aria-label="Bottom Shelf, {{ bottom_object_count }} object{% if bottom_object_count != 1 %}s{% endif %}, Photograph of the bottom shelf of the display © Gale History Museum, View Bottom Shelf">
       <div class="card-header">
         <svg class="shelf-icon" width="28" height="28" viewBox="0 0 30 30" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><rect x="3" y="2" width="24" height="26" rx="2" stroke-width="1.6"/><line x1="3" x2="27" y1="7" y2="7" stroke-width="1.6" opacity="0.35"/><line x1="3" x2="27" y1="16" y2="16" stroke-width="1.6" opacity="0.35"/><line x1="3" x2="27" y1="25" y2="25" stroke-width="4"/></svg>
         <span class="shelf-label">BOTTOM SHELF</span>
@@ -96,10 +101,10 @@ layout: default
       </div>
 
       <div class="card-img">
-        <img src="{{ '/assets/images/11 Feeding Vessel_MU3368_hero shot_Image1.jpg' | relative_url }}" {% include responsive-attrs.html src='/assets/images/11 Feeding Vessel_MU3368_hero shot_Image1.jpg' sizes="(max-width: 768px) 100vw, 340px" %} loading="lazy" decoding="async" alt="Object 11. Feeding vessel. A small, black ceramic vessel with an enclosed top perforated with several incised holes in the centre, a narrow handle, a thin pouring spout and a flat base.">
+        <img src="{{ '/assets/images/Bottom_shelf1.jpg' | relative_url }}" {% include responsive-attrs.html src='/assets/images/Bottom_shelf1.jpg' sizes="(max-width: 768px) 100vw, 340px" %} loading="lazy" decoding="async" alt="The bottom shelf of the display case, with three feeding vessels: a white porcelain cup, a ceramic spouted vessel and a small black ceramic vessel.">
       </div>
 
-      <p class="caption">11. Feeding vessel, MU3368, front angled view © Gale History Museum</p>
+      <p class="caption">Photograph of the bottom shelf of the display © Gale History Museum</p>
 
       <span class="view-button" aria-hidden="true">
         View Bottom Shelf&nbsp;&rarr;
@@ -129,7 +134,7 @@ layout: default
 
     {%- if page.introduction_transcript %}
     <details class="video-transcript">
-      <summary>Transcript</summary>
+      <summary><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>Transcript</span></summary>
       <div class="video-transcript-text">{{ page.introduction_transcript | markdownify }}</div>
     </details>
     {%- endif %}

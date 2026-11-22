@@ -41,10 +41,12 @@ jobs:
             npx --yes esbuild@0.28.2 "$f" --minify --allow-overwrite --outfile="$f" --log-level=warning \
               || echo "::warning::Could not minify $f; the original file is deployed instead."
           done
+      - name: Minify HTML and JSON
+        run: node scripts/minify-site.mjs "${RUNNER_TEMP}/site/group34" || echo "::warning::Could not minify HTML/JSON; the original files are deployed instead."
       - name: Serve local audit target
         run: |
           mkdir -p "${RUNNER_TEMP}/lighthouse"
-          python3 -m http.server 4173 --directory "${RUNNER_TEMP}/site" >"${RUNNER_TEMP}/jekyll-server.log" 2>&1 &
+          node scripts/serve-compressed.mjs "${RUNNER_TEMP}/site" 4173 >"${RUNNER_TEMP}/jekyll-server.log" 2>&1 &
           curl --fail --silent --show-error --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:4173/group34/ >/dev/null
       - name: List the pages to audit
         id: pages
@@ -55,6 +57,7 @@ jobs:
           base="http://127.0.0.1:4173/group34"
           paths="/
           /about/
+          /accessibility/
           /shelves/top-shelf/
           /shelves/middle-shelf/
           /shelves/bottom-shelf/

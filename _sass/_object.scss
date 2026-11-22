@@ -30,7 +30,7 @@
     gap: 3.5em;
     align-items: start;
 
-    @media (max-width: 850px) {
+    @media (max-width: 1199.98px) {
       grid-template-columns: 1fr;
     }
   }
@@ -115,23 +115,21 @@
       margin-top: 0.65em;
       box-sizing: border-box;
 
-      &:has(.explore-3d-wrap) {
-        grid-template-columns: minmax(0, 1fr) auto;
-      }
-      
       .thumbnails-row {
         display: grid;
-        grid-template-columns: repeat(auto-fill, 80px);
+        /* --thumb-cols is set in object.html: up to 5 photos in one row, 6 to 10 in two rows. The squares fill the row. */
+        grid-template-columns: repeat(var(--thumb-cols, 4), minmax(0, 1fr));
         min-width: 0;
-        width: fit-content;
+        width: 100%;
         max-width: 100%;
         gap: 0.5em;
         overflow: visible;
         padding-bottom: 2px;
 
         .thumb-box {
-          width: 80px;
-          height: 80px;
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1 / 1;
           border: 1px solid #ccc;
           background-color: #f5f3ef;
           cursor: pointer;
@@ -168,7 +166,7 @@
       }
 
       .explore-3d-note {
-        font-size: 0.8em;
+        font-size: 0.9em;
         line-height: 1.3;
         text-align: center;
         white-space: nowrap;
@@ -179,20 +177,32 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.4em;
+        gap: 0.5em;
         flex: 0 0 auto;
         white-space: nowrap;
-        border: 1px solid #ccc;
-        padding: 0.4em 0.8em;
-        font-size: 0.85em;
-        color: #444;
+        min-height: 48px;
+        border: 2px solid #382713;
+        border-radius: 4px;
+        padding: 0.5em 1.2em;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ffffff;
+        text-decoration: none;
         cursor: pointer;
-        background-color: rgba(248, 246, 241, 0.96);
+        background-color: #382713;
         box-sizing: border-box;
+        transition: background-color 0.2s ease, border-color 0.2s ease;
 
-        &:hover {
-          border-color: #b08d57;
-          color: #b08d57;
+        &:hover,
+        &:focus-visible {
+          background-color: #7a5424;
+          border-color: #7a5424;
+          color: #ffffff;
+        }
+
+        &:focus-visible {
+          outline: 3px solid #174e77;
+          outline-offset: 3px;
         }
       }
     }
@@ -376,7 +386,7 @@
     grid-template-rows: auto 1fr;
     row-gap: 0;
 
-    @media (max-width: 850px) {
+    @media (max-width: 1199.98px) {
       grid-template-areas:
         "title"
         "media"
@@ -393,7 +403,7 @@
     font-weight: 400;
     line-height: 1.2;
 
-    @media (max-width: 850px) { margin-bottom: 0; }
+    @media (max-width: 1199.98px) { margin-bottom: 0; }
   }
 
   /* The first block under the object name starts right away (no extra top margin). */

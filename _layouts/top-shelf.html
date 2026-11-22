@@ -42,7 +42,8 @@ layout: default
     <span class="sr-only" role="status" data-gallery-status></span>
 
     <div class="media-controls-bar" aria-label="Additional media controls">
-      <div class="thumbnail-list" role="group" aria-label="{{ page.object_title | default: 'Object 1' | escape }} additional photo views">
+      {%- assign thumb_count = top_gallery.size -%}{%- if thumb_count > 5 -%}{%- assign thumb_cols = thumb_count | plus: 1 | divided_by: 2 -%}{%- else -%}{%- assign thumb_cols = thumb_count -%}{%- endif -%}
+      <div class="thumbnail-list" style="--thumb-cols: {{ thumb_cols }};" role="group" aria-label="{{ page.object_title | default: 'Object 1' | escape }} additional photo views">
         {% comment %} Every photo is a thumbnail, including the first one shown large above. {% endcomment %}
         {% for image in top_gallery %}
           {% assign image_index = forloop.index0 %}

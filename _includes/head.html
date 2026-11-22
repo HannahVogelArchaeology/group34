@@ -143,6 +143,7 @@
       window.CSS.supports('(--site-test: 0)') &&   /* CSS custom properties (colours and sizes) */
       window.CSS.supports('display', 'grid') &&    /* CSS grid (page layouts) */
       window.CSS.supports('inset', '0') &&         /* inset shorthand (photo viewer, sidebar) */
+      window.CSS.supports('container-type', 'inline-size') && /* container queries and cqw units (page header) */
       'fetch' in window &&
       'Promise' in window &&
       !!window.matchMedia &&

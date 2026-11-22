@@ -106,7 +106,7 @@ function startPhotoViewer(galleryEntry) {
   /* Optional smaller WebP copies, written by scripts/make-responsive-images.py.
      Each entry can have srcset, thumb, width and height (the original file's size in pixels). */
   const imageInfo = galleryEntry ? galleryEntry.images : [];
-  const VIEWER_IMAGE_SIZES = "(max-width: 779px) 100vw, 900px";
+  const VIEWER_IMAGE_SIZES = "(max-width: 779.98px) 100vw, 900px";
   let currentIndex = galleryEntry
     ? Math.min(Math.max(0, requestedIndex), images.length - 1)
     : Math.max(0, images.indexOf(currentImage));
@@ -571,7 +571,7 @@ function startPhotoViewer(galleryEntry) {
        moves onto the view name; if they still do not fit, the notes follow each other instead (the guide scrolls). */
     guide.classList.remove("is-meta-over", "is-flow");
 
-    if (window.matchMedia("(max-width: 779px)").matches) {
+    if (window.matchMedia("(max-width: 779.98px)").matches) {
       const zoomNote = guide.querySelector(".guide-zoom");
       const viewNote = guide.querySelector(".guide-meta");
 

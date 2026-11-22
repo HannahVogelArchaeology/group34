@@ -127,7 +127,7 @@
   }
 
   /* Responsive behaviour */
-  @media (max-width: 779px) {
+  @media (max-width: 779.98px) {
     padding: 2.25em 1em 3em;
 
     .shelf-v2-title {
@@ -210,7 +210,7 @@
   word-break: break-word;
 }
 
-@media (max-width: 779px) {
+@media (max-width: 779.98px) {
   .shelf-hero-media {
     width: 100%;
     max-width: 100%;
@@ -232,15 +232,17 @@
 /* Thumbnails under the hero photo (Middle and Bottom shelf). Every photo of the shelf is listed, including the one shown large. */
 .shelf-hero-media .shelf-thumbnails {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 80px);
+  /* The thumbnails fill the row (up to 5 in one row, more in two rows), so none is left alone on a second row. */
+  grid-template-columns: repeat(var(--thumb-cols, 4), minmax(0, 1fr));
   gap: 0.5em;
   margin-top: 0.65em;
   padding: 4px;
 }
 .shelf-hero-media .shelf-thumbnails .thumb-box {
   display: block;
-  width: 80px;
-  height: 80px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   border: 1px solid #ccc;
   background-color: #f5f3ef;
   box-sizing: border-box;

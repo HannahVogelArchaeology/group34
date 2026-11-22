@@ -79,6 +79,7 @@
   var fixedLayer = null;
   var legend = null;
   var legendWrap = null;
+  var homeBarBottom = 0;
   var frame = 0;
   var isPhotoPage = Boolean(document.getElementById("photo-viewer"));
   /* True while the header is the top of the sidebar on the right (wide screens). It is read from the layout itself,
@@ -536,6 +537,13 @@
 
     /* The badges that hang below the header must not hide the start of the panel, so the panel starts below them. */
     if (legend && legendWrap) {
+      /* Home page on phones: the header is two buttons floating over the very top of the page (the page has no room reserved for it),
+         so the panel starts below them. The height is taken while the page is at the top, and kept after the header changes. */
+      if (pinnedBar && !beside && document.body.classList.contains("is-home")) {
+        if (!document.body.classList.contains("is-scrolled")) { homeBarBottom = pinnedBar.getBoundingClientRect().bottom; }
+        lowestFixed = Math.max(lowestFixed, homeBarBottom || 76);
+      }
+
       var base = legendWrap.getBoundingClientRect().top + scrollY;
       var margin = Math.max(16, Math.ceil(lowestFixed + 12 - base));
 

@@ -224,7 +224,7 @@ test.describe("Photo viewer", () => {
 
     await page.locator("#photoGuideClose").click();
     await expect(guide).toBeHidden();
-    await expect(page.locator("#photoFigure .sr-only").first()).toContainText("This is the caption");
+    await expect(page.locator("#photoFigure .sr-only").first()).toContainText("Caption");
   });
 
   test("Quick Guidance dialog: opens with the page, keeps the focus inside, closes with Escape", async ({ page }) => {

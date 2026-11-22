@@ -2,38 +2,38 @@
 layout: default
 ---
 
-<div class="about-page-container" role="main" aria-label="About Us Page">
-<h1 class="page-title" aria-label="Page Title: About Us">About Us</h1>
+<div class="about-page-container">
+<h1 class="page-title">About Us</h1>
 
 <!-- Accessible vertical table of contents -->
 <nav class="about-toc" aria-label="About Us contents">
     <h2>On this page</h2>
     <ul aria-label="List of sections on this page">
-        <li><a href="#visitor-tab" aria-label="Go to the Visitor Information section">Visitor Information</a></li>
-        <li><a href="#curation-tab" aria-label="Go to the Curation and Acknowledgements section">Curation and Acknowledgements</a></li>
-        <li><a href="#team-section" aria-label="Go to the Website Development Team section">Website Development Team</a></li>
+        <li><a href="#visitor-tab">Visitor Information</a></li>
+        <li><a href="#curation-tab">Curation and Acknowledgements</a></li>
+        <li><a href="#team-section">Website Development Team</a></li>
     </ul>
 </nav>
 
 <!-- VISITOR INFORMATION -->
-<section id="visitor-tab" class="tab-content active" role="tabpanel" aria-label="Visitor Information Panel">
+<section id="visitor-tab" class="tab-content active">
 <h2 class="main-tab-title">Visitor Information</h2>
 
 <!-- Visitor Information -->
 <section class="content-section" aria-label="General Visitor Information">
 
-<p class="section-desc" aria-label="Campus visitor guidelines">
+<p class="section-desc">
     This exhibition is displayed at the
-    <a href="https://www.mq.edu.au/faculty-of-arts/about/gale-history-museum/visit" class="inline-link" aria-label="Visit the website of Gale History Museum" target="_blank" rel="noopener noreferrer">Gale History Museum</a>
+    <a href="https://www.mq.edu.au/faculty-of-arts/about/gale-history-museum/visit" class="inline-link" target="_blank" rel="noopener noreferrer">Gale History Museum <span class="sr-only">(opens in a new tab)</span></a>
     from 10th November 2026 until the 1st of March 2027. The Museum is open 10am to 4pm, Monday to Friday (closed on public holidays) and is located on Macquarie University's Wallumattagal Campus, North Ryde, on the ground floor of the Arts Precinct at 25C Wally's Walk. Please refer to P-12 on the
-    <a href="https://www.mq.edu.au/__data/assets/pdf_file/0016/108142/Campus-Map.pdf" class="inline-link" aria-label="Visit the campus map" target="_blank" rel="noopener noreferrer">Campus Map.</a>
+    <a href="https://www.mq.edu.au/__data/assets/pdf_file/0016/108142/Campus-Map.pdf" class="inline-link" target="_blank" rel="noopener noreferrer">Campus Map. <span class="sr-only">(opens in a new tab)</span></a>
     Parking and public transport information can be accessed via Museum’s
-    <a href="https://www.mq.edu.au/faculty-of-arts/about/gale-history-museum/visit" class="inline-link" aria-label="Visit the Museum's Visit page on the Macquarie University Website" target="_blank" rel="noopener noreferrer">Visit page</a>
+    <a href="https://www.mq.edu.au/faculty-of-arts/about/gale-history-museum/visit" class="inline-link" target="_blank" rel="noopener noreferrer">Visit page <span class="sr-only">(opens in a new tab)</span></a>
     on the Macquarie University Website.
 </p>
 
 <!-- On Campus -->
-<div class="sub-block" aria-label="On Campus Information">
+<div class="sub-block">
     <h3 class="sub-title">On Campus</h3>
 
     <table class="info-table visitor-info-table" aria-label="Campus location and opening hours">
@@ -87,14 +87,14 @@ layout: default
 </section>
 
 <!-- CURATION AND ACKNOWLEDGEMENTS -->
-<section id="curation-tab" class="tab-content" role="tabpanel" aria-label="Curation and Acknowledgements Panel">
+<section id="curation-tab" class="tab-content">
 <h2 class="main-tab-title"> Curation and Acknowledgements </h2>
 
 
 <!-- Curation -->
 <section class="content-section" aria-label="Curation Details">
     <h3 class="gold-heading">Curation</h3>
-    <div class="curator-profile" aria-label="Curator Profile">
+    <div class="curator-profile">
 
     {% if page.curator_image and page.curator_image != "" %}
         <div class="curator-image" aria-hidden="true">
@@ -106,25 +106,25 @@ layout: default
     {% endif %}
 
 
-    <div class="curator-bio" aria-label="Curator Biography">
-        <p class="author-sub" aria-label="Curated by Hannah Vogel">
+    <div class="curator-bio">
+        <p class="author-sub">
         by Hannah Vogel
         </p>
 
-        <p aria-label="Curator introduction">
+        <p>
             <strong>Hannah Vogel</strong> is an archaeologist, teaching academic, and PhD candidate researcher in the School of Humanities, Macquarie University (Sydney, Australia). As a leading researcher on ableism and disability, she combines archaeological scholarship with advocacy and experience in museums, public outreach, accessibility, and inclusive pedagogies. Her work has helped shape the emerging field of archaeological disability studies.
         </p>
 
-        <p aria-label="Curator publications and recognition">
+        <p>
             Her recent books include <i>Disability in Ancient Egypt and Egyptology</i> (Routledge, 2024) and <i>Disability Activism in and Out of the Academy</i> (2026). She has been recognised an emerging research leader of the inaugural National Disability Leadership Program by the
-            <a href="https://www.ndrp.org.au/" class="inline-link" aria-label="Visit the website of National Disability Research Partnership" target="_blank" rel="noopener noreferrer">National Disability Research Partnership.</a>
+            <a href="https://www.ndrp.org.au/" class="inline-link" target="_blank" rel="noopener noreferrer">National Disability Research Partnership. <span class="sr-only">(opens in a new tab)</span></a>
         </p>
 
-        <p aria-label="Curator profile and website links">
+        <p>
             Check out her
-            <a href="https://researchers.mq.edu.au/en/persons/hannah-vogel/" class="inline-link" aria-label="Visit the website of Hannah Vogel's Macquarie University Profile" target="_blank" rel="noopener noreferrer">Macquarie University Profile</a>
+            <a href="https://researchers.mq.edu.au/en/persons/hannah-vogel/" class="inline-link" target="_blank" rel="noopener noreferrer">Macquarie University Profile <span class="sr-only">(opens in a new tab)</span></a>
             or
-            <a href="https://hvogel.org/" class="inline-link" aria-label="Visit the website hvogel.org" target="_blank" rel="noopener noreferrer">Website (hvogel.org)</a>
+            <a href="https://hvogel.org/" class="inline-link" target="_blank" rel="noopener noreferrer">Website (hvogel.org) <span class="sr-only">(opens in a new tab)</span></a>
             for more information about her projects, research, outreach and advocacy:
         </p>
     </div>
@@ -137,21 +137,21 @@ layout: default
         <tr>
             <td class="label-col">MQ Profile Link</td>
             <td class="value-col">
-                <a href="https://researchers.mq.edu.au/en/persons/hannah-vogel/" class="inline-link" aria-label="Visit the website of Hannah Vogel's Macquarie University Profile" target="_blank" rel="noopener noreferrer">https://researchers.mq.edu.au/en/persons/hannah-vogel/</a>
+                <a href="https://researchers.mq.edu.au/en/persons/hannah-vogel/" class="inline-link" target="_blank" rel="noopener noreferrer">https://researchers.mq.edu.au/en/persons/hannah-vogel/ <span class="sr-only">(opens in a new tab)</span></a>
             </td>
         </tr>
 
         <tr>
             <td class="label-col">Personal Website</td>
             <td class="value-col">
-                <a href="https://hvogel.org/" class="inline-link" aria-label="Visit the website hvogel.org" target="_blank" rel="noopener noreferrer">https://hvogel.org/</a>
+                <a href="https://hvogel.org/" class="inline-link" target="_blank" rel="noopener noreferrer">https://hvogel.org/ <span class="sr-only">(opens in a new tab)</span></a>
             </td>
         </tr>
 
         <tr>
             <td class="label-col">NDRP Link</td>
             <td class="value-col">
-                <a href="https://www.ndrp.org.au/" class="inline-link" aria-label="Visit the website of National Disability Research Partnership" target="_blank" rel="noopener noreferrer">https://www.ndrp.org.au/</a>
+                <a href="https://www.ndrp.org.au/" class="inline-link" target="_blank" rel="noopener noreferrer">https://www.ndrp.org.au/ <span class="sr-only">(opens in a new tab)</span></a>
             </td>
         </tr>
     </tbody>
@@ -164,9 +164,9 @@ layout: default
 <section class="content-section" aria-label="Exhibition Funding">
 
     <h3 class="gold-heading">Funding</h3>
-    <div class="sub-block" aria-label="Funding details">
+    <div class="sub-block">
 
-    <p aria-label="Funding statement"> This exhibition is funded by the National Disability Research Partnership’s Disability Research Leadership Program (2026). It is part of Hannah Vogel’s PhD project supported by the Commonwealth through an Australian Government Research Training Program Scholarship DOI: <a href="https://doi.org/10.82133/C42F-K220" class="inline-link" aria-label="View Australian Government Research Training Program Scholarship documentation" target="_blank" rel="noopener noreferrer">https://doi.org/10.82133/C42F-K220</a>.
+    <p> This exhibition is funded by the National Disability Research Partnership’s Disability Research Leadership Program (2026). It is part of Hannah Vogel’s PhD project supported by the Commonwealth through an Australian Government Research Training Program Scholarship DOI: <a href="https://doi.org/10.82133/C42F-K220" class="inline-link" target="_blank" rel="noopener noreferrer">https://doi.org/10.82133/C42F-K220 <span class="sr-only">(opens in a new tab)</span></a>.
     </p>
     </div>
 </section>
@@ -177,8 +177,8 @@ layout: default
 
     <h3 class="gold-heading">Acknowledgements</h3>
 
-    <p aria-label="Acknowledgement of Country">This research was undertaken on the lands of the Wallumattagal clan of the Dharug Nation, whose cultures and customs have nurtured and continue to nurture this land, since the Dreaming. Their sovereignty was never ceded.</p>
-    <p aria-label="Thanks to the Gale History Museum">Thanks to the Gale History Museum, Macquarie University for providing access to the materials for this exhibition, with special thanks to Leila Wallace, Dr Yvonne Inall and Sarah Judd. Thanks also to:</p>
+    <p>This research was undertaken on the lands of the Wallumattagal clan of the Dharug Nation, whose cultures and customs have nurtured and continue to nurture this land, since the Dreaming. Their sovereignty was never ceded.</p>
+    <p>Thanks to the Gale History Museum, Macquarie University for providing access to the materials for this exhibition, with special thanks to Leila Wallace, Dr Yvonne Inall and Sarah Judd. Thanks also to:</p>
     <ul aria-label="List of special thanks">
         <li>
             Dr Brian Ballsun-Stanton (website accessibility, development and support)
@@ -196,16 +196,16 @@ layout: default
             Marcus Arruzza (Video production and digital scans)
         </li>
     </ul>
-    <p aria-label="Disability community consultation acknowledgement">I acknowledge [disability] community consultation, was provided by the <a href="https://www.ndrp.org.au/" target="_blank" rel="noopener noreferrer" aria-label="Visit the National Disability Research Partnership website">National Disability Research Partnership</a> staff (especially, Catherine Raffaele and Jess Rosenthal), and the Disability Research Leaders Community of Practise members (especially, Matthew Jackson and Samantha Lilly). Acknowledgments for feedback and consultation also from Dr Alexandra F. Morris, Amy Cripps, Cecily Bateman, Chaya Kasif, Damian Gilbert, Dr David Chapman, Dr Ewan Coopey, Gessika Crowe, Hannah Newman, Jackie Tang, Dr Julia Hamilton, Dr Katie Shead, Dr Louise Pryke, Marianne Strauss, Dr Narges Safari, Nicole Leong, Penelope Blake, Prof Ronika Power, Sarah Massingham, Taylah Evans and many other community members who have elected to remain anonymous.</p>
-    <p aria-label="Thanks for administrative and technical support">Special thanks to Hannah Newman and Dr Brian Ballsun-Stanton for their work supporting the administrative and technical development of this exhibition and associated website.</p>
-    <p aria-label="Note on disability language">In most instances, I have chosen to use identity-first disability language as a personal preference. Acknowledge that preferences vary amongst the diverse disability community and respect the choices of each person to express their experiences and embodiments.</p>
+    <p>I acknowledge [disability] community consultation, was provided by the <a href="https://www.ndrp.org.au/" target="_blank" rel="noopener noreferrer">National Disability Research Partnership <span class="sr-only">(opens in a new tab)</span></a> staff (especially, Catherine Raffaele and Jess Rosenthal), and the Disability Research Leaders Community of Practise members (especially, Matthew Jackson and Samantha Lilly). Acknowledgments for feedback and consultation also from Dr Alexandra F. Morris, Amy Cripps, Cecily Bateman, Chaya Kasif, Damian Gilbert, Dr David Chapman, Dr Ewan Coopey, Gessika Crowe, Hannah Newman, Jackie Tang, Dr Julia Hamilton, Dr Katie Shead, Dr Louise Pryke, Marianne Strauss, Dr Narges Safari, Nicole Leong, Penelope Blake, Prof Ronika Power, Sarah Massingham, Taylah Evans and many other community members who have elected to remain anonymous.</p>
+    <p>Special thanks to Hannah Newman and Dr Brian Ballsun-Stanton for their work supporting the administrative and technical development of this exhibition and associated website.</p>
+    <p>In most instances, I have chosen to use identity-first disability language as a personal preference. Acknowledge that preferences vary amongst the diverse disability community and respect the choices of each person to express their experiences and embodiments.</p>
 </section>
 
 
 </section>
 
 <!-- WEBSITE DEVELOPMENT TEAM -->
-<section id="team-tab" class="tab-content" role="tabpanel" aria-label="Website Development Team Panel">
+<section id="team-tab" class="tab-content">
 <h2 class="main-tab-title">Website Development Team</h2>
 
 <!-- Website Dev Team -->
@@ -214,27 +214,27 @@ layout: default
 <!-- Interactive Avatars -->
     <div class="team-avatars" id="avatar-container" role="tablist" aria-label="Website development team members">
 
-    <button class="avatar active" type="button" role="tab" aria-selected="true" tabindex="0" onclick="selectMember(0, this)" aria-label="Select Team member 1">
+    <button class="avatar active" type="button" role="tab" aria-selected="true" tabindex="0" onclick="selectMember(0, this)" aria-label="KHS: team member 1">
     KHS
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(1, this)" aria-label="Select Team member 2">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(1, this)" aria-label="JB: team member 2">
     JB
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(2, this)" aria-label="Select Team member 3">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(2, this)" aria-label="TD: team member 3">
     TD
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(3, this)" aria-label="Select Team member 4">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(3, this)" aria-label="DH: team member 4">
     DH
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(4, this)" aria-label="Select Team member 5">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(4, this)" aria-label="LN: team member 5">
     LN
     </button>
 
-    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(5, this)" aria-label="Select Team member 6">
+    <button class="avatar" type="button" role="tab" aria-selected="false" tabindex="-1" onclick="selectMember(5, this)" aria-label="IC: team member 6">
     IC
     </button>
 </div>
@@ -247,7 +247,7 @@ layout: default
 
 
 <!-- Member Information -->
-<div aria-live="polite" aria-label="Selected Team Member Details">
+<div aria-live="polite">
 <table class="info-table team-member-table" aria-label="Team member information">
     <tbody>
 
@@ -286,7 +286,7 @@ layout: default
     <tr id="member-social-row">
         <td class="value-col" id="member-social">
         Social:
-        <a href="#" aria-label="Visit selected team member's LinkedIn" id="member-link" class="inline-link" target="_blank" rel="noopener noreferrer">
+        <a href="#" id="member-link" class="inline-link" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin" aria-hidden="true"></i>
         </a>
         </td>
@@ -359,7 +359,7 @@ function buildMemberTable(data) {
 
     const social = hasLink
         ? '<tr><td class="value-col">Social: <a class="inline-link" target="_blank" rel="noopener noreferrer" href="' + data.link +
-          '" aria-label="Visit ' + data.name + '\'s LinkedIn">LinkedIn</a></td></tr>'
+          '">LinkedIn <span class="sr-only">(opens in a new tab)</span></a></td></tr>'
         : '';
 
     table.innerHTML =

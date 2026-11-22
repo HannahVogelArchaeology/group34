@@ -68,8 +68,8 @@ function changeFontSize(direction) {
 }
 
 
-/* Sidebar menu: always visible on desktop; collapsible drawer on mobile only (max-width: 779px) */
-const mobileMenuQuery = window.matchMedia("(max-width: 779px)");
+/* Sidebar menu: always visible on desktop; collapsible drawer on mobile only (max-width: 779.98px) */
+const mobileMenuQuery = window.matchMedia("(max-width: 779.98px)");
 
 /* The down arrow shows while the open menu is taller than the screen and is still at the top (any screen size).
    Once the list has been scrolled down, the up arrow shows instead. Both are clickable for mouse and touch users. */
@@ -109,6 +109,28 @@ function scrollSidebarMenu(direction) {
 
 /* Keep the sidebar exposed to assistive technology and the keyboard only while it is visible:
    always on desktop, and only when the drawer is open on mobile. */
+/* Photo viewer page: the navigation is skipped by the Tab key and ignored by screen readers until the visitor
+   chooses "Go to navigation bar" (or opens the Menu on a phone). Mouse and touch still work. */
+let navigationRequested = false;
+
+function setSidebarTabbing(menu, tabbable) {
+  menu.querySelectorAll("a[href], button").forEach((element) => {
+    if (tabbable) {
+      if (element.dataset.savedTabindex !== undefined) {
+        if (element.dataset.savedTabindex === "") {
+          element.removeAttribute("tabindex");
+        } else {
+          element.setAttribute("tabindex", element.dataset.savedTabindex);
+        }
+        delete element.dataset.savedTabindex;
+      }
+    } else if (element.dataset.savedTabindex === undefined) {
+      element.dataset.savedTabindex = element.getAttribute("tabindex") || "";
+      element.setAttribute("tabindex", "-1");
+    }
+  });
+}
+
 function syncSidebarAccessibility() {
   const menu = document.getElementById("sidebarMenu");
 
@@ -117,9 +139,15 @@ function syncSidebarAccessibility() {
   }
 
   const visible = !mobileMenuQuery.matches || menu.classList.contains("active");
+  const onPhotoViewer = !!document.querySelector(".photo-viewer-page");
+  const skipped = onPhotoViewer && !navigationRequested && !(mobileMenuQuery.matches && menu.classList.contains("active"));
 
-  menu.setAttribute("aria-hidden", String(!visible));
+  menu.setAttribute("aria-hidden", String(!visible || skipped));
   menu.inert = !visible;
+
+  if (onPhotoViewer) {
+    setSidebarTabbing(menu, !skipped);
+  }
 }
 
 function setPageBehindDrawerInert(menu, inert) {
@@ -214,6 +242,14 @@ function toggleDisplaySettings(forceState) {
 
   panel.classList.toggle("open", open);
   button.setAttribute("aria-expanded", String(open));
+
+  // The panel is a sheet: focus moves to its Close button when it opens, and back to the Accessibility button when Close is pressed.
+  if (open) {
+    const closeButton = panel.querySelector(".settings-close");
+    if (closeButton) { closeButton.focus(); }
+  } else if (forceState === false) {
+    button.focus();
+  }
 }
 
 /* Reset the drawer when the screen grows to desktop size, and close it with the Escape key */
@@ -465,12 +501,29 @@ document.addEventListener("DOMContentLoaded", () => {
     skipToNavigation.addEventListener("click", (event) => {
       event.preventDefault();
 
+      navigationRequested = true;
+      syncSidebarAccessibility();
+
       if (mobileMenuQuery.matches) {
         toggleSidebarMenu(true);
       }
 
       sidebarNav.focus();
     });
+
+    /* When the focus leaves the navigation again, the photo viewer page goes back to skipping it. */
+    const sidebarMenu = document.getElementById("sidebarMenu");
+
+    if (sidebarMenu) {
+      sidebarMenu.addEventListener("focusout", () => {
+        setTimeout(() => {
+          if (navigationRequested && !sidebarMenu.contains(document.activeElement)) {
+            navigationRequested = false;
+            syncSidebarAccessibility();
+          }
+        }, 0);
+      });
+    }
   }
 });
 
@@ -644,3 +697,39 @@ document.addEventListener("DOMContentLoaded", () => {
     loadKeyboardGuide();
   }
 });
+
+/* Home page on phones: at the very top the header is only two floating buttons over the photo.
+   When the visitor scrolls a little, the full header bar (title, buttons, "You are here" strip) appears. */
+(function () {
+  if (!document.body.classList.contains("is-home")) { return; }
+
+  function updateHeaderOverHero() {
+    document.body.classList.toggle("is-scrolled", window.scrollY > 40);
+    syncHeaderHeight();
+  }
+
+  window.addEventListener("scroll", updateHeaderOverHero, { passive: true });
+  window.addEventListener("resize", updateHeaderOverHero);
+  updateHeaderOverHero();
+})();
+
+/* Shelf cards on the home page: if a photo cannot load, the browser shows its alt text in the image area.
+   Mark such images so the CSS can give that text the same left and right space as the caption below it. */
+(function () {
+  function markBroken(img) { img.classList.add("is-broken"); }
+
+  function watchShelfCardImages() {
+    document.querySelectorAll(".shelf-card .card-img img").forEach(function (img) {
+      if (img.complete && img.naturalWidth === 0 && (img.currentSrc || img.getAttribute("src"))) {
+        markBroken(img);
+      }
+      img.addEventListener("error", function () { markBroken(img); });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", watchShelfCardImages);
+  } else {
+    watchShelfCardImages();
+  }
+})();

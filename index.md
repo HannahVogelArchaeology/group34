@@ -18,7 +18,7 @@ hero_image_caption: "Photograph of the display and panel for the exhibition “D
 introduction_video: "/assets/video/introduction.mp4"
 introduction_caption: "Introduction to the exhibition by the curator, Dr Hannah Vogel."
 introduction_transcript: |
-  Hi. My name is Hannah Vogel. I am an archaeologist and my PhD research is on disability in history and archaeology.
+  Hello. My name is Hannah Vogel. I am an archaeologist and my PhD research is on disability in history and archaeology.
 
   I am the curator of this exhibition titled Disability Heritage: Archaeology with Difference
 

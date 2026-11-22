@@ -36,8 +36,16 @@ WebKit on the CI runner is Playwright's WebKit build. It is close to Safari but 
 
 - The warning is in `_layouts/default.html` (the first item inside the main content) and is hidden by default.
 - A short script in `_includes/head.html` checks for the features the site needs: CSS custom properties,
-  CSS grid, the `inset` property, `fetch`, `Promise`, `matchMedia`, `Element.closest` and modern JavaScript
-  (script `noModule` support). If one is missing it adds the class `outdated-browser` to `<html>`, and the warning shows.
+  CSS grid, the `inset` property, container queries (`container-type`), `fetch`, `Promise`, `matchMedia`,
+  `Element.closest` and modern JavaScript (script `noModule` support). If one is missing it adds the class
+  `outdated-browser` to `<html>`, and the warning shows.
+- In practice the container-query check is the strictest, so the supported browsers are: Chrome and Edge 105 or newer,
+  Firefox 110 or newer, Safari 16 or newer (iPhone and iPad: iOS 16 or newer). Older versions see the warning.
+  The first versions with container queries and the `cqw` unit come from
+  <https://caniuse.com/css-container-query-units> and <https://web.dev/blog/cq-stable>.
+  Checked 22 November 2026 in the tables there; look again if the check changes.
+- The same versions are written in the warning text in `_layouts/default.html`. If the check changes, update the
+  versions there and in this list together.
 - The check tests features, not browser names or versions, so it keeps working as new browsers appear.
   If the site starts to use a new browser feature that older browsers lack, add that feature to the check.
 - The automated tests confirm that the warning stays hidden in current browsers and appears when `fetch` is removed.

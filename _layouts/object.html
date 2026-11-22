@@ -108,7 +108,10 @@ endif %}
       <div class="media-controls">
 
         {% if page.gallery_images.size > 1 %}
-        <div class="thumbnails-row" role="group" aria-label="{{ page.title }} photo views">
+        {%- comment -%} Columns of the thumbnail row: up to 5 photos fill one row, 6 to 10 photos use two rows. {%- endcomment -%}
+        {% assign thumb_count = page.gallery_images.size %}
+        {% if thumb_count > 5 %}{% assign thumb_cols = thumb_count | plus: 1 | divided_by: 2 %}{% else %}{% assign thumb_cols = thumb_count %}{% endif %}
+        <div class="thumbnails-row" style="--thumb-cols: {{ thumb_cols }};" role="group" aria-label="{{ page.title }} photo views">
           {%- comment -%} Every photo is a thumbnail, including the one shown large first. Pressing one shows it in the large frame; the photo viewer opens from the large photo. {%- endcomment -%}
           {% for gallery_image in page.gallery_images %}
           {% assign gallery_image_exists = false %}

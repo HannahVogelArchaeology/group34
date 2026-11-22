@@ -121,13 +121,41 @@ margin-top: 20px;
 border-top: 1px solid #c9c2b0;
 
 summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* The open book icon replaces the browser's own triangle (right when closed, down when open). */
+  list-style: none;
   cursor: pointer;
   padding: 14px 0;
   font-size: 1.05em;
   font-weight: 600;
   color: #222222;
+
+  &::-webkit-details-marker { display: none; }
+  &::marker { content: ""; }
+
+  /* The icon sits in a fixed box. When the transcript is open, the box is filled, so open and closed look different. */
+  i {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border: 2px solid #5c3a1e;
+    border-radius: 6px;
+    box-sizing: border-box;
+    color: #5c3a1e;
+    background: transparent;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  &:focus-visible { outline: 3px solid #174e77; outline-offset: 3px; }
 }
 }
+
+.video-transcript[open] > summary i { background: #5c3a1e; color: #ffffff; }
 
 .video-transcript-text {
 padding-bottom: 8px;
@@ -262,7 +290,7 @@ padding-right: 24px;
 /* The figure is as wide as the photo, and the caption wraps inside that width (width: 0 with min-width: 100% keeps the long caption from widening the figure). */
 .home-feature-media { width: fit-content; max-width: 100%; justify-self: start; }
 .home-feature-media .image-caption { width: 0; min-width: 100%; text-align: left; overflow-wrap: anywhere; margin: 14px 0 0; color: #000000; }
-@media (max-width: 779px) { .home-feature-container { grid-template-columns: minmax(0, 1fr); } .home-feature-media { width: 100%; max-width: 100%; justify-self: stretch; } .home-feature-media .hero-photo-frame { align-self: stretch; width: 100%; } .home-feature-media img { width: 100%; max-width: 100%; max-height: none; } .home-feature-media .image-caption { width: 100%; min-width: 0; } .home-hero-text .hero-main-title { font-size: clamp(2.4rem, 11vw, 3.2rem); } .shelves-explorer { scroll-margin-top: 220px; } }
+@media (max-width: 779.98px) { .home-feature-container { grid-template-columns: minmax(0, 1fr); } .home-feature-media { width: 100%; max-width: 100%; justify-self: stretch; } .home-feature-media .hero-photo-frame { align-self: stretch; width: 100%; } .home-feature-media img { width: 100%; max-width: 100%; max-height: none; } .home-feature-media .image-caption { width: 100%; min-width: 0; } .home-hero-text .hero-main-title { font-size: clamp(2.4rem, 11vw, 3.2rem); } .shelves-explorer { scroll-margin-top: 112px; } }
 
 
 
@@ -278,7 +306,7 @@ padding-right: 24px;
 }
 
 @supports (grid-template-rows: subgrid) {
-  @media (min-width: 769px) {
+  @media (min-width: 1000px) {
     .shelves-explorer .shelf-cards-container {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -361,6 +389,8 @@ padding-right: 24px;
 }
 .shelves-explorer .shelf-cards-container .shelf-card .card-img { height: 250px; margin: 0; }
 .shelves-explorer .shelf-cards-container .shelf-card .card-img img { transition: transform 0.3s ease; }
+/* Only when a photo fails to load: the alt text the browser shows gets the same side space as the caption (18px). */
+.shelves-explorer .shelf-cards-container .shelf-card .card-img img.is-broken { box-sizing: border-box; padding: 0 18px; text-align: left; }
 .shelves-explorer .shelf-cards-container .shelf-card .caption {
   margin: 0;
   padding: 14px 18px 18px;
@@ -426,4 +456,151 @@ padding-right: 24px;
   margin-bottom: 1.1em;
   font-weight: 500;
   line-height: 1.45;
+}
+
+/* ------------------------------------------------------------------
+   Home hero on screens 780px wide and up (the sidebar is fixed from 780px).
+   Light background. The facts (objects, shelves, audio described) show under the title.
+   780px to 999px (narrow content next to the sidebar): one column. The title, facts and buttons come first,
+   then the photo and its caption. The photo is limited by the screen height so that, after the title,
+   the photo and its caption fit the screen. It is centred, and the title and buttons line up with it.
+   1000px and up: two columns. Title, facts and buttons are on the left, the photo is on the right.
+   Its width is limited by the screen height, so the whole photo and its caption are visible
+   without scrolling, also on very wide or short screens. Nothing is cropped.
+   ------------------------------------------------------------------ */
+.hero-facts { display: none; list-style: none; margin: 0; padding: 0; }
+
+@media (min-width: 780px) {
+  .hero-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 24px; }
+  .hero-facts li {
+    padding: 5px 12px;
+    border: 1px solid #5c3a1e;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #5c3a1e;
+  }
+  .home-hero-text .hero-curator { margin: 16px 0 0; font-size: 1.2rem; }
+  .home-feature-section { padding-top: 24px; padding-bottom: 20px; }
+  .home-feature-media { max-width: none; }
+  .home-feature-media .hero-photo-frame { align-self: stretch; width: 100%; }
+  .home-feature-media img { width: 100%; max-height: none; }
+}
+
+@media (min-width: 780px) and (max-width: 999.98px) {
+  .home-feature-container {
+    --hero-w: min(100%, max(320px, calc((100vh - 300px) * 0.75)));
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .home-feature-media { width: var(--hero-w); justify-self: center; }
+  .home-hero-text { width: var(--hero-w); justify-self: center; }
+  .home-hero-text .hero-main-title { max-width: none; font-size: clamp(2.2rem, 8cqw, 3.4rem); overflow-wrap: normal; }
+  .home-hero-text .hero-actions { flex-direction: row; flex-wrap: wrap; gap: 14px; }
+}
+
+@media (min-width: 1000px) {
+  /* Small top and bottom space, so the photo and its caption (up to three lines) fit the screen height exactly. */
+  .home-feature-container {
+    grid-template-columns: minmax(0, 1fr) min(60%, calc((100vh - 128px) * 0.75));
+    gap: clamp(32px, 4vw, 64px);
+  }
+  /* The text column is at least 40% of the section minus the gap, and the title size follows it, so "Archaeology" always fits on one line and is never split. */
+  .home-hero-text .hero-main-title {
+    max-width: none;
+    font-size: clamp(1.5rem, min(4.8cqw, calc((40cqw - 40px) / 6.4)), 3.4rem);
+    overflow-wrap: normal;
+  }
+  .home-hero-text .hero-actions { flex-direction: column; align-items: stretch; align-self: stretch; max-width: 360px; }
+  .home-hero-text .btn-explore-exhibition,
+  .home-hero-text .btn-curator-bio { padding: 8px 16px; font-size: 1rem; text-align: center; }
+  /* The photo fills its column. The column is as wide as the photo can be, so the photo and caption line up. */
+  .home-feature-media { width: 100%; justify-self: stretch; }
+}
+
+/* Shelf cards: three columns only on wide content; narrower content stacks them one under another (as on phones). */
+@media (max-width: 999.98px) {
+  .shelves-explorer .shelf-cards-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 640px;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Home hero on phones (779px and narrower), as in the approved mobile design.
+   The photo fills the width at its own proportions (not cropped) from the very top of the page; the header there
+   is only two floating buttons (see _header.scss). The photo fades into the brown at its lower part, and
+   "Curated by", the title, the facts and the two buttons lie on that brown. The photo caption is small, at the bottom.
+   ------------------------------------------------------------------ */
+@media (max-width: 779.98px) {
+  .home-feature-section { --hero-overlap: min(23.6vw, 110px); padding: 0; background: #2c1e11; }
+  /* The first screen is exactly one screen high (taller only if the text needs more room, e.g. with large text size).
+     The photo takes the room that is left above the text, so the buttons and the caption are never cut off. */
+  .home-feature-container { position: relative; display: flex; flex-direction: column; gap: 0; max-width: none; margin: 0; padding: 0; box-sizing: border-box; min-height: 100vh; min-height: 100svh; }
+
+  /* The figure itself takes no box: its photo frame and its caption are laid out directly in the column. */
+  .home-feature-media { display: contents; }
+  .home-feature-media .hero-photo-frame { order: 1; position: relative; flex: 1 1 0; min-height: max(280px, 105vw); width: 100%; }
+  .home-feature-media img { position: absolute; inset: 0; width: 100%; height: 100%; max-height: none; border-radius: 0; object-fit: cover; object-position: center top; }
+  /* The fade from the photo into the brown */
+  .home-feature-media .hero-photo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 -1px;
+    background: linear-gradient(to bottom, rgba(44, 30, 17, 0) calc(100% - var(--hero-overlap) - 56px), #2c1e11 100%);
+    pointer-events: none;
+  }
+  /* The caption is the last line of the first screen, under the buttons. */
+  .home-feature-media .image-caption {
+    order: 3;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 20px 20px 16px;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    color: #d9cbb8;
+  }
+
+  /* The text block starts on the lower part of the photo (about 23.6% of the screen width above its bottom edge). */
+  .home-hero-text {
+    position: relative;
+    z-index: 1;
+    order: 2;
+    align-items: stretch;
+    gap: 14px;
+    margin-top: calc(var(--hero-overlap) * -1);
+    padding: 0 20px;
+  }
+  .home-hero-text .hero-curator { order: -1; margin: 0; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.04em; color: #e3d3bf; }
+  .home-hero-text .hero-main-title { margin: 0; font-size: clamp(2rem, 8.7vw, 2.6rem); line-height: 1.1; letter-spacing: -0.01em; color: #ffffff; overflow-wrap: normal; text-shadow: 0 2px 14px rgba(20, 12, 6, 0.55); }
+
+  .hero-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+  .hero-facts li {
+    padding: 6px 12px;
+    border: 1px solid rgba(248, 246, 241, 0.55);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #f8f6f1;
+  }
+
+  .home-hero-text .hero-actions { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 4px; }
+  .home-hero-text .btn-explore-exhibition,
+  .home-hero-text .btn-curator-bio { width: 100%; box-sizing: border-box; font-size: 1.05rem; }
+  .home-hero-text .btn-explore-exhibition { min-height: 56px; background: #f8f6f1; border-color: #f8f6f1; color: #2c1e11; box-shadow: none; }
+  .home-hero-text .btn-explore-exhibition:hover,
+  .home-hero-text .btn-explore-exhibition:focus-visible { background: #ffffff; border-color: #ffffff; color: #2c1e11; }
+  .home-hero-text .btn-curator-bio { min-height: 48px; color: #f8f6f1; border-color: rgba(248, 246, 241, 0.7); }
+  .home-hero-text .btn-curator-bio:hover,
+  .home-hero-text .btn-curator-bio:focus-visible { background: #f8f6f1; border-color: #f8f6f1; color: #2c1e11; }
+  .home-hero-text .btn-explore-exhibition:focus-visible,
+  .home-hero-text .btn-curator-bio:focus-visible { outline-color: #ffffff; }
+
+  /* No light gap between the brown first screen and the gold line: the line starts right under it. */
+  .home-narrative-section { padding-top: 0; }
 }
