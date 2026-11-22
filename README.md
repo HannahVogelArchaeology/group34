@@ -21,9 +21,14 @@ bundle exec jekyll build
 ```
 
 The separate `Lighthouse` workflow audits pull requests and pushes against the
-100/100/100/100 baseline shipped for accessibility, best practices, performance,
-and SEO. A regression turns that workflow red and preserves its HTML report as
+minimum scores set in `.github/workflows/lighthouse.yml`: 100 for accessibility,
+best practices and SEO, and for performance 100 on desktop and 90 on mobile. A
+score below a minimum turns that workflow red and preserves its HTML report as
 an artifact, but it does not interrupt the independent Pages deployment.
+
+Known issue at handover: the mobile performance score of the home page changes
+from run to run and was below its minimum in the latest run (71). The saved trace
+shows several slow page layouts while the page loads.
 
 Edit Markdown pages at the repository root. Site-wide values are in
 `_config.yml`; shared HTML is in `_includes` and `_layouts`; styling is under
